@@ -1,0 +1,401 @@
+/* ═══════════════════════════════════════════════════════
+   retro-apps.css — LimeSter · IE · Netscape
+   Vince Darrigo / The Mothership
+═══════════════════════════════════════════════════════ */
+
+/* ── LIMESTER ──────────────────────────────────────── */
+
+#window-limester .win95-titlebar {
+  background: linear-gradient(to right, #0d5200, #1a9900) !important;
+}
+
+.ls-toolbar {
+  background: #e4ffd8;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #88bb66;
+}
+
+.ls-logo {
+  height: 26px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.ls-search {
+  flex: 1;
+  padding: 2px 6px;
+  font-size: 11px;
+  border: 1px inset #888;
+  font-family: Tahoma, Arial, sans-serif;
+  background: white;
+}
+
+.ls-search-btn {
+  padding: 2px 10px;
+  font-size: 10px;
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  cursor: pointer;
+  font-family: Tahoma, Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.ls-tabs {
+  display: flex;
+  background: #cceeaa;
+  border-bottom: 1px solid #88bb66;
+  gap: 0;
+}
+
+.ls-tab {
+  padding: 3px 14px;
+  font-size: 10px;
+  background: #cceeaa;
+  border: none;
+  border-right: 1px solid #88bb66;
+  cursor: default;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #333;
+}
+
+.ls-tab.ls-tab-active {
+  background: #e4ffd8;
+  font-weight: bold;
+  border-bottom: 2px solid #e4ffd8;
+}
+
+.ls-col-heads {
+  display: grid;
+  grid-template-columns: 22px 1fr 72px 76px 96px 34px;
+  padding: 2px 5px;
+  font-size: 9px;
+  font-weight: bold;
+  background: #c8e8aa;
+  border-bottom: 1px solid #88bb66;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #444;
+  gap: 3px;
+}
+
+.ls-download-list {
+  min-height: 160px;
+  max-height: 210px;
+  overflow-y: auto;
+  background: white;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 10px;
+  scrollbar-width: thin;
+}
+
+.ls-file-row {
+  display: grid;
+  grid-template-columns: 22px 1fr 72px 76px 96px 34px;
+  padding: 2px 5px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  gap: 3px;
+  cursor: default;
+}
+
+.ls-file-row:hover         { background: #eeffdd; }
+.ls-file-row.ls-complete   { }
+.ls-file-row.ls-virus      { color: #cc0000; }
+.ls-file-row.ls-sketchy    { color: #996600; }
+
+.ls-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+.ls-bar-track {
+  width: 88px;
+  height: 7px;
+  background: #ddd;
+  border: 1px solid #aaa;
+  overflow: hidden;
+}
+
+.ls-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #227700, #44cc00);
+  transition: width 0.4s;
+}
+
+.ls-bar-fill.ls-bar-done {
+  background: linear-gradient(to right, #0044aa, #0088ff);
+}
+
+.ls-connecting {
+  padding: 24px 10px;
+  text-align: center;
+  color: #666;
+  font-size: 11px;
+  font-family: Tahoma, Arial, sans-serif;
+  line-height: 1.7;
+}
+
+.ls-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 6px;
+  background: #c8e8aa;
+  border-top: 1px solid #88bb66;
+  font-size: 9px;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* ── INTERNET EXPLORER 5.5 ────────────────────────── */
+
+#window-ie .win95-titlebar {
+  background: linear-gradient(to right, #00007a, #1055b8) !important;
+}
+
+.ie-menubar {
+  display: flex;
+  background: #ece9d8;
+  padding: 1px 2px;
+  border-bottom: 1px solid #bbb;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+}
+
+.ie-menu-item {
+  padding: 2px 8px;
+  cursor: default;
+  color: #000;
+}
+
+.ie-menu-item:hover {
+  background: #316ac5;
+  color: white;
+}
+
+.ie-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 2px 4px;
+  background: #ece9d8;
+  border-bottom: 1px solid #ccc;
+}
+
+.ie-nav-btn {
+  background: none;
+  border: 1px solid transparent;
+  padding: 2px 5px;
+  font-size: 14px;
+  cursor: default;
+  line-height: 1;
+  border-radius: 0;
+}
+
+.ie-nav-btn:hover          { border-color: #316ac5; background: #d8e8f8; }
+.ie-nav-btn:disabled       { color: #bbb; }
+.ie-nav-sep                { width: 1px; background: #aaa; height: 18px; margin: 0 3px; }
+.ie-spinning-logo          { font-size: 18px; margin-left: auto; animation: ie-spin 2s linear infinite; }
+
+@keyframes ie-spin { to { transform: rotate(360deg); } }
+
+.ie-address-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  background: #ece9d8;
+  border-bottom: 1px solid #aaa;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+}
+
+.ie-address-label { color: #555; font-size: 11px; flex-shrink: 0; }
+
+.ie-address-input {
+  flex: 1;
+  padding: 1px 4px;
+  border: 1px inset #888;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  background: white;
+}
+
+.ie-go-btn {
+  padding: 1px 10px;
+  font-size: 10px;
+  background: #ece9d8;
+  border: 2px outset #fff;
+  cursor: default;
+}
+
+.ie-content-area {
+  background: white;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ie-loading-globe  { font-size: 44px; margin-bottom: 14px; }
+.ie-loading-text   { font-family: Tahoma, Arial, sans-serif; font-size: 11px; color: #444; text-align: center; margin-bottom: 10px; line-height: 1.5; max-width: 340px; }
+.ie-progress-wrap  { width: 220px; height: 12px; background: #e0e0e0; border: 1px inset #999; overflow: hidden; margin-bottom: 6px; }
+.ie-progress-fill  { height: 100%; width: 0%; background: linear-gradient(to right, #00007a, #1055b8); }
+.ie-estimate       { font-size: 10px; color: #888; font-family: Tahoma, Arial, sans-serif; font-style: italic; }
+
+/* ActiveX popup overlay */
+.ie-activex-popup {
+  position: absolute;
+  top: 12px; left: 50%; transform: translateX(-50%);
+  background: #fffde0;
+  border: 2px solid #cc9900;
+  padding: 8px 12px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 10px;
+  width: 320px;
+  z-index: 50;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.35);
+  line-height: 1.5;
+}
+
+.ie-activex-title  { font-weight: bold; color: #885500; margin-bottom: 4px; font-size: 11px; }
+.ie-activex-btns   { display: flex; gap: 4px; margin-top: 7px; flex-wrap: wrap; }
+.ie-activex-btns button {
+  padding: 2px 10px;
+  font-size: 10px;
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  cursor: pointer;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.ie-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ece9d8;
+  border-top: 1px solid #aaa;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #333;
+}
+
+.ie-zone-badge { font-size: 9px; color: #666; }
+
+/* ── NETSCAPE NAVIGATOR 4.7 ───────────────────────── */
+
+#window-netscape .win95-titlebar {
+  background: linear-gradient(to right, #380060, #7700bb) !important;
+}
+
+.ns-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 3px 5px;
+  background: #c8c8c8;
+  border-bottom: 1px solid #888;
+}
+
+.ns-nav-btn {
+  background: linear-gradient(to bottom, #e0e0e0, #b8b8b8);
+  border: 1px outset #ccc;
+  padding: 2px 7px;
+  font-size: 10px;
+  cursor: default;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+.ns-nav-btn:hover  { background: linear-gradient(to bottom, #eaeaea, #c8c8c8); }
+.ns-nav-sep        { width: 1px; background: #888; height: 18px; margin: 0 3px; }
+.ns-logo-corner    { margin-left: auto; font-size: 22px; line-height: 1; }
+.ns-logo-flash     { animation: ns-comet 1.8s ease-in-out infinite; }
+
+@keyframes ns-comet {
+  0%,100% { filter: brightness(1);   transform: translateY(0); }
+  50%      { filter: brightness(1.8) saturate(2); transform: translateY(-1px); }
+}
+
+.ns-location-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  background: #c8c8c8;
+  border-bottom: 1px solid #888;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+}
+
+.ns-location-label { font-size: 10px; font-weight: bold; color: #555; flex-shrink: 0; }
+
+.ns-location-input {
+  flex: 1;
+  padding: 1px 4px;
+  border: 1px inset #888;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  background: white;
+}
+
+.ns-content-area {
+  background: #c8c4bc;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.ns-loading-n      { font-size: 48px; font-weight: 900; color: #7700bb; font-family: "Arial Black", sans-serif; margin-bottom: 10px; animation: ns-flash 1.4s steps(2) infinite; }
+@keyframes ns-flash { 0%,49% { opacity: 1; } 50%,100% { opacity: 0.4; } }
+
+.ns-loading-text   { font-family: Arial, sans-serif; font-size: 11px; color: #333; margin-bottom: 10px; text-align: center; max-width: 340px; line-height: 1.5; }
+.ns-progress-wrap  { width: 220px; height: 10px; background: #aaa; border: 1px inset #888; overflow: hidden; margin-bottom: 6px; }
+.ns-progress-fill  { height: 100%; width: 0%; background: #7700bb; }
+.ns-estimate       { font-size: 10px; color: #555; font-family: Arial, sans-serif; font-style: italic; }
+
+.ns-status-bar {
+  background: #c0c0be;
+  border-top: 1px solid #888;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ns-security-icon  { font-size: 11px; }
+
+/* Browser war toast */
+#browser-war-toast {
+  position: fixed;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fffde0;
+  border: 2px solid #cc9900;
+  padding: 5px 14px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  z-index: 8000;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  animation: toast-in 0.3s ease;
+}
+
+@keyframes toast-in { from { opacity:0; transform: translateX(-50%) translateY(10px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }

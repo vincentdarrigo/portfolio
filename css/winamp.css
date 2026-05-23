@@ -1,0 +1,234 @@
+/* ═══════════════════════════════════════════════════════
+   winamp.css — WinAmp 2.x Classic Skin
+   Vince Darrigo / The Mothership
+═══════════════════════════════════════════════════════ */
+
+/* Override generic win95-window chrome */
+#window-winamp.win95-window {
+  border: 2px solid #555;
+  border-top-color: #777;
+  border-left-color: #777;
+  padding: 0;
+  background: transparent;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  width: auto;
+  min-width: 0;
+}
+
+/* Titlebar */
+#window-winamp .win95-titlebar.wp-titlebar {
+  background: linear-gradient(to bottom, #555, #2a2a2a);
+  padding: 2px 4px;
+  min-height: 0;
+  height: 16px;
+  border-bottom: 1px solid #111;
+}
+
+.wp-title-app {
+  color: #c0c0c0;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+#window-winamp .win95-ctrl.wp-ctrl {
+  background: #3a3a3a;
+  color: #bbb;
+  border: 1px solid #555;
+  border-bottom-color: #111;
+  border-right-color: #111;
+  font-size: 8px;
+  width: 13px;
+  height: 11px;
+  min-width: 0;
+  line-height: 10px;
+  padding: 0;
+}
+#window-winamp .win95-ctrl.wp-ctrl:hover { background: #4a4a4a; }
+
+/* Body / skin wrapper */
+.wp-body {
+  background: #2a2a2a;
+  width: 278px;
+}
+
+/* ── DISPLAY ── */
+.wp-display {
+  background: #000;
+  padding: 5px 6px 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wp-time-cur,
+.wp-time-dur {
+  color: #00dd00;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 34px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.wp-title-wrap {
+  flex: 1;
+  overflow: hidden;
+  height: 14px;
+  position: relative;
+}
+
+.wp-title-text {
+  color: #00dd00;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ── SEEK BAR ── */
+.wp-seek-bar {
+  height: 8px;
+  margin: 3px 6px;
+  background: #111;
+  border: 1px solid #000;
+  border-bottom-color: #555;
+  border-right-color: #555;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.wp-seek-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: linear-gradient(to right, #006600, #00bb00);
+}
+
+/* ── VOLUME ── */
+.wp-vol-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  background: #232323;
+}
+
+.wp-vol-label {
+  color: #666;
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-family: Arial, sans-serif;
+  flex-shrink: 0;
+}
+
+.wp-vol-slider {
+  flex: 1;
+  height: 3px;
+  cursor: pointer;
+  accent-color: #00aa00;
+}
+
+.wp-vol-pct {
+  color: #00dd00;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  min-width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── TRANSPORT CONTROLS ── */
+.wp-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 5px 6px;
+  background: #2a2a2a;
+  border-top: 1px solid #111;
+}
+
+.wp-btn {
+  background: linear-gradient(to bottom, #484848, #282828);
+  color: #ccc;
+  border: 1px solid #555;
+  border-bottom-color: #111;
+  border-right-color: #111;
+  width: 38px;
+  height: 22px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.wp-btn:hover {
+  background: linear-gradient(to bottom, #585858, #383838);
+  color: #fff;
+}
+
+.wp-btn:active,
+.wp-btn.wp-btn-pressed {
+  background: linear-gradient(to bottom, #282828, #484848);
+  border-color: #111;
+  border-bottom-color: #555;
+  border-right-color: #555;
+  color: #00ff00;
+}
+
+.wp-eject {
+  cursor: pointer;
+  font-size: 14px;
+  width: 30px;
+}
+
+/* ── PLAYLIST ── */
+.wp-playlist {
+  background: #111;
+  min-height: 70px;
+  max-height: 150px;
+  overflow-y: auto;
+  border-top: 1px solid #000;
+  scrollbar-width: thin;
+  scrollbar-color: #444 #111;
+}
+
+.wp-playlist::-webkit-scrollbar { width: 6px; }
+.wp-playlist::-webkit-scrollbar-track { background: #111; }
+.wp-playlist::-webkit-scrollbar-thumb { background: #444; }
+
+.wp-no-tracks {
+  color: #444;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 18px 0;
+}
+
+.wp-track {
+  color: #aaa;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  padding: 2px 5px;
+  cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wp-track:hover  { background: #1a3a1a; color: #ccc; }
+.wp-track-active { color: #00dd00 !important; background: #0a2a0a !important; }
+.wp-tracknum     { color: #444; font-size: 9px; }

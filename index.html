@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vince Darrigo — Portfolio</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/win95.css">
+  <link rel="stylesheet" href="css/messenger.css">
+  <link rel="stylesheet" href="css/winamp.css">
+  <link rel="stylesheet" href="css/retro-apps.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     GATEWAY 2000 BIOS SCREEN
+═══════════════════════════════════════════════════ -->
+<div id="gateway-overlay">
+  <div id="bios-text" class="bios-screen"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     WINDOWS 95 LOGIN SCREEN
+═══════════════════════════════════════════════════ -->
+<div id="win95-login-overlay" style="display:none;">
+  <div class="win95-login-dialog">
+    <div class="win95-titlebar" style="cursor:default;">
+      <span class="win95-title-text">Welcome to Windows</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" style="font-size:9px;">?</button>
+        <button class="win95-ctrl win95-close" onclick="doWin95Login()">✕</button>
+      </div>
+    </div>
+    <div class="win95-login-body">
+      <div class="win95-login-icon">🗝️</div>
+      <div class="win95-login-fields">
+        <p class="win95-login-msg">Type a user name and password to log on to Windows.</p>
+        <div class="win95-login-row">
+          <label><u>U</u>ser name:</label>
+          <input type="text" class="win95-login-input" value="VISITOR" readonly tabindex="-1">
+        </div>
+        <div class="win95-login-row">
+          <label><u>P</u>assword:</label>
+          <input type="password" class="win95-login-input" value="" readonly tabindex="-1" placeholder="">
+        </div>
+      </div>
+    </div>
+    <div class="win95-login-btns">
+      <button class="win95-dialog-btn" onclick="doWin95Login()">OK</button>
+      <button class="win95-dialog-btn" onclick="doWin95Login()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     WIN95 BOOT SCREEN
+═══════════════════════════════════════════════════ -->
+<div id="boot-overlay" style="display:none;">
+  <div class="boot-content">
+    <div class="boot-logo-wrap">
+      <span class="boot-logo-win">Windows</span>
+      <span class="boot-logo-95">95</span>
+    </div>
+    <div class="boot-subtitle">Starting Windows 95...</div>
+    <div class="boot-bar-track">
+      <div class="boot-bar-fill" id="boot-bar-fill"></div>
+    </div>
+  </div>
+  <div class="boot-copyright">© Copyright Microsoft Corporation, 1981-1995.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MOBILE FALLBACK — shown on small screens
+═══════════════════════════════════════════════════ -->
+<div id="mobile-bsod">
+  <div class="bsod-inner">
+    <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+    <br>
+    <p>VIEWPORT_TOO_SMALL_TO_RUN_PORTFOLIO</p>
+    <br>
+    <p>If this is the first time you've seen this Stop error screen, please visit this portfolio on a desktop browser. If problems continue, call Vince.</p>
+    <br>
+    <p>Technical information:</p>
+    <p>*** STOP: 0x0000007E (0xC0000005, 0x00000000, 0x00000001)</p>
+    <br>
+    <p>Contact: <a href="mailto:vincent.darrigo@gmail.com">vincent.darrigo@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     DESKTOP
+═══════════════════════════════════════════════════ -->
+<div id="desktop">
+
+  <!-- DESKTOP ICONS -->
+  <div id="desktop-icons">
+    <div class="desk-icon" ondblclick="openWindow('about')" tabindex="0">
+      <div class="desk-icon-img">💻</div>
+      <div class="desk-icon-label">About Vince</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('projects')" tabindex="0">
+      <div class="desk-icon-img">📁</div>
+      <div class="desk-icon-label">My Projects</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('resume')" tabindex="0">
+      <div class="desk-icon-img">📄</div>
+      <div class="desk-icon-label">Resume.doc</div>
+    </div>
+    <div class="desk-icon" ondblclick="window.location='guestbook.html'" tabindex="0">
+      <div class="desk-icon-img" style="font-size:20px;line-height:1;color:#003399;background:#e8f0ff;border:2px solid #336699;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:Impact,sans-serif;font-weight:bold;border-radius:2px;">M</div>
+      <div class="desk-icon-label">My Space</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('paint')" tabindex="0">
+      <div class="desk-icon-img">🎨</div>
+      <div class="desk-icon-label">Paint</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('minesweeper')" tabindex="0">
+      <div class="desk-icon-img">💣</div>
+      <div class="desk-icon-label">Minesweeper</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('messenger')" tabindex="0">
+      <div class="desk-icon-img">💬</div>
+      <div class="desk-icon-label">Buddy Chat</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('tamagotchi')" tabindex="0">
+      <div class="desk-icon-img">🥚</div>
+      <div class="desk-icon-label">Tamagotchi</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('snake')" tabindex="0">
+      <div class="desk-icon-img">🐍</div>
+      <div class="desk-icon-label">Snake</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('tetris')" tabindex="0">
+      <div class="desk-icon-img">🎮</div>
+      <div class="desk-icon-label">Tetris</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('solitaire')" tabindex="0">
+      <div class="desk-icon-img">🃏</div>
+      <div class="desk-icon-label">Solitaire</div>
+    </div>
+    <div class="desk-icon" ondblclick="launchScreensaver('random')" tabindex="0">
+      <div class="desk-icon-img">✨</div>
+      <div class="desk-icon-label">Screensaver</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('winamp')" tabindex="0">
+      <div class="desk-icon-img">🎵</div>
+      <div class="desk-icon-label">WinAmp</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('limester')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:0;"><img src="assets/images/LimeSter.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='24px';this.outerHTML='🍋'"></div>
+      <div class="desk-icon-label">LimeSter</div>
+    </div>
+    <div class="desk-icon" ondblclick="launchIE()" tabindex="0">
+      <div class="desk-icon-img" style="width:32px;height:32px;background:white;display:flex;align-items:center;justify-content:center;border:1px solid #ccc;font-size:0;"><span style="font-size:24px;font-style:italic;font-weight:900;color:#1055b8;font-family:'Arial Black',Arial,sans-serif;">e</span></div>
+      <div class="desk-icon-label">Internet Explorer</div>
+    </div>
+    <div class="desk-icon" ondblclick="launchNetscape()" tabindex="0">
+      <div class="desk-icon-img" style="width:32px;height:32px;background:#1a0035;display:flex;align-items:center;justify-content:center;border:1px solid #550099;font-size:0;"><span style="font-size:22px;font-weight:900;color:#aa44ff;font-family:'Arial Black',Arial,sans-serif;">N</span><span style="font-size:10px;color:#ffee00;position:absolute;margin-top:-14px;margin-left:8px;">☄</span></div>
+      <div class="desk-icon-label">Netscape 4.7</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('vault')" tabindex="0">
+      <div class="desk-icon-img">🔒</div>
+      <div class="desk-icon-label">???</div>
+    </div>
+    <div class="desk-icon" ondblclick="window.open('https://predictrix.app','_blank')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:0;line-height:1;"><img src="assets/images/predictrix_logo.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='28px';this.outerHTML='📊'"></div>
+      <div class="desk-icon-label">Predictrix.app</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('questourism')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:0;line-height:1;"><img src="assets/images/questourism.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='28px';this.outerHTML='🌐'"></div>
+      <div class="desk-icon-label">Questourism</div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: ABOUT ────────────────────────── -->
+  <div class="win95-window" id="window-about" style="display:none; left:80px; top:50px; width:500px;">
+    <div class="win95-titlebar" data-win="about">
+      <span class="win95-title-icon">⚙️</span>
+      <span class="win95-title-text">System Properties — Vince Darrigo</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('about')" title="Minimize">_</button>
+        <button class="win95-ctrl" disabled title="Maximize">□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('about')" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="win95-tabs" id="tabs-about">
+      <button class="win95-tab active" onclick="switchTab('about','general')">General</button>
+      <button class="win95-tab" onclick="switchTab('about','skills')">Skills</button>
+      <button class="win95-tab" onclick="switchTab('about','contact')">Contact</button>
+    </div>
+
+    <!-- TAB: General -->
+    <div class="win95-content tab-panel" id="tab-about-general">
+      <div class="about-header">
+        <div class="about-avatar">👤</div>
+        <div class="about-info">
+          <div class="about-name">Vince Darrigo</div>
+          <div>Full-Stack Engineer, Back-End Oriented</div>
+          <div>Python Systems Builder</div>
+          <div style="margin-top:4px; color:#444;">Deltona, FL</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="about-body">
+        <p>Python-focused engineer with 10+ years turning messy, cross-team operations into reliable web applications, API integrations, workflow engines, and automation systems.</p>
+        <p style="margin-top:8px;">Strong back-end orientation: validated data flows, role-based tools, operational dashboards, and production-minded scripts with logging, batching, retries, dry-run safeguards, and failure handling. Builds with AI daily as a force multiplier.</p>
+      </div>
+    </div>
+
+    <!-- TAB: Skills -->
+    <div class="win95-content tab-panel hidden" id="tab-about-skills">
+      <div class="skills-tree">
+        <div class="skill-group">
+          <div class="skill-group-header">📦 Languages &amp; Frameworks</div>
+          <div class="skill-item">Python · Flask · JavaScript · HTML/CSS · SQL</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-header">🔌 APIs &amp; Integrations</div>
+          <div class="skill-item">REST APIs · Smartsheet API · Google Drive API · Microsoft Graph · SharePoint · Socket.IO · Google Maps &amp; Places</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-header">⚙️ Engineering Practices</div>
+          <div class="skill-item">Logging · Batching · Retry/backoff · Dry-run modes · Role-based access · Data validation · Exception handling</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-header">🚀 Deployment &amp; Tooling</div>
+          <div class="skill-item">Git/GitHub · Render · Vercel-style workflows · Security fundamentals · AI-assisted development</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: Contact -->
+    <div class="win95-content tab-panel hidden" id="tab-about-contact">
+      <div class="contact-list">
+        <div class="contact-row">
+          <span class="contact-label">📧 Email</span>
+          <a href="mailto:vincent.darrigo@gmail.com" class="win95-hyperlink">vincent.darrigo@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">📂 GitHub</span>
+          <a href="https://github.com/vincentdarrigo" target="_blank" class="win95-hyperlink">github.com/vincentdarrigo</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">🌐 Portfolio</span>
+          <span>You're already here.</span>
+        </div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:8px;">
+        <a href="mailto:vincent.darrigo@gmail.com" class="win95-btn-link">📧 Send Email</a>
+        <a href="https://github.com/vincentdarrigo" target="_blank" class="win95-btn-link">📂 GitHub</a>
+        <a href="guestbook.html" class="win95-btn-link">📝 Guestbook</a>
+      </div>
+    </div>
+
+    <div class="win95-statusbar">Ready</div>
+  </div>
+
+  <!-- ── WINDOW: MY PROJECTS (folder view) ─────── -->
+  <div class="win95-window" id="window-projects" style="display:none; left:120px; top:90px; width:580px; height:440px;">
+    <div class="win95-titlebar" data-win="projects">
+      <span class="win95-title-icon">📁</span>
+      <span class="win95-title-text">My Projects</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('projects')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('projects')">✕</button>
+      </div>
+    </div>
+    <div class="win95-menubar">
+      <span class="win95-menu-item">File</span>
+      <span class="win95-menu-item">Edit</span>
+      <span class="win95-menu-item">View</span>
+      <span class="win95-menu-item">Help</span>
+    </div>
+    <div class="win95-content folder-content">
+
+      <div class="folder-section-label">🌍 Questourism — Travel &amp; Puzzle Games</div>
+      <div class="folder-icon-row">
+        <div class="folder-icon" ondblclick="openWindow('questforge')">
+          <div class="folder-icon-img">🗺️</div>
+          <div class="folder-icon-label">QuestForge</div>
+        </div>
+        <div class="folder-icon" ondblclick="openWindow('questourism')">
+          <div class="folder-icon-img">🌐</div>
+          <div class="folder-icon-label">Questourism.com</div>
+        </div>
+      </div>
+
+      <div class="folder-section-label">🏈 Predictrix — Sports &amp; Competitions</div>
+      <div class="folder-icon-row">
+        <div class="folder-icon" ondblclick="openWindow('predictrix')">
+          <div class="folder-icon-img">📊</div>
+          <div class="folder-icon-label">Predictrix.app</div>
+        </div>
+      </div>
+
+      <div class="folder-section-label">⚙️ Other Projects</div>
+      <div class="folder-icon-row">
+        <div class="folder-icon" ondblclick="openWindow('reviewflow')">
+          <div class="folder-icon-img">🔄</div>
+          <div class="folder-icon-label">ReviewFlow</div>
+        </div>
+        <div class="folder-icon" ondblclick="openWindow('thinkio')">
+          <div class="folder-icon-img">🧠</div>
+          <div class="folder-icon-label">Thinkio</div>
+        </div>
+        <div class="folder-icon" ondblclick="openWindow('trivia')">
+          <div class="folder-icon-img">❓</div>
+          <div class="folder-icon-label">AI Trivia</div>
+        </div>
+        <div class="folder-icon" ondblclick="openWindow('vault')" style="opacity:0.6;">
+          <div class="folder-icon-img">🔒</div>
+          <div class="folder-icon-label">[LOCKED]</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="win95-statusbar">7 object(s) — Double-click to open</div>
+  </div>
+
+  <!-- ── WINDOW: QUESTFORGE ─────────────────────── -->
+  <div class="win95-window" id="window-questforge" style="display:none; left:160px; top:70px; width:540px;">
+    <div class="win95-titlebar" data-win="questforge">
+      <span class="win95-title-icon">🗺️</span>
+      <span class="win95-title-text">QuestForge — AI Quest Generator</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('questforge')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('questforge')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand questourism-brand">
+        <img src="assets/images/questourism.png" alt="Questourism" class="proj-brand-logo" onerror="this.style.display='none'">
+        <div class="proj-brand-text">
+          <div class="proj-title">QuestForge</div>
+          <div class="proj-tagline">Generate real-world scavenger hunts anywhere, powered by AI</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p>An AI-driven quest generator that creates multi-stage, location-verified scavenger hunts using Google Maps &amp; Places. Each mission is assembled in real-time with streaming progress updates — clue by clue, location by location.</p>
+        <p class="proj-detail" style="margin-top:8px;">Includes <strong>🍕 Marinarathon Mode</strong> — a secret easter egg that generates pizza-focused scavenger hunts anywhere in the world.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> Multi-stage clue logic with real-time location verification, AI orchestration, and streaming output — all without a heavy framework.
+        </div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Flask</span>
+        <span class="tech-badge">Socket.IO</span>
+        <span class="tech-badge">Google Maps API</span>
+        <span class="tech-badge">Google Places API</span>
+        <span class="tech-badge">AI / LLM</span>
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="#" class="win95-btn-link">🌐 Live Demo</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Part of the Questourism family — questourism.com</div>
+  </div>
+
+  <!-- ── WINDOW: QUESTOURISM.COM ────────────────── -->
+  <div class="win95-window" id="window-questourism" style="display:none; left:180px; top:100px; width:500px;">
+    <div class="win95-titlebar" data-win="questourism">
+      <span class="win95-title-icon">🌐</span>
+      <span class="win95-title-text">Questourism.com — Brand Overview</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('questourism')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('questourism')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand questourism-brand">
+        <img src="assets/images/questourism.png" alt="Questourism" class="proj-brand-logo" onerror="this.style.display='none'">
+        <div class="proj-brand-text">
+          <div class="proj-title">Questourism</div>
+          <div class="proj-tagline">The travel &amp; puzzle games umbrella</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p>Questourism is the brand home for location-based puzzle games, scavenger hunts, and adventure tools. Combining the joy of travel with the satisfaction of solving things.</p>
+        <p style="margin-top:8px;"><strong>Products under this umbrella:</strong></p>
+        <ul class="proj-list">
+          <li>🗺️ <strong>QuestForge</strong> — AI quest generator with real-world locations</li>
+          <li>🌍 More in development...</li>
+        </ul>
+      </div>
+      <div class="proj-links">
+        <a href="https://questourism.com" target="_blank" class="win95-btn-link">🌐 Visit Questourism.com</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">questourism.com</div>
+  </div>
+
+  <!-- ── WINDOW: PREDICTRIX ─────────────────────── -->
+  <div class="win95-window" id="window-predictrix" style="display:none; left:200px; top:80px; width:540px;">
+    <div class="win95-titlebar" data-win="predictrix">
+      <span class="win95-title-icon">📊</span>
+      <span class="win95-title-text">Predictrix.app — Sports Prediction Platform</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('predictrix')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('predictrix')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand predictrix-brand">
+        <img src="assets/images/predictrix_logo.png" alt="Predictrix" class="proj-brand-logo" onerror="this.style.display='none'">
+        <div class="proj-brand-text">
+          <div class="proj-title">Predictrix</div>
+          <div class="proj-tagline">Sports prediction &amp; competition platform</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <!-- TODO: Vince — add your Predictrix description here -->
+        <p>Consumer-facing sports prediction and competition platform under the Predictrix.app umbrella.</p>
+        <p style="margin-top:8px; color:#888; font-style:italic;">[ Vince — add detail about what Predictrix does, what problem it solves, and what makes it interesting to build. ]</p>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Full-Stack Web</span>
+        <!-- TODO: Vince — add actual stack -->
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://predictrix.app" target="_blank" class="win95-btn-link">🌐 Predictrix.app</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Part of the Predictrix family — predictrix.app</div>
+  </div>
+
+  <!-- ── WINDOW: REVIEWFLOW ─────────────────────── -->
+  <div class="win95-window" id="window-reviewflow" style="display:none; left:220px; top:110px; width:520px;">
+    <div class="win95-titlebar" data-win="reviewflow">
+      <span class="win95-title-icon">🔄</span>
+      <span class="win95-title-text">ReviewFlow</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('reviewflow')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('reviewflow')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand">
+        <div class="proj-brand-text">
+          <div class="proj-title">ReviewFlow</div>
+          <!-- TODO: Vince — tagline -->
+          <div class="proj-tagline">[ Add tagline ]</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <!-- TODO: Vince — description -->
+        <p style="color:#888; font-style:italic;">[ Vince — add ReviewFlow description, what it does, what was interesting to build. ]</p>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <!-- TODO: Vince — add stack -->
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="#" class="win95-btn-link">🌐 Live Demo</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Ready</div>
+  </div>
+
+  <!-- ── WINDOW: THINKIO ────────────────────────── -->
+  <div class="win95-window" id="window-thinkio" style="display:none; left:240px; top:120px; width:520px;">
+    <div class="win95-titlebar" data-win="thinkio">
+      <span class="win95-title-icon">🧠</span>
+      <span class="win95-title-text">Thinkio</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('thinkio')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('thinkio')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand">
+        <div class="proj-brand-text">
+          <div class="proj-title">Thinkio</div>
+          <div class="proj-tagline">[ Add tagline ]</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p style="color:#888; font-style:italic;">[ Vince — add Thinkio description. ]</p>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Ready</div>
+  </div>
+
+  <!-- ── WINDOW: AI TRIVIA ──────────────────────── -->
+  <div class="win95-window" id="window-trivia" style="display:none; left:260px; top:130px; width:520px;">
+    <div class="win95-titlebar" data-win="trivia">
+      <span class="win95-title-icon">❓</span>
+      <span class="win95-title-text">Anytime AI Trivia</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('trivia')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('trivia')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand">
+        <div class="proj-brand-text">
+          <div class="proj-title">Anytime AI Trivia</div>
+          <div class="proj-tagline">Interactive trivia with stateful AI gameplay</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p>Interactive trivia platform with stateful game flows, Challenge AI behavior, reusable rounds, and expanding live-play logic.</p>
+        <p style="margin-top:8px; color:#888; font-style:italic;">[ Vince — add more detail here. ]</p>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Full-Stack Web</span>
+        <span class="tech-badge">AI / LLM</span>
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Ready</div>
+  </div>
+
+  <!-- ── WINDOW: RESUME ─────────────────────────── -->
+  <div class="win95-window" id="window-resume" style="display:none; left:100px; top:60px; width:580px; height:520px;">
+    <div class="win95-titlebar" data-win="resume">
+      <span class="win95-title-icon">📄</span>
+      <span class="win95-title-text">Vince_Darrigo_Resume.doc — WordPad</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('resume')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('resume')">✕</button>
+      </div>
+    </div>
+    <div class="win95-menubar">
+      <span class="win95-menu-item">File</span>
+      <span class="win95-menu-item">Edit</span>
+      <span class="win95-menu-item">View</span>
+      <span class="win95-menu-item">Help</span>
+    </div>
+    <div class="win95-content resume-content">
+      <div class="resume-doc">
+        <h1>VINCE DARRIGO</h1>
+        <p class="resume-subtitle">Full-Stack Engineer, Back-End Oriented | Python Systems Builder</p>
+        <p class="resume-contact">Deltona, FL &nbsp;·&nbsp; (702) 514-0888 &nbsp;·&nbsp; vincent.darrigo@gmail.com &nbsp;·&nbsp; github.com/vincentdarrigo</p>
+        <hr class="resume-rule">
+        <p class="resume-summary">Python-focused full-stack engineer with 10+ years of experience turning messy, cross-team operations into reliable web applications, API integrations, workflow engines, and automation systems.</p>
+        <h3>EXPERIENCE</h3>
+        <div class="resume-job">
+          <div class="resume-job-header">
+            <strong>Senior Data Specialist</strong>
+            <span class="resume-job-meta">Safal Partners &nbsp;|&nbsp; Remote &nbsp;|&nbsp; Apr 2025–Present</span>
+          </div>
+          <ul>
+            <li>Technical lead for IMRA systems; designed Smartsheet-backed operating platform managing complex multi-stakeholder programs.</li>
+            <li>Built Python integrations transforming Google Drive templates into structured, validated records with automated routing, audit trails, and role-specific workflows.</li>
+            <li>Developed IMRAface: authenticated internal portal with user/admin modules, ticketing, dashboards, and workflow controls.</li>
+            <li>Engineered automations with production habits: logs, input validation, batching, retry/backoff, dry-run modes, and explicit failure reporting.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <div class="resume-job-header">
+            <strong>Smartsheet Developer Specialist</strong>
+            <span class="resume-job-meta">Maximus &nbsp;|&nbsp; Remote &nbsp;|&nbsp; Jul 2023–Mar 2025</span>
+          </div>
+        </div>
+        <div class="resume-job">
+          <div class="resume-job-header">
+            <strong>Data Solutions Architect</strong>
+            <span class="resume-job-meta">Rust Belt Technologies &nbsp;|&nbsp; Remote &nbsp;|&nbsp; Jan 2020–Jun 2023</span>
+          </div>
+        </div>
+        <h3>SELECTED PROJECTS</h3>
+        <ul>
+          <li><strong>QuestForge</strong> — AI-driven scavenger hunt generator with streaming output, real-world location verification, and multi-stage clue logic (Flask, Socket.IO, Google Maps &amp; Places)</li>
+          <li><strong>IMRAface</strong> — Authenticated operational portal with role-based modules, ticketing, and real-time workflow visibility (Flask, Smartsheet API)</li>
+          <li><strong>Anytime AI Trivia</strong> — Stateful AI trivia platform with Challenge AI behavior and reusable game rounds</li>
+        </ul>
+        <div class="resume-download-bar">
+          <a href="Vince_Darrigo_ElevenLabs_FullStack_Backend_Resume_Draft.docx" class="win95-btn-link" download>💾 Download Resume (.docx)</a>
+        </div>
+      </div>
+    </div>
+    <div class="win95-statusbar">Page 1 of 1 &nbsp;|&nbsp; For Hire</div>
+  </div>
+
+  <!-- ── WINDOW: VAULT (terminal) ───────────────── -->
+  <div class="win95-window" id="window-vault" style="display:none; left:220px; top:140px; width:460px;">
+    <div class="win95-titlebar win95-titlebar-vault" data-win="vault">
+      <span class="win95-title-icon">🔒</span>
+      <span class="win95-title-text">Access Restricted Area</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl win95-ctrl-vault" onclick="minimizeWindow('vault')">_</button>
+        <button class="win95-ctrl win95-ctrl-vault" disabled>□</button>
+        <button class="win95-ctrl win95-ctrl-vault win95-close" onclick="closeWindow('vault')">✕</button>
+      </div>
+    </div>
+    <div class="vault-terminal" id="vault-terminal">
+      <div id="vault-output"></div>
+      <div class="vault-input-row" id="vault-input-row">
+        <span class="vault-prompt">&gt;&nbsp;</span>
+        <input type="password" id="vault-input" class="vault-input" maxlength="12" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="win95-statusbar vault-statusbar" id="vault-status">CLASSIFIED — AUTHORIZED ACCESS ONLY</div>
+  </div>
+
+  <!-- ── WINDOW: PRIVATE PROJECTS (vault-unlocked) -->
+  <div class="win95-window" id="window-private" style="display:none; left:160px; top:80px; width:540px;">
+    <div class="win95-titlebar" data-win="private">
+      <span class="win95-title-icon">🔓</span>
+      <span class="win95-title-text">Private Projects — ACCESS GRANTED</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('private')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('private')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand vault-unlocked-banner">
+        <div class="proj-brand-text">
+          <div class="proj-title">🔓 Vault Unlocked</div>
+          <div class="proj-tagline">Private &amp; internal projects — not for public distribution</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <div class="private-project-card">
+          <strong>🏛️ IMRAface</strong>
+          <p>Authenticated internal portal for the IMRA statewide review program. Role-based access control, ticket management, global queue dashboard, email templating, and real-time workflow visibility. Used by reviewers, managers, publishers, and client stakeholders.</p>
+          <div class="tech-row" style="margin-top:6px;">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">Smartsheet API</span>
+            <span class="tech-badge">Google Drive API</span>
+          </div>
+        </div>
+        <!-- TODO: Vince — add more private/internal projects here -->
+      </div>
+    </div>
+    <div class="win95-statusbar">Clearance Level: FULL ACCESS</div>
+  </div>
+
+  <!-- ── WINDOW: MINESWEEPER ─────────────────────────── -->
+  <div class="win95-window" id="window-minesweeper" style="display:none; left:340px; top:80px;">
+    <div class="win95-titlebar" data-win="minesweeper">
+      <span class="win95-title-icon">💣</span>
+      <span class="win95-title-text">Minesweeper</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('minesweeper')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('minesweeper')">✕</button>
+      </div>
+    </div>
+    <div class="win95-menubar">
+      <span class="win95-menu-item" style="position:relative;">
+        <span onclick="toggleMineMenu()" style="cursor:default;">Game ▾</span>
+        <div id="mine-menu-dropdown" class="hidden" style="position:absolute;top:100%;left:0;background:var(--gray);border:1px solid var(--gray-dark);z-index:200;min-width:160px;box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
+          <div class="win95-menu-item" onclick="initMinesweeper('beginner');toggleMineMenu()">Beginner (9×9, 10 mines)</div>
+          <div class="win95-menu-item" onclick="initMinesweeper('intermediate');toggleMineMenu()">Intermediate (16×16)</div>
+          <div class="win95-menu-item" onclick="initMinesweeper('expert');toggleMineMenu()">Expert (16×30)</div>
+        </div>
+      </span>
+      <span class="win95-menu-item">Help</span>
+    </div>
+    <div class="mine-game-area" id="mine-game-area">
+      <div class="mine-header">
+        <div class="mine-led" id="mine-count-display">010</div>
+        <button id="mine-smiley" onclick="initMinesweeper()">🙂</button>
+        <div class="mine-led" id="mine-timer-display">000</div>
+      </div>
+      <div id="mine-board"></div>
+    </div>
+    <div class="win95-statusbar" id="mine-status">Left-click to reveal · Right-click to flag</div>
+  </div>
+
+  <!-- ── WINDOW: PAINT ─────────────────────────────── -->
+  <div class="win95-window" id="window-paint" style="display:none; left:60px; top:40px; width:660px;">
+    <div class="win95-titlebar" data-win="paint">
+      <span class="win95-title-icon">🎨</span>
+      <span class="win95-title-text">untitled - Paint</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('paint')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('paint')">✕</button>
+      </div>
+    </div>
+    <div class="win95-menubar">
+      <span class="win95-menu-item" onclick="paintNew()">File</span>
+      <span class="win95-menu-item">Edit</span>
+      <span class="win95-menu-item">View</span>
+      <span class="win95-menu-item">Image</span>
+      <span class="win95-menu-item">Colors</span>
+      <span class="win95-menu-item">Help</span>
+    </div>
+    <div class="paint-app">
+      <div class="paint-top-area">
+        <div class="paint-toolbox">
+          <div class="paint-tool-grid" id="paint-tools">
+            <button class="paint-tool-btn active" data-tool="pencil"  title="Pencil">✏️</button>
+            <button class="paint-tool-btn"        data-tool="eraser"  title="Eraser">⬜</button>
+            <button class="paint-tool-btn"        data-tool="fill"    title="Fill Bucket">🪣</button>
+            <button class="paint-tool-btn"        data-tool="picker"  title="Color Picker">💉</button>
+            <button class="paint-tool-btn"        data-tool="line"    title="Line">╱</button>
+            <button class="paint-tool-btn"        data-tool="rect"    title="Rectangle">▭</button>
+            <button class="paint-tool-btn"        data-tool="oval"    title="Ellipse">◯</button>
+            <button class="paint-tool-btn"        data-tool="text"    title="Text">A</button>
+          </div>
+          <div class="paint-size-btns" id="paint-sizes">
+            <div class="paint-size-dot active" data-size="1"  style="width:4px;height:4px;"   onclick="setPaintSize(1)"></div>
+            <div class="paint-size-dot"        data-size="3"  style="width:7px;height:7px;"   onclick="setPaintSize(3)"></div>
+            <div class="paint-size-dot"        data-size="6"  style="width:11px;height:11px;" onclick="setPaintSize(6)"></div>
+            <div class="paint-size-dot"        data-size="10" style="width:15px;height:15px;" onclick="setPaintSize(10)"></div>
+          </div>
+        </div>
+        <div class="paint-canvas-wrap">
+          <canvas id="paint-canvas" width="560" height="360"></canvas>
+        </div>
+      </div>
+      <div class="paint-color-bar">
+        <div class="paint-active-colors">
+          <div class="paint-active-bg" id="paint-bg-swatch" style="background:#ffffff;" title="Background color"></div>
+          <div class="paint-active-fg" id="paint-fg-swatch" style="background:#000000;" title="Foreground color"></div>
+        </div>
+        <div class="paint-palette" id="paint-palette"></div>
+        <button onclick="paintSave()" style="margin-left:auto;padding:2px 8px;font-size:10px;" class="win95-btn-link">💾 Save</button>
+      </div>
+    </div>
+    <div class="win95-statusbar" id="paint-status">Ready</div>
+  </div>
+
+  <!-- ── WINDOW: SOLITAIRE ────────────────────────── -->
+  <div class="win95-window" id="window-solitaire" style="display:none; left:150px; top:60px; width:566px;">
+    <div class="win95-titlebar" data-win="solitaire">
+      <span class="win95-title-icon">🃏</span>
+      <span class="win95-title-text">Solitaire</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('solitaire')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('solitaire')">✕</button>
+      </div>
+    </div>
+    <div class="win95-menubar">
+      <span class="win95-menu-item" onclick="newSolitaireGame()" style="cursor:pointer;">Game</span>
+      <span class="win95-menu-item">Help</span>
+    </div>
+    <div id="sol-game">
+      <!-- Top row: stock · waste · spacer · 4 foundations -->
+      <div id="sol-top-row">
+        <div id="sol-stock"  class="sol-pile"></div>
+        <div id="sol-waste"  class="sol-pile"></div>
+        <div class="sol-spacer"></div>
+        <div id="sol-found-0" class="sol-pile"></div>
+        <div id="sol-found-1" class="sol-pile"></div>
+        <div id="sol-found-2" class="sol-pile"></div>
+        <div id="sol-found-3" class="sol-pile"></div>
+      </div>
+      <!-- Tableau: 7 columns -->
+      <div id="sol-tableau">
+        <div class="sol-col" id="sol-col-0"></div>
+        <div class="sol-col" id="sol-col-1"></div>
+        <div class="sol-col" id="sol-col-2"></div>
+        <div class="sol-col" id="sol-col-3"></div>
+        <div class="sol-col" id="sol-col-4"></div>
+        <div class="sol-col" id="sol-col-5"></div>
+        <div class="sol-col" id="sol-col-6"></div>
+      </div>
+      <!-- Win overlay -->
+      <div id="sol-win-overlay" class="hidden">
+        <div id="sol-win-msg">
+          🎉 You Win! 🎉<br><br>
+          <button class="win95-btn-link" onclick="newSolitaireGame()" style="font-size:12px;padding:4px 16px;">New Game</button>
+        </div>
+      </div>
+    </div>
+    <div class="win95-statusbar" id="sol-status">Deal cards to start · Double-click a card to auto-send to foundation</div>
+  </div>
+
+  <!-- ── WINDOW: SNAKE (Nokia 3310) ──────────────── -->
+  <div class="win95-window" id="window-snake" style="display:none; left:460px; top:80px;">
+    <div class="win95-titlebar" data-win="snake">
+      <span class="win95-title-icon">🐍</span>
+      <span class="win95-title-text">Snake — Nokia 3310</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('snake')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('snake')">✕</button>
+      </div>
+    </div>
+    <div class="nokia-body">
+      <div class="nokia-brand-row"><span class="nokia-brand-text">Nokia</span></div>
+      <div class="nokia-screen-area" style="position:relative;">
+        <div class="nokia-screen-hud">
+          <span>SCR:<span id="snake-score">0</span></span>
+          <span>LVL:<span id="snake-level">1</span></span>
+        </div>
+        <canvas id="snake-canvas" width="200" height="160"></canvas>
+        <div id="nokia-call-overlay" style="display:none; position:absolute; inset:0; background:#8bac0f; flex-direction:column; align-items:center; justify-content:center; font-family:'Courier New',monospace; color:#0f380f; z-index:10;">
+          <div style="font-size:9px; letter-spacing:1px; margin-bottom:4px;">Incoming Call</div>
+          <div style="font-size:14px; font-weight:bold; margin-bottom:2px;">RECRUITER</div>
+          <div id="nokia-call-dots" style="font-size:11px; margin-bottom:14px; animation:nokia-blink 1s steps(1) infinite;">📞 ...</div>
+          <div style="display:flex; gap:16px;">
+            <button onclick="dismissNokiaCall(true)"  style="background:#0f380f;color:#8bac0f;border:none;padding:4px 10px;font-size:9px;cursor:pointer;font-family:'Courier New',monospace;">Answer</button>
+            <button onclick="dismissNokiaCall(false)" style="background:#0f380f;color:#8bac0f;border:none;padding:4px 10px;font-size:9px;cursor:pointer;font-family:'Courier New',monospace;">Decline</button>
+          </div>
+          <div style="font-size:8px; margin-top:10px; color:#3a6a0f; text-align:center; max-width:160px;">(Answer opens resume)</div>
+        </div>
+      </div>
+      <div class="nokia-nav-area">
+        <button class="nok-btn" onclick="setSnakeDir('up')">▲</button>
+        <div class="nokia-nav-mid">
+          <button class="nok-btn" onclick="setSnakeDir('left')">◄</button>
+          <button class="nok-btn nok-ok" onclick="startOrRestartSnake()">OK</button>
+          <button class="nok-btn" onclick="setSnakeDir('right')">►</button>
+        </div>
+        <button class="nok-btn" onclick="setSnakeDir('down')">▼</button>
+      </div>
+      <div class="nok-soft-row">
+        <button class="nok-soft-btn" onclick="startOrRestartSnake()">start</button>
+        <button class="nok-soft-btn" onclick="initSnake()">reset</button>
+      </div>
+      <div class="nokia-keypad">
+        <div class="nok-row">
+          <span class="nok-key">1</span>
+          <span class="nok-key">2 <small>abc</small></span>
+          <span class="nok-key">3 <small>def</small></span>
+        </div>
+        <div class="nok-row">
+          <span class="nok-key">4 <small>ghi</small></span>
+          <span class="nok-key">5 <small>jkl</small></span>
+          <span class="nok-key">6 <small>mno</small></span>
+        </div>
+        <div class="nok-row">
+          <span class="nok-key">7 <small>pqrs</small></span>
+          <span class="nok-key">8 <small>tuv</small></span>
+          <span class="nok-key">9 <small>wxyz</small></span>
+        </div>
+        <div class="nok-row">
+          <span class="nok-key">*</span>
+          <span class="nok-key">0 <small>+</small></span>
+          <span class="nok-key">#</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: TETRIS (Game Boy) ────────────────── -->
+  <div class="win95-window" id="window-tetris" style="display:none; left:500px; top:50px;">
+    <div class="win95-titlebar" data-win="tetris">
+      <span class="win95-title-icon">🎮</span>
+      <span class="win95-title-text">Tetris — Game Boy</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('tetris')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('tetris')">✕</button>
+      </div>
+    </div>
+    <div class="gameboy-body">
+      <div class="gameboy-brand-row">
+        <div class="gameboy-power-dot"></div>
+        <span class="gameboy-brand-name">&#9415; GAME BOY</span>
+      </div>
+      <div class="gameboy-screen-bezel">
+        <div class="gameboy-screen-line">
+          <span class="gameboy-power-label">BATTERY</span>
+        </div>
+        <div class="gameboy-screen-inner">
+          <canvas id="tetris-canvas" width="202" height="280"></canvas>
+        </div>
+      </div>
+      <div class="gameboy-accent-stripe"></div>
+      <div class="gameboy-controls-area">
+        <div class="gb-dpad">
+          <button class="gb-dpad-btn gb-dpad-btn-up"    onclick="tetBtn('rotate')"></button>
+          <button class="gb-dpad-btn gb-dpad-btn-left"  onclick="tetBtn('left')"></button>
+          <div class="gb-dpad-center"></div>
+          <button class="gb-dpad-btn gb-dpad-btn-right" onclick="tetBtn('right')"></button>
+          <button class="gb-dpad-btn gb-dpad-btn-down"  onclick="tetBtn('down')"></button>
+        </div>
+        <div class="gb-ab-area">
+          <div class="gb-ab-row">
+            <button class="gb-btn" onclick="tetBtn('drop')"   title="Hard Drop">B</button>
+            <button class="gb-btn" onclick="tetBtn('rotate')" title="Rotate">A</button>
+          </div>
+          <div class="gb-btn-labels"><span>DROP</span><span>ROTATE</span></div>
+        </div>
+      </div>
+      <div class="gb-menu-area">
+        <button class="gb-menu-btn" onclick="tetBtn('start')">SELECT</button>
+        <div class="gb-speaker-dots"><div></div><div></div><div></div><div></div></div>
+        <button class="gb-menu-btn" onclick="tetBtn('start')">START</button>
+      </div>
+      <div class="gb-bottom-label">Nintendo</div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: TAMAGOTCHI ───────────────────────── -->
+  <div class="win95-window" id="window-tamagotchi" style="display:none; left:80px; top:120px; width:280px;">
+    <div class="win95-titlebar" data-win="tamagotchi">
+      <span class="win95-title-icon">🥚</span>
+      <span class="win95-title-text">Tamagotchi</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('tamagotchi')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('tamagotchi')">✕</button>
+      </div>
+    </div>
+    <div class="tama-shell">
+      <!-- chain ring at top of device -->
+      <div class="tama-chain-ring"></div>
+      <!-- LCD screen -->
+      <div class="tama-screen-bezel">
+        <div class="tama-screen-inner">
+          <canvas id="tama-canvas" width="90" height="70"></canvas>
+        </div>
+      </div>
+      <!-- stat bars -->
+      <div class="tama-stats">
+        <div class="tama-stat-row">
+          <span class="tama-stat-label">🍗 Food</span>
+          <div class="tama-bar-track"><div id="tama-hunger-bar" class="tama-bar-fill bar-good" style="width:80%"></div></div>
+        </div>
+        <div class="tama-stat-row">
+          <span class="tama-stat-label">😊 Happy</span>
+          <div class="tama-bar-track"><div id="tama-happy-bar" class="tama-bar-fill bar-good" style="width:80%"></div></div>
+        </div>
+        <div class="tama-stat-row">
+          <span class="tama-stat-label">⏱ Age</span>
+          <span class="tama-stat-val" id="tama-age">0</span>
+          <span class="tama-stat-label" style="margin-left:2px;">ticks</span>
+        </div>
+      </div>
+      <!-- name / stage -->
+      <div class="tama-name" id="tama-name">Bitsy the Egg</div>
+      <!-- poop -->
+      <div class="tama-poop" id="tama-poop-count">✨ clean</div>
+      <!-- status message -->
+      <div class="tama-status-msg" id="tama-status">😊 doing okay!</div>
+      <!-- buttons -->
+      <div class="tama-btns">
+        <button class="tama-btn" onclick="tamaFeed()"  title="Feed">🍗</button>
+        <button class="tama-btn" onclick="tamaPlay()"  title="Play">🎮</button>
+        <button class="tama-btn" onclick="tamaSleep()" title="Sleep/Wake">💤</button>
+        <button class="tama-btn" onclick="tamaClean()" title="Clean">🧹</button>
+      </div>
+      <div class="tama-footer">
+        <button class="win95-btn tama-reset-btn" onclick="tamaReset()">New Pet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: MESSENGER CONTROL PANEL ─────────── -->
+  <div class="win95-window" id="window-messenger" style="display:none; left:20px; top:20px; width:260px;">
+    <div class="win95-titlebar" data-win="messenger">
+      <span class="win95-title-icon">💬</span>
+      <span class="win95-title-text">Buddy Chat</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('messenger')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('messenger')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content im-ctrl-panel">
+      <div class="im-ctrl-status" id="im-ctrl-status">Loading...</div>
+      <div class="im-ctrl-btns">
+        <button class="win95-btn im-ctrl-btn" onclick="imBack()"          title="Back one message">◀</button>
+        <button class="win95-btn im-ctrl-btn" onclick="imTogglePause()"   title="Play / Pause" id="im-btn-playpause">▶</button>
+        <button class="win95-btn im-ctrl-btn" onclick="imForward()"       title="Step forward">▶▶</button>
+        <button class="win95-btn im-ctrl-btn" onclick="replayMessenger()" title="Replay from start">↺</button>
+      </div>
+      <div class="im-ctrl-btns">
+        <button class="win95-btn im-ctrl-btn" onclick="leaveChat()"       title="Leave the chat" style="flex:1;">🚪 Leave</button>
+        <button class="win95-btn im-ctrl-btn" onclick="openImHistory()"   title="View full conversation" style="flex:1;">💬 View</button>
+      </div>
+      <div class="im-ctrl-progress-track">
+        <div class="im-progress-fill" id="im-progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: WINAMP ──────────────────────────────── -->
+  <div class="win95-window wp-outer" id="window-winamp" style="display:none; left:240px; top:160px; width:auto;">
+    <div class="win95-titlebar wp-titlebar">
+      <span class="wp-title-app">WINAMP</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl wp-ctrl" onclick="minimizeWindow('winamp')" title="Minimize">_</button>
+        <button class="win95-ctrl wp-ctrl" onclick="closeWindow('winamp')"    title="Close">✕</button>
+      </div>
+    </div>
+    <div class="wp-body">
+      <div class="wp-display">
+        <div class="wp-time-cur" id="wp-time-cur">0:00</div>
+        <div class="wp-title-wrap" id="wp-title-wrap">
+          <div class="wp-title-text" id="wp-title-text">*** WINAMP ***</div>
+        </div>
+        <div class="wp-time-dur" id="wp-time-dur">-0:00</div>
+      </div>
+      <div class="wp-seek-bar" id="wp-seek-bar" onclick="wpSeekClick(event)">
+        <div class="wp-seek-fill" id="wp-seek-fill"></div>
+      </div>
+      <div class="wp-vol-row">
+        <span class="wp-vol-label">VOL</span>
+        <input type="range" class="wp-vol-slider" min="0" max="100" value="75" oninput="wpSetVol(this.value)">
+        <span class="wp-vol-pct" id="wp-vol-pct">75%</span>
+      </div>
+      <div class="wp-controls">
+        <button class="wp-btn" onclick="wpPrev()"        title="Previous">⏮</button>
+        <button class="wp-btn" id="wp-btn-play" onclick="wpTogglePlay()" title="Play / Pause">▶</button>
+        <button class="wp-btn" onclick="wpStop()"        title="Stop">⏹</button>
+        <button class="wp-btn" onclick="wpNext()"        title="Next">⏭</button>
+        <label  class="wp-btn wp-eject"                 title="Open file(s)">⏏<input type="file" accept="audio/*" multiple onchange="wpLoadFiles(this.files)" style="display:none;"></label>
+      </div>
+      <div class="wp-playlist" id="wp-playlist">
+        <div class="wp-no-tracks">No tracks — click ⏏ to add files</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: LIMESTER ─────────────────────────────── -->
+  <div class="win95-window" id="window-limester" style="display:none; left:180px; top:80px; width:590px;">
+    <div class="win95-titlebar" data-win="limester">
+      <span class="win95-title-icon" style="font-size:0;"><img src="assets/images/LimeSter.png" style="height:14px;width:auto;" onerror="this.outerHTML='🍋'"></span>
+      <span class="win95-title-text">LimeSter 2.4 — Share It!</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('limester')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('limester')">✕</button>
+      </div>
+    </div>
+    <div class="ls-toolbar">
+      <img src="assets/images/LimeSter.png" class="ls-logo" alt="LimeSter" onerror="this.outerHTML='<span style=font-size:20px>🍋</span>'">
+      <input type="text" id="ls-search-input" class="ls-search" placeholder="Search for files..." onkeydown="lsSearchKey(event)">
+      <button class="ls-search-btn" onclick="lsSearch()">🔍 Search</button>
+    </div>
+    <div class="ls-tabs">
+      <button class="ls-tab ls-tab-active">⬇️ Downloads</button>
+      <button class="ls-tab">🎵 Library</button>
+      <button class="ls-tab">🌐 Browse</button>
+      <button class="ls-tab">👥 Chat</button>
+    </div>
+    <div class="ls-col-heads">
+      <span></span><span>Filename</span><span>User</span><span>Size</span><span>Progress</span><span>%</span>
+    </div>
+    <div id="ls-download-list" class="ls-download-list">
+      <div class="ls-connecting">Not connected</div>
+    </div>
+    <div class="ls-status-bar">
+      <span id="ls-status-text">Offline</span>
+      <span>📡 Bandwidth: 56k &nbsp;|&nbsp; 🔒 Firewall: OFF</span>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: INTERNET EXPLORER 5.5 ─────────────── -->
+  <div class="win95-window" id="window-ie" style="display:none; left:200px; top:70px; width:520px;">
+    <div class="win95-titlebar" data-win="ie">
+      <span class="win95-title-icon" style="font-style:italic;font-weight:900;color:#fff;font-size:13px;">e</span>
+      <span class="win95-title-text">Internet Explorer 5.5</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('ie')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('ie')">✕</button>
+      </div>
+    </div>
+    <div class="ie-menubar">
+      <span class="ie-menu-item">File</span><span class="ie-menu-item">Edit</span>
+      <span class="ie-menu-item">View</span><span class="ie-menu-item">Favorites</span>
+      <span class="ie-menu-item">Tools</span><span class="ie-menu-item">Help</span>
+    </div>
+    <div class="ie-toolbar">
+      <button class="ie-nav-btn" disabled title="Back">◀</button>
+      <button class="ie-nav-btn" disabled title="Forward">▶</button>
+      <button class="ie-nav-btn" title="Stop">⏹</button>
+      <button class="ie-nav-btn" title="Refresh">🔄</button>
+      <button class="ie-nav-btn" title="Home">🏠</button>
+      <div class="ie-nav-sep"></div>
+      <button class="ie-nav-btn" title="Search">🔍</button>
+      <button class="ie-nav-btn" title="Favorites">⭐</button>
+      <span class="ie-spinning-logo">🌐</span>
+    </div>
+    <div class="ie-address-row">
+      <span class="ie-address-label">Address</span>
+      <input class="ie-address-input" type="text" value="http://vincedarrigo.com" readonly>
+      <button class="ie-go-btn">Go</button>
+    </div>
+    <div class="ie-content-area">
+      <div class="ie-loading-globe">🌐</div>
+      <div class="ie-loading-text">Opening page http://vincedarrigo.com...</div>
+      <div class="ie-progress-wrap"><div class="ie-progress-fill" id="ie-progress-fill"></div></div>
+      <div class="ie-estimate" id="ie-estimate">Estimated time remaining: Computing...</div>
+      <!-- ActiveX popup -->
+      <div id="ie-activex-popup" class="ie-activex-popup" style="display:none;">
+        <div class="ie-activex-title">⚠️ Security Warning — ActiveX</div>
+        <p style="margin:0 0 5px;font-size:10px;">This website wants to install 14 ActiveX controls on your computer.<br>Your toolbar will be upgraded to <strong>Ask Jeeves Toolbar Pro v2</strong>.</p>
+        <p style="margin:0;font-size:10px;color:#664400;">Some controls may monitor your keystrokes. This is normal.</p>
+        <div class="ie-activex-btns">
+          <button onclick="dismissIEPopup()">Yes</button>
+          <button onclick="dismissIEPopup()">Yes (Faster)</button>
+          <button onclick="dismissIEPopup()" style="color:#880000;">Make It Stop</button>
+        </div>
+      </div>
+    </div>
+    <div class="ie-status-bar">
+      <span id="ie-status-text">Opening page...</span>
+      <span class="ie-zone-badge">🔒 Internet</span>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: NETSCAPE NAVIGATOR 4.7 ────────────── -->
+  <div class="win95-window" id="window-netscape" style="display:none; left:240px; top:110px; width:510px;">
+    <div class="win95-titlebar" data-win="netscape">
+      <span class="win95-title-icon" style="font-weight:900;color:#cc88ff;font-family:'Arial Black',sans-serif;font-size:13px;">N</span>
+      <span class="win95-title-text">Netscape Navigator 4.7</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('netscape')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('netscape')">✕</button>
+      </div>
+    </div>
+    <div class="ns-toolbar">
+      <button class="ns-nav-btn" disabled>◀ Back</button>
+      <button class="ns-nav-btn" disabled>▶ Fwd</button>
+      <button class="ns-nav-btn">↺ Reload</button>
+      <button class="ns-nav-btn">🏠 Home</button>
+      <button class="ns-nav-btn">🔍 Search</button>
+      <div class="ns-nav-sep"></div>
+      <button class="ns-nav-btn">🖨 Print</button>
+      <button class="ns-nav-btn">🔒 Security</button>
+      <button class="ns-nav-btn">⏹ Stop</button>
+      <span class="ns-logo-corner ns-logo-flash">☄️</span>
+    </div>
+    <div class="ns-location-row">
+      <span class="ns-location-label">Location:</span>
+      <input class="ns-location-input" type="text" value="http://vincedarrigo.com" readonly>
+    </div>
+    <div class="ns-content-area">
+      <div class="ns-loading-n">N</div>
+      <div class="ns-loading-text">Connecting to vincedarrigo.com...<br><small style="color:#555;">(This page may not display correctly in Netscape 4.7.<br>Technically, no page does.)</small></div>
+      <div class="ns-progress-wrap"><div class="ns-progress-fill" id="netscape-progress-fill"></div></div>
+      <div class="ns-estimate" id="netscape-estimate">Estimated time remaining: Calculating...</div>
+    </div>
+    <div class="ns-status-bar">
+      <span id="netscape-status-text">Connecting...</span>
+      <span class="ns-security-icon">🔓</span>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: CONVERSATION HISTORY ─────────────────── -->
+  <div class="win95-window" id="window-chat-history" style="display:none; left:200px; top:50px; width:390px;">
+    <div class="win95-titlebar" data-win="chat-history">
+      <span class="win95-title-icon">📜</span>
+      <span class="win95-title-text">Conversation History</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('chat-history')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('chat-history')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content" style="padding:0; background:white;">
+      <div id="chat-history-log" style="height:340px; overflow-y:auto; padding:8px 10px; font-family:Tahoma,Arial,sans-serif; font-size:11px; line-height:1.6;"></div>
+    </div>
+  </div>
+
+  <!-- ── LOGIN SCREENS (fixed-position overlays) ─── -->
+  <!-- AIM Login -->
+  <div id="aim-login" class="im-login-screen" style="display:none;">
+    <div class="aim-login-titlebar">
+      <span>🏃 AOL Instant Messenger</span>
+      <div class="im-login-win-btns"><span>_</span><span>□</span><span>✕</span></div>
+    </div>
+    <div class="aim-login-body">
+      <div class="aim-login-logo">aim</div>
+      <div class="aim-login-field-row"><label>Screen Name</label><input type="text" id="aim-login-user" autocomplete="off"></div>
+      <div class="aim-login-field-row"><label>Password</label><input type="text" id="aim-login-pass" autocomplete="off" style="font-family:monospace; letter-spacing:2px;"></div>
+      <div class="aim-login-checks">
+        <label><input type="checkbox" checked> Save password</label>
+        <label><input type="checkbox"> Auto-login</label>
+      </div>
+      <div class="aim-login-status" id="aim-login-status"></div>
+      <button id="aim-login-btn" class="aim-sign-on-btn">Sign On</button>
+    </div>
+  </div>
+
+  <!-- ICQ Login -->
+  <div id="icq-login" class="im-login-screen" style="display:none;">
+    <div class="icq-login-titlebar">
+      <span>🌸 ICQ</span>
+      <div class="im-login-win-btns"><span>_</span><span>□</span><span>✕</span></div>
+    </div>
+    <div class="icq-login-body">
+      <div class="icq-login-logo">icq <span style="color:#00aa00;">🌸</span></div>
+      <div class="icq-login-field-row"><label>Account</label><input type="text" id="icq-login-user" autocomplete="off"></div>
+      <div class="icq-login-field-row"><label>Password</label><input type="text" id="icq-login-pass" autocomplete="off" style="font-family:monospace; letter-spacing:2px;"></div>
+      <div class="icq-login-checks">
+        <label><input type="checkbox" checked> Save password</label>
+        <label><input type="checkbox"> Sign in as invisible</label>
+      </div>
+      <div class="icq-login-status" id="icq-login-status"></div>
+      <button id="icq-login-btn" class="icq-sign-in-btn">Sign In</button>
+    </div>
+  </div>
+
+  <!-- Yahoo Messenger Login -->
+  <div id="yahoo-login" class="im-login-screen" style="display:none;">
+    <div class="yahoo-login-titlebar">
+      <span>🟣 Yahoo! Messenger</span>
+      <div class="im-login-win-btns"><span>_</span><span>□</span><span>✕</span></div>
+    </div>
+    <div class="yahoo-login-body">
+      <div class="yahoo-login-logo"><span class="yahoo-y">Y!</span> Messenger</div>
+      <div class="yahoo-login-field-row"><label>Yahoo! ID:</label><input type="text" id="yahoo-login-user" autocomplete="off"></div>
+      <div class="yahoo-login-field-row"><label>Password:</label><input type="text" id="yahoo-login-pass" autocomplete="off" style="font-family:monospace; letter-spacing:2px;"></div>
+      <div class="yahoo-login-checks">
+        <label><input type="checkbox" checked> Remember my ID &amp; password</label>
+        <label><input type="checkbox"> Sign in as invisible to everyone</label>
+      </div>
+      <div class="yahoo-login-status" id="yahoo-login-status"></div>
+      <button id="yahoo-login-btn" class="yahoo-sign-in-btn">Sign In</button>
+    </div>
+  </div>
+
+  <!-- ── CHAT WINDOWS ──────────────────────────────── -->
+  <!-- AIM IM Window -->
+  <div class="win95-window im-chat-win" id="window-aim-chat" style="display:none; left:65px; top:90px; width:330px;">
+    <div class="win95-titlebar" data-win="aim-chat">
+      <span class="win95-title-icon">🏃</span>
+      <span class="win95-title-text">xX_AOL4Lyfe97_Xx — Instant Message</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="closeImChatWindow('aim')">✕</button>
+      </div>
+    </div>
+    <div class="aim-chat-header">
+      <span class="aim-chat-to">To: <strong>xX_AOL4Lyfe97_Xx</strong></span>
+      <span class="aim-online-dot">● Online</span>
+      <span class="aim-buddy-icon">😊</span>
+    </div>
+    <div class="aim-chat-log" id="aim-chat-log"></div>
+    <div class="aim-chat-toolbar">
+      <button class="aim-tb-btn aim-font-big">A</button>
+      <button class="aim-tb-btn aim-font-sm">a</button>
+      <span class="aim-tb-sep">|</span>
+      <button class="aim-tb-btn"><strong>B</strong></button>
+      <button class="aim-tb-btn"><em>I</em></button>
+      <button class="aim-tb-btn"><u>U</u></button>
+      <span class="aim-tb-sep">|</span>
+      <button class="aim-tb-btn">😊</button>
+      <span style="flex:1"></span>
+      <button class="aim-action-btn">Warn</button>
+      <button class="aim-action-btn">Block</button>
+      <button class="aim-action-btn aim-send-btn">Send</button>
+    </div>
+    <div class="aim-chat-input-wrap">
+      <textarea class="aim-chat-input" disabled placeholder="(read only)"></textarea>
+    </div>
+  </div>
+
+  <!-- ICQ Chat Window -->
+  <div class="win95-window im-chat-win" id="window-icq-chat" style="display:none; left:220px; top:120px; width:300px;">
+    <div class="win95-titlebar icq-titlebar" data-win="icq-chat">
+      <span class="win95-title-icon">🌸</span>
+      <span class="win95-title-text">UhOh_OG</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="closeImChatWindow('icq')">✕</button>
+      </div>
+    </div>
+    <div class="icq-chat-header">
+      <span class="icq-flower-logo">🌸</span>
+      <span class="icq-chat-name">UhOh_OG</span>
+      <span class="icq-online-badge">● online</span>
+    </div>
+    <div class="icq-chat-log" id="icq-chat-log"></div>
+    <div class="icq-chat-toolbar">
+      <button class="icq-tb-btn">😊</button>
+      <button class="icq-tb-btn">📜 History</button>
+      <button class="icq-tb-btn">💬 Quote</button>
+      <span style="flex:1"></span>
+      <button class="icq-send-btn">Send</button>
+    </div>
+    <div class="icq-chat-input-wrap">
+      <textarea class="icq-chat-input" disabled placeholder="(read only)"></textarea>
+    </div>
+  </div>
+
+  <!-- Yahoo Messenger Chat Window -->
+  <div class="win95-window im-chat-win" id="window-yahoo-chat" style="display:none; left:145px; top:155px; width:345px;">
+    <div class="win95-titlebar yahoo-titlebar" data-win="yahoo-chat">
+      <span class="win95-title-icon">🟣</span>
+      <span class="win95-title-text">Yahoozup — Yahoo! Messenger</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="closeImChatWindow('yahoo')">✕</button>
+      </div>
+    </div>
+    <div class="yahoo-chat-toolbar">
+      <button class="yahoo-tb-btn">📹 Video Call</button>
+      <button class="yahoo-tb-btn">📞 Voice Call</button>
+      <span style="flex:1"></span>
+      <button class="yahoo-tb-btn">Photos</button>
+    </div>
+    <div class="yahoo-chat-status">
+      <span class="yahoo-green-dot">●</span> Yahoozup is online
+    </div>
+    <div class="yahoo-chat-log" id="yahoo-chat-log"></div>
+    <div class="yahoo-fmt-toolbar">
+      <button class="yahoo-fmt-btn">😊</button>
+      <button class="yahoo-fmt-btn"><strong>T</strong></button>
+      <button class="yahoo-fmt-btn">♪</button>
+      <span style="flex:1"></span>
+      <button class="yahoo-send-btn">Send ▶</button>
+    </div>
+    <div class="yahoo-chat-input-wrap">
+      <textarea class="yahoo-chat-input" disabled placeholder="(read only)"></textarea>
+    </div>
+  </div>
+
+  <!-- ── CLIPPY BUBBLE (fixed above taskbar) ───────── -->
+  <div id="clippy-bubble" style="display:none;">
+    <div class="clippy-speech">
+      <p id="clippy-text">Hi! I am Clippy.</p>
+      <div class="clippy-speech-tail"></div>
+    </div>
+    <div class="clippy-char">
+      <div class="clippy-body">📎</div>
+      <div class="clippy-eyes">👀</div>
+    </div>
+  </div>
+
+  <!-- ── AUDIO HOOKS (user drops files in assets/sounds/) ── -->
+  <audio id="snd-aim-door"       src="assets/sounds/aim_door.mp3"       preload="auto"></audio>
+  <audio id="snd-aim-welcome"    src="assets/sounds/aim_welcome.mp3"    preload="auto"></audio>
+  <audio id="snd-aim-receive"    src="assets/sounds/aim_receive.mp3"    preload="auto"></audio>
+  <audio id="snd-aim-leaving"    src="assets/sounds/aim_leaving.mp3"    preload="auto"></audio>
+  <audio id="snd-icq-horn"       src="assets/sounds/icq_horn.mp3"       preload="auto"></audio>
+  <audio id="snd-icq-receive"    src="assets/sounds/icq_uhoh.mp3"       preload="auto"></audio>
+  <audio id="snd-yahoo-login"    src="assets/sounds/yahoo_login.mp3"    preload="auto"></audio>
+  <audio id="snd-yahoo-receive"  src="assets/sounds/yahoo_message.mp3"  preload="auto"></audio>
+  <audio id="snd-clippy-appear"  src="assets/sounds/clippy_appear.mp3"  preload="auto"></audio>
+  <audio id="snd-win95-startup"  src="assets/sounds/win95login.mp3"     preload="auto"></audio>
+  <audio id="snd-winamp-llama"   src="assets/sounds/winamp_llama.mp3"   preload="auto"></audio>
+  <audio id="snd-snake-beep"    src="assets/sounds/snakebeep.mp3"      preload="auto"></audio>
+  <audio id="snd-nokia-ring"    src="assets/sounds/nokiaring.mp3"      preload="auto"></audio>
+  <audio id="snd-tetris-music"  src="assets/sounds/tetris.mp3"         preload="auto" loop></audio>
+
+  <!-- ── SCREENSAVER OVERLAY ───────────────────────── -->
+  <div id="screensaver-overlay">
+    <canvas id="screensaver-canvas"></canvas>
+    <div id="ss-exit-hint">Click or press any key to exit</div>
+  </div>
+
+  <!-- ── SHUTDOWN DIALOG ────────────────────────── -->
+  <div class="win95-modal-overlay" id="shutdown-overlay" style="display:none;">
+    <div class="win95-dialog" id="shutdown-dialog">
+      <div class="win95-titlebar" style="cursor:default;">
+        <span class="win95-title-icon">⏻</span>
+        <span class="win95-title-text">Shut Down Windows</span>
+      </div>
+      <div class="win95-content shutdown-content">
+        <div class="shutdown-icon">⏻</div>
+        <div class="shutdown-text">
+          <p><strong>What do you want the computer to do?</strong></p>
+          <div class="shutdown-options">
+            <label><input type="radio" name="shutdown" value="off" checked> Shut down</label>
+            <label><input type="radio" name="shutdown" value="restart"> Restart</label>
+            <label><input type="radio" name="shutdown" value="cancel"> Stay on portfolio</label>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-buttons">
+        <button class="win95-dialog-btn" onclick="doShutdown()">OK</button>
+        <button class="win95-dialog-btn" onclick="closeShutdown()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TASKBAR ─────────────────────────────────── -->
+  <div id="taskbar">
+    <button id="start-btn" onclick="toggleStartMenu()">
+      <span class="start-flag">⊞</span> <strong>Start</strong>
+    </button>
+    <div id="taskbar-windows"></div>
+    <div id="icq-taskbar-tray" class="icq-tray-icon" style="display:none;" title="ICQ — UhOh_OG is online" onclick="openWindow('messenger')">🌸</div>
+    <div id="vol-tray" onclick="toggleVolumePopup()" title="Volume">🔊</div>
+    <div id="taskbar-clock">12:00 PM</div>
+  </div>
+
+  <!-- Volume popup (outside taskbar so it floats above) -->
+  <div id="vol-popup" style="display:none;">
+    <div class="vol-popup-title">🔊 Volume</div>
+    <input type="range" id="vol-slider" min="0" max="100" value="75" oninput="setMasterVolume(this.value/100)">
+    <div id="vol-pct-label">75%</div>
+  </div>
+
+  <!-- ── START MENU ──────────────────────────────── -->
+  <div id="start-menu" class="hidden">
+    <div class="start-sidebar">
+      <span class="start-sidebar-text">Vince Darrigo</span>
+    </div>
+    <div class="start-items">
+      <div class="start-search-row">
+        <input type="text" id="start-search" placeholder="🔍 Search programs..." oninput="filterStartMenu(this.value)" autocomplete="off">
+      </div>
+      <div id="start-search-results" style="display:none;"></div>
+
+      <div class="start-item start-has-sub">
+        <span>📁</span> Programs
+        <div class="start-submenu">
+          <div class="start-sub-label">🌍 Questourism</div>
+          <div class="start-item" onclick="openWindow('questforge'); closeStartMenu()">🗺️ QuestForge</div>
+          <div class="start-item" onclick="openWindow('questourism'); closeStartMenu()">🌐 Questourism.com</div>
+          <div class="start-sub-label">🏈 Predictrix</div>
+          <div class="start-item" onclick="openWindow('predictrix'); closeStartMenu()">📊 Predictrix.app</div>
+          <div class="start-sub-label">⚙️ Other</div>
+          <div class="start-item" onclick="openWindow('reviewflow'); closeStartMenu()">🔄 ReviewFlow</div>
+          <div class="start-item" onclick="openWindow('thinkio'); closeStartMenu()">🧠 Thinkio</div>
+          <div class="start-item" onclick="openWindow('trivia'); closeStartMenu()">❓ Anytime AI Trivia</div>
+        </div>
+      </div>
+
+      <div class="start-item start-has-sub">
+        <span>🎮</span> Games
+        <div class="start-submenu">
+          <div class="start-item" onclick="openWindow('minesweeper'); closeStartMenu()">💣 Minesweeper</div>
+          <div class="start-item" onclick="openWindow('paint'); closeStartMenu()">🎨 Paint</div>
+          <div class="start-item" onclick="openWindow('solitaire'); closeStartMenu()">🃏 Solitaire</div>
+          <div class="start-item" onclick="openWindow('snake'); closeStartMenu()">🐍 Snake</div>
+          <div class="start-item" onclick="openWindow('tetris'); closeStartMenu()">🎮 Tetris</div>
+        </div>
+      </div>
+
+      <div class="start-item start-has-sub">
+        <span>✨</span> Screensavers
+        <div class="start-submenu">
+          <div class="start-item" onclick="launchScreensaver('starfield'); closeStartMenu()">⭐ Starfield</div>
+          <div class="start-item" onclick="launchScreensaver('matrix'); closeStartMenu()">💚 Matrix Rain</div>
+          <div class="start-item" onclick="launchScreensaver('mystify'); closeStartMenu()">🌈 Mystify</div>
+          <div class="start-item" onclick="launchScreensaver('pipes'); closeStartMenu()">🔲 Pipes</div>
+          <div class="start-item" onclick="launchScreensaver('cubes3d'); closeStartMenu()">📦 3D Cubes</div>
+          <div class="start-item" onclick="launchScreensaver('bounce'); closeStartMenu()">💫 Bounce</div>
+        </div>
+      </div>
+
+      <div class="start-divider"></div>
+
+      <div class="start-item" onclick="openWindow('about'); closeStartMenu()"><span>💻</span> About Me</div>
+      <div class="start-item" onclick="openWindow('resume'); closeStartMenu()"><span>📄</span> Resume</div>
+      <div class="start-item" onclick="openWindow('winamp'); closeStartMenu()"><span>🎵</span> WinAmp</div>
+      <div class="start-item" onclick="openWindow('limester'); closeStartMenu()"><span>🍋</span> LimeSter</div>
+      <div class="start-divider"></div>
+      <div class="start-item" onclick="launchIE(); closeStartMenu()"><span style="font-style:italic;font-weight:900;color:#1055b8;font-family:'Arial Black',sans-serif;font-size:13px;">e</span> Internet Explorer</div>
+      <div class="start-item" onclick="launchNetscape(); closeStartMenu()"><span style="font-weight:900;color:#7700bb;font-family:'Arial Black',sans-serif;">N</span> Netscape Navigator</div>
+      <div class="start-item" onclick="openWindow('messenger'); closeStartMenu()"><span>💬</span> Buddy Chat</div>
+      <div class="start-item" onclick="openWindow('tamagotchi'); closeStartMenu()"><span>🥚</span> Tamagotchi</div>
+      <div class="start-divider"></div>
+      <div class="start-item" onclick="window.location='guestbook.html'"><span>📝</span> Guestbook</div>
+      <div class="start-divider"></div>
+      <div class="start-item" onclick="openWindow('vault'); closeStartMenu()"><span>🔒</span> Access Restricted...</div>
+      <div class="start-divider"></div>
+      <div class="start-item" onclick="showShutdown()"><span>⏻</span> Shut Down</div>
+
+    </div>
+  </div>
+
+</div><!-- /desktop -->
+
+<script src="js/desktop.js"></script>
+<script src="js/vault.js"></script>
+<script src="js/minesweeper.js"></script>
+<script src="js/paint.js"></script>
+<script src="js/solitaire.js"></script>
+<script src="js/snake.js"></script>
+<script src="js/tetris.js"></script>
+<script src="js/messenger.js"></script>
+<script src="js/tamagotchi.js"></script>
+<script src="js/winamp.js"></script>
+<script src="js/limester.js"></script>
+<script src="js/ie-netscape.js"></script>
+<script src="js/screensaver.js"></script>
+</body>
+</html>

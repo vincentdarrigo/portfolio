@@ -1,0 +1,244 @@
+/* ═══════════════════════════════════════════════════════
+   messenger.css — Login screens, chat windows, Clippy
+   Vince Darrigo / The Mothership
+═══════════════════════════════════════════════════════ */
+
+/* ── ICQ SYSTEM TRAY ICON ─────────────────────────── */
+.icq-tray-icon {
+  display: none;           /* shown via JS when ICQ connects */
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px inset transparent;
+  padding: 1px 2px;
+}
+.icq-tray-icon:hover { border-color: #fff #888 #888 #fff; }
+
+@keyframes icq-flash {
+  0%   { filter: none; }
+  25%  { filter: brightness(2.5) saturate(3); }
+  50%  { filter: none; }
+  75%  { filter: brightness(2.5) saturate(3); }
+  100% { filter: none; }
+}
+.icq-flash { animation: icq-flash 0.6s ease; }
+
+/* ── CONTROL PANEL ────────────────────────────────── */
+.im-ctrl-panel { padding: 8px; background: #c0c0c0; }
+.im-ctrl-status { font-family: Tahoma, Arial, sans-serif; font-size: 10px; color: #333; margin-bottom: 6px; min-height: 13px; }
+.im-ctrl-btns { display: flex; gap: 4px; margin-bottom: 6px; }
+.im-ctrl-btn  { padding: 2px 8px; font-size: 11px; min-width: 32px; }
+.im-ctrl-progress-track { height: 6px; background: #888; border: 1px inset #999; overflow: hidden; }
+.im-progress-fill { height: 100%; background: #000080; transition: width 0.5s linear; }
+
+/* ── LOGIN SCREENS ────────────────────────────────── */
+.im-login-screen {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -52%);
+  z-index: 6000;
+  flex-direction: column;
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.55);
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+}
+.im-login-win-btns { display: flex; gap: 4px; margin-left: auto; }
+.im-login-win-btns span {
+  display: inline-block; width: 14px; height: 13px; background: #c0c0c0;
+  border: 1px outset #fff; text-align: center; font-size: 9px; line-height: 12px; cursor: default;
+}
+
+/* AIM Login */
+#aim-login { width: 275px; background: #ece9d8; border: 2px outset #c0c0c0; }
+.aim-login-titlebar {
+  background: linear-gradient(to right, #0a246a, #3a6ea5);
+  color: white; padding: 3px 6px; font-size: 11px; font-weight: bold;
+  display: flex; align-items: center;
+}
+.aim-login-body { padding: 14px 16px; }
+.aim-login-logo {
+  font-size: 32px; font-weight: 900; font-style: italic; color: #003399;
+  text-align: center; margin-bottom: 14px;
+  font-family: "Arial Black", Impact, sans-serif; letter-spacing: -1px;
+}
+.aim-login-field-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.aim-login-field-row label { width: 82px; text-align: right; }
+.aim-login-field-row input { flex: 1; padding: 2px 4px; border: 1px solid #7f9db9; font-size: 11px; background: white; }
+.aim-login-checks { padding-left: 88px; font-size: 10px; margin-bottom: 6px; }
+.aim-login-checks label { display: block; margin-bottom: 2px; }
+.aim-login-status { color: #003399; font-size: 10px; min-height: 13px; margin-bottom: 6px; }
+.aim-sign-on-btn {
+  display: block; margin: 0 auto;
+  background: linear-gradient(to bottom, #4d9be6, #1c5fa8);
+  color: white; border: 1px solid #1a4a8a;
+  padding: 4px 24px; font-weight: bold; font-size: 11px; cursor: pointer;
+}
+.aim-sign-on-btn.im-btn-active { background: linear-gradient(to bottom, #1c5fa8, #0a3068); }
+
+/* ICQ Login */
+#icq-login { width: 250px; background: white; border: 2px outset #c0c0c0; }
+.icq-login-titlebar {
+  background: linear-gradient(to right, #1a9e1a, #00bb00);
+  color: white; padding: 3px 6px; font-size: 11px; font-weight: bold;
+  display: flex; align-items: center;
+}
+.icq-login-body { padding: 14px; }
+.icq-login-logo {
+  font-size: 24px; font-weight: 900; color: #00aa00; margin-bottom: 14px;
+  font-family: "Arial Black", Impact, sans-serif;
+}
+.icq-login-field-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.icq-login-field-row label { width: 60px; text-align: right; font-size: 11px; }
+.icq-login-field-row input { flex: 1; padding: 2px 4px; border: 1px solid #99cc99; font-size: 11px; }
+.icq-login-checks { font-size: 10px; margin-bottom: 8px; }
+.icq-login-checks label { display: block; margin-bottom: 2px; }
+.icq-login-status { color: #007700; font-size: 10px; min-height: 13px; margin-bottom: 6px; }
+.icq-sign-in-btn {
+  display: block; width: 100%; background: #00aa00;
+  color: white; border: none; padding: 5px; font-weight: bold; font-size: 11px; cursor: pointer;
+}
+.icq-sign-in-btn.im-btn-active { background: #007700; }
+
+/* Yahoo Messenger Login */
+#yahoo-login { width: 280px; background: white; border: 2px outset #c0c0c0; }
+.yahoo-login-titlebar {
+  background: linear-gradient(to right, #6600aa, #9900cc);
+  color: white; padding: 3px 6px; font-size: 11px; font-weight: bold;
+  display: flex; align-items: center;
+}
+.yahoo-login-body { padding: 14px 16px; }
+.yahoo-login-logo {
+  font-size: 20px; font-weight: bold; margin-bottom: 14px;
+  font-family: Arial, sans-serif; display: flex; align-items: center; gap: 6px;
+}
+.yahoo-y { font-size: 36px; font-weight: 900; color: #7b00b4; line-height: 1; font-family: "Arial Black", Impact, sans-serif; }
+.yahoo-login-field-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.yahoo-login-field-row label { width: 70px; font-size: 11px; }
+.yahoo-login-field-row input { flex: 1; padding: 2px 4px; border: 1px solid #cc99dd; font-size: 11px; }
+.yahoo-login-checks { font-size: 10px; margin-bottom: 8px; }
+.yahoo-login-checks label { display: block; margin-bottom: 2px; }
+.yahoo-login-status { color: #7b00b4; font-size: 10px; min-height: 13px; margin-bottom: 6px; }
+.yahoo-sign-in-btn {
+  display: block; width: 100%;
+  background: linear-gradient(to bottom, #aa44cc, #7b00b4);
+  color: white; border: 1px solid #5a0080;
+  padding: 5px; font-weight: bold; font-size: 11px; cursor: pointer;
+}
+.yahoo-sign-in-btn.im-btn-active { background: #5a0080; }
+
+/* ── CHAT WINDOWS ─────────────────────────────────── */
+.im-chat-win { min-width: 0; }
+
+.aim-chat-log, .icq-chat-log, .yahoo-chat-log {
+  height: 200px; overflow-y: auto; padding: 6px 8px; background: white;
+  font-family: Tahoma, Arial, sans-serif; font-size: 11px; line-height: 1.5;
+}
+.im-chat-msg { margin-bottom: 3px; }
+.im-chat-name { font-weight: bold; }
+.im-chat-system { color: #888; font-style: italic; font-size: 10px; text-align: center; padding: 3px 0; }
+
+/* AIM inner */
+.aim-chat-header {
+  background: #d4e8fa; padding: 3px 8px; font-size: 10px;
+  display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #aac8e8;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.aim-online-dot { color: #007700; font-size: 10px; }
+.aim-buddy-icon { margin-left: auto; font-size: 16px; }
+.aim-chat-toolbar {
+  display: flex; align-items: center; gap: 2px; padding: 3px 5px;
+  background: #ece9d8; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa;
+}
+.aim-tb-btn { background: none; border: 1px solid transparent; padding: 1px 4px; font-size: 11px; cursor: default; }
+.aim-tb-sep { color: #aaa; margin: 0 2px; }
+.aim-font-big { font-size: 13px; font-weight: bold; }
+.aim-font-sm  { font-size: 9px; font-weight: bold; }
+.aim-action-btn { padding: 2px 6px; font-size: 10px; background: #d4d0c8; border: 1px outset #c0c0c0; cursor: default; }
+.aim-send-btn { font-weight: bold; }
+.aim-chat-input-wrap { padding: 3px; background: #ece9d8; }
+.aim-chat-input {
+  width: 100%; height: 36px; resize: none; font-size: 11px;
+  font-family: Tahoma, Arial, sans-serif; border: 1px inset #888;
+  padding: 2px; box-sizing: border-box; background: white;
+}
+
+/* ICQ inner */
+.icq-titlebar { background: linear-gradient(to right, #1a9e1a, #00bb00) !important; }
+.icq-chat-header {
+  background: #eeffee; padding: 4px 8px; font-size: 11px;
+  display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #99cc99;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.icq-flower-logo { font-size: 16px; }
+.icq-chat-name { font-weight: bold; color: #007700; }
+.icq-online-badge { margin-left: auto; color: #009900; font-size: 10px; }
+.icq-chat-toolbar {
+  display: flex; align-items: center; gap: 3px; padding: 3px 5px;
+  background: #f0fff0; border-top: 1px solid #99cc99;
+}
+.icq-tb-btn { padding: 2px 5px; font-size: 10px; background: #d8f0d8; border: 1px outset #99cc99; cursor: default; }
+.icq-send-btn { padding: 2px 10px; background: #00aa00; color: white; border: none; font-weight: bold; font-size: 10px; cursor: default; }
+.icq-chat-input-wrap { padding: 3px; background: white; border-top: 1px solid #ccc; }
+.icq-chat-input { width: 100%; height: 36px; resize: none; font-size: 11px; border: 1px inset #99cc99; padding: 2px; box-sizing: border-box; }
+
+/* Yahoo inner */
+.yahoo-titlebar { background: linear-gradient(to right, #6600aa, #9900cc) !important; }
+.yahoo-chat-toolbar {
+  display: flex; align-items: center; gap: 4px; padding: 3px 6px;
+  background: #f0e8ff; border-bottom: 1px solid #cc99dd;
+}
+.yahoo-tb-btn { padding: 2px 6px; font-size: 10px; background: #e8d8ff; border: 1px outset #aa88cc; cursor: default; }
+.yahoo-chat-status {
+  padding: 3px 8px; font-size: 10px; background: #f8f0ff;
+  border-bottom: 1px solid #e0c8ff; font-family: Tahoma, Arial, sans-serif;
+}
+.yahoo-green-dot { color: #009900; }
+.yahoo-fmt-toolbar {
+  display: flex; align-items: center; gap: 3px; padding: 3px 5px;
+  background: #f0e8ff; border-top: 1px solid #cc99dd;
+}
+.yahoo-fmt-btn { padding: 2px 5px; font-size: 11px; background: #e8d8ff; border: 1px outset #aa88cc; cursor: default; }
+.yahoo-send-btn { padding: 3px 12px; background: #7b00b4; color: white; border: none; font-weight: bold; font-size: 10px; cursor: default; }
+.yahoo-chat-input-wrap { padding: 3px; background: white; }
+.yahoo-chat-input { width: 100%; height: 36px; resize: none; font-size: 11px; border: 1px inset #cc99dd; padding: 2px; box-sizing: border-box; }
+
+/* ── CLIPPY BUBBLE ────────────────────────────────── */
+#clippy-bubble {
+  position: fixed;
+  bottom: 36px; right: 16px;
+  z-index: 7000;
+  flex-direction: column;
+  align-items: flex-end;
+  transform: translateX(130%);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#clippy-bubble.clippy-slide-in { transform: translateX(0); }
+
+.clippy-speech {
+  background: #fffef0;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 14px 18px;
+  max-width: 260px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 13px; line-height: 1.6; color: #222;
+  position: relative;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+  margin-bottom: 10px;
+}
+.clippy-speech p { margin: 0; }
+
+.clippy-speech-tail {
+  position: absolute;
+  bottom: -13px; right: 28px;
+  width: 0; height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 13px solid #333;
+}
+
+.clippy-char { display: flex; flex-direction: column; align-items: center; font-size: 40px; line-height: 1; }
+.clippy-body { font-size: 48px; }
+.clippy-eyes { font-size: 20px; margin-top: -6px; }
