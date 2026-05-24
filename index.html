@@ -997,137 +997,114 @@
   </div>
 
   <!-- ── WINDOW: WINAMP ──────────────────────────────── -->
-  <div class="win95-window wp-outer" id="window-winamp" style="display:none; left:240px; top:160px; width:auto;">
-    <!-- ▌ MAIN PLAYER ▌ -->
-    <div class="wp-main">
-      <div class="wp-titlebar" data-win="winamp">
-        <span class="wp-logo">WINAMP</span>
-        <div class="wp-tb-drag"></div>
-        <button class="wp-tb-btn" onclick="minimizeWindow('winamp')" title="Minimize">_</button>
-        <button class="wp-tb-btn" onclick="closeWindow('winamp')" title="Close">×</button>
+  <div class="win95-window" id="window-winamp" style="display:none; left:240px; top:160px;">
+    <div class="wp-skin">
+
+      <!-- Transparent titlebar over image's title bar — handles drag + close/min -->
+      <div class="win95-titlebar" data-win="winamp">
+        <div class="win95-controls">
+          <button class="win95-ctrl" onclick="minimizeWindow('winamp')">_</button>
+          <button class="win95-ctrl win95-close" onclick="closeWindow('winamp')">×</button>
+        </div>
       </div>
 
-      <!-- LED display area -->
-      <div class="wp-display-area">
-        <div class="wp-left-col">
-          <div class="wp-status-dots">
-            <span class="wp-sdot" id="wp-dot-play">▶</span>
-            <span class="wp-sdot" id="wp-dot-pause">⏸</span>
-            <span class="wp-sdot" id="wp-dot-stop">■</span>
-          </div>
-          <div class="wp-led-time" id="wp-time-cur">0:00</div>
-          <div class="wp-led-remain" id="wp-time-dur">-0:00</div>
-        </div>
-        <div class="wp-right-col">
-          <div class="wp-kbps-row">
-            <span class="wp-kv">128</span><span class="wp-kl">kbps</span>
-            <span class="wp-kv" style="margin-left:4px">44</span><span class="wp-kl">kHz</span>
-          </div>
-          <div class="wp-stereo-badge">STEREO</div>
-        </div>
-      </div>
+      <!-- ── MAIN PLAYER OVERLAYS ── -->
+
+      <!-- LED time display -->
+      <div id="wp-time-cur" class="wp-ov">0:00</div>
+      <div id="wp-time-dur" class="wp-ov"></div>
+
+      <!-- Play/pause/stop status dots -->
+      <div id="wp-dot-play"  class="wp-sdot"></div>
+      <div id="wp-dot-pause" class="wp-sdot"></div>
+      <div id="wp-dot-stop"  class="wp-sdot"></div>
 
       <!-- Song title marquee -->
-      <div class="wp-marquee-row">
-        <div class="wp-title-wrap" id="wp-title-wrap">
-          <span class="wp-title-text" id="wp-title-text">*** WINAMP ***</span>
+      <div class="wp-ov wp-ov-marquee">
+        <div id="wp-title-wrap">
+          <span id="wp-title-text">*** WINAMP ***</span>
         </div>
       </div>
 
-      <!-- Mini visualizer -->
-      <div class="wp-viz-row">
-        <canvas id="wp-viz-canvas" class="wp-viz-canvas" height="16"></canvas>
+      <!-- Frequency visualizer canvas -->
+      <canvas id="wp-viz-canvas" class="wp-ov wp-ov-viz" height="14"></canvas>
+
+      <!-- Seek bar -->
+      <div class="wp-ov wp-ov-seek" id="wp-seek-bar" onclick="wpSeekClick(event)">
+        <div id="wp-seek-fill" class="wp-seek-fill-ov"></div>
+        <div id="wp-seek-knob" class="wp-seek-knob-ov"></div>
       </div>
 
-      <!-- Seekbar -->
-      <div class="wp-seekbar" id="wp-seek-bar" onclick="wpSeekClick(event)">
-        <div class="wp-seek-fill" id="wp-seek-fill"></div>
-        <div class="wp-seek-knob" id="wp-seek-knob"></div>
-      </div>
+      <!-- Volume slider -->
+      <input type="range" class="wp-ov wp-ov-vol" id="wp-vol-slider"
+             min="0" max="100" value="75" oninput="wpSetVol(this.value)">
 
-      <!-- Clutter buttons -->
-      <div class="wp-clutter">
-        <div class="wp-clutter-left">
-          <button class="wp-clut" id="wp-cb-eq"  onclick="wpToggleEq()">EQ</button>
-          <button class="wp-clut wp-clut-on" id="wp-cb-pl" onclick="wpTogglePl()">PL</button>
-        </div>
-        <div class="wp-clutter-right">
-          <button class="wp-clut" id="wp-cb-shuf" onclick="wpToggleShuffle()">SHF</button>
-          <button class="wp-clut" id="wp-cb-rpt"  onclick="wpToggleRepeat()">RPT</button>
-        </div>
-      </div>
+      <!-- Balance slider -->
+      <input type="range" class="wp-ov wp-ov-bal" min="-50" max="50" value="0">
 
-      <!-- Volume + Balance -->
-      <div class="wp-sliders">
-        <div class="wp-sl-group">
-          <span class="wp-sl-lbl">VOL</span>
-          <input type="range" class="wp-sl-range" min="0" max="100" value="75" oninput="wpSetVol(this.value)" id="wp-vol-slider">
-          <span class="wp-sl-val" id="wp-vol-pct">75%</span>
-        </div>
-        <div class="wp-sl-group">
-          <span class="wp-sl-lbl">BAL</span>
-          <input type="range" class="wp-sl-range" min="-50" max="50" value="0">
-          <span class="wp-sl-val">C</span>
-        </div>
-      </div>
+      <!-- Hidden file picker shared across Add buttons -->
+      <input type="file" id="wp-file-input" accept="audio/*" multiple style="display:none"
+             onchange="wpLoadFiles(this.files)">
 
-      <!-- Transport -->
-      <div class="wp-transport">
-        <button class="wp-bt prev" onclick="wpPrev()"     title="Prev">|◀◀</button>
-        <button class="wp-bt rew"  onclick="wpRew()"      title="-5s">◀◀</button>
-        <button class="wp-bt play" id="wp-btn-play" onclick="wpTogglePlay()" title="Play">▶</button>
-        <button class="wp-bt paus" onclick="wpPauseOnly()" title="Pause">⏸</button>
-        <button class="wp-bt stop" onclick="wpStop()"     title="Stop">■</button>
-        <button class="wp-bt fwd"  onclick="wpFfw()"      title="+5s">▶▶</button>
-        <button class="wp-bt next" onclick="wpNext()"     title="Next">▶▶|</button>
-        <label  class="wp-bt open" title="Open files">▲<input type="file" accept="audio/*" multiple onchange="wpLoadFiles(this.files)" style="display:none;"></label>
-      </div>
-    </div>
+      <!-- Transport buttons (transparent overlays over image buttons) -->
+      <button class="wp-ov-tbtn wp-t-prev"  onclick="wpPrev()"        title="Previous"></button>
+      <button class="wp-ov-tbtn wp-t-rew"   onclick="wpRew()"         title="Rewind 5s"></button>
+      <button class="wp-ov-tbtn wp-t-play"  id="wp-btn-play"
+              onclick="wpInitAudioCtx();wpTogglePlay()"               title="Play/Pause"></button>
+      <button class="wp-ov-tbtn wp-t-paus"  onclick="wpPauseOnly()"   title="Pause"></button>
+      <button class="wp-ov-tbtn wp-t-stop"  onclick="wpStop()"        title="Stop"></button>
+      <button class="wp-ov-tbtn wp-t-ffw"   onclick="wpFfw()"         title="Forward 5s"></button>
+      <button class="wp-ov-tbtn wp-t-next"  onclick="wpNext()"        title="Next"></button>
+      <button class="wp-ov-tbtn wp-t-eject"
+              onclick="document.getElementById('wp-file-input').click()" title="Open files"></button>
 
-    <!-- ▌ EQUALIZER PANEL ▌ -->
-    <div class="wp-eq-panel" id="wp-eq-panel" style="display:none;">
-      <div class="wp-panel-bar">
-        <span class="wp-panel-title">EQUALIZER</span>
-        <label class="wp-eq-toggle"><input type="checkbox" id="wp-eq-on" checked> ON</label>
-        <label class="wp-eq-toggle"><input type="checkbox" id="wp-eq-auto"> AUTO</label>
-        <div style="flex:1"></div>
-        <button class="wp-panel-x" onclick="wpToggleEq()">×</button>
-      </div>
-      <div class="wp-eq-bands">
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">PA</span></div>
-        <div class="wp-eq-sep"></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">60</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">170</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">310</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">600</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">1K</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">3K</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">6K</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">12K</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">14K</span></div>
-        <div class="wp-eq-col"><input type="range" class="wp-eq-sl" min="-12" max="12" value="0"><span class="wp-eq-lb">16K</span></div>
-      </div>
-    </div>
+      <!-- ── EQ PANEL OVERLAYS (positioned over EQ section of the image, y=144-288) ── -->
 
-    <!-- ▌ PLAYLIST PANEL ▌ -->
-    <div class="wp-pl-panel" id="wp-pl-panel">
-      <div class="wp-panel-bar">
-        <span class="wp-panel-title">PLAYLIST EDITOR</span>
-        <div style="flex:1"></div>
-        <button class="wp-panel-x" onclick="minimizeWindow('winamp')">_</button>
-        <button class="wp-panel-x" onclick="wpTogglePl()">×</button>
-      </div>
-      <div class="wp-playlist" id="wp-playlist">
-        <div class="wp-no-tracks">No tracks — click ▲ to open files</div>
-      </div>
-      <div class="wp-pl-footer">
-        <label class="wp-pl-btn">+ADD<input type="file" accept="audio/*" multiple onchange="wpLoadFiles(this.files)" style="display:none;"></label>
-        <button class="wp-pl-btn" onclick="if(wpAudio)wpStop();wpTracks=[];wpCurrentIdx=-1;wpRenderPlaylist();wpSetTitle('*** WINAMP ***')">CLR</button>
-        <button class="wp-pl-btn" onclick="wpPrev()">|◀◀</button>
-        <button class="wp-pl-btn" onclick="wpTogglePlay()">▶</button>
-        <button class="wp-pl-btn" onclick="wpStop()">■</button>
-        <button class="wp-pl-btn" onclick="wpNext()">▶▶|</button>
-      </div>
+      <!-- EQ close / ON / AUTO button overlays -->
+      <button class="wp-ov-tbtn wp-eq-x"    onclick="wpToggleEq()"       title="Close EQ"></button>
+      <button class="wp-ov-tbtn wp-eq-on"   id="wp-eq-on-btn"
+              onclick="wpToggleEqOn()"                                    title="EQ On"></button>
+      <button class="wp-ov-tbtn wp-eq-auto" id="wp-eq-auto-btn"
+              onclick="wpToggleEqAuto()"                                  title="EQ Auto"></button>
+      <button class="wp-ov-tbtn wp-eq-prs"  title="Presets"></button>
+
+      <!-- EQ sliders: PREAMP + 10 frequency bands -->
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="preamp"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="60"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="170"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="310"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="600"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="1k"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="3k"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="6k"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="12k"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="14k"
+             min="0" max="100" value="50">
+      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="16k"
+             min="0" max="100" value="50">
+
+      <!-- ── PLAYLIST OVERLAYS (positioned over playlist section, y=288-432) ── -->
+
+      <div id="wp-playlist" class="wp-ov wp-ov-playlist"></div>
+
+      <!-- Playlist footer buttons -->
+      <button class="wp-ov-pl-btn wp-pl-add"
+              onclick="document.getElementById('wp-file-input').click()" title="Add"></button>
+      <button class="wp-ov-pl-btn wp-pl-del"
+              onclick="if(wpAudio)wpStop();wpTracks=[];wpCurrentIdx=-1;wpRenderPlaylist();wpSetTitle('*** WINAMP ***')"
+              title="Clear"></button>
+      <button class="wp-ov-pl-btn wp-pl-sel"  title="Select"></button>
+      <button class="wp-ov-pl-btn wp-pl-misc" title="Misc"></button>
+
     </div>
   </div>
 

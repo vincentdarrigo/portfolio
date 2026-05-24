@@ -291,6 +291,21 @@ function wpToggleRepeat() {
   if (btn) btn.classList.toggle('wp-clut-on', wpRepeat);
 }
 
+let wpEqEnabled = true;
+let wpEqAuto    = false;
+
+function wpToggleEqOn() {
+  wpEqEnabled = !wpEqEnabled;
+  const btn = document.getElementById('wp-eq-on-btn');
+  if (btn) btn.style.opacity = wpEqEnabled ? '0.3' : '0.05';
+}
+
+function wpToggleEqAuto() {
+  wpEqAuto = !wpEqAuto;
+  const btn = document.getElementById('wp-eq-auto-btn');
+  if (btn) btn.style.opacity = wpEqAuto ? '0.3' : '0.05';
+}
+
 // ── VISUALIZER ────────────────────────────────────────
 
 function wpInitAudioCtx() {
@@ -314,9 +329,9 @@ function wpStartViz() {
   const canvas = document.getElementById('wp-viz-canvas');
   if (!canvas) return;
 
-  // Size canvas to its display width
-  canvas.width  = canvas.parentElement ? canvas.parentElement.offsetWidth || 267 : 267;
-  canvas.height = 16;
+  // Use the canvas's own CSS width (it's positioned over the display area)
+  canvas.width  = canvas.offsetWidth || 152;
+  canvas.height = 14;
 
   const ctx   = canvas.getContext('2d');
   const BARS  = 30;
