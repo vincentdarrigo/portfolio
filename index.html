@@ -98,23 +98,77 @@
 ═══════════════════════════════════════════════════ -->
 <div id="desktop">
 
-  <!-- DESKTOP ICONS -->
-  <div id="desktop-icons">
+  <!-- ═══════════════════════════════════════════════
+       DESKTOP ICON ZONES
+  ═══════════════════════════════════════════════════ -->
+
+  <!-- Zone A: upper-left — System + Browser Wars -->
+  <div class="icon-zone" id="icons-system">
+    <div class="desk-icon" ondblclick="openWindow('recycle')" tabindex="0">
+      <div class="desk-icon-img">🗑️</div>
+      <div class="desk-icon-label">Recycle Bin</div>
+    </div>
+    <div class="desk-icon" ondblclick="launchIE()" tabindex="0">
+      <div class="desk-icon-img" style="width:32px;height:32px;background:white;display:flex;align-items:center;justify-content:center;border:1px solid #ccc;font-size:0;"><span style="font-size:24px;font-style:italic;font-weight:900;color:#1055b8;font-family:'Arial Black',Arial,sans-serif;">e</span></div>
+      <div class="desk-icon-label">Internet Explorer</div>
+    </div>
+    <div class="desk-icon" ondblclick="launchNetscape()" tabindex="0">
+      <div class="desk-icon-img" style="width:32px;height:32px;background:#1a0035;display:flex;align-items:center;justify-content:center;border:1px solid #550099;font-size:0;"><span style="font-size:22px;font-weight:900;color:#aa44ff;font-family:'Arial Black',Arial,sans-serif;">N</span><span style="font-size:10px;color:#ffee00;position:absolute;margin-top:-14px;margin-left:8px;">☄</span></div>
+      <div class="desk-icon-label">Netscape 4.7</div>
+    </div>
+  </div>
+
+  <!-- Zone B: upper-right — Personal -->
+  <div class="icon-zone" id="icons-right">
     <div class="desk-icon" ondblclick="openWindow('about')" tabindex="0">
       <div class="desk-icon-img">💻</div>
       <div class="desk-icon-label">About Vince</div>
-    </div>
-    <div class="desk-icon" ondblclick="openWindow('projects')" tabindex="0">
-      <div class="desk-icon-img">📁</div>
-      <div class="desk-icon-label">My Projects</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('resume')" tabindex="0">
       <div class="desk-icon-img">📄</div>
       <div class="desk-icon-label">Resume.doc</div>
     </div>
-    <div class="desk-icon" ondblclick="openWindow('bbs')" tabindex="0">
-      <div class="desk-icon-img" style="font-size:22px;line-height:1;color:#00ff41;background:#020d00;border:2px solid #004d00;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:bold;border-radius:2px;text-shadow:0 0 6px #00ff41;">📟</div>
-      <div class="desk-icon-label">Last Node BBS</div>
+  </div>
+
+  <!-- Zone C: middle-left — Business Project Folders -->
+  <div class="icon-zone" id="icons-folders">
+    <div class="desk-icon" ondblclick="openWindow('folder-ai')" tabindex="0">
+      <div class="desk-icon-img">
+        <span class="folder-icon">📂<span class="folder-badge">🎮</span></span>
+      </div>
+      <div class="desk-icon-label">AI Gaming Projects</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('folder-sports')" tabindex="0">
+      <div class="desk-icon-img">
+        <span class="folder-icon">📂<span class="folder-badge">📊</span></span>
+      </div>
+      <div class="desk-icon-label">Sports / Prediction</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('folder-biz')" tabindex="0">
+      <div class="desk-icon-img">
+        <span class="folder-icon">📂<span class="folder-badge">💼</span></span>
+      </div>
+      <div class="desk-icon-label">Business Integration</div>
+    </div>
+  </div>
+
+  <!-- Zone D: lower-left — Throwback Apps & Games -->
+  <div class="icon-zone" id="icons-games">
+    <div class="desk-icon" ondblclick="openWindow('messenger')" tabindex="0">
+      <div class="desk-icon-img">💬</div>
+      <div class="desk-icon-label">Buddy Chat</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('winamp')" tabindex="0">
+      <div class="desk-icon-img">🎵</div>
+      <div class="desk-icon-label">WinAmp</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('weatherbug')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:26px;animation:none;">🐝</div>
+      <div class="desk-icon-label">WeatherBug</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('limester')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:0;"><img src="assets/images/LimeSter.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='24px';this.outerHTML='🍋'"></div>
+      <div class="desk-icon-label">LimeSter</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('paint')" tabindex="0">
       <div class="desk-icon-img">🎨</div>
@@ -123,14 +177,6 @@
     <div class="desk-icon" ondblclick="openWindow('minesweeper')" tabindex="0">
       <div class="desk-icon-img">💣</div>
       <div class="desk-icon-label">Minesweeper</div>
-    </div>
-    <div class="desk-icon" ondblclick="openWindow('messenger')" tabindex="0">
-      <div class="desk-icon-img">💬</div>
-      <div class="desk-icon-label">Buddy Chat</div>
-    </div>
-    <div class="desk-icon" ondblclick="openWindow('tamagotchi')" tabindex="0">
-      <div class="desk-icon-img">🥚</div>
-      <div class="desk-icon-label">Tamagotchi</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('snake')" tabindex="0">
       <div class="desk-icon-img">🐍</div>
@@ -144,46 +190,117 @@
       <div class="desk-icon-img">🃏</div>
       <div class="desk-icon-label">Solitaire</div>
     </div>
-    <div class="desk-icon" ondblclick="launchScreensaver('random')" tabindex="0">
-      <div class="desk-icon-img">✨</div>
-      <div class="desk-icon-label">Screensaver</div>
-    </div>
-    <div class="desk-icon" ondblclick="openWindow('winamp')" tabindex="0">
-      <div class="desk-icon-img">🎵</div>
-      <div class="desk-icon-label">WinAmp</div>
-    </div>
-    <div class="desk-icon" ondblclick="openWindow('limester')" tabindex="0">
-      <div class="desk-icon-img" style="font-size:0;"><img src="assets/images/LimeSter.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='24px';this.outerHTML='🍋'"></div>
-      <div class="desk-icon-label">LimeSter</div>
-    </div>
-    <div class="desk-icon" ondblclick="launchIE()" tabindex="0">
-      <div class="desk-icon-img" style="width:32px;height:32px;background:white;display:flex;align-items:center;justify-content:center;border:1px solid #ccc;font-size:0;"><span style="font-size:24px;font-style:italic;font-weight:900;color:#1055b8;font-family:'Arial Black',Arial,sans-serif;">e</span></div>
-      <div class="desk-icon-label">Internet Explorer</div>
-    </div>
-    <div class="desk-icon" ondblclick="launchNetscape()" tabindex="0">
-      <div class="desk-icon-img" style="width:32px;height:32px;background:#1a0035;display:flex;align-items:center;justify-content:center;border:1px solid #550099;font-size:0;"><span style="font-size:22px;font-weight:900;color:#aa44ff;font-family:'Arial Black',Arial,sans-serif;">N</span><span style="font-size:10px;color:#ffee00;position:absolute;margin-top:-14px;margin-left:8px;">☄</span></div>
-      <div class="desk-icon-label">Netscape 4.7</div>
-    </div>
-    <div class="desk-icon" ondblclick="openWindow('weatherbug')" tabindex="0">
-      <div class="desk-icon-img" style="font-size:26px;animation:none;">🐝</div>
-      <div class="desk-icon-label">WeatherBug</div>
+    <div class="desk-icon" ondblclick="openWindow('tamagotchi')" tabindex="0">
+      <div class="desk-icon-img">🥚</div>
+      <div class="desk-icon-label">Tamagotchi</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('gwbasic')" tabindex="0">
       <div class="desk-icon-img" style="width:32px;height:32px;background:#0000aa;display:flex;align-items:center;justify-content:center;border:1px solid #0000cc;font-size:0;"><span style="color:#c8c8c8;font-family:'Courier New',monospace;font-size:9px;font-weight:bold;line-height:1;text-align:center;">GW<br>BASIC</span></div>
       <div class="desk-icon-label">GW-BASIC</div>
     </div>
+    <div class="desk-icon" ondblclick="openWindow('bbs')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:22px;line-height:1;color:#00ff41;background:#020d00;border:2px solid #004d00;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:bold;border-radius:2px;text-shadow:0 0 6px #00ff41;">📟</div>
+      <div class="desk-icon-label">Last Node BBS</div>
+    </div>
+    <div class="desk-icon" ondblclick="launchScreensaver('random')" tabindex="0">
+      <div class="desk-icon-img">✨</div>
+      <div class="desk-icon-label">Screensaver</div>
+    </div>
     <div class="desk-icon" ondblclick="openWindow('vault')" tabindex="0">
       <div class="desk-icon-img">🔒</div>
       <div class="desk-icon-label">???</div>
     </div>
-    <div class="desk-icon" ondblclick="window.open('https://predictrix.app','_blank')" tabindex="0">
-      <div class="desk-icon-img" style="font-size:0;line-height:1;"><img src="assets/images/predictrix_logo.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='28px';this.outerHTML='📊'"></div>
-      <div class="desk-icon-label">Predictrix.app</div>
+  </div>
+
+  <!-- ── FOLDER WINDOWS ──────────────────────────────── -->
+
+  <!-- Recycle Bin -->
+  <div class="win95-window" id="window-recycle" style="display:none; left:120px; top:100px; width:260px;">
+    <div class="win95-titlebar" data-win="recycle">
+      <span class="win95-title-icon">🗑️</span>
+      <span class="win95-title-text">Recycle Bin</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('recycle')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('recycle')">✕</button>
+      </div>
     </div>
-    <div class="desk-icon" ondblclick="openWindow('questourism')" tabindex="0">
-      <div class="desk-icon-img" style="font-size:0;line-height:1;"><img src="assets/images/questourism.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='28px';this.outerHTML='🌐'"></div>
-      <div class="desk-icon-label">Questourism</div>
+    <div class="folder-body" style="height:80px;">
+      <div class="folder-empty">Recycle Bin is empty.</div>
     </div>
+    <div class="folder-statusbar">0 object(s)</div>
+  </div>
+
+  <!-- AI Gaming Projects -->
+  <div class="win95-window" id="window-folder-ai" style="display:none; left:130px; top:90px; width:320px;">
+    <div class="win95-titlebar" data-win="folder-ai">
+      <span class="win95-title-icon">🎮</span>
+      <span class="win95-title-text">AI Gaming Projects</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('folder-ai')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('folder-ai')">✕</button>
+      </div>
+    </div>
+    <div class="folder-body">
+      <div class="folder-item" ondblclick="openWindow('questourism')" tabindex="0" title="Questourism — open">
+        <img class="folder-item-img" src="assets/images/questourism.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>🌐</div>'">
+        <div class="folder-item-label">Questourism</div>
+      </div>
+      <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
+        <div class="folder-item-icon">📁</div>
+        <div class="folder-item-label">More soon...</div>
+      </div>
+    </div>
+    <div class="folder-statusbar">1 object(s) — 1 project</div>
+  </div>
+
+  <!-- Sports / Prediction Projects -->
+  <div class="win95-window" id="window-folder-sports" style="display:none; left:140px; top:100px; width:320px;">
+    <div class="win95-titlebar" data-win="folder-sports">
+      <span class="win95-title-icon">📊</span>
+      <span class="win95-title-text">Sports / Prediction Projects</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('folder-sports')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('folder-sports')">✕</button>
+      </div>
+    </div>
+    <div class="folder-body">
+      <div class="folder-item" ondblclick="window.open('https://predictrix.app','_blank')" tabindex="0" title="Predictrix.app — open in browser">
+        <img class="folder-item-img" src="assets/images/predictrix_logo.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>📊</div>'">
+        <div class="folder-item-label">Predictrix</div>
+      </div>
+      <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
+        <div class="folder-item-icon">📁</div>
+        <div class="folder-item-label">More soon...</div>
+      </div>
+    </div>
+    <div class="folder-statusbar">1 object(s) — 1 project</div>
+  </div>
+
+  <!-- Business Integration Projects -->
+  <div class="win95-window" id="window-folder-biz" style="display:none; left:150px; top:110px; width:320px;">
+    <div class="win95-titlebar" data-win="folder-biz">
+      <span class="win95-title-icon">💼</span>
+      <span class="win95-title-text">Business Integration Projects</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('folder-biz')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('folder-biz')">✕</button>
+      </div>
+    </div>
+    <div class="folder-body">
+      <div class="folder-item" tabindex="0" style="opacity:0.6; cursor:default;" title="IMRAface — coming soon">
+        <div class="folder-item-icon">🤖</div>
+        <div class="folder-item-label">IMRAface</div>
+      </div>
+      <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
+        <div class="folder-item-icon">📁</div>
+        <div class="folder-item-label">More soon...</div>
+      </div>
+    </div>
+    <div class="folder-statusbar">Projects in development</div>
   </div>
 
   <!-- ── WINDOW: ABOUT ────────────────────────── -->

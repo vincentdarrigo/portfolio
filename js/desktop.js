@@ -7,6 +7,10 @@
 const WINDOW_TITLES = {
   about:            '💻 About Vince',
   projects:         '📁 My Projects',
+  'folder-ai':      '🎮 AI Gaming Projects',
+  'folder-sports':  '📊 Sports / Prediction',
+  'folder-biz':     '💼 Business Integration',
+  'recycle':        '🗑️ Recycle Bin',
   questforge:       '🗺️ QuestForge',
   questourism:      '🌐 Questourism.com',
   predictrix:       '📊 Predictrix.app',
@@ -226,8 +230,6 @@ function finishBoot(overlay) {
     overlay.style.display = 'none';
     document.dispatchEvent(new Event('bootComplete'));
     startIdleDetection();
-    // WinAmp opens upper-right as part of the boot experience
-    setTimeout(() => openWindow('winamp'), 800);
   }, 720);
 }
 
