@@ -66,21 +66,20 @@
   font-size: 11px;
   font-family: Tahoma, Arial, sans-serif;
   padding: 1px 3px;
-  height: 16px;
   outline: none;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 .aim-skin-pass { letter-spacing: 2px; font-family: monospace; }
 .aim-skin-status {
   position: absolute;
-  top: 285px; left: 8px; width: 238px;
+  top: 74.22%; left: 3.13%; width: 92.97%;
   font-size: 10px; color: #003399;
   font-family: Tahoma, Arial, sans-serif;
   min-height: 13px;
 }
 .aim-skin-signonbtn {
   position: absolute;
-  top: 318px; left: 193px; width: 55px; height: 39px;
+  top: 82.81%; left: 75.39%; width: 21.48%; height: 10.16%;
   background: transparent; border: none; cursor: pointer; opacity: 0;
 }
 .aim-skin-signonbtn:hover  { opacity: 0.15; background: rgba(255,255,255,0.2); }
@@ -126,21 +125,20 @@
   font-size: 11px;
   font-family: Tahoma, Arial, sans-serif;
   padding: 1px 3px;
-  height: 16px;
   outline: none;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 .yahoo-skin-pass { letter-spacing: 2px; font-family: monospace; }
 .yahoo-skin-status {
   position: absolute;
-  top: 310px; left: 14px; width: 228px;
+  top: 80.73%; left: 5.47%; width: 89.06%;
   font-size: 10px; color: #7b00b4;
   font-family: Tahoma, Arial, sans-serif;
   min-height: 13px; text-align: center;
 }
 .yahoo-skin-signinbtn {
   position: absolute;
-  top: 320px; left: 88px; width: 80px; height: 24px;
+  top: 83.33%; left: 34.38%; width: 31.25%; height: 6.25%;
   background: transparent; border: none; cursor: pointer; opacity: 0;
 }
 .yahoo-skin-signinbtn:hover  { opacity: 0.15; background: rgba(255,255,255,0.2); }

@@ -1958,19 +1958,21 @@ body {
 }
 
 /* ── GIGAPET IMAGE SKIN ───────────────────────────── */
+/* gigapet.png natural: 1254×1254 | display: 320×320
+   screen rect: x=390,y=389,w=472,h=461 → 31.10%/31.02%/37.64%/36.76% */
 .gp-skin {
   position: relative;
-  width: 280px;
-  height: 280px;
-  background: url('../assets/images/gigapet.png') no-repeat top left / 280px 280px;
+  width: 320px;
+  height: 320px;
+  background: url('../assets/images/gigapet.png') no-repeat top left / 320px 320px;
   user-select: none;
 }
 .gp-skin-canvas {
   position: absolute;
-  top: 73px;
-  left: 63px;
-  width: 154px;
-  height: 110px;
+  top: 31.02%;   /* 389/1254 */
+  left: 31.10%;  /* 390/1254 */
+  width: 120px;  /* 37.64% × 320 */
+  height: 118px; /* 36.76% × 320 */
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
@@ -1993,22 +1995,23 @@ body {
   background: #c0c0c0;
   border-top: 1px solid #888;
 }
-/* update #tama-canvas override for new skin dimensions */
-#tama-canvas { display: block; width: 154px; height: 110px; }
+#tama-canvas { display: block; width: 120px; height: 118px; }
 
 /* ── GAMEBOY IMAGE SKIN ───────────────────────────── */
+/* gameboy.png natural: 941×1672 | display: 380×675
+   fullLCD rect: x=208,y=258,w=504,h=455 → 22.10%/15.43%/53.56%/27.21% */
 #window-tetris .win95-content { padding: 0; }
 .gb-skin {
   position: relative;
-  width: 282px;
-  height: 502px;
-  background: url('../assets/images/gameboy.png') no-repeat top left / 282px 502px;
+  width: 380px;
+  height: 675px;
+  background: url('../assets/images/gameboy.png') no-repeat top left / 380px 675px;
   user-select: none;
 }
 .gb-skin-canvas {
   position: absolute;
-  top: 35px;
-  left: 74px;   /* (39 + (204-135)/2) = 39+34 = 73 */
+  top: 15.43%;   /* 258/1672 */
+  left: 22.10%;  /* 208/941  */
   width: 135px;
   height: 180px;
   image-rendering: pixelated;
@@ -2024,7 +2027,6 @@ body {
 }
 .gb-skin-btn:hover  { opacity: 0.2; background: rgba(255,255,255,0.25); }
 .gb-skin-btn:active { opacity: 0.4; background: rgba(0,0,0,0.2); }
-/* override old tetris canvas rule */
 #tetris-canvas { display: block; image-rendering: pixelated; width: 135px; height: 180px; }
 
 /* messenger — Clippy additions */

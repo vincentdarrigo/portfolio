@@ -876,7 +876,7 @@
   </div>
 
   <!-- ── WINDOW: TETRIS (Game Boy) ────────────────── -->
-  <div class="win95-window" id="window-tetris" style="display:none; left:500px; top:50px; width:282px;">
+  <div class="win95-window" id="window-tetris" style="display:none; left:500px; top:50px; width:380px;">
     <div class="win95-titlebar" data-win="tetris">
       <span class="win95-title-icon">🎮</span>
       <span class="win95-title-text">Tetris — Game Boy</span>
@@ -887,24 +887,25 @@
       </div>
     </div>
     <div class="gb-skin">
-      <!-- Tetris canvas over the screen area -->
+      <!-- Tetris canvas over the LCD screen area
+           natural: 941×1672 | display: 380×675 | fullLCD: 22.10%/15.43% -->
       <canvas id="tetris-canvas" class="gb-skin-canvas" width="135" height="180"></canvas>
-      <!-- D-pad overlays -->
-      <button class="gb-skin-btn" style="top:317px; left:44px;  width:26px; height:24px;" onclick="tetBtn('rotate')"></button>
-      <button class="gb-skin-btn" style="top:341px; left:19px;  width:26px; height:24px;" onclick="tetBtn('left')"></button>
-      <button class="gb-skin-btn" style="top:365px; left:44px;  width:26px; height:24px;" onclick="tetBtn('down')"></button>
-      <button class="gb-skin-btn" style="top:341px; left:70px;  width:26px; height:24px;" onclick="tetBtn('right')"></button>
+      <!-- D-pad: all positions scaled from 282×502 → 380×675 -->
+      <button class="gb-skin-btn" style="top:63.1%; left:15.6%; width:9.2%; height:4.8%;" onclick="tetBtn('rotate')"></button>
+      <button class="gb-skin-btn" style="top:68.0%; left:6.7%;  width:9.2%; height:4.8%;" onclick="tetBtn('left')"></button>
+      <button class="gb-skin-btn" style="top:72.7%; left:15.6%; width:9.2%; height:4.8%;" onclick="tetBtn('down')"></button>
+      <button class="gb-skin-btn" style="top:68.0%; left:24.8%; width:9.2%; height:4.8%;" onclick="tetBtn('right')"></button>
       <!-- A = rotate, B = hard drop -->
-      <button class="gb-skin-btn" style="top:322px; left:196px; width:32px; height:32px;" onclick="tetBtn('rotate')"></button>
-      <button class="gb-skin-btn" style="top:338px; left:163px; width:32px; height:32px;" onclick="tetBtn('drop')"></button>
+      <button class="gb-skin-btn" style="top:64.2%; left:69.5%; width:11.3%; height:6.4%;" onclick="tetBtn('rotate')"></button>
+      <button class="gb-skin-btn" style="top:67.3%; left:57.8%; width:11.3%; height:6.4%;" onclick="tetBtn('drop')"></button>
       <!-- SELECT / START -->
-      <button class="gb-skin-btn" style="top:394px; left:87px;  width:40px; height:18px;" onclick="tetBtn('start')"></button>
-      <button class="gb-skin-btn" style="top:394px; left:131px; width:40px; height:18px;" onclick="tetBtn('start')"></button>
+      <button class="gb-skin-btn" style="top:78.5%; left:30.9%; width:14.2%; height:3.6%;" onclick="tetBtn('start')"></button>
+      <button class="gb-skin-btn" style="top:78.5%; left:46.5%; width:14.2%; height:3.6%;" onclick="tetBtn('start')"></button>
     </div>
   </div>
 
   <!-- ── WINDOW: TAMAGOTCHI ───────────────────────── -->
-  <div class="win95-window" id="window-tamagotchi" style="display:none; left:80px; top:120px; width:282px;">
+  <div class="win95-window" id="window-tamagotchi" style="display:none; left:80px; top:120px; width:320px;">
     <div class="win95-titlebar" data-win="tamagotchi">
       <span class="win95-title-icon">🥚</span>
       <span class="win95-title-text">Tamagotchi</span>
@@ -915,12 +916,13 @@
       </div>
     </div>
     <div class="gp-skin">
-      <!-- Canvas over screen area -->
-      <canvas id="tama-canvas" class="gp-skin-canvas" width="154" height="110"></canvas>
-      <!-- Button overlays — left=Food, center=Play, right=Clean -->
-      <button class="gp-skin-btn" style="top:210px; left:88px;  width:28px; height:28px;" onclick="tamaFeed()"  title="Feed"></button>
-      <button class="gp-skin-btn" style="top:212px; left:126px; width:28px; height:28px;" onclick="tamaPlay()"  title="Play"></button>
-      <button class="gp-skin-btn" style="top:210px; left:164px; width:28px; height:28px;" onclick="tamaClean()" title="Clean"></button>
+      <!-- Canvas over screen area
+           natural: 1254×1254 | display: 320×320 | screen: 31.10%/31.02%/37.64%/36.76% -->
+      <canvas id="tama-canvas" class="gp-skin-canvas" width="120" height="118"></canvas>
+      <!-- Button overlays — scaled from 280×280 → 320×320 -->
+      <button class="gp-skin-btn" style="top:75.0%; left:31.4%; width:10%; height:10%;" onclick="tamaFeed()"  title="Feed"></button>
+      <button class="gp-skin-btn" style="top:75.8%; left:45.0%; width:10%; height:10%;" onclick="tamaPlay()"  title="Play"></button>
+      <button class="gp-skin-btn" style="top:75.0%; left:58.6%; width:10%; height:10%;" onclick="tamaClean()" title="Clean"></button>
     </div>
     <!-- Slim info strip below device -->
     <div class="gp-skin-info">
@@ -1237,9 +1239,9 @@
   <div id="aim-login" class="im-login-screen" style="display:none;">
     <div class="aim-skin">
       <input type="text"     id="aim-login-user" class="aim-skin-field"
-             style="top:241px; left:98px; width:148px;" autocomplete="off">
+             style="left:40.04%; top:57.55%; width:49.32%; height:4.17%;" autocomplete="off">
       <input type="text"     id="aim-login-pass" class="aim-skin-field aim-skin-pass"
-             style="top:265px; left:98px; width:148px;" autocomplete="off">
+             style="left:40.04%; top:65.82%; width:55.18%; height:3.78%;" autocomplete="off">
       <div   id="aim-login-status" class="aim-skin-status"></div>
       <button id="aim-login-btn"   class="aim-skin-signonbtn"></button>
     </div>
@@ -1268,9 +1270,9 @@
   <div id="yahoo-login" class="im-login-screen" style="display:none;">
     <div class="yahoo-skin">
       <input type="text"     id="yahoo-login-user" class="yahoo-skin-field"
-             style="top:200px; left:36px; width:192px;" autocomplete="off">
+             style="left:19.92%; top:50.13%; width:60.35%; height:5.01%;" autocomplete="off">
       <input type="text"     id="yahoo-login-pass" class="yahoo-skin-field yahoo-skin-pass"
-             style="top:230px; left:36px; width:192px;" autocomplete="off">
+             style="left:19.92%; top:60.94%; width:60.35%; height:5.08%;" autocomplete="off">
       <div   id="yahoo-login-status" class="yahoo-skin-status"></div>
       <button id="yahoo-login-btn"   class="yahoo-skin-signinbtn"></button>
     </div>
