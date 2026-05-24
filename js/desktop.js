@@ -142,15 +142,13 @@ function runGatewayBoot() {
     }, t);
   });
 
-  // Fade out BIOS → show login
+  // Fade out BIOS → show login (show login first so there's no flash of desktop)
   t += 1000;
   setTimeout(() => {
+    showWin95Login();
     overlay.style.transition = 'opacity 0.5s';
     overlay.style.opacity = '0';
-    setTimeout(() => {
-      overlay.style.display = 'none';
-      showWin95Login();
-    }, 520);
+    setTimeout(() => { overlay.style.display = 'none'; }, 520);
   }, t);
 }
 
@@ -213,7 +211,7 @@ function finishBoot(overlay) {
 // ── IDLE SCREENSAVER ──────────────────────────────────
 
 let idleTimer = null;
-const IDLE_MS  = 15000; // 15 seconds of no activity
+const IDLE_MS  = 30000; // 30 seconds of no activity
 
 function resetIdleTimer() {
   clearTimeout(idleTimer);

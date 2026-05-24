@@ -410,65 +410,96 @@ function cubes3d() {
 }
 
 // ═══════════════════════════════════════════════════════
-// BOUNCE — DVD-logo style bouncing text
+// BOUNCE — 3D rotating block text, single Easter egg message
 // ═══════════════════════════════════════════════════════
 
 function bounce() {
   const W = ssCanvas.width, H = ssCanvas.height;
-  const MSGS = [
-    "You haven't lived til you died playing Snake! 🐍",
-    "Did you check out the latest on MySpace? 💅",
-    "What's in the locked folder? Interview Vince to find out! 🔒",
-    "Something auto-launched 13 seconds after boot...",
-    "Have you tried opening BOTH browsers at once? ⚔️",
-    "Did you let the computer sit for a minute? 👀",
-    "The recruiter always calls at the worst time. 📞",
-    "There's a P2P download you didn't ask for... 🍋",
+  const LINE1 = "What's in the locked folder?";
+  const LINE2 = "Interview Vince to find out! 🔒";
+
+  const PALETTE = [
+    ['#ff4444','#7a1010'],['#44ff44','#107a10'],['#4488ff','#102060'],
+    ['#ffff44','#7a7a10'],['#ff44ff','#7a107a'],['#44ffff','#107a7a'],
+    ['#ff8844','#7a3a10'],
   ];
-  const COLORS = ['#ff3333','#33ff33','#3388ff','#ffff33','#ff33ff','#33ffff','#ff8800'];
-  const FONT_SIZE = 38;
+  let pi = Math.floor(Math.random() * PALETTE.length);
 
-  let msg   = MSGS[Math.floor(Math.random() * MSGS.length)];
-  let color = COLORS[Math.floor(Math.random() * COLORS.length)];
+  // Responsive font size — keep both lines visible
+  const FS = Math.max(20, Math.min(42, Math.floor(W / 22)));
+  ssCtx.font = `bold ${FS}px Impact,"Arial Black",Arial,sans-serif`;
+  const tw1 = ssCtx.measureText(LINE1).width;
+  const tw2 = ssCtx.measureText(LINE2).width;
+  const TW  = Math.max(tw1, tw2);
+  const TH  = FS * 2.4; // two lines + gap
 
-  ssCtx.font = `bold ${FONT_SIZE}px Arial, sans-serif`;
-  let tw = ssCtx.measureText(msg).width;
-  const th = FONT_SIZE;
+  let cx = W / 2;
+  let cy = H / 2;
+  let vx = (Math.random() > 0.5 ? 1 : -1) * 1.1;
+  let vy = (Math.random() > 0.5 ? 1 : -1) * 0.9;
 
-  let bx = Math.random() * Math.max(1, W - tw);
-  let by = th + Math.random() * Math.max(1, H - th * 2);
-  let vx = (Math.random() > 0.5 ? 1 : -1) * (2 + Math.random() * 2);
-  let vy = (Math.random() > 0.5 ? 1 : -1) * (2 + Math.random() * 2);
+  let rotY = Math.random() * Math.PI * 2; // Y-axis rotation → scaleX oscillates
+  let rotX = Math.random() * Math.PI * 2; // X-axis tilt     → scaleY oscillates
 
-  ssCtx.fillStyle = '#000';
-  ssCtx.fillRect(0, 0, W, H);
+  function draw3DLines(sX, sY) {
+    const [front, shadow] = PALETTE[pi];
+    const DEPTH = 7;
+    const lineGap = FS * 1.25;
+
+    ssCtx.font = `bold ${FS}px Impact,"Arial Black",Arial,sans-serif`;
+
+    [LINE1, LINE2].forEach((line, li) => {
+      const tw = ssCtx.measureText(line).width;
+      const ox = -tw / 2;
+      const oy = (li - 0.5) * lineGap;
+
+      // Extrusion layers (drawn back-to-front)
+      for (let d = DEPTH; d >= 1; d--) {
+        const ratio = d / DEPTH;
+        // Parse shadow color channels for dimming
+        const sr = parseInt(shadow.slice(1,3),16);
+        const sg = parseInt(shadow.slice(3,5),16);
+        const sb = parseInt(shadow.slice(5,7),16);
+        ssCtx.fillStyle = `rgba(${Math.floor(sr*(1-ratio*0.3))},${Math.floor(sg*(1-ratio*0.3))},${Math.floor(sb*(1-ratio*0.3))},0.9)`;
+        ssCtx.fillText(line, ox + d * (sX < 0 ? -1 : 1), oy + d * (sY < 0 ? -1 : 1));
+      }
+
+      // Front face
+      ssCtx.fillStyle = front;
+      ssCtx.fillText(line, ox, oy);
+    });
+  }
 
   function frame() {
     if (!ssRunning) return;
+
     ssCtx.fillStyle = '#000';
     ssCtx.fillRect(0, 0, W, H);
 
-    bx += vx; by += vy;
+    rotY += 0.028;
+    rotX += 0.019;
+    const sX = Math.cos(rotY); // Y-axis spin
+    const sY = Math.cos(rotX); // X-axis tilt
 
-    let hitWall = false;
-    if (bx <= 0)        { bx = 0; vx = Math.abs(vx); hitWall = true; }
-    else if (bx + tw >= W) { bx = W - tw; vx = -Math.abs(vx); hitWall = true; }
-    if (by - th <= 0)   { by = th; vy = Math.abs(vy); hitWall = true; }
-    else if (by >= H)   { by = H; vy = -Math.abs(vy); hitWall = true; }
+    ssCtx.save();
+    ssCtx.translate(cx, cy);
+    ssCtx.scale(sX || 0.001, sY || 0.001);
+    draw3DLines(sX, sY);
+    ssCtx.restore();
 
-    if (hitWall) {
-      color = COLORS[Math.floor(Math.random() * COLORS.length)];
-      if (Math.random() < 0.3) {
-        msg = MSGS[Math.floor(Math.random() * MSGS.length)];
-        ssCtx.font = `bold ${FONT_SIZE}px Arial, sans-serif`;
-        tw = ssCtx.measureText(msg).width;
-        bx = Math.min(bx, Math.max(0, W - tw));
-      }
+    // Drift + bounce
+    cx += vx; cy += vy;
+    const pad = TW / 2 + 20;
+    const padV = TH / 2 + 10;
+    if (cx - pad < 0 || cx + pad > W) {
+      vx = -vx;
+      cx = Math.max(pad, Math.min(W - pad, cx));
+      pi = (pi + 1) % PALETTE.length;
     }
-
-    ssCtx.font = `bold ${FONT_SIZE}px Arial, sans-serif`;
-    ssCtx.fillStyle = color;
-    ssCtx.fillText(msg, bx, by);
+    if (cy - padV < 0 || cy + padV > H) {
+      vy = -vy;
+      cy = Math.max(padV, Math.min(H - padV, cy));
+    }
 
     ssAnimId = requestAnimationFrame(frame);
   }

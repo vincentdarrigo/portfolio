@@ -4,20 +4,29 @@
 ═══════════════════════════════════════════════════════ */
 
 // ── PRELOADED TRACKS ─────────────────────────────────
-// Drop mp3s in assets/music/ and add entries here:
-// { name: 'Artist - Title', src: 'assets/music/filename.mp3' }
+// Place mp3 in assets/music/ and add entries here.
 const WP_PRELOADED = [
   { name: 'Weird Al Yankovic - All About the Pentiums', src: 'assets/music/all_about_the_pentiums.mp3' },
 ];
 
 // ── STATE ─────────────────────────────────────────────
-let wpAudio       = null;
-let wpTracks      = [];
-let wpCurrentIdx  = -1;
-let wpPlaying     = false;
-let wpLlamaPlayed = false;
-let wpScrollTimer = null;
-let wpScrollX     = 0;
+let wpAudio        = null;
+let wpTracks       = [];
+let wpCurrentIdx   = -1;
+let wpPlaying      = false;
+let wpLlamaPlayed  = false;
+let wpScrollTimer  = null;
+let wpScrollX      = 0;
+
+let wpShuffle  = false;
+let wpRepeat   = false;
+let wpEqOpen   = false;
+let wpPlOpen   = true;
+
+// Web Audio API visualizer
+let wpAudioCtx  = null;
+let wpAnalyser  = null;
+let wpVizAnimId = null;
 
 // ── INIT ──────────────────────────────────────────────
 
@@ -34,15 +43,14 @@ function initWinamp() {
   wpAudio = new Audio();
   wpAudio.volume = (typeof masterVolume !== 'undefined') ? masterVolume : 0.75;
   wpAudio.addEventListener('timeupdate',     wpUpdateSeek);
-  wpAudio.addEventListener('ended',          wpNext);
+  wpAudio.addEventListener('ended',          wpHandleEnded);
   wpAudio.addEventListener('loadedmetadata', wpUpdateDur);
 
-  // Seed preloaded tracks
   wpTracks = WP_PRELOADED.map(t => ({ ...t, type: 'preloaded' }));
   wpRenderPlaylist();
   wpSetTitle('*** WINAMP ***');
+  wpStartViz();
 
-  // Play llama intro once
   if (!wpLlamaPlayed) {
     wpLlamaPlayed = true;
     const llama = document.getElementById('snd-winamp-llama');
@@ -51,6 +59,14 @@ function initWinamp() {
       llama.currentTime = 0;
       llama.play().catch(() => {});
     }
+  }
+
+  // Auto-load first track (but don't play yet — let user click)
+  if (wpTracks.length > 0) {
+    wpCurrentIdx = 0;
+    wpAudio.src  = wpTracks[0].src;
+    wpStartScroll(wpTracks[0].name);
+    wpRenderPlaylist();
   }
 }
 
@@ -64,29 +80,56 @@ function wpPlay(idx) {
 
   const t = wpTracks[wpCurrentIdx];
   wpAudio.src = t.src;
+
+  // Resume AudioContext if suspended (browser autoplay policy)
+  if (wpAudioCtx && wpAudioCtx.state === 'suspended') {
+    wpAudioCtx.resume().catch(() => {});
+  }
+
   wpAudio.play()
     .then(() => {
       wpPlaying = true;
       wpUpdateBtn(true);
+      wpSetPlayState('play');
       wpStartScroll(t.name);
       wpRenderPlaylist();
     })
-    .catch(e => console.warn('WinAmp play:', e));
+    .catch(e => {
+      console.warn('WinAmp play error:', e);
+      wpSetTitle('!! FILE NOT FOUND !!');
+    });
 }
 
 function wpTogglePlay() {
   if (!wpAudio) return;
+
+  if (wpAudioCtx && wpAudioCtx.state === 'suspended') {
+    wpAudioCtx.resume().catch(() => {});
+  }
+
   if (wpPlaying) {
     wpAudio.pause();
     wpPlaying = false;
-    wpStopScroll();
     wpUpdateBtn(false);
+    wpSetPlayState('pause');
+    wpStopScroll();
   } else if (wpAudio.src && wpAudio.src !== window.location.href) {
-    wpAudio.play().then(() => { wpPlaying = true; wpUpdateBtn(true); }).catch(() => {});
+    wpAudio.play()
+      .then(() => { wpPlaying = true; wpUpdateBtn(true); wpSetPlayState('play'); })
+      .catch(e => { wpSetTitle('!! FILE NOT FOUND !!'); });
   } else if (wpTracks.length > 0) {
     if (wpCurrentIdx < 0) wpCurrentIdx = 0;
     wpPlay();
   }
+}
+
+function wpPauseOnly() {
+  if (!wpAudio || !wpPlaying) return;
+  wpAudio.pause();
+  wpPlaying = false;
+  wpUpdateBtn(false);
+  wpSetPlayState('pause');
+  wpStopScroll();
 }
 
 function wpStop() {
@@ -94,15 +137,20 @@ function wpStop() {
   wpAudio.pause();
   wpAudio.currentTime = 0;
   wpPlaying = false;
-  wpStopScroll();
   wpUpdateBtn(false);
+  wpSetPlayState('stop');
+  wpStopScroll();
   wpSetTitle('*** STOPPED ***');
   wpUpdateSeek();
 }
 
 function wpNext() {
   if (!wpTracks.length) return;
-  wpCurrentIdx = (wpCurrentIdx + 1) % wpTracks.length;
+  if (wpShuffle) {
+    wpCurrentIdx = Math.floor(Math.random() * wpTracks.length);
+  } else {
+    wpCurrentIdx = (wpCurrentIdx + 1) % wpTracks.length;
+  }
   wpPlay();
 }
 
@@ -111,6 +159,21 @@ function wpPrev() {
   if (wpAudio.currentTime > 3) { wpAudio.currentTime = 0; return; }
   wpCurrentIdx = (wpCurrentIdx - 1 + wpTracks.length) % wpTracks.length;
   wpPlay();
+}
+
+function wpRew() {
+  if (!wpAudio) return;
+  wpAudio.currentTime = Math.max(0, wpAudio.currentTime - 5);
+}
+
+function wpFfw() {
+  if (!wpAudio || !wpAudio.duration) return;
+  wpAudio.currentTime = Math.min(wpAudio.duration, wpAudio.currentTime + 5);
+}
+
+function wpHandleEnded() {
+  if (wpRepeat) { wpAudio.currentTime = 0; wpAudio.play().catch(() => {}); return; }
+  wpNext();
 }
 
 function wpSetVol(val) {
@@ -128,6 +191,8 @@ function wpUpdateSeek() {
   const pct = wpAudio.duration ? wpAudio.currentTime / wpAudio.duration : 0;
   const fill = document.getElementById('wp-seek-fill');
   if (fill) fill.style.width = (pct * 100) + '%';
+  const knob = document.getElementById('wp-seek-knob');
+  if (knob) knob.style.left = (pct * 100) + '%';
 
   const cur = document.getElementById('wp-time-cur');
   if (cur) {
@@ -150,7 +215,7 @@ function wpSeekClick(e) {
   wpAudio.currentTime = pct * wpAudio.duration;
 }
 
-// ── DISPLAY ───────────────────────────────────────────
+// ── DISPLAY / UI ──────────────────────────────────────
 
 function wpSetTitle(text) {
   const el = document.getElementById('wp-title-text');
@@ -162,19 +227,15 @@ function wpSetTitle(text) {
 function wpStartScroll(name) {
   wpSetTitle(name);
   wpStopScroll();
-  const el = document.getElementById('wp-title-text');
+  const el   = document.getElementById('wp-title-text');
   const wrap = document.getElementById('wp-title-wrap');
   if (!el || !wrap) return;
-  // Only scroll if text overflows
   if (el.scrollWidth <= wrap.clientWidth + 4) return;
-
   wpScrollX = 0;
   wpScrollTimer = setInterval(() => {
     wpScrollX++;
     el.style.transform = 'translateX(-' + wpScrollX + 'px)';
-    if (wpScrollX >= el.scrollWidth - wrap.clientWidth + 10) {
-      wpScrollX = -40; // gap before looping
-    }
+    if (wpScrollX >= el.scrollWidth - wrap.clientWidth + 10) wpScrollX = -40;
   }, 45);
 }
 
@@ -188,10 +249,114 @@ function wpUpdateBtn(playing) {
   if (btn) btn.classList.toggle('wp-btn-pressed', playing);
 }
 
+function wpSetPlayState(state) {
+  ['wp-dot-play','wp-dot-pause','wp-dot-stop'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('wp-dot-on');
+  });
+  const map = { play: 'wp-dot-play', pause: 'wp-dot-pause', stop: 'wp-dot-stop' };
+  if (map[state]) {
+    const el = document.getElementById(map[state]);
+    if (el) el.classList.add('wp-dot-on');
+  }
+}
+
+// ── TOGGLE PANELS ─────────────────────────────────────
+
+function wpToggleEq() {
+  wpEqOpen = !wpEqOpen;
+  const panel = document.getElementById('wp-eq-panel');
+  const btn   = document.getElementById('wp-cb-eq');
+  if (panel) panel.style.display = wpEqOpen ? 'block' : 'none';
+  if (btn)   btn.classList.toggle('wp-clut-on', wpEqOpen);
+}
+
+function wpTogglePl() {
+  wpPlOpen = !wpPlOpen;
+  const panel = document.getElementById('wp-pl-panel');
+  const btn   = document.getElementById('wp-cb-pl');
+  if (panel) panel.style.display = wpPlOpen ? 'block' : 'none';
+  if (btn)   btn.classList.toggle('wp-clut-on', wpPlOpen);
+}
+
+function wpToggleShuffle() {
+  wpShuffle = !wpShuffle;
+  const btn = document.getElementById('wp-cb-shuf');
+  if (btn) btn.classList.toggle('wp-clut-on', wpShuffle);
+}
+
+function wpToggleRepeat() {
+  wpRepeat = !wpRepeat;
+  const btn = document.getElementById('wp-cb-rpt');
+  if (btn) btn.classList.toggle('wp-clut-on', wpRepeat);
+}
+
+// ── VISUALIZER ────────────────────────────────────────
+
+function wpInitAudioCtx() {
+  if (wpAudioCtx || !wpAudio) return;
+  try {
+    wpAudioCtx  = new (window.AudioContext || window.webkitAudioContext)();
+    const src   = wpAudioCtx.createMediaElementSource(wpAudio);
+    wpAnalyser  = wpAudioCtx.createAnalyser();
+    wpAnalyser.fftSize = 64;
+    wpAnalyser.smoothingTimeConstant = 0.75;
+    src.connect(wpAnalyser);
+    wpAnalyser.connect(wpAudioCtx.destination);
+  } catch (e) {
+    console.warn('WinAmp AudioCtx:', e);
+    wpAudioCtx = null;
+  }
+}
+
+function wpStartViz() {
+  cancelAnimationFrame(wpVizAnimId);
+  const canvas = document.getElementById('wp-viz-canvas');
+  if (!canvas) return;
+
+  // Size canvas to its display width
+  canvas.width  = canvas.parentElement ? canvas.parentElement.offsetWidth || 267 : 267;
+  canvas.height = 16;
+
+  const ctx   = canvas.getContext('2d');
+  const BARS  = 30;
+
+  function drawFrame() {
+    if (!canvas.isConnected) { cancelAnimationFrame(wpVizAnimId); return; }
+    const W = canvas.width, H = canvas.height;
+    const bw = Math.max(2, Math.floor((W - BARS + 1) / BARS));
+
+    ctx.fillStyle = '#000d00';
+    ctx.fillRect(0, 0, W, H);
+
+    if (wpAnalyser && wpPlaying) {
+      const data = new Uint8Array(wpAnalyser.frequencyBinCount);
+      wpAnalyser.getByteFrequencyData(data);
+      const step = Math.max(1, Math.floor(data.length / BARS));
+      for (let i = 0; i < BARS; i++) {
+        const val  = data[i * step] / 255;
+        const barH = Math.max(2, Math.floor(val * H));
+        ctx.fillStyle = val > 0.75 ? '#ffff00' : val > 0.45 ? '#00cc00' : '#004400';
+        ctx.fillRect(i * (bw + 1), H - barH, bw, barH);
+      }
+    } else {
+      // Idle — low green bars
+      ctx.fillStyle = '#003300';
+      for (let i = 0; i < BARS; i++) {
+        ctx.fillRect(i * (bw + 1), H - 2, bw, 2);
+      }
+    }
+
+    wpVizAnimId = requestAnimationFrame(drawFrame);
+  }
+  drawFrame();
+}
+
 // ── FILE LOADING ──────────────────────────────────────
 
 function wpLoadFiles(files) {
   if (!wpAudio) initWinamp();
+  wpInitAudioCtx();
   const before = wpTracks.length;
   Array.from(files).forEach(file => {
     const url  = URL.createObjectURL(file);
@@ -208,19 +373,19 @@ function wpRenderPlaylist() {
   const list = document.getElementById('wp-playlist');
   if (!list) return;
   if (!wpTracks.length) {
-    list.innerHTML = '<div class="wp-no-tracks">No tracks — add a file below</div>';
+    list.innerHTML = '<div class="wp-no-tracks">No tracks — click ▲ to open files</div>';
     return;
   }
   list.innerHTML = '';
   wpTracks.forEach((t, i) => {
     const row = document.createElement('div');
     row.className = 'wp-track' + (i === wpCurrentIdx ? ' wp-track-active' : '');
-    row.innerHTML = `<span class="wp-tracknum">${String(i + 1).padStart(2, '0')}</span> ${wpEsc(t.name)}`;
+    row.innerHTML = `<span class="wp-tracknum">${String(i + 1).padStart(2, '0')}.</span> ${wpEsc(t.name)}`;
     row.ondblclick = () => wpPlay(i);
     list.appendChild(row);
   });
 }
 
 function wpEsc(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
