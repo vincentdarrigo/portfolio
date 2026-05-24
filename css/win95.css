@@ -1957,6 +1957,76 @@ body {
   background: #90d8f0;
 }
 
+/* ── GIGAPET IMAGE SKIN ───────────────────────────── */
+.gp-skin {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  background: url('../assets/images/gigapet.png') no-repeat top left / 280px 280px;
+  user-select: none;
+}
+.gp-skin-canvas {
+  position: absolute;
+  top: 73px;
+  left: 63px;
+  width: 154px;
+  height: 110px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.gp-skin-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 0;
+}
+.gp-skin-btn:hover  { opacity: 0.2; background: rgba(255,255,255,0.3); }
+.gp-skin-btn:active { opacity: 0.35; background: rgba(0,0,0,0.2); }
+.gp-skin-info {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 10px;
+  background: #c0c0c0;
+  border-top: 1px solid #888;
+}
+/* update #tama-canvas override for new skin dimensions */
+#tama-canvas { display: block; width: 154px; height: 110px; }
+
+/* ── GAMEBOY IMAGE SKIN ───────────────────────────── */
+#window-tetris .win95-content { padding: 0; }
+.gb-skin {
+  position: relative;
+  width: 282px;
+  height: 502px;
+  background: url('../assets/images/gameboy.png') no-repeat top left / 282px 502px;
+  user-select: none;
+}
+.gb-skin-canvas {
+  position: absolute;
+  top: 35px;
+  left: 74px;   /* (39 + (204-135)/2) = 39+34 = 73 */
+  width: 135px;
+  height: 180px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.gb-skin-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0;
+}
+.gb-skin-btn:hover  { opacity: 0.2; background: rgba(255,255,255,0.25); }
+.gb-skin-btn:active { opacity: 0.4; background: rgba(0,0,0,0.2); }
+/* override old tetris canvas rule */
+#tetris-canvas { display: block; image-rendering: pixelated; width: 135px; height: 180px; }
+
 /* messenger — Clippy additions */
 .im-msg-clippy { background: #fffde7; }
 .clippy-typing { color: #8b6200; }
@@ -2165,7 +2235,7 @@ body {
 #win95-login-overlay {
   position: fixed;
   inset: 0;
-  background: url('../assets/images/win95start.png') center/cover no-repeat, #008080;
+  background: url('../assets/images/win95start.png') center/contain no-repeat, #008080;
   z-index: 10001;
   align-items: center;
   justify-content: center;

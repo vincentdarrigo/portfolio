@@ -1,155 +1,316 @@
 /* ═══════════════════════════════════════════════════════
-   weatherbug.css — WeatherBug Alert v1.4
+   weatherbug.css — WeatherBug v1.4 (reference-accurate layout)
    Vince Darrigo / The Mothership
 ═══════════════════════════════════════════════════════ */
 
-#window-weatherbug {
-  width: 318px;
+/* ── WINDOW ── */
+#window-weatherbug { width: 720px; }
+
+#window-weatherbug .win95-titlebar {
+  background: linear-gradient(to right, #1a6bb5, #2e8fd4) !important;
 }
 
-/* ── BUZZING BEE IN TITLEBAR ── */
-@keyframes wb-buzz {
-  0%   { transform: translateX(0) translateY(0) rotate(-2deg); }
-  25%  { transform: translateX(1px) translateY(-1px) rotate(2deg); }
-  50%  { transform: translateX(-1px) translateY(0) rotate(-1deg); }
-  75%  { transform: translateX(1px) translateY(1px) rotate(3deg); }
-  100% { transform: translateX(0) translateY(0) rotate(-2deg); }
-}
-
-#window-weatherbug .win95-title-icon {
-  display: inline-block;
-  animation: wb-buzz 0.15s infinite;
-  cursor: pointer;
-}
-
-/* ── CONTENT WRAPPER ── */
-.wb-content {
-  background: linear-gradient(160deg, #0a1628 0%, #102040 50%, #0d1e38 100%);
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* ── HEADER ROW ── */
-.wb-header {
+/* ── TOP NAV BAR ── */
+.wb-topnav {
   display: flex;
   align-items: center;
-  padding: 8px 10px 6px;
-  background: linear-gradient(to right, #1a3060 0%, #0c1e40 100%);
-  border-bottom: 1px solid #1a3a6a;
-  gap: 6px;
+  background: #e8f0f8;
+  border-bottom: 2px solid #aac8e8;
+  padding: 4px 8px;
+  gap: 10px;
 }
 
-.wb-logo-bee {
-  font-size: 28px;
-  cursor: pointer;
-  transition: transform 0.1s;
-  flex-shrink: 0;
-}
-.wb-logo-bee:hover { transform: scale(1.2); }
-.wb-logo-bee:active { transform: scale(0.9); }
-
-.wb-location {
-  flex: 1;
-  min-width: 0;
-}
-.wb-loc-name {
-  color: #7eb8ff;
-  font-size: 13px;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.wb-loc-sub {
-  color: #446688;
-  font-size: 9px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.wb-temp-big {
-  color: #ff8800;
-  font-size: 26px;
-  font-weight: bold;
-  font-family: "Courier New", monospace;
-  flex-shrink: 0;
-  text-shadow: 0 0 10px rgba(255,136,0,0.5);
-}
-
-/* ── CONDITION LINE ── */
-.wb-condition {
-  padding: 5px 10px 4px;
-  color: #88bbff;
-  font-size: 13px;
-  font-weight: bold;
-  background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid #1a3a5a;
-  text-align: center;
-  letter-spacing: 0.3px;
-}
-
-/* ── DETAIL ROWS ── */
-.wb-details {
-  padding: 5px 10px 4px;
-  border-bottom: 1px solid #1a3a5a;
-}
-.wb-detail-row {
+.wb-logo-block {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 2px 0;
-  font-size: 10px;
-  gap: 8px;
-}
-.wb-dl {
-  color: #446688;
+  gap: 4px;
   flex-shrink: 0;
   min-width: 100px;
 }
-.wb-detail-row > span:last-child {
-  color: #99ccff;
-  text-align: right;
+.wb-logo-ladybug { font-size: 22px; }
+.wb-logo-text {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1a4e8a;
+}
+.wb-logo-reg { font-size: 8px; vertical-align: super; }
+
+.wb-nav-tabs { display: flex; gap: 3px; flex-wrap: wrap; }
+.wb-nav-tab {
+  padding: 2px 8px;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #8ab0d0;
+  background: #c8dff0;
+  color: #003366;
+  cursor: pointer;
+  border-radius: 2px 2px 0 0;
+}
+.wb-nav-active {
+  background: #5aaa00 !important;
+  color: #fff !important;
+  border-color: #3a8800 !important;
+  font-weight: bold;
+}
+.wb-nav-tab:hover:not(.wb-nav-active) { background: #b0ccec; }
+
+/* ── LOCATION BAR ── */
+.wb-locbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #d0e8f8;
+  border-bottom: 1px solid #aac8e8;
+  padding: 3px 8px;
+  font-family: Arial, sans-serif;
   font-size: 10px;
 }
+.wb-locbar-label { color: #333; font-weight: bold; }
+.wb-locbar-loc   { color: #222; }
+.wb-locbar-dl    { color: #555; font-size: 9px; }
+.wb-locbar-link  { color: #0055aa; text-decoration: underline; cursor: pointer; font-size: 10px; }
+.wb-locbar-link:hover { color: #0033ff; }
 
-/* ── 5-DAY FORECAST ── */
-.wb-forecast-header {
-  padding: 4px 10px 2px;
-  color: #446688;
-  font-size: 9px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-bottom: 1px solid #1a3a5a;
-}
-
-.wb-forecast {
+/* ── MAIN BODY ── */
+.wb-main {
   display: flex;
-  padding: 5px 6px;
-  gap: 2px;
-  border-bottom: 1px solid #1a3a5a;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  min-height: 320px;
 }
 
-.wb-forecast-day {
-  flex: 1;
+/* ── LEFT SIDEBAR ── */
+.wb-sidebar {
+  width: 115px;
+  flex-shrink: 0;
+  background: #c8dff0;
+  border-right: 1px solid #aac8e8;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid #1a3a5a;
-  border-radius: 2px;
-  padding: 3px 1px;
-  cursor: default;
-  transition: background 0.15s;
 }
-.wb-forecast-day:hover { background: rgba(255,255,255,0.08); }
+.wb-sb-item {
+  padding: 5px 8px;
+  font-size: 11px;
+  color: #003366;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(170,200,232,0.5);
+}
+.wb-sb-item:hover    { background: #b0ccec; }
+.wb-sb-active        { background: #fff; font-weight: bold; }
+.wb-sb-alert         { color: #cc0000; font-weight: bold; }
+.wb-sb-new em        { color: #cc8800; font-style: normal; font-weight: bold; }
 
-.wb-fc-day  { color: #446688; font-size: 8px; font-weight: bold; }
-.wb-fc-icon { font-size: 14px; line-height: 1; }
-.wb-fc-cond { color: #6699aa; font-size: 7px; text-align: center; line-height: 1.2; }
-.wb-fc-temp { color: #ff8800; font-size: 9px; font-weight: bold; font-family: "Courier New", monospace; }
+.wb-sb-promo {
+  background: #aa0000;
+  color: #fff;
+  font-size: 10px;
+  padding: 6px 8px;
+  margin-top: 4px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.wb-sb-promo:hover { background: #cc0000; }
+.wb-sb-promo-text  { font-weight: bold; }
+.wb-sb-promo-link  { font-size: 9px; margin-top: 2px; text-decoration: underline; }
+
+.wb-sb-blue-btn {
+  background: #1a6bb5;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px 6px;
+  margin: 2px 4px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.wb-sb-blue-btn:hover { background: #2280d0; }
+
+/* ── CENTER: CURRENT CONDITIONS ── */
+.wb-center {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 6px 8px;
+  border-right: 1px solid #dde;
+}
+
+.wb-section-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #003366;
+  text-align: center;
+  border-bottom: 1px solid #aac8e8;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+}
+
+.wb-cc-loc  { font-size: 10px; color: #444; text-align: center; }
+.wb-cc-meta { font-size: 10px; color: #888; text-align: center; margin: 2px 0 6px; }
+
+/* Thermometer + compass row */
+.wb-cc-main { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 6px; justify-content: center; }
+
+.wb-therm-wrap { display: flex; align-items: flex-end; gap: 4px; }
+.wb-therm {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 90px;
+}
+.wb-therm-scale {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80px;
+  font-size: 7px;
+  color: #666;
+  text-align: right;
+}
+.wb-therm-tube {
+  width: 10px;
+  height: 80px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.wb-therm-fill {
+  width: 100%;
+  background: linear-gradient(to top, #cc2200, #ff6622);
+  transition: height 1s ease;
+}
+.wb-therm-bulb {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 35% 35%, #ff4400, #cc0000);
+  border-radius: 50%;
+  border: 1px solid #aa2200;
+  margin-left: -3px;
+}
+.wb-temp-display {
+  font-size: 22px;
+  font-weight: bold;
+  color: #cc2200;
+  font-family: Arial, sans-serif;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+/* Compass */
+.wb-compass-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+.wb-compass-canvas { border-radius: 50%; }
+.wb-wind-speed {
+  position: absolute;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #003366;
+  line-height: 1;
+}
+.wb-wind-speed span { font-size: 9px; font-weight: normal; color: #555; }
+
+/* Current conditions details */
+.wb-cc-details, .wb-sofar-grid { margin-bottom: 4px; }
+.wb-cc-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  padding: 1px 0;
+}
+.wb-cc-lbl { color: #555; }
+.wb-sofar { border: 1px solid #dde; padding: 4px; margin-top: 4px; }
+.wb-sofar-title { font-size: 11px; margin-bottom: 4px; }
+.wb-sofar-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px; }
+.wb-more-link   { font-size: 9px; color: #0055aa; text-decoration: underline; cursor: pointer; text-align: center; margin-top: 3px; }
+
+/* ── FORECAST COLUMN ── */
+.wb-forecast-col {
+  width: 140px;
+  flex-shrink: 0;
+  padding: 6px 6px;
+  border-right: 1px solid #dde;
+}
+.wb-fc-day-block {
+  border-bottom: 1px solid #e0e8f0;
+  padding: 4px 0;
+  margin-bottom: 4px;
+}
+.wb-fc-day-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #003366;
+  text-align: center;
+  margin-bottom: 3px;
+}
+.wb-fc-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.wb-fc-icon { font-size: 24px; flex-shrink: 0; }
+.wb-fc-hi-lo { font-size: 10px; color: #333; line-height: 1.5; }
+.wb-fc-hi { font-weight: bold; }
+.wb-fc-desc { font-size: 9px; color: #555; margin-bottom: 2px; line-height: 1.3; }
+.wb-fc-more { font-size: 9px; color: #0055aa; cursor: pointer; text-decoration: underline; }
+
+/* ── WEATHER WINDOW (camera/radar panel) ── */
+.wb-camera-col {
+  flex: 1;
+  padding: 6px 6px;
+  display: flex;
+  flex-direction: column;
+}
+.wb-cam-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+.wb-cam-tab {
+  padding: 2px 6px;
+  font-size: 9px;
+  border: 1px solid #aac8e8;
+  background: #e8f0f8;
+  color: #003366;
+  cursor: pointer;
+  border-radius: 2px 2px 0 0;
+}
+.wb-cam-active { background: #1a6bb5 !important; color: #fff !important; font-weight: bold; }
+.wb-cam-tab:hover:not(.wb-cam-active) { background: #d0e8f8; }
+
+.wb-cam-view {
+  flex: 1;
+  background: linear-gradient(160deg, #b0c8e0, #7899b8, #90aac0);
+  border: 1px solid #aac8e8;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.wb-cam-placeholder { font-size: 40px; opacity: 0.4; }
+
+/* Animated sky effect in the "camera" */
+.wb-cam-view::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #c8e0f8 0%, #b0c8e8 40%, #d0c8a8 70%, #c0b898 100%);
+  opacity: 0.7;
+}
+
+.wb-cam-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  margin-top: 4px;
+  color: #333;
+}
+#wb-cam-label { font-style: italic; }
+.wb-cam-links { display: flex; gap: 8px; }
 
 /* ── ALERT BAR ── */
 .wb-alert-bar {
@@ -159,22 +320,13 @@
   padding: 6px 10px;
   background: linear-gradient(to right, #3a0808, #200404);
   border-top: 1px solid #660000;
-  border-bottom: 1px solid #660000;
 }
-.wb-alert-icon { font-size: 14px; flex-shrink: 0; animation: wb-buzz 0.3s infinite; }
+.wb-alert-icon { font-size: 14px; flex-shrink: 0; }
 #wb-alert-text {
   color: #ff4444;
   font-size: 10px;
   font-weight: bold;
   letter-spacing: 0.3px;
   line-height: 1.4;
+  font-family: Arial, sans-serif;
 }
-
-/* ── FOOTER ── */
-.wb-footer {
-  padding: 3px 10px 5px;
-  color: #334455;
-  font-size: 8px;
-  text-align: right;
-}
-.wb-link { color: #2255aa; cursor: pointer; text-decoration: underline; }

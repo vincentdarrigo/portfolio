@@ -50,32 +50,41 @@
   border: 1px outset #fff; text-align: center; font-size: 9px; line-height: 12px; cursor: default;
 }
 
-/* AIM Login */
-#aim-login { width: 275px; background: #ece9d8; border: 2px outset #c0c0c0; }
-.aim-login-titlebar {
-  background: linear-gradient(to right, #0a246a, #3a6ea5);
-  color: white; padding: 3px 6px; font-size: 11px; font-weight: bold;
-  display: flex; align-items: center;
+/* AIM Login — image skin */
+#aim-login { width: 256px; background: transparent; border: none; padding: 0; }
+.aim-skin {
+  position: relative;
+  width: 256px;
+  height: 384px;
+  background: url('../assets/images/aol_im.png') no-repeat top left / 256px 384px;
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.55);
 }
-.aim-login-body { padding: 14px 16px; }
-.aim-login-logo {
-  font-size: 32px; font-weight: 900; font-style: italic; color: #003399;
-  text-align: center; margin-bottom: 14px;
-  font-family: "Arial Black", Impact, sans-serif; letter-spacing: -1px;
+.aim-skin-field {
+  position: absolute;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid #7f9db9;
+  font-size: 11px;
+  font-family: Tahoma, Arial, sans-serif;
+  padding: 1px 3px;
+  height: 16px;
+  outline: none;
+  box-sizing: content-box;
 }
-.aim-login-field-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.aim-login-field-row label { width: 82px; text-align: right; }
-.aim-login-field-row input { flex: 1; padding: 2px 4px; border: 1px solid #7f9db9; font-size: 11px; background: white; }
-.aim-login-checks { padding-left: 88px; font-size: 10px; margin-bottom: 6px; }
-.aim-login-checks label { display: block; margin-bottom: 2px; }
-.aim-login-status { color: #003399; font-size: 10px; min-height: 13px; margin-bottom: 6px; }
-.aim-sign-on-btn {
-  display: block; margin: 0 auto;
-  background: linear-gradient(to bottom, #4d9be6, #1c5fa8);
-  color: white; border: 1px solid #1a4a8a;
-  padding: 4px 24px; font-weight: bold; font-size: 11px; cursor: pointer;
+.aim-skin-pass { letter-spacing: 2px; font-family: monospace; }
+.aim-skin-status {
+  position: absolute;
+  top: 230px; left: 8px; width: 238px;
+  font-size: 10px; color: #003399;
+  font-family: Tahoma, Arial, sans-serif;
+  min-height: 13px;
 }
-.aim-sign-on-btn.im-btn-active { background: linear-gradient(to bottom, #1c5fa8, #0a3068); }
+.aim-skin-signonbtn {
+  position: absolute;
+  top: 248px; left: 191px; width: 58px; height: 37px;
+  background: transparent; border: none; cursor: pointer; opacity: 0;
+}
+.aim-skin-signonbtn:hover  { opacity: 0.15; background: rgba(255,255,255,0.2); }
+.aim-skin-signonbtn.im-btn-active { opacity: 0.3; background: rgba(0,0,0,0.2); }
 
 /* ICQ Login */
 #icq-login { width: 250px; background: white; border: 2px outset #c0c0c0; }
@@ -101,32 +110,41 @@
 }
 .icq-sign-in-btn.im-btn-active { background: #007700; }
 
-/* Yahoo Messenger Login */
-#yahoo-login { width: 280px; background: white; border: 2px outset #c0c0c0; }
-.yahoo-login-titlebar {
-  background: linear-gradient(to right, #6600aa, #9900cc);
-  color: white; padding: 3px 6px; font-size: 11px; font-weight: bold;
-  display: flex; align-items: center;
+/* Yahoo Messenger Login — image skin */
+#yahoo-login { width: 256px; background: transparent; border: none; padding: 0; }
+.yahoo-skin {
+  position: relative;
+  width: 256px;
+  height: 384px;
+  background: url('../assets/images/ymsg.png') no-repeat top left / 256px 384px;
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.55);
 }
-.yahoo-login-body { padding: 14px 16px; }
-.yahoo-login-logo {
-  font-size: 20px; font-weight: bold; margin-bottom: 14px;
-  font-family: Arial, sans-serif; display: flex; align-items: center; gap: 6px;
+.yahoo-skin-field {
+  position: absolute;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid #cc99dd;
+  font-size: 11px;
+  font-family: Tahoma, Arial, sans-serif;
+  padding: 1px 3px;
+  height: 16px;
+  outline: none;
+  box-sizing: content-box;
 }
-.yahoo-y { font-size: 36px; font-weight: 900; color: #7b00b4; line-height: 1; font-family: "Arial Black", Impact, sans-serif; }
-.yahoo-login-field-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.yahoo-login-field-row label { width: 70px; font-size: 11px; }
-.yahoo-login-field-row input { flex: 1; padding: 2px 4px; border: 1px solid #cc99dd; font-size: 11px; }
-.yahoo-login-checks { font-size: 10px; margin-bottom: 8px; }
-.yahoo-login-checks label { display: block; margin-bottom: 2px; }
-.yahoo-login-status { color: #7b00b4; font-size: 10px; min-height: 13px; margin-bottom: 6px; }
-.yahoo-sign-in-btn {
-  display: block; width: 100%;
-  background: linear-gradient(to bottom, #aa44cc, #7b00b4);
-  color: white; border: 1px solid #5a0080;
-  padding: 5px; font-weight: bold; font-size: 11px; cursor: pointer;
+.yahoo-skin-pass { letter-spacing: 2px; font-family: monospace; }
+.yahoo-skin-status {
+  position: absolute;
+  top: 306px; left: 14px; width: 228px;
+  font-size: 10px; color: #7b00b4;
+  font-family: Tahoma, Arial, sans-serif;
+  min-height: 13px; text-align: center;
 }
-.yahoo-sign-in-btn.im-btn-active { background: #5a0080; }
+.yahoo-skin-signinbtn {
+  position: absolute;
+  top: 278px; left: 86px; width: 84px; height: 26px;
+  background: transparent; border: none; cursor: pointer; opacity: 0;
+}
+.yahoo-skin-signinbtn:hover  { opacity: 0.15; background: rgba(255,255,255,0.2); }
+.yahoo-skin-signinbtn.im-btn-active { opacity: 0.3; background: rgba(0,0,0,0.15); }
 
 /* ── CHAT WINDOWS ─────────────────────────────────── */
 .im-chat-win { min-width: 0; }

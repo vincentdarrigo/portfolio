@@ -6,7 +6,12 @@
 // ── PRELOADED TRACKS ─────────────────────────────────
 // Place mp3 in assets/music/ and add entries here.
 const WP_PRELOADED = [
-  { name: 'Weird Al Yankovic - All About the Pentiums', src: 'assets/music/all_about_the_pentiums.mp3' },
+  { name: 'Weird Al Yankovic - All About the Pentiums',    src: 'assets/music/all_about_the_pentiums.mp3' },
+  { name: 'Weird Al Yankovic - White & Nerdy',             src: 'assets/music/white_and_nerdy.mp3' },
+  { name: 'Weird Al Yankovic - Rye or the Kaiser',         src: 'assets/music/rye_or_the_kaiser.mp3' },
+  { name: 'Weird Al Yankovic - I Bought It on eBay',       src: 'assets/music/i_bought_it_on_ebay.mp3' },
+  { name: 'Weird Al Yankovic - Everything You Know Is Wrong', src: 'assets/music/everything_you_know_is_wrong.mp3' },
+  { name: 'Weird Al Yankovic - I Remember Larry',          src: 'assets/music/i_remember_larry.mp3' },
 ];
 
 // ── STATE ─────────────────────────────────────────────

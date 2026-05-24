@@ -876,7 +876,7 @@
   </div>
 
   <!-- ── WINDOW: TETRIS (Game Boy) ────────────────── -->
-  <div class="win95-window" id="window-tetris" style="display:none; left:500px; top:50px;">
+  <div class="win95-window" id="window-tetris" style="display:none; left:500px; top:50px; width:282px;">
     <div class="win95-titlebar" data-win="tetris">
       <span class="win95-title-icon">🎮</span>
       <span class="win95-title-text">Tetris — Game Boy</span>
@@ -886,47 +886,25 @@
         <button class="win95-ctrl win95-close" onclick="closeWindow('tetris')">✕</button>
       </div>
     </div>
-    <div class="gameboy-body">
-      <div class="gameboy-brand-row">
-        <div class="gameboy-power-dot"></div>
-        <span class="gameboy-brand-name">&#9415; GAME BOY</span>
-      </div>
-      <div class="gameboy-screen-bezel">
-        <div class="gameboy-screen-line">
-          <span class="gameboy-power-label">BATTERY</span>
-        </div>
-        <div class="gameboy-screen-inner">
-          <canvas id="tetris-canvas" width="202" height="280"></canvas>
-        </div>
-      </div>
-      <div class="gameboy-accent-stripe"></div>
-      <div class="gameboy-controls-area">
-        <div class="gb-dpad">
-          <button class="gb-dpad-btn gb-dpad-btn-up"    onclick="tetBtn('rotate')"></button>
-          <button class="gb-dpad-btn gb-dpad-btn-left"  onclick="tetBtn('left')"></button>
-          <div class="gb-dpad-center"></div>
-          <button class="gb-dpad-btn gb-dpad-btn-right" onclick="tetBtn('right')"></button>
-          <button class="gb-dpad-btn gb-dpad-btn-down"  onclick="tetBtn('down')"></button>
-        </div>
-        <div class="gb-ab-area">
-          <div class="gb-ab-row">
-            <button class="gb-btn" onclick="tetBtn('drop')"   title="Hard Drop">B</button>
-            <button class="gb-btn" onclick="tetBtn('rotate')" title="Rotate">A</button>
-          </div>
-          <div class="gb-btn-labels"><span>DROP</span><span>ROTATE</span></div>
-        </div>
-      </div>
-      <div class="gb-menu-area">
-        <button class="gb-menu-btn" onclick="tetBtn('start')">SELECT</button>
-        <div class="gb-speaker-dots"><div></div><div></div><div></div><div></div></div>
-        <button class="gb-menu-btn" onclick="tetBtn('start')">START</button>
-      </div>
-      <div class="gb-bottom-label">Nintendo</div>
+    <div class="gb-skin">
+      <!-- Tetris canvas over the screen area -->
+      <canvas id="tetris-canvas" class="gb-skin-canvas" width="135" height="180"></canvas>
+      <!-- D-pad overlays -->
+      <button class="gb-skin-btn" style="top:317px; left:44px;  width:26px; height:24px;" onclick="tetBtn('rotate')"></button>
+      <button class="gb-skin-btn" style="top:341px; left:19px;  width:26px; height:24px;" onclick="tetBtn('left')"></button>
+      <button class="gb-skin-btn" style="top:365px; left:44px;  width:26px; height:24px;" onclick="tetBtn('down')"></button>
+      <button class="gb-skin-btn" style="top:341px; left:70px;  width:26px; height:24px;" onclick="tetBtn('right')"></button>
+      <!-- A = rotate, B = hard drop -->
+      <button class="gb-skin-btn" style="top:322px; left:196px; width:32px; height:32px;" onclick="tetBtn('rotate')"></button>
+      <button class="gb-skin-btn" style="top:338px; left:163px; width:32px; height:32px;" onclick="tetBtn('drop')"></button>
+      <!-- SELECT / START -->
+      <button class="gb-skin-btn" style="top:394px; left:87px;  width:40px; height:18px;" onclick="tetBtn('start')"></button>
+      <button class="gb-skin-btn" style="top:394px; left:131px; width:40px; height:18px;" onclick="tetBtn('start')"></button>
     </div>
   </div>
 
   <!-- ── WINDOW: TAMAGOTCHI ───────────────────────── -->
-  <div class="win95-window" id="window-tamagotchi" style="display:none; left:80px; top:120px; width:280px;">
+  <div class="win95-window" id="window-tamagotchi" style="display:none; left:80px; top:120px; width:282px;">
     <div class="win95-titlebar" data-win="tamagotchi">
       <span class="win95-title-icon">🥚</span>
       <span class="win95-title-text">Tamagotchi</span>
@@ -936,47 +914,19 @@
         <button class="win95-ctrl win95-close" onclick="closeWindow('tamagotchi')">✕</button>
       </div>
     </div>
-    <div class="tama-shell">
-      <!-- chain ring at top of device -->
-      <div class="tama-chain-ring"></div>
-      <!-- LCD screen -->
-      <div class="tama-screen-bezel">
-        <div class="tama-screen-inner">
-          <canvas id="tama-canvas" width="90" height="70"></canvas>
-        </div>
-      </div>
-      <!-- stat bars -->
-      <div class="tama-stats">
-        <div class="tama-stat-row">
-          <span class="tama-stat-label">🍗 Food</span>
-          <div class="tama-bar-track"><div id="tama-hunger-bar" class="tama-bar-fill bar-good" style="width:80%"></div></div>
-        </div>
-        <div class="tama-stat-row">
-          <span class="tama-stat-label">😊 Happy</span>
-          <div class="tama-bar-track"><div id="tama-happy-bar" class="tama-bar-fill bar-good" style="width:80%"></div></div>
-        </div>
-        <div class="tama-stat-row">
-          <span class="tama-stat-label">⏱ Age</span>
-          <span class="tama-stat-val" id="tama-age">0</span>
-          <span class="tama-stat-label" style="margin-left:2px;">ticks</span>
-        </div>
-      </div>
-      <!-- name / stage -->
-      <div class="tama-name" id="tama-name">Bitsy the Egg</div>
-      <!-- poop -->
-      <div class="tama-poop" id="tama-poop-count">✨ clean</div>
-      <!-- status message -->
-      <div class="tama-status-msg" id="tama-status">😊 doing okay!</div>
-      <!-- buttons -->
-      <div class="tama-btns">
-        <button class="tama-btn" onclick="tamaFeed()"  title="Feed">🍗</button>
-        <button class="tama-btn" onclick="tamaPlay()"  title="Play">🎮</button>
-        <button class="tama-btn" onclick="tamaSleep()" title="Sleep/Wake">💤</button>
-        <button class="tama-btn" onclick="tamaClean()" title="Clean">🧹</button>
-      </div>
-      <div class="tama-footer">
-        <button class="win95-btn tama-reset-btn" onclick="tamaReset()">New Pet</button>
-      </div>
+    <div class="gp-skin">
+      <!-- Canvas over screen area -->
+      <canvas id="tama-canvas" class="gp-skin-canvas" width="154" height="110"></canvas>
+      <!-- Button overlays — left=Food, center=Play, right=Clean -->
+      <button class="gp-skin-btn" style="top:210px; left:88px;  width:28px; height:28px;" onclick="tamaFeed()"  title="Feed"></button>
+      <button class="gp-skin-btn" style="top:212px; left:126px; width:28px; height:28px;" onclick="tamaPlay()"  title="Play"></button>
+      <button class="gp-skin-btn" style="top:210px; left:164px; width:28px; height:28px;" onclick="tamaClean()" title="Clean"></button>
+    </div>
+    <!-- Slim info strip below device -->
+    <div class="gp-skin-info">
+      <span id="tama-name">Bitsy the Egg</span>
+      <span id="tama-status" style="margin-left:6px; color:#555;">😊 doing okay!</span>
+      <button class="win95-btn" style="margin-left:auto; font-size:9px; padding:1px 4px;" onclick="tamaReset()">New Pet</button>
     </div>
   </div>
 
@@ -1010,7 +960,7 @@
   </div>
 
   <!-- ── WINDOW: WINAMP ──────────────────────────────── -->
-  <div class="win95-window" id="window-winamp" style="display:none; left:240px; top:160px;">
+  <div class="win95-window" id="window-winamp" style="display:none; left:calc(100vw - 390px); top:10px;">
     <div class="wp-skin">
 
       <!-- Transparent titlebar over image's title bar — handles drag + close/min -->
@@ -1285,20 +1235,13 @@
   <!-- ── LOGIN SCREENS (fixed-position overlays) ─── -->
   <!-- AIM Login -->
   <div id="aim-login" class="im-login-screen" style="display:none;">
-    <div class="aim-login-titlebar">
-      <span>🏃 AOL Instant Messenger</span>
-      <div class="im-login-win-btns"><span>_</span><span>□</span><span>✕</span></div>
-    </div>
-    <div class="aim-login-body">
-      <div class="aim-login-logo">aim</div>
-      <div class="aim-login-field-row"><label>Screen Name</label><input type="text" id="aim-login-user" autocomplete="off"></div>
-      <div class="aim-login-field-row"><label>Password</label><input type="text" id="aim-login-pass" autocomplete="off" style="font-family:monospace; letter-spacing:2px;"></div>
-      <div class="aim-login-checks">
-        <label><input type="checkbox" checked> Save password</label>
-        <label><input type="checkbox"> Auto-login</label>
-      </div>
-      <div class="aim-login-status" id="aim-login-status"></div>
-      <button id="aim-login-btn" class="aim-sign-on-btn">Sign On</button>
+    <div class="aim-skin">
+      <input type="text"     id="aim-login-user" class="aim-skin-field"
+             style="top:173px; left:93px; width:153px;" autocomplete="off">
+      <input type="text"     id="aim-login-pass" class="aim-skin-field aim-skin-pass"
+             style="top:200px; left:93px; width:153px;" autocomplete="off">
+      <div   id="aim-login-status" class="aim-skin-status"></div>
+      <button id="aim-login-btn"   class="aim-skin-signonbtn"></button>
     </div>
   </div>
 
@@ -1323,20 +1266,13 @@
 
   <!-- Yahoo Messenger Login -->
   <div id="yahoo-login" class="im-login-screen" style="display:none;">
-    <div class="yahoo-login-titlebar">
-      <span>🟣 Yahoo! Messenger</span>
-      <div class="im-login-win-btns"><span>_</span><span>□</span><span>✕</span></div>
-    </div>
-    <div class="yahoo-login-body">
-      <div class="yahoo-login-logo"><span class="yahoo-y">Y!</span> Messenger</div>
-      <div class="yahoo-login-field-row"><label>Yahoo! ID:</label><input type="text" id="yahoo-login-user" autocomplete="off"></div>
-      <div class="yahoo-login-field-row"><label>Password:</label><input type="text" id="yahoo-login-pass" autocomplete="off" style="font-family:monospace; letter-spacing:2px;"></div>
-      <div class="yahoo-login-checks">
-        <label><input type="checkbox" checked> Remember my ID &amp; password</label>
-        <label><input type="checkbox"> Sign in as invisible to everyone</label>
-      </div>
-      <div class="yahoo-login-status" id="yahoo-login-status"></div>
-      <button id="yahoo-login-btn" class="yahoo-sign-in-btn">Sign In</button>
+    <div class="yahoo-skin">
+      <input type="text"     id="yahoo-login-user" class="yahoo-skin-field"
+             style="top:172px; left:22px; width:210px;" autocomplete="off">
+      <input type="text"     id="yahoo-login-pass" class="yahoo-skin-field yahoo-skin-pass"
+             style="top:201px; left:22px; width:210px;" autocomplete="off">
+      <div   id="yahoo-login-status" class="yahoo-skin-status"></div>
+      <button id="yahoo-login-btn"   class="yahoo-skin-signinbtn"></button>
     </div>
   </div>
 
@@ -1434,38 +1370,137 @@
   </div>
 
   <!-- ── WINDOW: WEATHERBUG ───────────────────────── -->
-  <div class="win95-window" id="window-weatherbug" style="display:none; left:60px; top:60px; width:320px;">
+  <div class="win95-window" id="window-weatherbug" style="display:none; left:60px; top:40px; width:720px;">
     <div class="win95-titlebar" data-win="weatherbug">
-      <span class="win95-title-icon" onclick="wbBeeClick()" style="cursor:pointer;">🐝</span>
-      <span class="win95-title-text">WeatherBug Alert v1.4</span>
+      <span class="win95-title-icon">🐞</span>
+      <span class="win95-title-text">WeatherBug — My Weather: localhost:3000, Dev Environment</span>
       <div class="win95-controls">
         <button class="win95-ctrl" onclick="minimizeWindow('weatherbug')">_</button>
         <button class="win95-ctrl win95-close" onclick="closeWindow('weatherbug')">✕</button>
       </div>
     </div>
-    <div class="wb-content">
-      <div class="wb-header">
-        <div class="wb-logo-bee" onclick="wbBeeClick()">🐝</div>
-        <div class="wb-location">
-          <div class="wb-loc-name">localhost:3000</div>
-          <div class="wb-loc-sub">Vince's Dev Environment, CA</div>
+    <!-- Top nav bar -->
+    <div class="wb-topnav">
+      <div class="wb-logo-block">
+        <div class="wb-logo-ladybug">🐞</div>
+        <div class="wb-logo-text">WeatherBug<span class="wb-logo-reg">®</span></div>
+      </div>
+      <div class="wb-nav-tabs">
+        <button class="wb-nav-tab wb-nav-active">Subscribe</button>
+        <button class="wb-nav-tab">📱 Mobile</button>
+        <button class="wb-nav-tab">Weather Blogs</button>
+        <button class="wb-nav-tab">Site Map</button>
+        <button class="wb-nav-tab">Preferences</button>
+        <button class="wb-nav-tab">Help</button>
+      </div>
+    </div>
+    <!-- Location bar -->
+    <div class="wb-locbar">
+      <span class="wb-locbar-label">My Weather:</span>
+      <span class="wb-locbar-loc">localhost:3000, Dev Environment 90210</span>
+      <span class="wb-locbar-link">Change Location</span>
+      <span style="flex:1"></span>
+      <span class="wb-locbar-dl">29,000,000 Downloads</span>
+      <span class="wb-locbar-link">Share WeatherBug</span>
+    </div>
+    <!-- Main body: sidebar + content -->
+    <div class="wb-main">
+      <!-- Left sidebar nav -->
+      <div class="wb-sidebar">
+        <div class="wb-sb-item wb-sb-active">Home</div>
+        <div class="wb-sb-item">Forecast</div>
+        <div class="wb-sb-item">Radar &amp; Maps</div>
+        <div class="wb-sb-item wb-sb-alert" onclick="wbBeeClick()">Severe Weather</div>
+        <div class="wb-sb-item">Live Cameras</div>
+        <div class="wb-sb-item">Travel Weather</div>
+        <div class="wb-sb-item">Photos</div>
+        <div class="wb-sb-item">News &amp; Features</div>
+        <div class="wb-sb-item">Health &amp; Outdoors</div>
+        <div class="wb-sb-item">Weather Fun</div>
+        <div class="wb-sb-item wb-sb-new"><em>NEW</em> Videos</div>
+        <div class="wb-sb-promo" onclick="wbBeeClick()">
+          <div class="wb-sb-promo-text">WeatherBug for<br>your business!</div>
+          <div class="wb-sb-promo-link">Learn More ▶</div>
         </div>
-        <div class="wb-temp-big" id="wb-temp">72°F</div>
+        <div class="wb-sb-blue-btn" onclick="wbBeeClick()">Mobile Alerts</div>
+        <div class="wb-sb-blue-btn">Plus FREE TRIAL</div>
       </div>
-      <div class="wb-condition" id="wb-condition">⛅ Scattered Commits</div>
-      <div class="wb-details">
-        <div class="wb-detail-row"><span class="wb-dl">💧 Humidity</span><span id="wb-humidity">Git Blame: 87%</span></div>
-        <div class="wb-detail-row"><span class="wb-dl">💨 Wind</span><span id="wb-wind">Legacy Code, NW @ 14 mph</span></div>
-        <div class="wb-detail-row"><span class="wb-dl">🌡️ Feels Like</span><span id="wb-feels">54°F (Imposter Syndrome)</span></div>
-        <div class="wb-detail-row"><span class="wb-dl">☀️ UV Index</span><span id="wb-uv">Vim Exit Difficulty: 11</span></div>
+      <!-- Center: Current Conditions -->
+      <div class="wb-center">
+        <div class="wb-section-title">Current Conditions</div>
+        <div class="wb-cc-loc">WeatherBug HQ, Dev Environment</div>
+        <div class="wb-cc-meta">
+          <span id="wb-date">02/14/07</span>
+          <span id="wb-time" style="margin-left:16px;">10:02:20 AM</span>
+        </div>
+        <div class="wb-cc-main">
+          <!-- Thermometer -->
+          <div class="wb-therm-wrap">
+            <div class="wb-therm">
+              <div class="wb-therm-scale">
+                <span>100</span><span>80</span><span>60</span>
+                <span>40</span><span>20</span><span>0</span><span>-20</span>
+              </div>
+              <div class="wb-therm-tube">
+                <div class="wb-therm-fill" id="wb-therm-fill" style="height:55%"></div>
+              </div>
+              <div class="wb-therm-bulb"></div>
+            </div>
+            <div class="wb-temp-display" id="wb-temp">72°</div>
+          </div>
+          <!-- Wind compass -->
+          <div class="wb-compass-wrap">
+            <canvas class="wb-compass-canvas" id="wb-compass" width="100" height="100"></canvas>
+            <div class="wb-wind-speed" id="wb-wind-speed">7<br><span>mph</span></div>
+          </div>
+        </div>
+        <div class="wb-cc-details">
+          <div class="wb-cc-row"><span class="wb-cc-lbl">Heat Index:</span><span id="wb-heat-idx">--</span></div>
+          <div class="wb-cc-row"><span class="wb-cc-lbl">Humidity:</span><span id="wb-humidity">--</span></div>
+          <div class="wb-cc-row"><span class="wb-cc-lbl">Dew Point:</span><span id="wb-dewpoint">--</span></div>
+        </div>
+        <div class="wb-sofar">
+          <div class="wb-section-title wb-sofar-title">So Far Today</div>
+          <div class="wb-sofar-grid">
+            <div class="wb-cc-row"><span class="wb-cc-lbl">High:</span><span id="wb-high">--</span></div>
+            <div class="wb-cc-row"><span class="wb-cc-lbl">Rain:</span><span id="wb-rain">--</span></div>
+            <div class="wb-cc-row"><span class="wb-cc-lbl">Low:</span><span id="wb-low">--</span></div>
+            <div class="wb-cc-row"><span class="wb-cc-lbl">Gust:</span><span id="wb-gust">--</span></div>
+          </div>
+          <div class="wb-more-link">More Observations</div>
+        </div>
       </div>
-      <div class="wb-forecast-header">5-Day Forecast</div>
-      <div class="wb-forecast" id="wb-forecast"></div>
-      <div class="wb-alert-bar" id="wb-alert-bar" style="display:none;">
-        <span class="wb-alert-icon">⚠️</span>
-        <span id="wb-alert-text"></span>
+      <!-- Forecast column -->
+      <div class="wb-forecast-col">
+        <div class="wb-section-title">Forecast</div>
+        <div id="wb-forecast-list"></div>
       </div>
-      <div class="wb-footer"><span class="wb-last-update">Last updated: just now</span></div>
+      <!-- Weather Window (right panel) -->
+      <div class="wb-camera-col">
+        <div class="wb-section-title">Weather Window</div>
+        <div class="wb-cam-tabs">
+          <button class="wb-cam-tab wb-cam-active">Camera</button>
+          <button class="wb-cam-tab">Radar</button>
+          <button class="wb-cam-tab">Photos</button>
+          <button class="wb-cam-tab">Traffic</button>
+          <button class="wb-cam-tab">Storm Central</button>
+        </div>
+        <div class="wb-cam-view" id="wb-cam-view">
+          <div class="wb-cam-placeholder">📷</div>
+        </div>
+        <div class="wb-cam-footer">
+          <span id="wb-cam-label">Live Camera from Dev Environment</span>
+          <div class="wb-cam-links">
+            <span class="wb-locbar-link">Refresh</span>
+            <span class="wb-locbar-link">Customize</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Alert bar (shown on bee click) -->
+    <div class="wb-alert-bar" id="wb-alert-bar" style="display:none;">
+      <span class="wb-alert-icon">⚠️</span>
+      <span id="wb-alert-text"></span>
     </div>
   </div>
 

@@ -192,6 +192,7 @@ let imLoginTimers = [];
 let imHistory     = [];      // [{type, from, elements[], isClipy}]
 let imClippyVisible = false;
 let aimChatShown  = false;   // door creak fires when first AIM message arrives
+let imUserLeft    = false;   // user clicked Leave — block auto-restart until explicit Replay
 
 // ── UTILITY ───────────────────────────────────────────
 
@@ -257,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const win = document.getElementById('window-messenger');
   if (win) {
     const obs = new MutationObserver(() => {
-      if (win.style.display === 'block' && !imRunning) {
+      if (win.style.display === 'block' && !imRunning && !imUserLeft) {
         startMessengerShow();
       }
     });
@@ -668,6 +669,7 @@ function replayMessenger() {
   imLoginDone     = false;
   imClippyVisible = false;
   aimChatShown    = false;
+  imUserLeft      = false;
 
   // Hide login screens
   ['aim-login','icq-login','yahoo-login'].forEach(id => {
@@ -737,15 +739,15 @@ function leaveChat() {
   clearTimeout(imNextTimer);
   imLoginTimers.forEach(t => { clearTimeout(t); clearInterval(t); });
   imLoginTimers = [];
-  imRunning = false;
-  imPaused  = true;
+  imRunning  = false;
+  imPaused   = true;
+  imUserLeft = true;   // block auto-restart on window open
 
   playSound('aim-leaving');
-  imSetStatus('Goodbye! Click ↺ to replay.');
 
   // Close everything after door-close sound plays
   const cleanup = () => {
-    ['window-aim-chat','window-icq-chat','window-yahoo-chat'].forEach(id => {
+    ['window-aim-chat','window-icq-chat','window-yahoo-chat','window-messenger'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
     });
@@ -754,6 +756,8 @@ function leaveChat() {
       if (el) el.style.display = 'none';
     });
     hideClippyBubble();
+    // Update taskbar to reflect closed messenger
+    if (typeof updateTaskbar === 'function') updateTaskbar();
   };
   const t = setTimeout(cleanup, 1700);
   imLoginTimers.push(t);

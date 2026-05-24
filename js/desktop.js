@@ -226,6 +226,8 @@ function finishBoot(overlay) {
     overlay.style.display = 'none';
     document.dispatchEvent(new Event('bootComplete'));
     startIdleDetection();
+    // WinAmp opens upper-right as part of the boot experience
+    setTimeout(() => openWindow('winamp'), 800);
   }, 720);
 }
 

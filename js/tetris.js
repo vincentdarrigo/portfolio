@@ -3,12 +3,12 @@
    Vince Darrigo / The Mothership
 ═══════════════════════════════════════════════════════ */
 
-const TET_COLS = 10, TET_ROWS = 20, TET_CELL = 14;
-const TET_BW = TET_COLS * TET_CELL; // 140
-const TET_BH = TET_ROWS * TET_CELL; // 280
-const TET_PW = 62; // side panel width
-const TET_CW = TET_BW + TET_PW; // total canvas width: 202
-const TET_CH = TET_BH;           // total canvas height: 280
+const TET_COLS = 10, TET_ROWS = 20, TET_CELL = 9;
+const TET_BW = TET_COLS * TET_CELL; // 90
+const TET_BH = TET_ROWS * TET_CELL; // 180
+const TET_PW = 45; // side panel width
+const TET_CW = TET_BW + TET_PW; // total canvas width: 135
+const TET_CH = TET_BH;           // total canvas height: 180
 
 const GB = {
   bg:    '#9bbc0f',

@@ -16,12 +16,13 @@
 }
 
 /* ── SKIN IMAGE CONTAINER ── */
-/* Image is 352×432px covering main player (0-144) + EQ (144-288) + playlist (288-432) */
+/* New image: 1122×1402 — displayed at 374×467 (exactly 1/3 scale)
+   Panels: main player 0-177px | EQ 177-313px | playlist 313-467px */
 .wp-skin {
   position: relative;
-  width: 352px;
-  height: 432px;
-  background: url('../assets/images/winamp.png') no-repeat top left / 352px 432px;
+  width: 374px;
+  height: 467px;
+  background: url('../assets/images/winamp.png') no-repeat top left / 374px 467px;
   cursor: default;
   overflow: hidden;
 }
@@ -70,13 +71,14 @@
 }
 
 /* ── LED TIME DISPLAY ── */
+/* Standard WinAmp: x=36,y=26 → ×1.36 */
 #wp-time-cur {
   position: absolute;
-  top: 26px;
-  left: 37px;
+  top: 30px;
+  left: 42px;
   color: #00ff41;
   font-family: "Courier New", Courier, monospace;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: 2px;
   text-shadow: 0 0 8px #00ff41, 0 0 3px #00cc00;
@@ -88,8 +90,8 @@
 /* ── REMAINING TIME ── */
 #wp-time-dur {
   position: absolute;
-  top: 52px;
-  left: 37px;
+  top: 56px;
+  left: 42px;
   color: #005a00;
   font-family: "Courier New", Courier, monospace;
   font-size: 8px;
@@ -100,27 +102,28 @@
 /* ── STATUS DOTS (play/pause/stop LED indicators) ── */
 .wp-sdot {
   position: absolute;
-  width: 9px;
-  height: 7px;
+  width: 10px;
+  height: 8px;
   background: #001500;
   border-radius: 1px;
   transition: background 0.1s, box-shadow 0.1s;
   pointer-events: none;
 }
-#wp-dot-play  { top: 58px; left: 30px; }
-#wp-dot-pause { top: 58px; left: 43px; }
-#wp-dot-stop  { top: 58px; left: 56px; }
+#wp-dot-play  { top: 62px; left: 32px; }
+#wp-dot-pause { top: 62px; left: 46px; }
+#wp-dot-stop  { top: 62px; left: 61px; }
 .wp-sdot.wp-dot-on {
   background: #00ff00;
   box-shadow: 0 0 5px #00ff00;
 }
 
 /* ── SONG TITLE MARQUEE ── */
+/* Standard: x=112,y=40 → ×1.36 */
 .wp-ov-marquee {
   position: absolute;
-  top: 51px;
-  left: 111px;
-  width: 152px;
+  top: 54px;
+  left: 119px;
+  width: 168px;
   height: 13px;
   overflow: hidden;
 }
@@ -144,24 +147,26 @@
 }
 
 /* ── VISUALIZER CANVAS ── */
+/* Standard: x=74,y=25,w=75,h=16 → ×1.36 */
 .wp-ov-viz {
   position: absolute;
-  top: 63px;
-  left: 111px;
-  width: 152px;
-  height: 14px;
+  top: 30px;
+  left: 100px;
+  width: 102px;
+  height: 22px;
   display: block;
   opacity: 0.85;
   pointer-events: none;
 }
 
 /* ── SEEK BAR ── */
+/* Standard: x=16,y=72,w=248 → ×1.36 */
 .wp-ov-seek {
   position: absolute;
-  top: 87px;
-  left: 20px;
-  width: 248px;
-  height: 11px;
+  top: 98px;
+  left: 22px;
+  width: 326px;
+  height: 12px;
   cursor: pointer;
   z-index: 5;
 }
@@ -177,8 +182,8 @@
 .wp-seek-knob-ov {
   position: absolute;
   top: 0;
-  width: 10px;
-  height: 11px;
+  width: 11px;
+  height: 12px;
   background: linear-gradient(135deg, #606060, #282828);
   border: 1px solid;
   border-color: #888 #333 #333 #888;
@@ -191,11 +196,12 @@
 }
 
 /* ── VOLUME + BALANCE SLIDERS ── */
+/* Standard: vol x=107,y=57,w=68 | bal x=177,y=57,w=38 → ×1.36 */
 .wp-ov-vol {
   position: absolute;
-  top: 59px;
-  left: 140px;
-  width: 56px;
+  top: 77px;
+  left: 145px;
+  width: 68px;
   height: 12px;
   cursor: pointer;
   accent-color: #009900;
@@ -203,9 +209,9 @@
 }
 .wp-ov-bal {
   position: absolute;
-  top: 59px;
-  left: 203px;
-  width: 38px;
+  top: 77px;
+  left: 217px;
+  width: 44px;
   height: 12px;
   cursor: pointer;
   accent-color: #009900;
@@ -213,7 +219,6 @@
 }
 
 /* ── TRANSPORT + BUTTON OVERLAYS ── */
-/* All transparent — the image provides the visual; these capture clicks */
 .wp-ov-tbtn {
   position: absolute;
   background: transparent;
@@ -226,63 +231,60 @@
 .wp-ov-tbtn:hover  { opacity: 0.22; background: rgba(255,255,255,0.18); border-radius: 2px; }
 .wp-ov-tbtn:active { opacity: 0.4;  background: rgba(0,0,0,0.22); }
 
-/* Transport button positions — scaled from WinAmp 2.x standard 275px skin (×1.28) */
-/* Standard y=88, scaled y≈109 */
-.wp-t-prev  { top: 107px; left: 16px;  width: 27px; height: 20px; }
-.wp-t-rew   { top: 107px; left: 48px;  width: 27px; height: 20px; }
-.wp-t-play  { top: 104px; left: 77px;  width: 36px; height: 24px; }
-.wp-t-paus  { top: 107px; left: 116px; width: 27px; height: 20px; }
-.wp-t-stop  { top: 107px; left: 146px; width: 27px; height: 20px; }
-.wp-t-ffw   { top: 107px; left: 176px; width: 27px; height: 20px; }
-.wp-t-next  { top: 107px; left: 206px; width: 27px; height: 20px; }
-.wp-t-eject { top: 107px; left: 236px; width: 30px; height: 20px; }
+/* Standard transport y=88 → ×1.36 = 120px */
+.wp-t-prev  { top: 120px; left: 18px;  width: 30px; height: 22px; }
+.wp-t-rew   { top: 120px; left: 54px;  width: 30px; height: 22px; }
+.wp-t-play  { top: 117px; left: 88px;  width: 40px; height: 26px; }
+.wp-t-paus  { top: 120px; left: 132px; width: 30px; height: 22px; }
+.wp-t-stop  { top: 120px; left: 165px; width: 30px; height: 22px; }
+.wp-t-ffw   { top: 120px; left: 200px; width: 30px; height: 22px; }
+.wp-t-next  { top: 120px; left: 234px; width: 30px; height: 22px; }
+.wp-t-eject { top: 120px; left: 268px; width: 34px; height: 22px; }
 
 /* ── EQ PANEL OVERLAYS ── */
-/* EQ panel starts at y=144 in the image */
+/* EQ panel starts at y≈177px (38% of 467) */
 
-/* EQ close button — upper-right of EQ title bar */
-.wp-eq-x    { top: 145px; right: 4px;  width: 14px; height: 13px; }
+.wp-eq-x    { top: 178px; right: 4px;  width: 16px; height: 14px; }
 
-/* EQ ON / AUTO toggle buttons */
-.wp-eq-on   { top: 166px; left: 18px;  width: 33px; height: 15px; }
-.wp-eq-auto { top: 166px; left: 57px;  width: 33px; height: 15px; }
-.wp-eq-prs  { top: 166px; left: 282px; width: 58px; height: 15px; }
+/* EQ ON/AUTO/PRESETS: standard y=116+26=142 → ×1.36 = 193px */
+.wp-eq-on   { top: 197px; left: 19px;  width: 36px; height: 16px; }
+.wp-eq-auto { top: 197px; left: 59px;  width: 36px; height: 16px; }
+.wp-eq-prs  { top: 197px; left: 295px; width: 62px; height: 16px; }
 
-/* EQ sliders — 11 vertical range inputs (PREAMP + 60 170 310 600 1k 3k 6k 12k 14k 16k) */
-/* Slider range: top≈187, height=70, spacing≈28px between bands */
+/* EQ sliders: standard y=116+38=154 → ×1.36 = 209px, h=58 → 79px */
+/* Band x-positions: standard preamp=21, +22.6px each → ×1.36 = preamp=29, +31px */
 .wp-ov-eq-sl {
   position: absolute;
-  width: 12px;
-  height: 70px;
+  width: 14px;
+  height: 79px;
   writing-mode: vertical-lr;
   direction: rtl;
   cursor: pointer;
   accent-color: #00dd00;
   opacity: 0.75;
-  top: 187px;
+  top: 216px;
 }
-[data-band="preamp"] { left: 26px;  }
-[data-band="60"]     { left: 64px;  }
-[data-band="170"]    { left: 92px;  }
-[data-band="310"]    { left: 120px; }
-[data-band="600"]    { left: 148px; }
-[data-band="1k"]     { left: 176px; }
-[data-band="3k"]     { left: 204px; }
-[data-band="6k"]     { left: 232px; }
-[data-band="12k"]    { left: 260px; }
-[data-band="14k"]    { left: 288px; }
-[data-band="16k"]    { left: 316px; }
+[data-band="preamp"] { left: 29px;  }
+[data-band="60"]     { left: 60px;  }
+[data-band="170"]    { left: 91px;  }
+[data-band="310"]    { left: 122px; }
+[data-band="600"]    { left: 153px; }
+[data-band="1k"]     { left: 184px; }
+[data-band="3k"]     { left: 215px; }
+[data-band="6k"]     { left: 246px; }
+[data-band="12k"]    { left: 277px; }
+[data-band="14k"]    { left: 308px; }
+[data-band="16k"]    { left: 339px; }
 
 /* ── PLAYLIST PANEL OVERLAYS ── */
-/* Playlist panel starts at y=288 in the image */
+/* Playlist panel starts at y≈313px (67% of 467) */
 
-/* Track list area */
 .wp-ov-playlist {
   position: absolute;
-  top: 310px;
-  left: 8px;
-  width: 286px;
-  height: 78px;
+  top: 334px;
+  left: 10px;
+  width: 346px;
+  height: 106px;
   overflow-y: auto;
   background: transparent;
   scrollbar-width: thin;
@@ -317,7 +319,7 @@
   padding: 8px 4px;
 }
 
-/* Playlist footer buttons */
+/* Playlist footer buttons: standard y=232+116-20=328 → ~y=448px display */
 .wp-ov-pl-btn {
   position: absolute;
   background: transparent;
@@ -325,15 +327,15 @@
   cursor: pointer;
   opacity: 0;
   z-index: 10;
-  height: 16px;
+  height: 18px;
   padding: 0;
 }
 .wp-ov-pl-btn:hover { opacity: 0.25; background: rgba(255,255,255,0.15); }
 
-.wp-pl-add  { top: 397px; left: 8px;   width: 38px; }
-.wp-pl-del  { top: 397px; left: 50px;  width: 38px; }
-.wp-pl-sel  { top: 397px; left: 92px;  width: 38px; }
-.wp-pl-misc { top: 397px; left: 134px; width: 38px; }
+.wp-pl-add  { top: 446px; left: 10px;  width: 42px; }
+.wp-pl-del  { top: 446px; left: 56px;  width: 42px; }
+.wp-pl-sel  { top: 446px; left: 102px; width: 42px; }
+.wp-pl-misc { top: 446px; left: 148px; width: 42px; }
 
 /* ── PRINT MEDIA ── */
 @media print {
