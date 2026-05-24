@@ -25,6 +25,7 @@ const WINDOW_TITLES = {
   tamagotchi:       '🥚 Tamagotchi',
   winamp:           '🎵 WinAmp',
   'chat-history':   '📜 Conversation History',
+  bbs:              '📟 The Last Node BBS',
   limester:         '🍋 LimeSter',
   ie:               '🌐 Internet Explorer',
   netscape:         '☄️ Netscape Navigator',

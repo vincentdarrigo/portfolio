@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════
+   bbs.css — The Last Node BBS Terminal
+   Vince Darrigo / The Mothership
+═══════════════════════════════════════════════════════ */
+
+/* Window override */
+#window-bbs {
+  width: 682px;
+  height: 530px;
+}
+
+#window-bbs .win95-titlebar {
+  background: linear-gradient(to right, #000a00 0%, #003300 40%, #003300 60%, #000a00 100%);
+}
+
+#window-bbs .win95-titlebar .win95-title-text {
+  color: #33ff33;
+  text-shadow: 0 0 6px #22aa22;
+  letter-spacing: 0.5px;
+}
+
+#window-bbs .win95-titlebar .win95-title-icon {
+  filter: drop-shadow(0 0 3px #22aa22);
+}
+
+/* Main terminal wrap */
+.bbs-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #050d00;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* Scrollable output */
+.bbs-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.04) 0px,
+    rgba(0, 0, 0, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  ), #050d00;
+}
+
+.bbs-scroll::-webkit-scrollbar { width: 6px; }
+.bbs-scroll::-webkit-scrollbar-track { background: #000a00; }
+.bbs-scroll::-webkit-scrollbar-thumb { background: #004d00; border-radius: 3px; }
+.bbs-scroll { scrollbar-width: thin; scrollbar-color: #004d00 #000a00; }
+
+/* Terminal output area */
+#bbs-out {
+  padding: 8px 12px 4px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  line-height: 1.48;
+  color: #33cc33;
+  text-shadow: 0 0 4px #1a8a1a;
+}
+
+/* Individual terminal lines */
+.bbs-line {
+  min-height: 1.48em;
+  word-break: break-word;
+}
+
+/* ── COLOR CLASSES ── */
+.bbs-bright     { color: #00ff41; text-shadow: 0 0 7px #00ff41, 0 0 2px #00cc2a; }
+.bbs-dim        { color: #1a6a1a; text-shadow: none; }
+.bbs-amber      { color: #ffaa00; text-shadow: 0 0 5px #cc8800; }
+.bbs-cyan       { color: #00cccc; text-shadow: 0 0 5px #009999; }
+.bbs-red        { color: #ff5555; text-shadow: 0 0 5px #cc2222; }
+.bbs-title      { color: #00ff41; font-size: 14px; font-weight: bold; letter-spacing: 1.5px; text-shadow: 0 0 10px #00ff41; }
+.bbs-box        { color: #009900; }
+.bbs-echo       { color: #66ff66; }
+.bbs-clickable  { cursor: pointer; }
+.bbs-clickable:hover { text-shadow: 0 0 10px #00ff41 !important; }
+
+/* ── INPUT ROW ── */
+.bbs-input-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px 6px;
+  background: #020800;
+  border-top: 1px solid #003a00;
+  flex-shrink: 0;
+}
+
+#bbs-prompt {
+  color: #00ff41;
+  text-shadow: 0 0 5px #00cc2a;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#bbs-in {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #00ff41;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  text-shadow: 0 0 4px #00cc2a;
+  caret-color: #00ff41;
+  padding: 0;
+  margin: 0;
+}
+
+#bbs-in:disabled { opacity: 0.25; cursor: default; }
+
+/* Blinking block cursor added to prompt when active */
+#bbs-prompt::after {
+  content: '█';
+  animation: bbs-blink 1s steps(2) infinite;
+  margin-left: 1px;
+  font-size: 11px;
+}
+
+@keyframes bbs-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Suppress cursor while input is disabled */
+#bbs-in:not(:disabled) + * #bbs-prompt::after,
+.bbs-input-row:has(#bbs-in:disabled) #bbs-prompt::after {
+  display: none;
+}

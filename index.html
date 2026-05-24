@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/messenger.css">
   <link rel="stylesheet" href="css/winamp.css">
   <link rel="stylesheet" href="css/retro-apps.css">
+  <link rel="stylesheet" href="css/bbs.css">
 </head>
 <body>
 
@@ -106,9 +107,9 @@
       <div class="desk-icon-img">📄</div>
       <div class="desk-icon-label">Resume.doc</div>
     </div>
-    <div class="desk-icon" ondblclick="window.location='guestbook.html'" tabindex="0">
-      <div class="desk-icon-img" style="font-size:20px;line-height:1;color:#003399;background:#e8f0ff;border:2px solid #336699;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:Impact,sans-serif;font-weight:bold;border-radius:2px;">M</div>
-      <div class="desk-icon-label">My Space</div>
+    <div class="desk-icon" ondblclick="openWindow('bbs')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:22px;line-height:1;color:#00ff41;background:#020d00;border:2px solid #004d00;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:bold;border-radius:2px;text-shadow:0 0 6px #00ff41;">📟</div>
+      <div class="desk-icon-label">Last Node BBS</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('paint')" tabindex="0">
       <div class="desk-icon-img">🎨</div>
@@ -1130,6 +1131,27 @@
     </div>
   </div>
 
+  <!-- ── WINDOW: THE LAST NODE BBS ──────────────────── -->
+  <div class="win95-window" id="window-bbs" style="display:none; left:90px; top:55px;">
+    <div class="win95-titlebar" data-win="bbs">
+      <span class="win95-title-icon">📟</span>
+      <span class="win95-title-text">The Last Node BBS — Node 1 — 14.4k CONNECTED</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('bbs')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('bbs')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content bbs-wrap">
+      <div id="bbs-scroll" class="bbs-scroll">
+        <div id="bbs-out"></div>
+      </div>
+      <div class="bbs-input-row">
+        <span id="bbs-prompt" class="bbs-prompt"></span>
+        <input type="text" id="bbs-in" class="bbs-input" autocomplete="off" spellcheck="false" maxlength="60">
+      </div>
+    </div>
+  </div>
+
   <!-- ── WINDOW: LIMESTER ─────────────────────────────── -->
   <div class="win95-window" id="window-limester" style="display:none; left:180px; top:80px; width:590px;">
     <div class="win95-titlebar" data-win="limester">
@@ -1583,5 +1605,6 @@
 <script src="js/limester.js"></script>
 <script src="js/ie-netscape.js"></script>
 <script src="js/screensaver.js"></script>
+<script src="js/bbs.js"></script>
 </body>
 </html>
