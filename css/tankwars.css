@@ -1,0 +1,311 @@
+/* ═══════════════════════════════════════════════════════
+   tankwars.css — Browser Wars Tank Battle
+   Vince Darrigo / The Mothership
+═══════════════════════════════════════════════════════ */
+
+/* ── SIDE-CHOICE MODAL (fullscreen overlay) ── */
+#browser-war-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bw-modal-box {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 4px 4px 0 #000, inset 1px 1px 0 #dfdfdf;
+  width: 440px;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.bw-modal-title-bar {
+  background: linear-gradient(to right, #000080, #1084d0);
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.bw-modal-title-bar span {
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  flex: 1;
+}
+
+.bw-modal-body {
+  padding: 18px 20px 14px;
+  text-align: center;
+}
+
+.bw-modal-headline {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000080;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.bw-modal-sub {
+  font-size: 11px;
+  color: #444;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.bw-modal-lore {
+  font-size: 10px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  border: 1px inset #aaa;
+  background: #fff;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.bw-modal-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.bw-choice-btn {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.1s;
+}
+.bw-choice-btn:active { border-color: #808080 #fff #fff #808080 !important; }
+
+.bw-choice-ie {
+  background: #dde8ff;
+  border-color: #fff #4466bb #4466bb #fff;
+  color: #002080;
+}
+.bw-choice-ie:hover   { background: #c8daff; }
+.bw-choice-ie .bw-cb-icon { font-size: 22px; }
+
+.bw-choice-ns {
+  background: #ffeedd;
+  border-color: #fff #994400 #994400 #fff;
+  color: #883300;
+}
+.bw-choice-ns:hover   { background: #ffddcc; }
+.bw-choice-ns .bw-cb-icon { font-size: 22px; font-weight: 900; color: #660099; }
+
+.bw-choice-mosaic {
+  background: #eee;
+  border-color: #fff #666 #666 #fff;
+  color: #333;
+}
+.bw-choice-mosaic:hover { background: #ddd; }
+.bw-choice-mosaic .bw-cb-icon { font-size: 20px; }
+
+.bw-cb-info { flex: 1; }
+.bw-cb-name { font-size: 12px; font-weight: bold; }
+.bw-cb-desc { font-size: 9px; font-weight: normal; color: #666; margin-top: 1px; }
+
+.bw-modal-footer {
+  font-size: 9px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ── TANK WARS WINDOW ── */
+#window-tankwars {
+  width: 720px;
+}
+
+#window-tankwars .win95-titlebar {
+  background: linear-gradient(to right, #800000, #cc2200) !important;
+}
+
+.tw-body {
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  height: 460px;
+}
+
+/* ── SCOREBOARD ── */
+.tw-scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 10px;
+  background: #1a0000;
+  border-bottom: 1px solid #440000;
+  flex-shrink: 0;
+}
+.tw-score-ie {
+  color: #6699ff;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: bold;
+}
+.tw-score-ns {
+  color: #ff8844;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: bold;
+}
+.tw-wind-info {
+  color: #888;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  text-align: center;
+}
+.tw-turn-label {
+  color: #ffff44;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* ── CANVAS ── */
+#tw-canvas {
+  flex: 1;
+  display: block;
+  width: 100%;
+}
+
+/* ── CONTROLS BAR ── */
+.tw-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  background: #110000;
+  border-top: 1px solid #330000;
+  flex-shrink: 0;
+  min-height: 34px;
+}
+
+.tw-ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tw-ctrl-lbl {
+  color: #888;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  min-width: 40px;
+}
+.tw-ctrl-range {
+  width: 100px;
+  accent-color: #cc4400;
+  cursor: pointer;
+}
+.tw-ctrl-val {
+  color: #ffaa44;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  min-width: 30px;
+}
+
+.tw-fire-btn {
+  padding: 4px 18px;
+  background: linear-gradient(to bottom, #cc2200, #880000);
+  border: 2px solid;
+  border-color: #ff4422 #440000 #440000 #ff4422;
+  color: #fff;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+.tw-fire-btn:hover  { background: linear-gradient(to bottom, #ee3311, #aa0000); }
+.tw-fire-btn:active { border-color: #440000 #ff4422 #ff4422 #440000; }
+.tw-fire-btn:disabled {
+  background: #330000;
+  color: #664444;
+  cursor: default;
+  border-color: #440000;
+}
+
+/* ── COMMENTARY / WATCH MODE ── */
+.tw-commentary {
+  flex: 1;
+  text-align: center;
+}
+.tw-commentary-text {
+  color: #ffaa55;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  font-style: italic;
+}
+
+/* ── WIN OVERLAY ── */
+#tw-win-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.78);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.tw-win-title {
+  color: #ffff00;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 20px #ffaa00;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.tw-win-sub {
+  color: #ffaa44;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 500px;
+}
+.tw-play-again-btn {
+  padding: 6px 24px;
+  background: linear-gradient(to bottom, #004400, #002200);
+  border: 2px solid;
+  border-color: #00aa00 #001500 #001500 #00aa00;
+  color: #00ff41;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.tw-play-again-btn:hover { background: linear-gradient(to bottom, #006600, #003300); }
+
+/* ── BROWSER WAR TOAST ── */
+#browser-war-toast {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #660000, #440000);
+  border: 1px solid #ff2200;
+  color: #ff8866;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  padding: 6px 16px;
+  z-index: 8500;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.7);
+  white-space: nowrap;
+  pointer-events: none;
+  display: none;
+}

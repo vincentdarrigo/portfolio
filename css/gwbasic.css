@@ -1,0 +1,147 @@
+/* ═══════════════════════════════════════════════════════
+   gwbasic.css — GW-BASIC 3.23 / Turtle Graphics
+   Vince Darrigo / The Mothership
+═══════════════════════════════════════════════════════ */
+
+#window-gwbasic {
+  width: 700px;
+}
+
+/* ── SPLIT LAYOUT ── */
+.gwb-body {
+  display: flex;
+  height: 420px;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ── TERMINAL PANE ── */
+.gwb-terminal {
+  width: 310px;
+  min-width: 310px;
+  background: #0000aa;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #000;
+  overflow: hidden;
+}
+
+.gwb-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 6px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #0000cc #00004a;
+}
+.gwb-output::-webkit-scrollbar { width: 6px; }
+.gwb-output::-webkit-scrollbar-track { background: #00004a; }
+.gwb-output::-webkit-scrollbar-thumb { background: #0000ee; }
+
+.gwb-line {
+  color: #c8c8c8;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 1.45em;
+}
+.gwb-line.gwb-ok     { color: #c8c8c8; }
+.gwb-line.gwb-err    { color: #ff5555; }
+.gwb-line.gwb-code   { color: #ffff55; }
+.gwb-line.gwb-system { color: #55ffff; }
+.gwb-line.gwb-print  { color: #ffffff; }
+
+.gwb-input-row {
+  display: flex;
+  align-items: center;
+  padding: 2px 6px 4px;
+  background: #0000aa;
+  border-top: 1px solid #0000cc;
+  flex-shrink: 0;
+}
+
+.gwb-prompt-lbl {
+  color: #c8c8c8;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+#gwb-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffff55;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  caret-color: #ffff55;
+  padding: 0;
+}
+
+/* ── CANVAS PANE ── */
+.gwb-canvas-pane {
+  flex: 1;
+  background: #000020;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gwb-canvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 8px;
+  background: #000035;
+  border-bottom: 1px solid #000080;
+  flex-shrink: 0;
+}
+.gwb-canvas-title {
+  color: #4488ff;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.gwb-canvas-btns { display: flex; gap: 4px; }
+.gwb-canvas-btn {
+  background: #000060;
+  border: 1px solid #0000aa;
+  color: #8888ff;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  cursor: pointer;
+  padding: 1px 6px;
+}
+.gwb-canvas-btn:hover { background: #0000aa; color: #fff; }
+
+#gwb-canvas {
+  flex: 1;
+  display: block;
+  background: #000020;
+  image-rendering: pixelated;
+}
+
+/* ── DEMO BUTTONS ── */
+.gwb-demos {
+  display: flex;
+  gap: 3px;
+  padding: 3px 6px;
+  background: #000030;
+  border-top: 1px solid #000080;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.gwb-demo-btn {
+  background: #001a44;
+  border: 1px solid #0040aa;
+  color: #66aaff;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  cursor: pointer;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+.gwb-demo-btn:hover  { background: #002a66; color: #88ccff; }
+.gwb-demo-btn:active { background: #000a22; }

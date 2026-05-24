@@ -29,6 +29,9 @@ const WINDOW_TITLES = {
   limester:         '🍋 LimeSter',
   ie:               '🌐 Internet Explorer',
   netscape:         '☄️ Netscape Navigator',
+  weatherbug:       '🐝 WeatherBug',
+  gwbasic:          '💻 GW-BASIC',
+  tankwars:         '⚔️ Browser Wars',
 };
 
 // ── VOLUME ────────────────────────────────────────────
@@ -78,8 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     windowState[id] = { open: false, minimized: false };
     attachDrag(win);
 
-    // Bring to front on any click inside window
-    win.addEventListener('mousedown', () => bringToFront(id), true);
+    // Bring to front on any click/tap inside window
+    win.addEventListener('mousedown',  () => bringToFront(id), true);
+    win.addEventListener('touchstart', () => bringToFront(id), true);
   });
 
   // Close start menu on outside click
@@ -91,9 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Global drag move
-  document.addEventListener('mousemove', onDragMove);
-  document.addEventListener('mouseup',   onDragEnd);
+  // Global drag move (mouse + touch)
+  document.addEventListener('mousemove',  onDragMove);
+  document.addEventListener('mouseup',    onDragEnd);
+  document.addEventListener('touchmove',  onDragMove, { passive: false });
+  document.addEventListener('touchend',   onDragEnd);
 
   // Start the clock
   updateClock();
@@ -101,6 +107,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Kick off Gateway BIOS → Win95 login → boot sequence
   runGatewayBoot();
+
+  // Touch devices: single tap on desktop icons fires their dblclick action
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.addEventListener('click', (e) => {
+      const icon = e.target.closest('.desk-icon');
+      if (!icon) return;
+      const fn = icon.getAttribute('ondblclick');
+      if (fn) { try { new Function(fn).call(icon); } catch (_) {} }
+    });
+    // Best-effort landscape lock (works on Android Chrome; silently fails on iOS)
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {});
+    }
+  }
 });
 
 // ── BOOT SEQUENCE ─────────────────────────────────────
@@ -432,19 +452,26 @@ function attachDrag(winEl) {
   const titlebar = winEl.querySelector('.win95-titlebar');
   if (!titlebar) return;
 
-  titlebar.addEventListener('mousedown', (e) => {
-    // Don't drag if clicking the control buttons
-    if (e.target.closest('.win95-controls')) return;
-
+  function startDrag(clientX, clientY) {
     drag.active = true;
     drag.id     = winEl.id;
-
     const rect = winEl.getBoundingClientRect();
-    drag.ox = e.clientX - rect.left;
-    drag.oy = e.clientY - rect.top;
+    drag.ox = clientX - rect.left;
+    drag.oy = clientY - rect.top;
+  }
 
+  titlebar.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.win95-controls')) return;
+    startDrag(e.clientX, e.clientY);
     e.preventDefault();
   });
+
+  titlebar.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.win95-controls')) return;
+    const t = e.touches[0];
+    startDrag(t.clientX, t.clientY);
+    e.preventDefault();
+  }, { passive: false });
 }
 
 function onDragMove(e) {
@@ -452,11 +479,13 @@ function onDragMove(e) {
   const winEl = document.getElementById(drag.id);
   if (!winEl) return;
 
-  const taskbarH = 28;
-  let x = e.clientX - drag.ox;
-  let y = e.clientY - drag.oy;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-  // Constrain within viewport
+  const taskbarH = 28;
+  let x = clientX - drag.ox;
+  let y = clientY - drag.oy;
+
   x = Math.max(0, Math.min(x, window.innerWidth  - winEl.offsetWidth));
   y = Math.max(0, Math.min(y, window.innerHeight - taskbarH - winEl.offsetHeight));
 

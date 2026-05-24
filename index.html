@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="css/winamp.css">
   <link rel="stylesheet" href="css/retro-apps.css">
   <link rel="stylesheet" href="css/bbs.css">
+  <link rel="stylesheet" href="css/weatherbug.css">
+  <link rel="stylesheet" href="css/gwbasic.css">
+  <link rel="stylesheet" href="css/tankwars.css">
 </head>
 <body>
 
@@ -77,12 +80,14 @@
   <div class="bsod-inner">
     <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
     <br>
-    <p>VIEWPORT_TOO_SMALL_TO_RUN_PORTFOLIO</p>
+    <p>DISPLAY_ORIENTATION_INCOMPATIBLE</p>
     <br>
-    <p>If this is the first time you've seen this Stop error screen, please visit this portfolio on a desktop browser. If problems continue, call Vince.</p>
+    <p>🔄 Rotate your device to landscape mode to run this portfolio.</p>
+    <br>
+    <p>If you are on a desktop browser, please widen your window above 900px.</p>
     <br>
     <p>Technical information:</p>
-    <p>*** STOP: 0x0000007E (0xC0000005, 0x00000000, 0x00000001)</p>
+    <p>*** STOP: 0x0000007E (PORTRAIT_MODE, 0xC0000005, ROTATE_90_DEG)</p>
     <br>
     <p>Contact: <a href="mailto:vincent.darrigo@gmail.com">vincent.darrigo@gmail.com</a></p>
   </div>
@@ -158,6 +163,14 @@
     <div class="desk-icon" ondblclick="launchNetscape()" tabindex="0">
       <div class="desk-icon-img" style="width:32px;height:32px;background:#1a0035;display:flex;align-items:center;justify-content:center;border:1px solid #550099;font-size:0;"><span style="font-size:22px;font-weight:900;color:#aa44ff;font-family:'Arial Black',Arial,sans-serif;">N</span><span style="font-size:10px;color:#ffee00;position:absolute;margin-top:-14px;margin-left:8px;">☄</span></div>
       <div class="desk-icon-label">Netscape 4.7</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('weatherbug')" tabindex="0">
+      <div class="desk-icon-img" style="font-size:26px;animation:none;">🐝</div>
+      <div class="desk-icon-label">WeatherBug</div>
+    </div>
+    <div class="desk-icon" ondblclick="openWindow('gwbasic')" tabindex="0">
+      <div class="desk-icon-img" style="width:32px;height:32px;background:#0000aa;display:flex;align-items:center;justify-content:center;border:1px solid #0000cc;font-size:0;"><span style="color:#c8c8c8;font-family:'Courier New',monospace;font-size:9px;font-weight:bold;line-height:1;text-align:center;">GW<br>BASIC</span></div>
+      <div class="desk-icon-label">GW-BASIC</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('vault')" tabindex="0">
       <div class="desk-icon-img">🔒</div>
@@ -1420,6 +1433,169 @@
     </div>
   </div>
 
+  <!-- ── WINDOW: WEATHERBUG ───────────────────────── -->
+  <div class="win95-window" id="window-weatherbug" style="display:none; left:60px; top:60px; width:320px;">
+    <div class="win95-titlebar" data-win="weatherbug">
+      <span class="win95-title-icon" onclick="wbBeeClick()" style="cursor:pointer;">🐝</span>
+      <span class="win95-title-text">WeatherBug Alert v1.4</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('weatherbug')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('weatherbug')">✕</button>
+      </div>
+    </div>
+    <div class="wb-content">
+      <div class="wb-header">
+        <div class="wb-logo-bee" onclick="wbBeeClick()">🐝</div>
+        <div class="wb-location">
+          <div class="wb-loc-name">localhost:3000</div>
+          <div class="wb-loc-sub">Vince's Dev Environment, CA</div>
+        </div>
+        <div class="wb-temp-big" id="wb-temp">72°F</div>
+      </div>
+      <div class="wb-condition" id="wb-condition">⛅ Scattered Commits</div>
+      <div class="wb-details">
+        <div class="wb-detail-row"><span class="wb-dl">💧 Humidity</span><span id="wb-humidity">Git Blame: 87%</span></div>
+        <div class="wb-detail-row"><span class="wb-dl">💨 Wind</span><span id="wb-wind">Legacy Code, NW @ 14 mph</span></div>
+        <div class="wb-detail-row"><span class="wb-dl">🌡️ Feels Like</span><span id="wb-feels">54°F (Imposter Syndrome)</span></div>
+        <div class="wb-detail-row"><span class="wb-dl">☀️ UV Index</span><span id="wb-uv">Vim Exit Difficulty: 11</span></div>
+      </div>
+      <div class="wb-forecast-header">5-Day Forecast</div>
+      <div class="wb-forecast" id="wb-forecast"></div>
+      <div class="wb-alert-bar" id="wb-alert-bar" style="display:none;">
+        <span class="wb-alert-icon">⚠️</span>
+        <span id="wb-alert-text"></span>
+      </div>
+      <div class="wb-footer"><span class="wb-last-update">Last updated: just now</span></div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: GW-BASIC ──────────────────────────── -->
+  <div class="win95-window" id="window-gwbasic" style="display:none; left:80px; top:50px; width:640px;">
+    <div class="win95-titlebar" data-win="gwbasic">
+      <span class="win95-title-icon">💻</span>
+      <span class="win95-title-text">GW-BASIC 3.23 — GWBASIC.EXE</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('gwbasic')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('gwbasic')">✕</button>
+      </div>
+    </div>
+    <div class="gwb-body">
+      <div class="gwb-terminal">
+        <div class="gwb-output" id="gwb-output"></div>
+        <div class="gwb-input-row">
+          <span class="gwb-prompt-lbl">&gt; </span>
+          <input type="text" id="gwb-input" autocomplete="off" spellcheck="false" maxlength="80">
+        </div>
+      </div>
+      <div class="gwb-canvas-pane">
+        <div class="gwb-canvas-header">
+          <span class="gwb-canvas-title">SCREEN 9 — GRAPHICS</span>
+          <div class="gwb-canvas-btns">
+            <button class="gwb-canvas-btn" onclick="gwbClearCanvas()">CLR</button>
+            <button class="gwb-canvas-btn" onclick="gwbStop()">STOP</button>
+          </div>
+        </div>
+        <canvas id="gwb-canvas"></canvas>
+        <div class="gwb-demos">
+          <button class="gwb-demo-btn" onclick="gwbRunDemo(1)">DEMO1: Spirograph</button>
+          <button class="gwb-demo-btn" onclick="gwbRunDemo(2)">DEMO2: Stars</button>
+          <button class="gwb-demo-btn" onclick="gwbRunDemo(3)">DEMO3: Hilbert</button>
+          <button class="gwb-demo-btn" onclick="gwbRunDemo(4)">DEMO4: Snowflake</button>
+          <button class="gwb-demo-btn" onclick="gwbRunDemo(5)">DEMO5: Flower</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WINDOW: TANK WARS ─────────────────────────── -->
+  <div class="win95-window" id="window-tankwars" style="display:none; left:80px; top:40px; width:720px; position:relative;">
+    <div class="win95-titlebar" data-win="tankwars">
+      <span class="win95-title-icon">💥</span>
+      <span class="win95-title-text">⚔️ BROWSER WARS: TANK BATTLE ⚔️</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('tankwars')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('tankwars')">✕</button>
+      </div>
+    </div>
+    <div class="tw-body" style="position:relative;">
+      <div class="tw-scoreboard">
+        <span class="tw-score-ie" id="tw-score-ie">🔵 IE ×5</span>
+        <div class="tw-wind-info" id="tw-wind-disp">WIND: · 0.0</div>
+        <span class="tw-turn-label" id="tw-turn-label"></span>
+        <span class="tw-score-ns" id="tw-score-ns">🔴 NN ×5</span>
+      </div>
+      <canvas id="tw-canvas" style="flex:1;display:block;width:100%;"></canvas>
+      <div class="tw-controls" id="tw-ctrl-area">
+        <div class="tw-ctrl-group">
+          <span class="tw-ctrl-lbl">ANGLE</span>
+          <input type="range" class="tw-ctrl-range" id="tw-angle" min="-80" max="80" value="45"
+                 oninput="twAngleChange(this.value)">
+          <span class="tw-ctrl-val" id="tw-angle-val">45°</span>
+        </div>
+        <div class="tw-ctrl-group">
+          <span class="tw-ctrl-lbl">POWER</span>
+          <input type="range" class="tw-ctrl-range" id="tw-power" min="5" max="100" value="50"
+                 oninput="twPowerChange(this.value)">
+          <span class="tw-ctrl-val" id="tw-power-val">50</span>
+        </div>
+        <button class="tw-fire-btn" id="tw-fire-btn" onclick="twFire()" disabled>FIRE</button>
+      </div>
+      <div class="tw-controls" id="tw-watch-area" style="display:none;">
+        <div class="tw-commentary">
+          <span class="tw-commentary-text" id="tw-commentary">Mosaic watches and judges silently.</span>
+        </div>
+      </div>
+      <div id="tw-win-overlay" style="display:none; position:absolute; inset:0; z-index:10; background:rgba(0,0,0,0.78); flex-direction:column; align-items:center; justify-content:center;">
+        <div class="tw-win-title" id="tw-win-title"></div>
+        <div class="tw-win-sub" id="tw-win-sub"></div>
+        <button class="tw-play-again-btn" onclick="twPlayAgain()">▶ PLAY AGAIN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BROWSER WAR MODAL ──────────────────────────── -->
+  <div id="browser-war-modal" style="display:none;">
+    <div class="bw-modal-box">
+      <div class="bw-modal-title-bar">
+        <span>⚔️ BROWSER WAR DETECTED</span>
+      </div>
+      <div class="bw-modal-body">
+        <div class="bw-modal-headline">⚔️ BROWSER WARS ⚔️</div>
+        <div class="bw-modal-sub">Two browsers. One desktop. Zero working stylesheets.</div>
+        <div class="bw-modal-lore">
+          In the late 1990s, Internet Explorer and Netscape Navigator fought for control of the web.
+          Microsoft bundled IE with Windows. Netscape responded with features. Courts ruled. Market shares shifted.
+          Hundreds of "Best viewed in Internet Explorer" banners were created. None of them helped.
+          The war ended. Both browsers lost. Firefox happened.
+        </div>
+        <div class="bw-modal-choices">
+          <button class="bw-choice-btn bw-choice-ie" onclick="startBrowserWar('ie')">
+            <span class="bw-cb-icon" style="font-style:italic;font-weight:900;color:#1055b8;font-family:'Arial Black',sans-serif;font-size:22px;">e</span>
+            <div class="bw-cb-info">
+              <div class="bw-cb-name">Fight for Internet Explorer</div>
+              <div class="bw-cb-desc">96% market share. Bundled with Windows. Convicted of antitrust violations. Still wins.</div>
+            </div>
+          </button>
+          <button class="bw-choice-btn bw-choice-ns" onclick="startBrowserWar('netscape')">
+            <span class="bw-cb-icon" style="font-weight:900;color:#7700bb;font-family:'Arial Black',sans-serif;">N</span>
+            <div class="bw-cb-info">
+              <div class="bw-cb-name">Fight for Netscape Navigator</div>
+              <div class="bw-cb-desc">Invented the commercial web. Sold to AOL. Gave birth to Firefox. Died with dignity.</div>
+            </div>
+          </button>
+          <button class="bw-choice-btn bw-choice-mosaic" onclick="startBrowserWar('mosaic')">
+            <span class="bw-cb-icon">🌐</span>
+            <div class="bw-cb-info">
+              <div class="bw-cb-name">Watch as NCSA Mosaic</div>
+              <div class="bw-cb-desc">The grandfather of both. Technically responsible for all of this. Retired in 1997.</div>
+            </div>
+          </button>
+        </div>
+        <div class="bw-modal-footer">This battle will be fought on a terrain of procedurally generated pixels. History may not repeat.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── CLIPPY BUBBLE (fixed above taskbar) ───────── -->
   <div id="clippy-bubble" style="display:none;">
     <div class="clippy-speech">
@@ -1583,5 +1759,8 @@
 <script src="js/ie-netscape.js"></script>
 <script src="js/screensaver.js"></script>
 <script src="js/bbs.js"></script>
+<script src="js/weatherbug.js"></script>
+<script src="js/gwbasic.js"></script>
+<script src="js/tankwars.js"></script>
 </body>
 </html>

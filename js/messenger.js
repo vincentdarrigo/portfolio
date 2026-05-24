@@ -191,6 +191,7 @@ let imLoginDone   = false;
 let imLoginTimers = [];
 let imHistory     = [];      // [{type, from, elements[], isClipy}]
 let imClippyVisible = false;
+let aimChatShown  = false;   // door creak fires when first AIM message arrives
 
 // ── UTILITY ───────────────────────────────────────────
 
@@ -287,7 +288,7 @@ function doAimLogin(onDone) {
   if (!screen) { onDone(); return; }
 
   screen.style.display = 'flex';
-  playSound('aim-door');
+  playSound('aim-welcome');   // jingle plays when YOU log in
 
   imAfter(600, () => {
     imTypeInField(userEl, 'xX_AOL4Lyfe97_Xx', 75, () => {
@@ -297,14 +298,14 @@ function doAimLogin(onDone) {
             btn.classList.add('im-btn-active');
             statusEl.textContent = 'Connecting to AOL...';
             imAfter(1600, () => {
-              playSound('aim-welcome');
               statusEl.textContent = 'Connected! Loading buddy list...';
               imAfter(1200, () => {
                 imFadeOut(screen, () => {
                   btn.classList.remove('im-btn-active');
                   statusEl.textContent = '';
                   userEl.value = ''; passEl.value = '';
-                  showImChatWindow('aim');
+                  // Don't open chat yet — door creak fires when buddy arrives
+                  aimChatShown = false;
                   onDone();
                 });
               });
@@ -505,6 +506,13 @@ function showImLine(idx) {
   const log = document.getElementById(bot.logId);
   if (!log) return;
 
+  // First AIM message: door creak as buddy "arrives", then open chat window
+  if (from === 'aim' && !aimChatShown) {
+    aimChatShown = true;
+    playSound('aim-door');
+    showImChatWindow('aim');
+  }
+
   const el = document.createElement('div');
   el.className = 'im-chat-msg';
   el.innerHTML = `<span class="im-chat-name" style="color:${bot.color}">${escHtml(bot.name)}:</span> ${escHtml(text)}`;
@@ -659,6 +667,7 @@ function replayMessenger() {
   imRunning       = false;
   imLoginDone     = false;
   imClippyVisible = false;
+  aimChatShown    = false;
 
   // Hide login screens
   ['aim-login','icq-login','yahoo-login'].forEach(id => {

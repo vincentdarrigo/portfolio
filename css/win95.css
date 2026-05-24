@@ -57,9 +57,16 @@
 
 #mobile-bsod a { color: #ffffff; text-decoration: underline; }
 
-@media (max-width: 800px) {
+/* Portrait mobile → show rotate BSOD, hide desktop */
+@media (max-width: 900px) and (orientation: portrait) {
   #mobile-bsod { display: block; }
   #desktop      { display: none; }
+}
+
+/* Landscape mobile → hide BSOD, show desktop */
+@media (max-width: 900px) and (orientation: landscape) {
+  #mobile-bsod { display: none !important; }
+  #desktop      { display: block !important; }
 }
 
 /* ── DESKTOP ─────────────────────────────────────── */

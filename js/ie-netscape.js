@@ -158,16 +158,45 @@ function dismissIEPopup() {
   if (popup) popup.style.display = 'none';
 }
 
-// ── BROWSER WAR TOAST ────────────────────────────────
+// ── BROWSER WAR FULL SEQUENCE ────────────────────────
+
+// Prevent re-triggering once per session
+let warSequenceStarted = false;
+
+// Timed trash-talk: each entry is { who, text, delay }
+// who = 'ie' updates #ie-status-text, 'ns' updates #netscape-status-text
+const WAR_SCRIPT = [
+  { who: 'ie', text: 'Wait… is that… Netscape Navigator?',                  delay: 0    },
+  { who: 'ns', text: 'Oh great. Internet Explorer. A participation trophy.', delay: 2200 },
+  { who: 'ie', text: 'At least I have 96% market share. You have regret.',   delay: 4600 },
+  { who: 'ns', text: 'You BOUGHT that share. Then a JUDGE took it away.',    delay: 7000 },
+  { who: 'ie', text: 'I render tables correctly. Can you say the same?',     delay: 9400 },
+  { who: 'ns', text: 'Our table rendering is a feature. It's called "art."', delay: 11800 },
+  { who: 'ie', text: 'Your CEO sold you to AOL for $4.2 billion. Ouch.',     delay: 14200 },
+  { who: 'ns', text: 'You were convicted of antitrust violations. We won.',  delay: 16600 },
+  { who: 'ie', text: 'I\'ll render your HTML wrong, but I\'ll RENDER IT.',   delay: 19000 },
+  { who: 'ns', text: 'You know what? Let\'s just settle this the old way.',  delay: 21400 },
+  { who: 'ie', text: 'AGREED. Meet me in the battlefield, Navigator.',       delay: 23800 },
+];
 
 function showBrowserWarToast() {
-  let toast = document.getElementById('browser-war-toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'browser-war-toast';
-    document.getElementById('desktop').appendChild(toast);
-  }
-  toast.style.display = 'block';
-  toast.textContent = '⚔️ Browser War detected. Grab popcorn.';
-  setTimeout(() => { if (toast) toast.style.display = 'none'; }, 5000);
+  if (warSequenceStarted) return;
+  warSequenceStarted = true;
+
+  WAR_SCRIPT.forEach(({ who, text, delay }) => {
+    setTimeout(() => {
+      const id  = who === 'ie' ? 'ie-status-text' : 'netscape-status-text';
+      const el  = document.getElementById(id);
+      if (el) el.textContent = '⚔️ ' + text;
+    }, delay);
+  });
+
+  // Show war modal after last line
+  const totalDelay = WAR_SCRIPT[WAR_SCRIPT.length - 1].delay + 2600;
+  setTimeout(twShowWarModal, totalDelay);
+}
+
+function twShowWarModal() {
+  const modal = document.getElementById('browser-war-modal');
+  if (modal) modal.style.display = 'flex';
 }
