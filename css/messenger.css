@@ -72,10 +72,15 @@
 .aim-skin-pass { letter-spacing: 2px; font-family: monospace; }
 .aim-skin-status {
   position: absolute;
-  top: 74.22%; left: 3.13%; width: 92.97%;
-  font-size: 10px; color: #003399;
+  top: calc(100% + 4px); left: 0; width: 100%;
+  font-size: 10px; color: #7fb7ff;
   font-family: Tahoma, Arial, sans-serif;
   min-height: 13px;
+  text-align: center;
+  background: rgba(0,0,0,0.72);
+  padding: 3px 6px;
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
 }
 .aim-skin-signonbtn {
   position: absolute;
@@ -131,10 +136,14 @@
 .yahoo-skin-pass { letter-spacing: 2px; font-family: monospace; }
 .yahoo-skin-status {
   position: absolute;
-  top: 80.73%; left: 5.47%; width: 89.06%;
-  font-size: 10px; color: #7b00b4;
+  top: calc(100% + 4px); left: 0; width: 100%;
+  font-size: 10px; color: #d9aaff;
   font-family: Tahoma, Arial, sans-serif;
   min-height: 13px; text-align: center;
+  background: rgba(0,0,0,0.72);
+  padding: 3px 6px;
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
 }
 .yahoo-skin-signinbtn {
   position: absolute;
@@ -182,6 +191,11 @@
 
 /* ICQ inner */
 .icq-titlebar { background: linear-gradient(to right, #1a9e1a, #00bb00) !important; }
+.icq-brand-label {
+  font-size: 11px; font-weight: 900; color: #007700;
+  font-family: "Arial Black", Impact, sans-serif;
+  margin-right: 3px; letter-spacing: -0.5px;
+}
 .icq-chat-header {
   background: #eeffee; padding: 4px 8px; font-size: 11px;
   display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #99cc99;
@@ -257,4 +271,3 @@
 
 .clippy-char { display: flex; flex-direction: column; align-items: center; font-size: 40px; line-height: 1; }
 .clippy-body { font-size: 48px; }
-.clippy-eyes { font-size: 20px; margin-top: -6px; }

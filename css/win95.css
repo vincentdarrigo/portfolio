@@ -1062,6 +1062,7 @@ body {
 #mine-board {
   display: grid;
   grid-template-columns: repeat(9, 18px);
+  grid-auto-rows: 18px;
   gap: 0;
   border-top:   3px solid var(--gray-dark);
   border-left:  3px solid var(--gray-dark);
@@ -2145,7 +2146,7 @@ body {
 #boot-overlay {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: url('../assets/images/gateway_logo_start.png') center/cover no-repeat #000;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -2297,28 +2298,40 @@ body {
   overflow: hidden;
 }
 
+#gateway-logo-splash {
+  position: absolute;
+  inset: 0;
+  background: url('../assets/images/gateway_logo_start.png') center/contain no-repeat #000;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  pointer-events: none;
+}
+
 .bios-screen {
-  padding: 18px 28px;
+  position: relative;
+  padding: 16px 24px;
   font-family: 'Courier New', Courier, monospace;
   font-size: 13px;
-  color: #c8c8c8;
-  line-height: 1.75;
+  color: #8bcfe8;
+  line-height: 1.8;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .bios-line { display: block; }
 
 .bios-header {
-  color: #fff;
-  font-size: 15px;
+  color: #ffffff;
+  font-size: 20px;
   font-weight: bold;
-  border-bottom: 1px solid #444;
-  padding-bottom: 5px;
-  margin-bottom: 2px;
+  letter-spacing: 2px;
+  margin: 4px 0 6px;
 }
 
-.bios-ok   { color: #22dd66; }
-.bios-warn { color: #ddcc22; }
-.bios-dim  { color: #888; }
+.bios-ok   { color: #8bcfe8; }
+.bios-warn { color: #e8e88b; }
+.bios-dim  { color: #557799; }
+.bios-gw   { color: #ffffff; font-size: 22px; letter-spacing: 3px; }
 
 /* ══════════════════════════════════════════════════════
    WINDOWS 95 LOGIN SCREEN

@@ -3,6 +3,8 @@
    Vince Darrigo / The Mothership
 ═══════════════════════════════════════════════════════ */
 
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 /* ── OUTER WINDOW ── */
 #window-winamp.win95-window {
   padding: 0;
@@ -16,14 +18,14 @@
 }
 
 /* ── SKIN IMAGE CONTAINER ── */
-/* New image: 1122×1402 — displayed at 374×467 (exactly 1/3 scale)
-   Panels: main player 0-177px | EQ 177-313px | playlist 313-467px */
+/* Asset: winamp_4x.png (2468×3140) displayed at 374×467.
+   Overlay coords derived from 617×785 base × (374/617, 467/785) = ×0.606/×0.595 */
 .wp-skin {
   position: relative;
   width: 374px;
   height: 467px;
-  background: url('../assets/images/winamp.png') no-repeat top left / 374px 467px;
-  cursor: default;
+  background: url('../assets/images/winamp_4x.png') no-repeat top left / 374px 467px;
+  cursor: pointer;
   overflow: hidden;
 }
 
@@ -71,32 +73,37 @@
 }
 
 /* ── LED TIME DISPLAY ── */
-/* Standard WinAmp: x=36,y=26 → ×1.36 */
+/* Clock area: 617×785 base x=96,y=49,w=130,h=42 → display x=58,y=29,w=79,h=25 */
 #wp-time-cur {
   position: absolute;
-  top: 30px;
-  left: 42px;
-  color: #00ff41;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
-  font-weight: bold;
+  top: 29px;
+  left: 58px;
+  width: 79px;
+  height: 25px;
+  color: #00f6ff;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 22px;
   letter-spacing: 2px;
-  text-shadow: 0 0 8px #00ff41, 0 0 3px #00cc00;
-  line-height: 1;
+  text-shadow: 0 0 8px #00f6ff, 0 0 3px #00aacc;
+  line-height: 25px;
+  text-align: center;
   pointer-events: none;
-  min-width: 54px;
+  font-variant-numeric: tabular-nums;
 }
 
-/* ── REMAINING TIME ── */
+/* ── TOTAL DURATION (below clock) ── */
 #wp-time-dur {
   position: absolute;
-  top: 56px;
-  left: 42px;
-  color: #005a00;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 8px;
-  letter-spacing: 0.5px;
+  top: 52px;
+  left: 58px;
+  width: 79px;
+  color: #006688;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-align: center;
   pointer-events: none;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── STATUS DOTS (play/pause/stop LED indicators) ── */
@@ -118,14 +125,13 @@
 }
 
 /* ── SONG TITLE MARQUEE ── */
-/* winamp.png natural: 1122×1402 | display: 374×467
-   ticker rect: x=120,y=87,w=735,h=58 → 10.70%/6.21%/65.51%/4.14% */
+/* Ticker: 617×785 base x=243,y=50,w=359,h=32 → display x=147,y=30,w=218,h=19 */
 .wp-ov-marquee {
   position: absolute;
-  top: 29px;    /* 6.21% × 467 */
-  left: 40px;   /* 10.70% × 374 */
-  width: 245px; /* 65.51% × 374 */
-  height: 19px; /* 4.14% × 467 */
+  top: 30px;
+  left: 147px;
+  width: 218px;
+  height: 19px;
   overflow: hidden;
 }
 #wp-title-wrap {
@@ -147,17 +153,9 @@
   pointer-events: none;
 }
 
-/* ── VISUALIZER CANVAS ── */
-/* Standard: x=74,y=25,w=75,h=16 → ×1.36 */
+/* ── VISUALIZER CANVAS — hidden until coordinates confirmed for new skin ── */
 .wp-ov-viz {
-  position: absolute;
-  top: 30px;
-  left: 100px;
-  width: 102px;
-  height: 22px;
-  display: block;
-  opacity: 0.85;
-  pointer-events: none;
+  display: none;
 }
 
 /* ── SEEK BAR ── */
@@ -278,15 +276,13 @@
 [data-band="16k"]    { left: 339px; }
 
 /* ── PLAYLIST PANEL OVERLAYS ── */
-/* winamp.png natural: 1122×1402 | display: 374×467
-   playlist rect: x=42,y=958,w=975,h=282 → 3.74%/68.33%/86.90%/20.11% */
-
+/* Positioned in lower third of skin — nudge top/height once skin is verified visually */
 .wp-ov-playlist {
   position: absolute;
-  top: 319px;   /* 68.33% × 467 */
-  left: 14px;   /* 3.74% × 374 */
-  width: 325px; /* 86.90% × 374 */
-  height: 94px; /* 20.11% × 467 */
+  top: 300px;
+  left: 10px;
+  width: 354px;
+  height: 130px;
   overflow-y: auto;
   background: transparent;
   scrollbar-width: thin;

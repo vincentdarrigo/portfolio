@@ -20,6 +20,7 @@
      GATEWAY 2000 BIOS SCREEN
 ═══════════════════════════════════════════════════ -->
 <div id="gateway-overlay" style="position:fixed;inset:0;background:#000;z-index:10001;">
+  <div id="gateway-logo-splash"></div>
   <div id="bios-text" class="bios-screen"></div>
 </div>
 
@@ -1066,7 +1067,7 @@
         <button class="win95-btn im-ctrl-btn" onclick="imBack()"          title="Back one message">◀</button>
         <button class="win95-btn im-ctrl-btn" onclick="imTogglePause()"   title="Play / Pause" id="im-btn-playpause">▶</button>
         <button class="win95-btn im-ctrl-btn" onclick="imForward()"       title="Step forward">▶▶</button>
-        <button class="win95-btn im-ctrl-btn" onclick="replayMessenger()" title="Replay from start">↺</button>
+        <button class="win95-btn im-ctrl-btn" id="im-btn-replay" onclick="replayMessenger()" title="Replay from start">↺</button>
       </div>
       <div class="im-ctrl-btns">
         <button class="win95-btn im-ctrl-btn" onclick="leaveChat()"       title="Leave the chat" style="flex:1;">🚪 Leave</button>
@@ -1080,9 +1081,9 @@
 
   <!-- ── WINDOW: WINAMP ──────────────────────────────── -->
   <div class="win95-window" id="window-winamp" style="display:none; left:calc(100vw - 390px); top:10px;">
-    <div class="wp-skin">
+    <div class="wp-skin" onclick="wpSkinClick(event)" title="Click to play / pause">
 
-      <!-- Transparent titlebar over image's title bar — handles drag + close/min -->
+      <!-- Drag + close overlay over image's title bar -->
       <div class="win95-titlebar" data-win="winamp">
         <div class="win95-controls">
           <button class="win95-ctrl" onclick="minimizeWindow('winamp')">_</button>
@@ -1090,13 +1091,12 @@
         </div>
       </div>
 
-      <!-- ── MAIN PLAYER OVERLAYS ── -->
-
-      <!-- LED time display -->
-      <div id="wp-time-cur" class="wp-ov">0:00</div>
+      <!-- Elapsed time (big) -->
+      <div id="wp-time-cur" class="wp-ov">00:00</div>
+      <!-- Total duration (small, below clock) -->
       <div id="wp-time-dur" class="wp-ov"></div>
 
-      <!-- Play/pause/stop status dots -->
+      <!-- Play/pause/stop status LEDs -->
       <div id="wp-dot-play"  class="wp-sdot"></div>
       <div id="wp-dot-pause" class="wp-sdot"></div>
       <div id="wp-dot-stop"  class="wp-sdot"></div>
@@ -1108,84 +1108,15 @@
         </div>
       </div>
 
-      <!-- Frequency visualizer canvas -->
-      <canvas id="wp-viz-canvas" class="wp-ov wp-ov-viz" height="14"></canvas>
-
-      <!-- Seek bar -->
-      <div class="wp-ov wp-ov-seek" id="wp-seek-bar" onclick="wpSeekClick(event)">
+      <!-- Seek bar: visual progress + click to seek -->
+      <div class="wp-ov wp-ov-seek" id="wp-seek-bar"
+           onclick="wpSeekClick(event); event.stopPropagation()">
         <div id="wp-seek-fill" class="wp-seek-fill-ov"></div>
         <div id="wp-seek-knob" class="wp-seek-knob-ov"></div>
       </div>
 
-      <!-- Volume slider -->
-      <input type="range" class="wp-ov wp-ov-vol" id="wp-vol-slider"
-             min="0" max="100" value="75" oninput="wpSetVol(this.value)">
-
-      <!-- Balance slider -->
-      <input type="range" class="wp-ov wp-ov-bal" min="-50" max="50" value="0">
-
-      <!-- Hidden file picker shared across Add buttons -->
-      <input type="file" id="wp-file-input" accept="audio/*" multiple style="display:none"
-             onchange="wpLoadFiles(this.files)">
-
-      <!-- Transport buttons (transparent overlays over image buttons) -->
-      <button class="wp-ov-tbtn wp-t-prev"  onclick="wpPrev()"        title="Previous"></button>
-      <button class="wp-ov-tbtn wp-t-rew"   onclick="wpRew()"         title="Rewind 5s"></button>
-      <button class="wp-ov-tbtn wp-t-play"  id="wp-btn-play"
-              onclick="wpInitAudioCtx();wpTogglePlay()"               title="Play/Pause"></button>
-      <button class="wp-ov-tbtn wp-t-paus"  onclick="wpPauseOnly()"   title="Pause"></button>
-      <button class="wp-ov-tbtn wp-t-stop"  onclick="wpStop()"        title="Stop"></button>
-      <button class="wp-ov-tbtn wp-t-ffw"   onclick="wpFfw()"         title="Forward 5s"></button>
-      <button class="wp-ov-tbtn wp-t-next"  onclick="wpNext()"        title="Next"></button>
-      <button class="wp-ov-tbtn wp-t-eject"
-              onclick="document.getElementById('wp-file-input').click()" title="Open files"></button>
-
-      <!-- ── EQ PANEL OVERLAYS (positioned over EQ section of the image, y=144-288) ── -->
-
-      <!-- EQ close / ON / AUTO button overlays -->
-      <button class="wp-ov-tbtn wp-eq-x"    onclick="wpToggleEq()"       title="Close EQ"></button>
-      <button class="wp-ov-tbtn wp-eq-on"   id="wp-eq-on-btn"
-              onclick="wpToggleEqOn()"                                    title="EQ On"></button>
-      <button class="wp-ov-tbtn wp-eq-auto" id="wp-eq-auto-btn"
-              onclick="wpToggleEqAuto()"                                  title="EQ Auto"></button>
-      <button class="wp-ov-tbtn wp-eq-prs"  title="Presets"></button>
-
-      <!-- EQ sliders: PREAMP + 10 frequency bands -->
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="preamp"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="60"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="170"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="310"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="600"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="1k"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="3k"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="6k"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="12k"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="14k"
-             min="0" max="100" value="50">
-      <input type="range" class="wp-ov wp-ov-eq-sl" data-band="16k"
-             min="0" max="100" value="50">
-
-      <!-- ── PLAYLIST OVERLAYS (positioned over playlist section, y=288-432) ── -->
-
+      <!-- Playlist — click track 1 seven times for easter egg 🥚 -->
       <div id="wp-playlist" class="wp-ov wp-ov-playlist"></div>
-
-      <!-- Playlist footer buttons -->
-      <button class="wp-ov-pl-btn wp-pl-add"
-              onclick="document.getElementById('wp-file-input').click()" title="Add"></button>
-      <button class="wp-ov-pl-btn wp-pl-del"
-              onclick="if(wpAudio)wpStop();wpTracks=[];wpCurrentIdx=-1;wpRenderPlaylist();wpSetTitle('*** WINAMP ***')"
-              title="Clear"></button>
-      <button class="wp-ov-pl-btn wp-pl-sel"  title="Select"></button>
-      <button class="wp-ov-pl-btn wp-pl-misc" title="Misc"></button>
 
     </div>
   </div>
@@ -1434,12 +1365,13 @@
   <div class="win95-window im-chat-win" id="window-icq-chat" style="display:none; left:220px; top:120px; width:300px;">
     <div class="win95-titlebar icq-titlebar" data-win="icq-chat">
       <span class="win95-title-icon">🌸</span>
-      <span class="win95-title-text">UhOh_OG</span>
+      <span class="win95-title-text">UhOh_OG — ICQ</span>
       <div class="win95-controls">
         <button class="win95-ctrl" onclick="closeImChatWindow('icq')">✕</button>
       </div>
     </div>
     <div class="icq-chat-header">
+      <span class="icq-brand-label">ICQ</span>
       <span class="icq-flower-logo">🌸</span>
       <span class="icq-chat-name">UhOh_OG</span>
       <span class="icq-online-badge">● online</span>
@@ -1758,7 +1690,6 @@
     </div>
     <div class="clippy-char">
       <div class="clippy-body">📎</div>
-      <div class="clippy-eyes">👀</div>
     </div>
   </div>
 

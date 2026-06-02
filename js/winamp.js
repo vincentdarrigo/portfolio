@@ -25,8 +25,10 @@ let wpScrollX      = 0;
 
 let wpShuffle  = false;
 let wpRepeat   = false;
-let wpEqOpen   = false;
-let wpPlOpen   = true;
+
+// 7-click llama easter egg
+let wpLlamaClicks = 0;
+let wpLlamaTimer  = null;
 
 // Web Audio API visualizer
 let wpAudioCtx  = null;
@@ -54,24 +56,17 @@ function initWinamp() {
   wpTracks = WP_PRELOADED.map(t => ({ ...t, type: 'preloaded' }));
   wpRenderPlaylist();
   wpSetTitle('*** WINAMP ***');
-  wpStartViz();
 
-  if (!wpLlamaPlayed) {
-    wpLlamaPlayed = true;
-    const llama = document.getElementById('snd-winamp-llama');
-    if (llama) {
-      llama.volume = wpAudio.volume;
-      llama.currentTime = 0;
-      llama.play().catch(() => {});
-    }
-  }
-
-  // Auto-load first track (but don't play yet — let user click)
   if (wpTracks.length > 0) {
     wpCurrentIdx = 0;
     wpAudio.src  = wpTracks[0].src;
     wpStartScroll(wpTracks[0].name);
     wpRenderPlaylist();
+    // Auto-play — window open is a user gesture so this should be allowed
+    wpInitAudioCtx();
+    wpAudio.play()
+      .then(() => { wpPlaying = true; wpUpdateBtn(true); wpSetPlayState('play'); })
+      .catch(() => { wpSetTitle('▶ Click to play'); });
   }
 }
 
@@ -191,6 +186,11 @@ function wpSetVol(val) {
 
 // ── SEEK ──────────────────────────────────────────────
 
+function wpFmtTime(sec) {
+  const s = Math.floor(sec || 0);
+  return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+}
+
 function wpUpdateSeek() {
   if (!wpAudio) return;
   const pct = wpAudio.duration ? wpAudio.currentTime / wpAudio.duration : 0;
@@ -200,17 +200,13 @@ function wpUpdateSeek() {
   if (knob) knob.style.left = (pct * 100) + '%';
 
   const cur = document.getElementById('wp-time-cur');
-  if (cur) {
-    const s = Math.floor(wpAudio.currentTime);
-    cur.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
-  }
+  if (cur) cur.textContent = wpFmtTime(wpAudio.currentTime);
 }
 
 function wpUpdateDur() {
+  if (!wpAudio) return;
   const dur = document.getElementById('wp-time-dur');
-  if (!dur || !wpAudio) return;
-  const s = Math.floor(wpAudio.duration || 0);
-  dur.textContent = '-' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  if (dur) dur.textContent = wpFmtTime(wpAudio.duration);
 }
 
 function wpSeekClick(e) {
@@ -218,6 +214,33 @@ function wpSeekClick(e) {
   const bar = e.currentTarget;
   const pct = Math.max(0, Math.min(1, (e.clientX - bar.getBoundingClientRect().left) / bar.offsetWidth));
   wpAudio.currentTime = pct * wpAudio.duration;
+}
+
+// ── SKIN CLICK (play/pause anywhere on the skin) ─────
+
+function wpSkinClick(e) {
+  // Let titlebar, seek bar, and playlist handle their own events
+  if (e.target.closest('.win95-titlebar') ||
+      e.target.closest('#wp-seek-bar') ||
+      e.target.closest('.wp-ov-playlist')) return;
+  wpInitAudioCtx();
+  wpTogglePlay();
+}
+
+// ── LLAMA EASTER EGG (click track 1 seven times) ─────
+
+function wpLlamaClick(e) {
+  e.stopPropagation();
+  wpLlamaClicks++;
+  clearTimeout(wpLlamaTimer);
+  if (wpLlamaClicks >= 7) {
+    wpLlamaClicks = 0;
+    const llama = document.getElementById('snd-winamp-llama');
+    if (llama) { llama.currentTime = 0; llama.play().catch(() => {}); }
+    if (typeof foundEgg === 'function') foundEgg('winamp-llama');
+  } else {
+    wpLlamaTimer = setTimeout(() => { wpLlamaClicks = 0; }, 4000);
+  }
 }
 
 // ── DISPLAY / UI ──────────────────────────────────────
@@ -393,7 +416,7 @@ function wpRenderPlaylist() {
   const list = document.getElementById('wp-playlist');
   if (!list) return;
   if (!wpTracks.length) {
-    list.innerHTML = '<div class="wp-no-tracks">No tracks — click ▲ to open files</div>';
+    list.innerHTML = '<div class="wp-no-tracks">No tracks loaded</div>';
     return;
   }
   list.innerHTML = '';
@@ -401,7 +424,13 @@ function wpRenderPlaylist() {
     const row = document.createElement('div');
     row.className = 'wp-track' + (i === wpCurrentIdx ? ' wp-track-active' : '');
     row.innerHTML = `<span class="wp-tracknum">${String(i + 1).padStart(2, '0')}.</span> ${wpEsc(t.name)}`;
-    row.ondblclick = () => wpPlay(i);
+    if (i === 0) {
+      // Track 1: single click counts toward llama easter egg; double-click plays
+      row.onclick    = (e) => wpLlamaClick(e);
+      row.ondblclick = (e) => { e.stopPropagation(); wpPlay(0); };
+    } else {
+      row.ondblclick = () => wpPlay(i);
+    }
     list.appendChild(row);
   });
 }

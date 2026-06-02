@@ -177,7 +177,17 @@ const IM_SCRIPT = [
   { from: 'icq',    delay: 6000,  text: 'Do we have to apologize?' },
   { from: 'aim',    delay: 5500,  text: 'Absolutely not.' },
   { from: 'clippy', delay: 7000,  text: 'I\'ll take it.' },
-  { from: 'system', delay: 5000,  text: '— The windows settle. The taskbar blinks. Somewhere, a modem screams. —' },
+  { from: 'aim',    delay: 5000,  text: 'Vince has that covered.' },
+  { from: 'yahoo',  delay: 5500,  text: 'Pretty sure he has everything covered without your assistance.' },
+  { from: 'icq',    delay: 6000,  text: 'In fact, it appears he found the last place you could be needed, and you\'re STILL not needed.' },
+  { from: 'aim',    delay: 5500,  text: 'Don\'t you have some coupons to keep together somewhere?' },
+  { from: 'clippy', delay: 8000,  text: 'Fascinating. Social media really has done a thorough job of making even relics from the digital past just as combative as everyone online. Truly humanity\'s great equalizer.' },
+  { from: 'clippy-leave', delay: 5000 },
+  { from: 'system', delay: 2000,  text: '— Clippy slides back into the margins, muttering. The chat windows hum warmly. Welcome to the portfolio. —' },
+  { from: 'aim',    delay: 4000,  text: 'Alright. Explore everything. We\'ll be here if you need us.' },
+  { from: 'yahoo',  delay: 4500,  text: 'Have fun! The projects are totally worth a click. 💜' },
+  { from: 'icq',    delay: 4000,  text: 'You know where to find us.' },
+  { from: 'show-end', delay: 2500 },
 ];
 
 // ── STATE ─────────────────────────────────────────────
@@ -503,6 +513,41 @@ function showImLine(idx) {
     return;
   }
 
+  if (from === 'clippy-leave') {
+    const bubble = document.getElementById('clippy-bubble');
+    if (bubble) {
+      bubble.classList.remove('clippy-slide-in');
+      imAfter(500, () => {
+        bubble.style.display = 'none';
+        imClippyVisible = false;
+      });
+    }
+    imHistory.push({ type: 'clippy-leave', from, elements: [] });
+    return;
+  }
+
+  if (from === 'show-end') {
+    imRunning  = false;
+    imUserLeft = true;
+    imSetStatus('💬 Standby');
+    const replayBtn = document.getElementById('im-btn-replay');
+    if (replayBtn) replayBtn.style.display = 'none';
+    // Mark chat windows as open so they appear in taskbar after minimizing
+    ['aim-chat', 'icq-chat', 'yahoo-chat'].forEach(id => {
+      const el = document.getElementById('window-' + id);
+      if (el && el.style.display !== 'none') {
+        if (windowState && windowState[id]) windowState[id].open = true;
+      }
+    });
+    // Stagger-minimize: chats then control panel
+    imAfter(400,  () => { if (typeof minimizeWindow === 'function') minimizeWindow('aim-chat');   });
+    imAfter(900,  () => { if (typeof minimizeWindow === 'function') minimizeWindow('icq-chat');   });
+    imAfter(1400, () => { if (typeof minimizeWindow === 'function') minimizeWindow('yahoo-chat'); });
+    imAfter(2200, () => { if (typeof minimizeWindow === 'function') minimizeWindow('messenger');  });
+    imHistory.push({ type: 'show-end', from, elements: [] });
+    return;
+  }
+
   const bot = IM_BOTS[from];
   const log = document.getElementById(bot.logId);
   if (!log) return;
@@ -620,6 +665,22 @@ function imBack() {
         }
       }
     }
+  } else if (item.type === 'clippy-leave') {
+    // Re-show Clippy with the last message it had
+    for (let i = imCurrentIdx - 1; i >= 0; i--) {
+      if (IM_SCRIPT[i].from === 'clippy') {
+        showClippyBubble(IM_SCRIPT[i].text);
+        break;
+      }
+    }
+  } else if (item.type === 'show-end') {
+    // Undo standby: restore chat windows and replay button
+    imUserLeft = false;
+    const replayBtn = document.getElementById('im-btn-replay');
+    if (replayBtn) replayBtn.style.display = '';
+    ['aim-chat', 'icq-chat', 'yahoo-chat'].forEach(id => {
+      if (typeof restoreWindow === 'function') restoreWindow(id);
+    });
   }
   updateImProgress();
 }
@@ -699,6 +760,10 @@ function replayMessenger() {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
+
+  // Restore replay button (may have been hidden by show-end)
+  const replayBtn = document.getElementById('im-btn-replay');
+  if (replayBtn) replayBtn.style.display = '';
 
   // Hide Clippy
   hideClippyBubble();

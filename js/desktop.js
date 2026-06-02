@@ -26,6 +26,9 @@ const WINDOW_TITLES = {
   snake:            '🐍 Snake',
   tetris:           '🎮 Tetris',
   messenger:        '💬 Buddy Chat',
+  'aim-chat':       '🏃 AIM — xX_AOL4Lyfe97_Xx',
+  'icq-chat':       '🌸 ICQ — UhOh_OG',
+  'yahoo-chat':     '🟣 Yahoo! — Yahoozup',
   tamagotchi:       '🥚 Tamagotchi',
   winamp:           '🎵 WinAmp',
   'chat-history':   '📜 Conversation History',
@@ -135,46 +138,74 @@ function runGatewayBoot() {
   const overlay = document.getElementById('gateway-overlay');
   if (!overlay) { showWin95Login(); return; }
 
+  const splash = document.getElementById('gateway-logo-splash');
   const screen = document.getElementById('bios-text');
-  if (!screen) { showWin95Login(); return; }
 
+  // ── Phase 1: Gateway logo splash (fade in → hold → fade out) ─────────────
+  const SPLASH_FADE_IN  = 900;   // ms to fade in
+  const SPLASH_HOLD     = 1800;  // ms to hold
+  const SPLASH_FADE_OUT = 600;   // ms to fade out
+  const BIOS_START      = SPLASH_FADE_IN + SPLASH_HOLD + SPLASH_FADE_OUT + 100;
+
+  if (splash) {
+    setTimeout(() => { splash.style.opacity = '1'; }, 80);
+    setTimeout(() => {
+      splash.style.transition = 'opacity 0.6s ease';
+      splash.style.opacity = '0';
+    }, SPLASH_FADE_IN + SPLASH_HOLD);
+    setTimeout(() => { splash.style.display = 'none'; }, SPLASH_FADE_IN + SPLASH_HOLD + 650);
+  }
+
+  // ── Phase 2: BIOS POST text ───────────────────────────────────────────────
   const lines = [
-    { delay: 80,   cls: 'bios-header', html: '🐄&nbsp; GATEWAY 2000 &nbsp;🐄&nbsp;&nbsp; BIOS v2.0.1 &nbsp;🐄' },
-    { delay: 20,   cls: 'bios-dim',    text: 'Copyright © 1996 Gateway 2000, Inc. — "Any way you want it."' },
-    { delay: 500,  cls: '',            text: '' },
-    { delay: 200,  cls: '',            text: 'CPU : Intel® Pentium® 133MHz' },
-    { delay: 400,  cls: 'bios-ok',     text: 'Memory Test : 65536K OK' },
-    { delay: 350,  cls: '',            text: '' },
-    { delay: 200,  cls: '',            text: 'Primary Master  : QUANTUM BIGFOOT 4.3GB' },
-    { delay: 350,  cls: '',            text: 'Primary Slave   : GATEWAY 4X CD-ROM' },
-    { delay: 300,  cls: 'bios-dim',    text: 'USB Controller  : Not detected.  (This is 1996. Relax.)' },
-    { delay: 500,  cls: '',            text: '' },
-    { delay: 250,  cls: '',            text: 'Initializing Plug and Play devices...' },
-    { delay: 350,  cls: 'bios-dim',    text: 'PCI Bus v2.1  —  IRQ Steering Enabled  —  Windows 95 support: YES' },
-    { delay: 600,  cls: '',            text: '' },
-    { delay: 300,  cls: 'bios-warn',   text: 'Starting Windows 95...' },
+    { delay: 0,   cls: 'bios-dim',  text: 'AMI BIOS (C)1992 American Megatrends Inc.' },
+    { delay: 0,   cls: 'bios-dim',  text: 'BIOS Version 1.00.10.BR0T' },
+    { delay: 350, cls: '',          text: '' },
+    { delay: 0,   cls: 'bios-gw',   html: 'G A T E W A Y 2 0 0 0' },
+    { delay: 350, cls: '',          text: '' },
+    { delay: 150, cls: '',          text: 'Pentium (TM) Processor 100MHz' },
+    { delay: 420, cls: '',          text: '' },
+    { delay: 0,   cls: '',          text: '0081920 KB' },
+    { delay: 450, cls: '',          text: '' },
+    { delay: 0,   cls: '',          text: 'Press <F1> Key if you want to run SETUP' },
+    { delay: 500, cls: '',          text: '' },
+    { delay: 0,   cls: 'bios-ok',   text: 'Keyboard.....Detected' },
+    { delay: 280, cls: 'bios-ok',   text: 'Mouse........Detected' },
+    { delay: 500, cls: '',          text: '' },
+    { delay: 0,   cls: '',          text: 'Hard Disk 0 Installed  QUANTUM FIREBALL ST3.2A' },
+    { delay: 280, cls: 'bios-dim',  text: 'ATAPI Device Installed  GATEWAY 4X CD-ROM' },
+    { delay: 500, cls: '',          text: '' },
+    { delay: 0,   cls: 'bios-warn', text: 'Starting Windows 95...' },
+    { delay: 300, cls: 'bios-dim',  text: '_' },
   ];
 
-  let t = 0;
-  lines.forEach(line => {
-    t += line.delay;
-    setTimeout(() => {
-      const el = document.createElement('div');
-      el.className = 'bios-line' + (line.cls ? ' ' + line.cls : '');
-      if (line.html) el.innerHTML = line.html;
-      else el.textContent = line.text;
-      screen.appendChild(el);
-    }, t);
-  });
+  if (screen) {
+    // Reveal the text container
+    setTimeout(() => { screen.style.opacity = '1'; }, BIOS_START);
 
-  // Fade out BIOS → show login (show login first so there's no flash of desktop)
-  t += 1000;
-  setTimeout(() => {
-    showWin95Login();
-    overlay.style.transition = 'opacity 0.5s';
-    overlay.style.opacity = '0';
-    setTimeout(() => { overlay.style.display = 'none'; }, 520);
-  }, t);
+    let t = BIOS_START;
+    lines.forEach(line => {
+      t += line.delay;
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'bios-line' + (line.cls ? ' ' + line.cls : '');
+        if (line.html) el.innerHTML = line.html;
+        else el.textContent = line.text;
+        screen.appendChild(el);
+      }, t);
+    });
+
+    // Fade out BIOS → reveal Win95 login
+    t += 1200;
+    setTimeout(() => {
+      showWin95Login();
+      overlay.style.transition = 'opacity 0.5s';
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; }, 540);
+    }, t);
+  } else {
+    setTimeout(() => { showWin95Login(); overlay.style.display = 'none'; }, BIOS_START);
+  }
 }
 
 function showWin95Login() {

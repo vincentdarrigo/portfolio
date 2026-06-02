@@ -18,11 +18,13 @@ let mineTimer     = 0;
 let mineTimerInt  = null;
 let mineRevealed  = 0;
 let mineFlagged   = 0;
+let mineCurrentDifficulty = 'beginner';
 
 // ── INIT ──────────────────────────────────────────────
 
 function initMinesweeper(difficulty) {
-  const cfg = DIFFICULTIES[difficulty] || DIFFICULTIES.beginner;
+  if (difficulty) mineCurrentDifficulty = difficulty;
+  const cfg = DIFFICULTIES[mineCurrentDifficulty] || DIFFICULTIES.beginner;
   mineRows  = cfg.rows;
   mineCols  = cfg.cols;
   mineCount = cfg.mines;
