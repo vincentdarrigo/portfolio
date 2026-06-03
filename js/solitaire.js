@@ -234,85 +234,96 @@ function checkSolWin() {
 }
 
 function startSolWinAnim() {
-  const game = document.getElementById('sol-game');
-  if (!game) return;
-
+  // Full-viewport canvas — cards escape the window and bounce across the whole screen
   const canvas = document.createElement('canvas');
-  canvas.width  = game.scrollWidth  || 540;
-  canvas.height = game.scrollHeight || 400;
-  canvas.style.cssText = 'position:absolute;top:0;left:0;z-index:99;pointer-events:none;';
-  game.appendChild(canvas);
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;z-index:9000;pointer-events:none;';
+  document.body.appendChild(canvas);
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
-  const CW = 42, CH = 58;
+  const CW = 46, CH = 64; // slightly larger cards
+
+  // Spawn from where the foundations are (top-right of the solitaire window)
+  const solWin = document.getElementById('window-solitaire');
+  const rect   = solWin ? solWin.getBoundingClientRect() : { right: W, top: 80 };
+  const spawnX = rect.right - 80;
+  const spawnY = rect.top  + 80;
 
   const SUITS = ['♠','♥','♦','♣'];
-  const RANKS = ['A','K','Q','J','10','9','8','7'];
+  const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
   const isRed = s => s === '♥' || s === '♦';
 
-  // Spawn cards one at a time from bottom, like the real Win95 animation
   const cards = [];
   let spawnIdx = 0;
 
   function spawnCard() {
-    if (spawnIdx >= 26) return;
-    const suit  = SUITS[spawnIdx % 4];
-    const rank  = RANKS[spawnIdx % 8];
+    const suit = SUITS[spawnIdx % 4];
+    const rank = RANKS[spawnIdx % 13];
+    spawnIdx++;
+    // Shoot leftward + upward in a big arc, like the real animation
     cards.push({
       rank, suit,
-      x: W / 2 - CW / 2 + (Math.random() - 0.5) * 60,
-      y: H - CH,
-      vx: (Math.random() - 0.5) * 10,
-      vy: -(14 + Math.random() * 10),
-      bounces: 0,
+      x: spawnX,
+      y: spawnY,
+      vx: -(8 + Math.random() * 10),          // always shoots left
+      vy: -(18 + Math.random() * 10),          // big upward launch
     });
-    spawnIdx++;
   }
 
   let t = 0;
   function frame() {
     t++;
-    if (t % 10 === 0) spawnCard(); // new card every 10 frames
+    if (t % 7 === 0 && spawnIdx < 52) spawnCard();
 
     ctx.clearRect(0, 0, W, H);
 
     cards.forEach(c => {
-      c.vy += 0.5;
+      c.vy += 0.65;  // gravity
       c.x  += c.vx;
       c.y  += c.vy;
 
-      if (c.x < 0)           { c.x = 0;       c.vx =  Math.abs(c.vx); }
-      else if (c.x + CW > W) { c.x = W - CW;  c.vx = -Math.abs(c.vx); }
+      // Bounce off left/right edges
+      if (c.x < 0)           { c.x = 0;       c.vx =  Math.abs(c.vx) * 0.85; }
+      else if (c.x + CW > W) { c.x = W - CW;  c.vx = -Math.abs(c.vx) * 0.85; }
 
+      // Bounce off bottom — dampen each bounce (looks just like the screenshot)
       if (c.y + CH >= H) {
-        c.y = H - CH;
-        c.vy = -Math.abs(c.vy) * 0.68;
-        c.vx *= 0.95;
-        c.bounces++;
+        c.y  = H - CH;
+        c.vy = -Math.abs(c.vy) * 0.72;
+        c.vx *= 0.92;
       }
 
-      // Card face
+      // Draw card with shadow for depth
+      ctx.shadowColor   = 'rgba(0,0,0,0.35)';
+      ctx.shadowBlur    = 5;
+      ctx.shadowOffsetX = 2;
+      ctx.shadowOffsetY = 3;
       ctx.fillStyle = '#fff';
       ctx.fillRect(c.x, c.y, CW, CH);
-      ctx.strokeStyle = '#bbb';
+      ctx.shadowColor = 'transparent';
+      ctx.strokeStyle = '#ccc';
       ctx.lineWidth = 1;
       ctx.strokeRect(c.x, c.y, CW, CH);
 
-      ctx.fillStyle = isRed(c.suit) ? '#c00' : '#000';
-      ctx.font = 'bold 11px Arial';
-      ctx.fillText(`${c.rank}${c.suit}`, c.x + 3, c.y + 13);
+      ctx.fillStyle = isRed(c.suit) ? '#cc0000' : '#111';
+      ctx.font = 'bold 12px Arial';
+      ctx.fillText(`${c.rank}${c.suit}`, c.x + 3, c.y + 14);
       ctx.save();
       ctx.translate(c.x + CW, c.y + CH);
       ctx.rotate(Math.PI);
-      ctx.fillText(`${c.rank}${c.suit}`, 3, 13);
+      ctx.fillText(`${c.rank}${c.suit}`, 3, 14);
       ctx.restore();
     });
 
-    if (t < 480) requestAnimationFrame(frame);
+    if (t < 600) requestAnimationFrame(frame);
     else canvas.remove();
   }
 
   requestAnimationFrame(frame);
+
+  // Trigger the easter egg
+  if (typeof foundEgg === 'function') foundEgg('sol-cascade');
 }
 
 // ── RENDER ────────────────────────────────────────────

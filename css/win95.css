@@ -2092,6 +2092,37 @@ body {
 /* gameboy.png natural: 941×1672 | display: 380×675
    fullLCD rect: x=208,y=258,w=504,h=455 → 22.10%/15.43%/53.56%/27.21% */
 #window-tetris .win95-content { padding: 0; }
+/* ── TETRIS WINDOW — transparent titlebar overlay like WinAmp ── */
+#window-tetris.win95-window {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: 4px 6px 22px rgba(0,0,0,0.75);
+  width: auto;
+  min-width: 0;
+  overflow: visible;
+  user-select: none;
+}
+#window-tetris .win95-titlebar {
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 14px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 2px !important;
+  box-shadow: none !important;
+  z-index: 20;
+  display: flex !important;
+  align-items: center;
+}
+#window-tetris .win95-controls { margin-left: auto; display: flex; gap: 1px; }
+#window-tetris .win95-ctrl {
+  width: 14px; height: 11px;
+  background: transparent !important; border: none !important;
+  box-shadow: none !important; cursor: pointer; opacity: 0; z-index: 25; padding: 0;
+}
+#window-tetris .win95-ctrl:hover { opacity: 0.35; background: rgba(255,255,255,0.2) !important; }
+
 .gb-skin {
   position: relative;
   width: 380px;
@@ -2099,12 +2130,14 @@ body {
   background: url('../assets/images/gameboy.png') no-repeat top left / 380px 675px;
   user-select: none;
 }
+
+/* Canvas stretched to fill the full LCD area (natural 504×455 → display 203×184) */
 .gb-skin-canvas {
   position: absolute;
-  top: 15.43%;   /* 258/1672 */
-  left: 22.10%;  /* 208/941  */
-  width: 135px;
-  height: 180px;
+  top: 15.43%;
+  left: 22.10%;
+  width: 203px;
+  height: 184px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
@@ -2118,7 +2151,7 @@ body {
 }
 .gb-skin-btn:hover  { opacity: 0.2; background: rgba(255,255,255,0.25); }
 .gb-skin-btn:active { opacity: 0.4; background: rgba(0,0,0,0.2); }
-#tetris-canvas { display: block; image-rendering: pixelated; width: 135px; height: 180px; }
+#tetris-canvas { display: block; image-rendering: pixelated; width: 203px; height: 184px; }
 
 /* messenger — Clippy additions */
 .im-msg-clippy { background: #fffde7; }

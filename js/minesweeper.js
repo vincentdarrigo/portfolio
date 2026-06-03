@@ -42,9 +42,14 @@ function initMinesweeper(difficulty) {
     }))
   );
 
-  // Resize the board grid CSS
+  // Lock board dimensions so it never collapses on bomb hit
   const boardEl = document.getElementById('mine-board');
-  if (boardEl) boardEl.style.gridTemplateColumns = `repeat(${mineCols}, 18px)`;
+  if (boardEl) {
+    boardEl.style.gridTemplateColumns = `repeat(${mineCols}, 18px)`;
+    boardEl.style.gridTemplateRows    = `repeat(${mineRows}, 18px)`;
+    boardEl.style.width               = `${mineCols * 18}px`;
+    boardEl.style.height              = `${mineRows * 18}px`;
+  }
 
   renderMineBoard();
   setMineLED(mineCount);
@@ -201,6 +206,9 @@ function renderMineBoard() {
   if (!boardEl) return;
 
   boardEl.style.gridTemplateColumns = `repeat(${mineCols}, 18px)`;
+  boardEl.style.gridTemplateRows    = `repeat(${mineRows}, 18px)`;
+  boardEl.style.width               = `${mineCols * 18}px`;
+  boardEl.style.height              = `${mineRows * 18}px`;
   boardEl.innerHTML = '';
 
   for (let r = 0; r < mineRows; r++) {
