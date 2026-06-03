@@ -275,18 +275,20 @@
 [data-band="14k"]    { left: 308px; }
 [data-band="16k"]    { left: 339px; }
 
-/* ── PLAYLIST PANEL OVERLAYS ── */
-/* Positioned in lower third of skin — nudge top/height once skin is verified visually */
-.wp-ov-playlist {
+/* ── PLAYLIST — hidden; skin image provides the static visual ── */
+.wp-ov-playlist { display: none; }
+
+/* ── EASTER EGG CLICK TARGET over "1." in the skin's static playlist ── */
+/* Adjust top to align with the first track row in the skin image */
+#wp-egg-target {
   position: absolute;
-  top: 300px;
-  left: 10px;
-  width: 354px;
-  height: 130px;
-  overflow-y: auto;
+  top: 310px;
+  left: 8px;
+  width: 200px;
+  height: 18px;
   background: transparent;
-  scrollbar-width: thin;
-  scrollbar-color: #003300 transparent;
+  cursor: default;
+  z-index: 10;
 }
 .wp-ov-playlist::-webkit-scrollbar       { width: 5px; }
 .wp-ov-playlist::-webkit-scrollbar-track { background: transparent; }

@@ -54,19 +54,19 @@ function initWinamp() {
   wpAudio.addEventListener('loadedmetadata', wpUpdateDur);
 
   wpTracks = WP_PRELOADED.map(t => ({ ...t, type: 'preloaded' }));
-  wpRenderPlaylist();
-  wpSetTitle('*** WINAMP ***');
 
   if (wpTracks.length > 0) {
     wpCurrentIdx = 0;
-    wpAudio.src  = wpTracks[0].src;
+    // Set title immediately — don't wait for audio load
     wpStartScroll(wpTracks[0].name);
-    wpRenderPlaylist();
-    // Auto-play — window open is a user gesture so this should be allowed
+    // Try to play; fail silently (don't show FILE NOT FOUND)
+    wpAudio.src = wpTracks[0].src;
     wpInitAudioCtx();
     wpAudio.play()
       .then(() => { wpPlaying = true; wpUpdateBtn(true); wpSetPlayState('play'); })
-      .catch(() => { wpSetTitle('▶ Click to play'); });
+      .catch(() => { /* audio file not loaded yet — title already set above */ });
+  } else {
+    wpSetTitle('*** WINAMP ***');
   }
 }
 
@@ -92,11 +92,10 @@ function wpPlay(idx) {
       wpUpdateBtn(true);
       wpSetPlayState('play');
       wpStartScroll(t.name);
-      wpRenderPlaylist();
     })
     .catch(e => {
       console.warn('WinAmp play error:', e);
-      wpSetTitle('!! FILE NOT FOUND !!');
+      // Keep the track title — don't overwrite with FILE NOT FOUND
     });
 }
 

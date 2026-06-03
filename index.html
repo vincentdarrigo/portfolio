@@ -121,6 +121,10 @@
 
   <!-- Zone B: upper-right — Personal -->
   <div class="icon-zone" id="icons-right">
+    <div class="desk-icon" ondblclick="openWindow('portfolio')" tabindex="0">
+      <div class="desk-icon-img">💼</div>
+      <div class="desk-icon-label">Portfolio.htm</div>
+    </div>
     <div class="desk-icon" ondblclick="openWindow('about')" tabindex="0">
       <div class="desk-icon-img">💻</div>
       <div class="desk-icon-label">About Vince</div>
@@ -669,6 +673,68 @@
     <div class="win95-statusbar">Ready</div>
   </div>
 
+  <!-- ── WINDOW: MODERN PORTFOLIO ─────────────────── -->
+  <div class="win95-window" id="window-portfolio" style="display:none; left:160px; top:60px; width:700px;">
+    <div class="win95-titlebar" data-win="portfolio">
+      <span class="win95-title-icon">💼</span>
+      <span class="win95-title-text">Portfolio.htm — Vince Darrigo</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('portfolio')">_</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('portfolio')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content pf-wrap">
+
+      <div class="pf-hero">
+        <h1 class="pf-name">Vince Darrigo</h1>
+        <h2 class="pf-title">Full-Stack Engineer · Python Systems Builder</h2>
+        <p class="pf-bio">10+ years building production systems from the ground up — backend-focused, API-obsessed, and AI-integrated. Strong production habits forged from years solving real operational problems at scale.</p>
+        <p class="pf-prev">Senior Data Specialist at <strong>Safal Partners</strong> &nbsp;·&nbsp; <a href="mailto:vincent.darrigo@gmail.com" class="pf-link">vincent.darrigo@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/vincentdarrigo" target="_blank" class="pf-link">GitHub</a></p>
+        <div class="pf-pills">
+          <span class="pf-pill pf-pill-a">Python</span>
+          <span class="pf-pill pf-pill-b">Flask</span>
+          <span class="pf-pill pf-pill-c">REST APIs</span>
+          <span class="pf-pill pf-pill-a">JavaScript</span>
+          <span class="pf-pill pf-pill-d">AI / LLM</span>
+          <span class="pf-pill pf-pill-b">SQL</span>
+          <span class="pf-pill pf-pill-c">Automation</span>
+          <span class="pf-pill pf-pill-d">Git / GitHub</span>
+        </div>
+      </div>
+
+      <div class="pf-grid">
+        <div class="pf-col">
+          <h3 class="pf-col-head pf-col-head-a">Backend Development</h3>
+          <ul class="pf-list">
+            <li>Python / Flask / REST API design</li>
+            <li>Socket.IO real-time systems</li>
+            <li>Logging, retries, batch processing</li>
+            <li>Role-based access &amp; auth</li>
+          </ul>
+        </div>
+        <div class="pf-col">
+          <h3 class="pf-col-head pf-col-head-b">Integrations &amp; Automation</h3>
+          <ul class="pf-list">
+            <li>Smartsheet, Google Drive APIs</li>
+            <li>Microsoft Graph / Power Platform</li>
+            <li>SharePoint &amp; workflow automation</li>
+            <li>Data validation &amp; pipeline work</li>
+          </ul>
+        </div>
+        <div class="pf-col">
+          <h3 class="pf-col-head pf-col-head-c">Products &amp; Projects</h3>
+          <ul class="pf-list">
+            <li>QuestForge — AI scavenger hunt engine</li>
+            <li>IMRAface — Authenticated portal system</li>
+            <li>Anytime AI Trivia — Stateful AI gameplay</li>
+            <li>Predictrix / Thinkio — Full-stack builds</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ── WINDOW: RESUME ─────────────────────────── -->
   <div class="win95-window" id="window-resume" style="display:none; left:100px; top:60px; width:580px; height:520px;">
     <div class="win95-titlebar" data-win="resume">
@@ -1115,8 +1181,10 @@
         <div id="wp-seek-knob" class="wp-seek-knob-ov"></div>
       </div>
 
-      <!-- Playlist — click track 1 seven times for easter egg 🥚 -->
-      <div id="wp-playlist" class="wp-ov wp-ov-playlist"></div>
+      <!-- Invisible click target over "1." in the skin's static playlist.
+           Click 7 times within 4s to trigger the llama easter egg 🥚
+           Adjust top/height if the target drifts from the row in the skin image. -->
+      <div id="wp-egg-target" onclick="wpLlamaClick(event)" title=""></div>
 
     </div>
   </div>
@@ -1751,6 +1819,15 @@
     <div id="taskbar-clock">12:00 PM</div>
   </div>
 
+  <!-- ── EASTER EGG TOAST ──────────────────────────── -->
+  <div id="egg-toast" style="display:none;">
+    <div class="egg-toast-inner">
+      <div class="egg-toast-label">🥚 EASTER EGG FOUND</div>
+      <div class="egg-toast-name" id="egg-toast-name"></div>
+      <div class="egg-toast-count" id="egg-toast-count"></div>
+    </div>
+  </div>
+
   <!-- Volume popup (outside taskbar so it floats above) -->
   <div id="vol-popup" style="display:none;">
     <div class="vol-popup-title">🔊 Volume</div>
@@ -1830,6 +1907,7 @@
 
 </div><!-- /desktop -->
 
+<script src="js/eggs.js"></script>
 <script src="js/desktop.js"></script>
 <script src="js/vault.js"></script>
 <script src="js/minesweeper.js"></script>

@@ -18,6 +18,7 @@ const WINDOW_TITLES = {
   thinkio:          '🧠 Thinkio',
   trivia:           '❓ AI Trivia',
   resume:           '📄 Resume.doc',
+  portfolio:        '💼 Portfolio.htm',
   vault:            '🔒 Restricted Area',
   private:          '🔓 Private Projects',
   minesweeper:      '💣 Minesweeper',
