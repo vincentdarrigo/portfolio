@@ -300,16 +300,16 @@
       </div>
     </div>
     <div class="folder-body">
-      <div class="folder-item" tabindex="0" style="opacity:0.6; cursor:default;" title="IMRAface — coming soon">
-        <div class="folder-item-icon">🤖</div>
-        <div class="folder-item-label">IMRAface</div>
+      <div class="folder-item" ondblclick="openWindow('reviewflow')" tabindex="0" title="Review Portal — open">
+        <div class="folder-item-icon">🔄</div>
+        <div class="folder-item-label">Review Portal</div>
       </div>
       <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
         <div class="folder-item-icon">📁</div>
         <div class="folder-item-label">More soon...</div>
       </div>
     </div>
-    <div class="folder-statusbar">Projects in development</div>
+    <div class="folder-statusbar">1 object(s) — 1 project</div>
   </div>
 
   <!-- ── WINDOW: ABOUT ────────────────────────── -->
@@ -702,11 +702,11 @@
     <div class="win95-statusbar">Portfolio-ready — both modes live</div>
   </div>
 
-  <!-- ── WINDOW: REVIEWFLOW ─────────────────────── -->
+  <!-- ── WINDOW: REVIEW PORTAL ──────────────────── -->
   <div class="win95-window" id="window-reviewflow" style="display:none; left:220px; top:110px; width:520px;">
     <div class="win95-titlebar" data-win="reviewflow">
       <span class="win95-title-icon">🔄</span>
-      <span class="win95-title-text">ReviewFlow</span>
+      <span class="win95-title-text">Review Portal</span>
       <div class="win95-controls">
         <button class="win95-ctrl" onclick="minimizeWindow('reviewflow')">_</button>
         <button class="win95-ctrl" disabled>□</button>
@@ -716,26 +716,30 @@
     <div class="win95-content proj-content">
       <div class="proj-brand">
         <div class="proj-brand-text">
-          <div class="proj-title">ReviewFlow</div>
-          <!-- TODO: Vince — tagline -->
-          <div class="proj-tagline">[ Add tagline ]</div>
+          <div class="proj-title">Review Portal</div>
+          <div class="proj-tagline">Role-based program review &amp; coordination platform — fully demo-safe</div>
         </div>
       </div>
       <div class="win95-divider"></div>
       <div class="proj-body">
-        <!-- TODO: Vince — description -->
-        <p style="color:#888; font-style:italic;">[ Vince — add ReviewFlow description, what it does, what was interesting to build. ]</p>
+        <p>A role-based platform for coordinating program reviews across many teams — 5 distinct access tiers (Admin down to single-purpose Coach view), reviewer/roster management, and live approval workflows.</p>
+        <p class="proj-detail" style="margin-top:8px;">🔒 <strong>Built demo-safe by design</strong> — a dedicated demo-mode flag cleanly short-circuits every external side effect (data sync, email, SMS) while keeping the full UI and decision logic intact. The sync clock and countdown still animate every 15 minutes like a live system, but nothing ever leaves the machine.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> Anonymized, realistic-scale demo data — 1,551 synthetic reviewers, 398 programs, 57 publishers — built specifically so the entire tool can be shown to anyone, safely, with zero risk of touching a real system.
+        </div>
       </div>
       <div class="tech-row">
         <span class="tech-badge">Python</span>
-        <!-- TODO: Vince — add stack -->
+        <span class="tech-badge">FastAPI</span>
+        <span class="tech-badge">SQLite</span>
+        <span class="tech-badge">Role-Based Access</span>
       </div>
       <div class="proj-links">
         <a href="#" class="win95-btn-link">📂 GitHub</a>
         <a href="#" class="win95-btn-link">🌐 Live Demo</a>
       </div>
     </div>
-    <div class="win95-statusbar">Ready</div>
+    <div class="win95-statusbar">Demo-ready — passcode access</div>
   </div>
 
   <!-- ── WINDOW: THINKIO ────────────────────────── -->
