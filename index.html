@@ -248,12 +248,16 @@
         <img class="folder-item-img" src="assets/images/questourism.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>🌐</div>'">
         <div class="folder-item-label">Questourism</div>
       </div>
-      <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
-        <div class="folder-item-icon">📁</div>
-        <div class="folder-item-label">More soon...</div>
+      <div class="folder-item" ondblclick="openWindow('ispyai')" tabindex="0" title="I Spy AI / I Spy A Pie — open">
+        <div class="folder-item-icon">🕵️</div>
+        <div class="folder-item-label">I Spy AI / Pie</div>
+      </div>
+      <div class="folder-item" ondblclick="openWindow('trivia')" tabindex="0" title="Anytime AI Trivia — open">
+        <div class="folder-item-icon">❓</div>
+        <div class="folder-item-label">AI Trivia</div>
       </div>
     </div>
-    <div class="folder-statusbar">1 object(s) — 1 project</div>
+    <div class="folder-statusbar">3 object(s) — 3 projects</div>
   </div>
 
   <!-- Sports / Prediction Projects -->
@@ -268,16 +272,20 @@
       </div>
     </div>
     <div class="folder-body">
-      <div class="folder-item" ondblclick="window.open('https://predictrix.app','_blank')" tabindex="0" title="Predictrix.app — open in browser">
+      <div class="folder-item" ondblclick="openWindow('predictrix')" tabindex="0" title="Predictrix — brand overview">
         <img class="folder-item-img" src="assets/images/predictrix_logo.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>📊</div>'">
         <div class="folder-item-label">Predictrix</div>
       </div>
-      <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
-        <div class="folder-item-icon">📁</div>
-        <div class="folder-item-label">More soon...</div>
+      <div class="folder-item" ondblclick="openWindow('pickathlon')" tabindex="0" title="Pickathlon — open">
+        <div class="folder-item-icon">🏈</div>
+        <div class="folder-item-label">Pickathlon</div>
+      </div>
+      <div class="folder-item" ondblclick="openWindow('draftathon')" tabindex="0" title="Draftathon — open">
+        <div class="folder-item-icon">📋</div>
+        <div class="folder-item-label">Draftathon</div>
       </div>
     </div>
-    <div class="folder-statusbar">1 object(s) — 1 project</div>
+    <div class="folder-statusbar">3 object(s) — 3 projects</div>
   </div>
 
   <!-- Business Integration Projects -->
@@ -549,14 +557,18 @@
       </div>
       <div class="win95-divider"></div>
       <div class="proj-body">
-        <!-- TODO: Vince — add your Predictrix description here -->
-        <p>Consumer-facing sports prediction and competition platform under the Predictrix.app umbrella.</p>
-        <p style="margin-top:8px; color:#888; font-style:italic;">[ Vince — add detail about what Predictrix does, what problem it solves, and what makes it interesting to build. ]</p>
+        <p>Predictrix is the umbrella platform for NFL prediction gaming — full-stack (Django REST + React), live at predictrix.app.</p>
+        <p style="margin-top:8px;"><strong>Live games under this umbrella:</strong></p>
+        <ul class="proj-list">
+          <li>🏈 <strong>Pickathlon</strong> — weekly pick 'em, the 2025-26 season priority</li>
+          <li>📋 <strong>Draftathon</strong> — slot-by-slot NFL Draft predictions with AI scouting</li>
+          <li>🏆 Playoff Predictions &amp; Leagues — bracket picks and social groups, spans both games</li>
+        </ul>
       </div>
       <div class="tech-row">
         <span class="tech-badge">Python</span>
-        <span class="tech-badge">Full-Stack Web</span>
-        <!-- TODO: Vince — add actual stack -->
+        <span class="tech-badge">Django REST</span>
+        <span class="tech-badge">React</span>
       </div>
       <div class="proj-links">
         <a href="#" class="win95-btn-link">📂 GitHub</a>
@@ -564,6 +576,130 @@
       </div>
     </div>
     <div class="win95-statusbar">Part of the Predictrix family — predictrix.app</div>
+  </div>
+
+  <!-- ── WINDOW: PICKATHLON ─────────────────────── -->
+  <div class="win95-window" id="window-pickathlon" style="display:none; left:210px; top:90px; width:540px;">
+    <div class="win95-titlebar" data-win="pickathlon">
+      <span class="win95-title-icon">🏈</span>
+      <span class="win95-title-text">Pickathlon — Weekly NFL Pick 'Em</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('pickathlon')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('pickathlon')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand predictrix-brand">
+        <img src="assets/images/predictrix_logo.png" alt="Predictrix" class="proj-brand-logo" onerror="this.style.display='none'">
+        <div class="proj-brand-text">
+          <div class="proj-title">Pickathlon</div>
+          <div class="proj-tagline">Weekly NFL pick 'em with spreads and a lock-pick mechanic</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p>Pick against the spread every week, plus one extra-weighted "lock pick" that counts for more — risk and reward in the same slate. Live standings and seeding are computed in real time directly from player picks.</p>
+        <p class="proj-detail" style="margin-top:8px;">🔓 <strong>No account required to browse</strong> — picks, leaderboards, and the bracket are viewable without signing up, specifically so recruiters and visitors can poke around with zero friction.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> Live-computed playoff standings/seeding from real pick data, plus a single-screen tournament-tree bracket redesign that stays readable on one screen instead of scrolling.
+        </div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Django REST</span>
+        <span class="tech-badge">React</span>
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://predictrix.app/pickathlon" target="_blank" class="win95-btn-link">🌐 Play Pickathlon</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Live for the 2025-2026 NFL season</div>
+  </div>
+
+  <!-- ── WINDOW: DRAFTATHON ─────────────────────── -->
+  <div class="win95-window" id="window-draftathon" style="display:none; left:225px; top:100px; width:540px;">
+    <div class="win95-titlebar" data-win="draftathon">
+      <span class="win95-title-icon">📋</span>
+      <span class="win95-title-text">Draftathon — NFL Draft Predictions</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('draftathon')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('draftathon')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand predictrix-brand">
+        <img src="assets/images/predictrix_logo.png" alt="Predictrix" class="proj-brand-logo" onerror="this.style.display='none'">
+        <div class="proj-brand-text">
+          <div class="proj-title">Draftathon</div>
+          <div class="proj-tagline">Predict every pick of the NFL Draft, slot by slot</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p>Players predict the entire NFL Draft pick by pick. AI-generated scouting reports (in-app persona: "Coach AI / Cypher") give players intel on prospects before they lock in a guess.</p>
+        <p class="proj-detail" style="margin-top:8px;">✅ <strong>Already played live</strong> for the actual 2026 NFL Draft — not a concept demo, a completed real run with real participants.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> A demo data system that lets the app show a fully populated, realistic draft board between live draft windows — so it never looks empty to a visitor browsing off-season.
+        </div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Django REST</span>
+        <span class="tech-badge">React</span>
+        <span class="tech-badge">AI / LLM</span>
+      </div>
+      <div class="proj-links">
+        <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://predictrix.app/draftathon" target="_blank" class="win95-btn-link">🌐 View Draftathon</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Played live for the 2026 NFL Draft</div>
+  </div>
+
+  <!-- ── WINDOW: I SPY AI / I SPY A PIE ─────────── -->
+  <div class="win95-window" id="window-ispyai" style="display:none; left:170px; top:80px; width:540px;">
+    <div class="win95-titlebar" data-win="ispyai">
+      <span class="win95-title-icon">🕵️</span>
+      <span class="win95-title-text">I Spy AI / I Spy A Pie — AI Scavenger Hunt</span>
+      <div class="win95-controls">
+        <button class="win95-ctrl" onclick="minimizeWindow('ispyai')">_</button>
+        <button class="win95-ctrl" disabled>□</button>
+        <button class="win95-ctrl win95-close" onclick="closeWindow('ispyai')">✕</button>
+      </div>
+    </div>
+    <div class="win95-content proj-content">
+      <div class="proj-brand">
+        <div class="proj-brand-text">
+          <div class="proj-title">I Spy AI · I Spy A Pie</div>
+          <div class="proj-tagline">One real-world AI scavenger hunt engine, two completely different games</div>
+        </div>
+      </div>
+      <div class="win95-divider"></div>
+      <div class="proj-body">
+        <p>🕵️ <strong>I Spy AI</strong> — cyberpunk tech-espionage. You're a field agent guided by K.A.I.T. (Knowledge-Augmented Intelligence Tracer), hunting operatives of S.K.A.I.-N.E.T. across real-world locations.</p>
+        <p style="margin-top:8px;">🍕 <strong>I Spy A Pie</strong> — an underground pizza-critic tour. Three-layer Jeopardy-style clues lead you to real local spots, each scored with a "One Bite Score" on discovery.</p>
+        <p class="proj-detail" style="margin-top:8px;">🎙️ <strong>K.A.I.T. voice widget</strong> — a KITT-style cyan equalizer bar that reacts live to game events. Automatically hides itself in pizza mode — mode-aware UX, not a reskin.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> Real-world location verification (Google Maps Places API) combined with live AI clue generation and photo privacy blurring (Google Cloud Vision) — all running real-time over Socket.IO.
+        </div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Flask</span>
+        <span class="tech-badge">Socket.IO</span>
+        <span class="tech-badge">Google Maps API</span>
+        <span class="tech-badge">Google Cloud Vision</span>
+        <span class="tech-badge">AI / LLM</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/vincentdarrigo/ai-mazing-race" target="_blank" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://ai-mazing-race.onrender.com" target="_blank" class="win95-btn-link">🌐 Play Live</a>
+      </div>
+    </div>
+    <div class="win95-statusbar">Portfolio-ready — both modes live</div>
   </div>
 
   <!-- ── WINDOW: REVIEWFLOW ─────────────────────── -->
@@ -649,24 +785,30 @@
       <div class="proj-brand">
         <div class="proj-brand-text">
           <div class="proj-title">Anytime AI Trivia</div>
-          <div class="proj-tagline">Interactive trivia with stateful AI gameplay</div>
+          <div class="proj-tagline">Real-time, AI-generated trivia — any topic, instantly playable</div>
         </div>
       </div>
       <div class="win95-divider"></div>
       <div class="proj-body">
-        <p>Interactive trivia platform with stateful game flows, Challenge AI behavior, reusable rounds, and expanding live-play logic.</p>
-        <p style="margin-top:8px; color:#888; font-style:italic;">[ Vince — add more detail here. ]</p>
+        <p>Players join a room, type a topic, and the AI builds a full live game on the fly — synced timers, shared scoreboard, four question types (multiple choice, free text, closest-number, drag-to-rank). Built with FastAPI + WebSockets for true real-time play.</p>
+        <p class="proj-detail" style="margin-top:8px;">🤖 <strong>AI Trick Questions</strong> — the AI intentionally writes 1-2 questions per game where the premise itself is false. Catching one is worth bonus points — a built-in hallucination check players can catch live.</p>
+        <p class="proj-detail" style="margin-top:8px;">⚖️ <strong>Challenge AI</strong> — disagree with a ruling? Players get 2 challenges per game. Type your argument, the AI adjudicates with reasoning, and the verdict is broadcast to the whole room as a public hearing.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> Every AI-generated question is auto-saved to a growing question bank (3,391+ and counting) — the system treats AI output as a reusable asset, not a disposable one-shot call. A "Recall Mode" that replays from this bank is next.
+        </div>
       </div>
       <div class="tech-row">
         <span class="tech-badge">Python</span>
-        <span class="tech-badge">Full-Stack Web</span>
+        <span class="tech-badge">FastAPI</span>
+        <span class="tech-badge">WebSockets</span>
         <span class="tech-badge">AI / LLM</span>
+        <span class="tech-badge">Vanilla JS</span>
       </div>
       <div class="proj-links">
         <a href="#" class="win95-btn-link">📂 GitHub</a>
       </div>
     </div>
-    <div class="win95-statusbar">Ready</div>
+    <div class="win95-statusbar">Ready — 5/5 planned phases shipped</div>
   </div>
 
   <!-- ── WINDOW: MODERN PORTFOLIO ─────────────────── -->
