@@ -2179,7 +2179,7 @@ body {
 #boot-overlay {
   position: fixed;
   inset: 0;
-  background: url('../assets/images/gateway_logo_start.png') center/cover no-repeat #000;
+  background: url('../assets/images/final_startup.png') center/contain no-repeat #000;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -2187,6 +2187,8 @@ body {
   flex-direction: column;
   transition: opacity 0.7s;
 }
+/* Hide text/bar — timing logic still runs, image is all that shows */
+.boot-content, .boot-copyright { display: none; }
 
 .boot-content {
   text-align: center;
@@ -2318,6 +2320,92 @@ body {
   overflow-y: auto;
   background: #c0c0c0;
 }
+
+/* ══════════════════════════════════════════════════════
+   90s POPUP AD WINDOWS
+══════════════════════════════════════════════════════ */
+
+.pop-window {
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  box-shadow: 3px 3px 12px rgba(0,0,0,0.5);
+  user-select: none;
+}
+
+.pop-titlebar {
+  background: linear-gradient(to right, #c00000, #ff4400);
+  color: #fff;
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 11px;
+  cursor: default;
+}
+
+.pop-title-text { flex: 1; }
+
+.pop-close {
+  background: #ff8888;
+  border: 1px outset #ffaaaa;
+  color: #800000;
+  font-weight: bold;
+  font-size: 9px;
+  width: 16px;
+  height: 14px;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+}
+.pop-close:hover { background: #ffaaaa; }
+
+.pop-body {
+  background: #ffffcc;
+  border: 3px solid #ffcc00;
+  border-top: none;
+  padding: 10px 12px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@keyframes popBlink { 0%,100%{opacity:1} 50%{opacity:0.1} }
+.pop-blink { animation: popBlink 0.8s step-end infinite; font-weight: bold; color: #cc0000; }
+
+.pop-sub { margin: 8px 0; color: #222; font-size: 12px; }
+
+.pop-prize { color: #006600; font-weight: bold; margin: 6px 0; }
+
+.pop-construction {
+  background: #000080;
+  color: #ffff00;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 3px 6px;
+  margin: 8px -12px;
+  letter-spacing: 1px;
+}
+
+.pop-cta {
+  display: block;
+  background: linear-gradient(to bottom, #ffcc00, #ff8800);
+  color: #800000;
+  font-weight: bold;
+  font-size: 13px;
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 2px outset #ffcc00;
+  margin: 8px auto;
+  cursor: pointer;
+}
+.pop-cta:hover { background: linear-gradient(to bottom, #ffdd33, #ffaa00); }
+.pop-cta-alt   { background: linear-gradient(to bottom, #ccccff, #8888ff); color: #000066; margin-top: 4px; }
+
+.pop-fine { font-size: 9px; color: #888; margin-top: 6px; font-style: italic; }
+
+.pop-geocities { font-size: 14px; margin-bottom: 6px; }
+.pop-counter   { font-size: 10px; color: #555; margin-top: 4px; }
+.pop-question  { background: #fff; border: 1px solid #ccc; padding: 6px; margin: 6px 0; font-size: 12px; }
+.pop-options   { display: flex; flex-direction: column; gap: 4px; }
 
 /* ══════════════════════════════════════════════════════
    EASTER EGG TOAST

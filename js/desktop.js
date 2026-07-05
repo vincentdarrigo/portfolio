@@ -220,6 +220,8 @@ function runGatewayBoot() {
 function showWin95Login() {
   const el = document.getElementById('win95-login-overlay');
   if (el) el.style.display = 'flex';
+  // Auto-advance — no click needed
+  setTimeout(doWin95Login, 1200);
 }
 
 function doWin95Login() {
