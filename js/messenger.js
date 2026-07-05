@@ -798,6 +798,24 @@ function updateImControls() {
   if (btnPP) btnPP.textContent = (imPaused || imManual) ? '▶' : '⏸';
 }
 
+// ── SCENE INTEROP (called by project_scenes.js) ───────
+
+function pauseImShow() {
+  if (!imRunning || imPaused || imManual) return;
+  clearTimeout(imNextTimer);
+  imPaused = true;
+  imSetStatus('⏸ Scene playing...');
+  updateImControls();
+}
+
+function resumeImShow() {
+  if (!imRunning || !imPaused) return;
+  imPaused = false;
+  imSetStatus('Playing...');
+  updateImControls();
+  scheduleImNext();
+}
+
 // ── LEAVE CHAT ────────────────────────────────────────
 
 function leaveChat() {
