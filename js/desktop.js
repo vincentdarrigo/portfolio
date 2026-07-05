@@ -319,6 +319,13 @@ function openWindow(id) {
 
   bringToFront(id);
   updateTaskbar();
+
+  // Trigger a project chatbot scene if one is registered for this window
+  if (typeof PROJECT_SCENE_WINDOWS !== 'undefined' &&
+      PROJECT_SCENE_WINDOWS.includes(id) &&
+      typeof playProjectScene === 'function') {
+    setTimeout(() => playProjectScene(id), 800);
+  }
 }
 
 function closeWindow(id) {
