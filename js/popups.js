@@ -91,8 +91,9 @@ function initPopups() {
 
 function _maybeShowPopup() {
   if (_popShown >= MAX_POPUPS) return;
-  if (typeof imRunning !== 'undefined' && imRunning) {
-    // Welcome show still running — wait a bit longer
+  if ((typeof imRunning !== 'undefined' && imRunning) ||
+      (typeof isReading === 'function' && isReading())) {
+    // Welcome show still running, or the visitor is reading a project — wait a bit longer
     setTimeout(_maybeShowPopup, 30000);
     return;
   }

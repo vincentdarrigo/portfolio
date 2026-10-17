@@ -70,7 +70,7 @@ const PROJECT_SCENES = {
     { from: 'aim',    delay: 9500,  text: 'Translation: recruiters can poke around without creating a throwaway email first. Revolutionary concept. Frictionless onboarding. Somebody give this man a UX award.' },
     { from: 'yahoo',  delay: 9000,  text: 'Standings are computed live from real pick data. Playoff seeding updates itself. The bracket is a single-screen tournament tree — no scrolling through six divisions to find out who\'s winning.' },
     { from: 'icq',    delay: 7000,  text: 'Built on Django REST and React. Live at predictrix.app. Real players. Real season. Real spreadsheets somewhere, probably.' },
-    { from: 'aim',    delay: 6000,  text: 'Currently live for the 2025-2026 season. Not a prototype. Not a \'coming soon.\' Live.' },
+    { from: 'aim',    delay: 6000,  text: 'Live for real NFL seasons, week after week. Not a prototype. Not a \'coming soon.\' Live.' },
   ],
 
   'draftathon': [
@@ -117,8 +117,9 @@ function playProjectScene(id) {
   // Pause the welcome show while the scene plays
   if (typeof pauseImShow === 'function') pauseImShow();
 
-  // Open the IRC channel window
+  // Open the IRC channel window beside the project window, not on top of it
   if (typeof openWindow === 'function') openWindow(winId);
+  _placeBeside(document.getElementById('window-' + id), document.getElementById('window-' + winId));
 
   const log = document.getElementById(logId);
   if (!log) return;
@@ -159,6 +160,25 @@ function playProjectScene(id) {
     if (typeof minimizeWindow === 'function') minimizeWindow(winId);
     if (typeof resumeImShow  === 'function') resumeImShow();
   }, t);
+}
+
+// Lay the project window and its scene out side by side, centered as a pair, so the
+// chat never hides the write-up. Too narrow for both: tuck the scene into the bottom-right.
+function _placeBeside(proj, scene) {
+  if (!proj || !scene) return;
+  const gap = 12, taskbarH = 28;
+  const vw = window.innerWidth, vh = window.innerHeight - taskbarH;
+  const pw = proj.offsetWidth, sw = scene.offsetWidth;
+  if (pw + gap + sw + 32 <= vw) {
+    const x0 = Math.round((vw - (pw + gap + sw)) / 2);
+    proj.style.left  = x0 + 'px';
+    scene.style.left = (x0 + pw + gap) + 'px';
+    scene.style.top  = proj.style.top;
+  } else {
+    scene.style.left = Math.max(8, vw - sw - 8) + 'px';
+    scene.style.top  = Math.max(8, vh - scene.offsetHeight - 8) + 'px';
+  }
+  scene.dataset.positioned = '1';
 }
 
 // ── IRC RENDERING ─────────────────────────────────────

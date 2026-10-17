@@ -51,11 +51,41 @@
   font-family: 'Courier New', monospace;
   font-size: 14px;
   z-index: 99999;
-  padding: 60px 40px;
-  line-height: 1.8;
+  padding: 40px 24px 48px;
+  line-height: 1.7;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #mobile-bsod a { color: #ffffff; text-decoration: underline; }
+#mobile-bsod .bsod-badge {
+  display: inline-block;
+  background: #aaaaaa;
+  color: #0000aa;
+  padding: 0 8px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+#mobile-bsod .bsod-gap { margin-top: 18px; }
+#mobile-bsod .bsod-dim { opacity: 0.6; font-size: 12px; }
+#mobile-bsod .bsod-list { list-style: none; padding: 0; margin: 4px 0 0; }
+#mobile-bsod .bsod-list li { margin: 6px 0; }
+#mobile-bsod .bsod-list a { font-weight: bold; margin-right: 6px; }
+
+/* Shown over the BIOS / login / boot screens until the desktop is up */
+#boot-skip-hint {
+  position: fixed;
+  right: 18px;
+  bottom: 14px;
+  z-index: 10005;
+  color: #8a8a8a;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  pointer-events: none;
+}
+@media (max-width: 900px) and (orientation: portrait) {
+  #boot-skip-hint { display: none; }
+}
 
 /* Portrait mobile → show rotate BSOD, hide desktop */
 @media (max-width: 900px) and (orientation: portrait) {
@@ -125,7 +155,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 72px;
+  width: 80px;
   cursor: default;
   padding: 4px;
   border: 1px solid transparent;
@@ -164,11 +194,11 @@ body {
   color: var(--white);
   font-size: 11px;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.9);
+  text-shadow: 0 0 2px #000, 1px 1px 2px #000, -1px -1px 2px rgba(0,0,0,0.8);
   overflow-wrap: break-word;
-  word-break: break-word;
+  word-break: normal;
   line-height: 1.3;
-  max-width: 72px;
+  max-width: 80px;
 }
 
 /* ── FOLDER WINDOW CONTENTS ──────────────────────── */
@@ -187,7 +217,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 72px;
+  width: 80px;
   padding: 4px;
   cursor: default;
   border: 1px solid transparent;
@@ -201,7 +231,8 @@ body {
   font-size: 11px;
   text-align: center;
   color: #000;
-  word-break: break-word;
+  word-break: normal;
+  overflow-wrap: break-word;
   line-height: 1.3;
 }
 .folder-item-img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 4px; }
@@ -490,7 +521,8 @@ body {
 .folder-icon-label {
   font-size: 10px;
   text-align: center;
-  word-break: break-word;
+  word-break: normal;
+  overflow-wrap: break-word;
   line-height: 1.3;
 }
 

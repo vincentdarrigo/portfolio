@@ -75,20 +75,34 @@
 ═══════════════════════════════════════════════════ -->
 <div id="mobile-bsod">
   <div class="bsod-inner">
-    <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
-    <br>
-    <p>DISPLAY_ORIENTATION_INCOMPATIBLE</p>
-    <br>
-    <p>🔄 Rotate your device to landscape mode to run this portfolio.</p>
-    <br>
-    <p>If you are on a desktop browser, please widen your window above 900px.</p>
-    <br>
-    <p>Technical information:</p>
-    <p>*** STOP: 0x0000007E (PORTRAIT_MODE, 0xC0000005, ROTATE_90_DEG)</p>
-    <br>
-    <p>Contact: <a href="mailto:vincent.darrigo@gmail.com">vincent.darrigo@gmail.com</a></p>
+    <p class="bsod-badge">VINCE'S VAULT</p>
+    <p>A problem has been detected: this Windows 95 desktop needs a wider screen.</p>
+    <p class="bsod-gap">🔄 Rotate your phone to landscape to boot the full portfolio, or widen your browser past 900px. The essentials are below.</p>
+
+    <p class="bsod-gap">*** VINCE DARRIGO<br>Applied AI Backend Engineer · Python Integration Developer</p>
+    <p>Technical lead for Texas' statewide instructional-materials review: the software layer for 1,500+ reviewers, plus human-in-the-loop LLM agents that triage support tickets.</p>
+
+    <p class="bsod-gap">LOADED MODULES:</p>
+    <ul class="bsod-list">
+      <li><a href="https://ai-mazing-race.onrender.com" target="_blank">I_SPY_AI.EXE</a> AI scavenger hunts at real places</li>
+      <li><a href="https://trivia-app-qgwf.onrender.com" target="_blank">AI_TRIVIA.EXE</a> any topic, generated live</li>
+      <li><a href="https://thinkio.onrender.com" target="_blank">THINKIO.SYS</a> grades how students use AI</li>
+      <li><a href="https://predictrix.app" target="_blank">PREDICTRIX.APP</a> live NFL prediction games</li>
+      <li>IMRAFACE.SYS ops platform with an AI ticket agent</li>
+    </ul>
+
+    <p class="bsod-gap">Press any link to continue:</p>
+    <p>
+      <a href="Darrigo_Vince_20260712.pdf" target="_blank">RESUME.PDF</a> &nbsp;·&nbsp;
+      <a href="mailto:vincent.darrigo@gmail.com">vincent.darrigo@gmail.com</a> &nbsp;·&nbsp;
+      <a href="https://github.com/vincentdarrigo" target="_blank">GITHUB</a>
+    </p>
+
+    <p class="bsod-gap bsod-dim">*** STOP: 0x0000007E (PORTRAIT_MODE, 0xC0000005, ROTATE_90_DEG)</p>
   </div>
 </div>
+
+<div id="boot-skip-hint">Press any key or click to skip ▸</div>
 
 <!-- ═══════════════════════════════════════════════
      DESKTOP
@@ -273,7 +287,7 @@
         <button class="win95-ctrl win95-close" onclick="closeWindow('scene-pickathlon')">✕</button>
       </div>
     </div>
-    <div class="irc-channel-bar">#pickathlon · Topic: Weekly NFL pick \'em with spreads — live for 2025-26 season</div>
+    <div class="irc-channel-bar">#pickathlon · Topic: Weekly NFL pick 'em with spreads — live this NFL season</div>
     <div class="irc-body">
       <div class="irc-log" id="scene-log-pickathlon"></div>
       <div class="irc-userlist">
@@ -455,8 +469,8 @@
         <div class="about-avatar">👤</div>
         <div class="about-info">
           <div class="about-name">Vince Darrigo</div>
-          <div>Full-Stack Engineer, Back-End Oriented</div>
-          <div>Python Systems Builder</div>
+          <div>Applied AI Backend Engineer</div>
+          <div>Python Integration Developer</div>
           <div style="margin-top:4px; color:#444;">Deltona, FL</div>
         </div>
       </div>
@@ -534,15 +548,19 @@
     </div>
     <div class="win95-content folder-content">
 
-      <div class="folder-section-label">🌍 Questourism — Travel &amp; Puzzle Games</div>
+      <div class="folder-section-label">🌍 Questourism — AI Games</div>
       <div class="folder-icon-row">
-        <div class="folder-icon" ondblclick="openWindow('questforge')">
-          <div class="folder-icon-img">🗺️</div>
-          <div class="folder-icon-label">QuestForge</div>
+        <div class="folder-icon" ondblclick="openWindow('ispyai')">
+          <div class="folder-icon-img">🕵️</div>
+          <div class="folder-icon-label">I Spy AI / Pie</div>
+        </div>
+        <div class="folder-icon" ondblclick="openWindow('trivia')">
+          <div class="folder-icon-img">❓</div>
+          <div class="folder-icon-label">AI Trivia</div>
         </div>
         <div class="folder-icon" ondblclick="openWindow('questourism')">
           <div class="folder-icon-img">🌐</div>
-          <div class="folder-icon-label">Questourism.com</div>
+          <div class="folder-icon-label">Questourism</div>
         </div>
       </div>
 
@@ -558,15 +576,11 @@
       <div class="folder-icon-row">
         <div class="folder-icon" ondblclick="openWindow('reviewflow')">
           <div class="folder-icon-img">🔄</div>
-          <div class="folder-icon-label">ReviewFlow</div>
+          <div class="folder-icon-label">Review Portal</div>
         </div>
         <div class="folder-icon" ondblclick="openWindow('thinkio')">
           <div class="folder-icon-img">🧠</div>
           <div class="folder-icon-label">Thinkio</div>
-        </div>
-        <div class="folder-icon" ondblclick="openWindow('trivia')">
-          <div class="folder-icon-img">❓</div>
-          <div class="folder-icon-label">AI Trivia</div>
         </div>
         <div class="folder-icon" ondblclick="openWindow('vault')" style="opacity:0.6;">
           <div class="folder-icon-img">🔒</div>
@@ -578,54 +592,11 @@
     <div class="win95-statusbar">7 object(s) — Double-click to open</div>
   </div>
 
-  <!-- ── WINDOW: QUESTFORGE ─────────────────────── -->
-  <div class="win95-window" id="window-questforge" style="display:none; left:160px; top:70px; width:540px;">
-    <div class="win95-titlebar" data-win="questforge">
-      <span class="win95-title-icon">🗺️</span>
-      <span class="win95-title-text">QuestForge — AI Quest Generator</span>
-      <div class="win95-controls">
-        <button class="win95-ctrl" onclick="minimizeWindow('questforge')">_</button>
-        <button class="win95-ctrl" disabled>□</button>
-        <button class="win95-ctrl win95-close" onclick="closeWindow('questforge')">✕</button>
-      </div>
-    </div>
-    <div class="win95-content proj-content">
-      <div class="proj-brand questourism-brand">
-        <img src="assets/images/questourism.png" alt="Questourism" class="proj-brand-logo" onerror="this.style.display='none'">
-        <div class="proj-brand-text">
-          <div class="proj-title">QuestForge</div>
-          <div class="proj-tagline">Generate real-world scavenger hunts anywhere, powered by AI</div>
-        </div>
-      </div>
-      <div class="win95-divider"></div>
-      <div class="proj-body">
-        <p>An AI-driven quest generator that creates multi-stage, location-verified scavenger hunts using Google Maps &amp; Places. Each mission is assembled in real-time with streaming progress updates — clue by clue, location by location.</p>
-        <p class="proj-detail" style="margin-top:8px;">Includes <strong>🍕 Marinarathon Mode</strong> — a secret easter egg that generates pizza-focused scavenger hunts anywhere in the world.</p>
-        <div class="proj-callout">
-          <strong>The Hard Part:</strong> Multi-stage clue logic with real-time location verification, AI orchestration, and streaming output — all without a heavy framework.
-        </div>
-      </div>
-      <div class="tech-row">
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">Flask</span>
-        <span class="tech-badge">Socket.IO</span>
-        <span class="tech-badge">Google Maps API</span>
-        <span class="tech-badge">Google Places API</span>
-        <span class="tech-badge">AI / LLM</span>
-      </div>
-      <div class="proj-links">
-        <a href="#" class="win95-btn-link">📂 GitHub</a>
-        <a href="#" class="win95-btn-link">🌐 Live Demo</a>
-      </div>
-    </div>
-    <div class="win95-statusbar">Part of the Questourism family — questourism.com</div>
-  </div>
-
   <!-- ── WINDOW: QUESTOURISM.COM ────────────────── -->
   <div class="win95-window" id="window-questourism" style="display:none; left:180px; top:100px; width:500px;">
     <div class="win95-titlebar" data-win="questourism">
       <span class="win95-title-icon">🌐</span>
-      <span class="win95-title-text">Questourism.com — Brand Overview</span>
+      <span class="win95-title-text">Questourism — Brand Overview</span>
       <div class="win95-controls">
         <button class="win95-ctrl" onclick="minimizeWindow('questourism')">_</button>
         <button class="win95-ctrl" disabled>□</button>
@@ -645,15 +616,17 @@
         <p>Questourism is the brand home for location-based puzzle games, scavenger hunts, and adventure tools. Combining the joy of travel with the satisfaction of solving things.</p>
         <p style="margin-top:8px;"><strong>Products under this umbrella:</strong></p>
         <ul class="proj-list">
-          <li>🗺️ <strong>QuestForge</strong> — AI quest generator with real-world locations</li>
+          <li>🕵️ <strong>I Spy AI / I Spy A Pie</strong> — AI scavenger hunts at real-world locations</li>
+          <li>❓ <strong>Anytime AI Trivia</strong> — any topic, generated live, playable in seconds</li>
           <li>🌍 More in development...</li>
         </ul>
       </div>
       <div class="proj-links">
-        <a href="https://questourism.com" target="_blank" class="win95-btn-link">🌐 Visit Questourism.com</a>
+        <a href="#" class="win95-btn-link" onclick="openWindow('ispyai'); return false;">🕵️ Open I Spy AI</a>
+        <a href="#" class="win95-btn-link" onclick="openWindow('trivia'); return false;">❓ Open AI Trivia</a>
       </div>
     </div>
-    <div class="win95-statusbar">questourism.com</div>
+    <div class="win95-statusbar">Questourism — travel &amp; puzzle games</div>
   </div>
 
   <!-- ── WINDOW: PREDICTRIX ─────────────────────── -->
@@ -680,7 +653,7 @@
         <p>Predictrix is the umbrella platform for NFL prediction gaming — full-stack (Django REST + React), live at predictrix.app.</p>
         <p style="margin-top:8px;"><strong>Live games under this umbrella:</strong></p>
         <ul class="proj-list">
-          <li>🏈 <strong>Pickathlon</strong> — weekly pick 'em, the 2025-26 season priority</li>
+          <li>🏈 <strong>Pickathlon</strong> — weekly pick 'em, live this NFL season</li>
           <li>📋 <strong>Draftathon</strong> — slot-by-slot NFL Draft predictions with AI scouting</li>
           <li>🏆 Playoff Predictions &amp; Leagues — bracket picks and social groups, spans both games</li>
         </ul>
@@ -735,7 +708,7 @@
         <a href="https://predictrix.app/pickathlon" target="_blank" class="win95-btn-link">🌐 Play Pickathlon</a>
       </div>
     </div>
-    <div class="win95-statusbar">Live for the 2025-2026 NFL season</div>
+    <div class="win95-statusbar">Live this NFL season</div>
   </div>
 
   <!-- ── WINDOW: DRAFTATHON ─────────────────────── -->
@@ -856,7 +829,7 @@
       </div>
       <div class="proj-links">
         <a href="#" class="win95-btn-link">📂 GitHub</a>
-        <a href="https://review-portal.4p8b.onrender.com" target="_blank" class="win95-btn-link">🌐 Live Demo</a>
+        <a href="https://review-portal-4p8b.onrender.com" target="_blank" class="win95-btn-link">🌐 Live Demo</a>
       </div>
     </div>
     <div class="win95-statusbar">Demo-ready — passcode access</div>
@@ -877,21 +850,31 @@
       <div class="proj-brand">
         <div class="proj-brand-text">
           <div class="proj-title">Thinkio</div>
-          <div class="proj-tagline">[ Add tagline ]</div>
+          <div class="proj-tagline">An AI-fluency classroom platform — it grades how students use AI, not just what they turn in</div>
         </div>
       </div>
       <div class="win95-divider"></div>
       <div class="proj-body">
-        <p style="color:#888; font-style:italic;">[ Vince — add Thinkio description. ]</p>
+        <p>Students write with <strong>io</strong>, a Socratic GPT-4o tutor that coaches instead of handing over answers. Thinkio tracks <em>how</em> each student works with it — did they set a goal first, ask clearly, check what came back, stay honest about what was theirs — as <strong>Learning DNA</strong>: 4 strands, 12 traits, each tiered from real evidence.</p>
+        <p class="proj-detail" style="margin-top:8px;">👩‍🏫 <strong>Teacher-in-the-loop Calibration</strong> — on every submission, one GPT-4o call drafts the grade <em>and</em> scans the tutoring transcript for trait evidence. Nothing reaches a student's record until a teacher confirms it.</p>
+        <p class="proj-detail" style="margin-top:8px;">📚 Also: Curriculum Studio (PDF → standards-aligned lessons via GPT-4o Vision), a live classroom game mode over WebSockets, DALL·E 3 mascots, and a per-call AI cost accountant.</p>
+        <div class="proj-callout">
+          <strong>The Hard Part:</strong> Precision. An early QA pass found 4 of 5 evidence suggestions were false positives — the model matched on a student's general "vibe" instead of observable behavior. Grounding the prompt in each trait's full element checklist made the suggestions trustworthy enough for teachers to rely on.
+        </div>
       </div>
       <div class="tech-row">
         <span class="tech-badge">Python</span>
+        <span class="tech-badge">FastAPI</span>
+        <span class="tech-badge">React</span>
+        <span class="tech-badge">TypeScript</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">AI / LLM</span>
       </div>
       <div class="proj-links">
-        <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://thinkio.onrender.com" target="_blank" class="win95-btn-link">🌐 Visit Thinkio</a>
       </div>
     </div>
-    <div class="win95-statusbar">Ready</div>
+    <div class="win95-statusbar">Live — teacher accounts</div>
   </div>
 
   <!-- ── WINDOW: AI TRIVIA ──────────────────────── -->
@@ -930,6 +913,7 @@
       </div>
       <div class="proj-links">
         <a href="#" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://trivia-app-qgwf.onrender.com" target="_blank" class="win95-btn-link">🌐 Play Live</a>
       </div>
     </div>
     <div class="win95-statusbar">Ready — 5/5 planned phases shipped</div>
@@ -949,15 +933,15 @@
 
       <div class="pf-hero">
         <h1 class="pf-name">Vince Darrigo</h1>
-        <h2 class="pf-title">Full-Stack Engineer · Python Systems Builder</h2>
+        <h2 class="pf-title">Applied AI Backend Engineer · Python Integration Developer</h2>
         <p class="pf-bio">10+ years building production systems from the ground up — backend-focused, API-obsessed, and AI-integrated. Strong production habits forged from years solving real operational problems at scale.</p>
         <p class="pf-prev">Senior Data Specialist at <strong>Safal Partners</strong> &nbsp;·&nbsp; <a href="mailto:vincent.darrigo@gmail.com" class="pf-link">vincent.darrigo@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/vincentdarrigo" target="_blank" class="pf-link">GitHub</a></p>
         <div class="pf-pills">
           <span class="pf-pill pf-pill-a">Python</span>
-          <span class="pf-pill pf-pill-b">Flask</span>
+          <span class="pf-pill pf-pill-b">FastAPI</span>
           <span class="pf-pill pf-pill-c">REST APIs</span>
           <span class="pf-pill pf-pill-a">JavaScript</span>
-          <span class="pf-pill pf-pill-d">AI / LLM</span>
+          <span class="pf-pill pf-pill-d">LLM Agents</span>
           <span class="pf-pill pf-pill-b">SQL</span>
           <span class="pf-pill pf-pill-c">Automation</span>
           <span class="pf-pill pf-pill-d">Git / GitHub</span>
@@ -968,7 +952,8 @@
         <div class="pf-col">
           <h3 class="pf-col-head pf-col-head-a">Backend Development</h3>
           <ul class="pf-list">
-            <li>Python / Flask / REST API design</li>
+            <li>Python / Flask / FastAPI / REST API design</li>
+            <li>Human-in-the-loop LLM agents</li>
             <li>Socket.IO real-time systems</li>
             <li>Logging, retries, batch processing</li>
             <li>Role-based access &amp; auth</li>
@@ -986,10 +971,10 @@
         <div class="pf-col">
           <h3 class="pf-col-head pf-col-head-c">Products &amp; Projects</h3>
           <ul class="pf-list">
-            <li>QuestForge — AI scavenger hunt engine</li>
-            <li>IMRAface — Authenticated portal system</li>
-            <li>Anytime AI Trivia — Stateful AI gameplay</li>
-            <li>Predictrix / Thinkio — Full-stack builds</li>
+            <li>IMRAface — Ops platform with a human-in-the-loop AI ticket agent</li>
+            <li>Thinkio — AI-fluency classroom platform</li>
+            <li>I Spy AI / Anytime AI Trivia — Real-time AI games</li>
+            <li>Predictrix — Live NFL prediction games</li>
           </ul>
         </div>
       </div>
@@ -1017,10 +1002,17 @@
     <div class="win95-content resume-content">
       <div class="resume-doc">
         <h1>VINCE DARRIGO</h1>
-        <p class="resume-subtitle">Full-Stack Engineer, Back-End Oriented | Python Systems Builder</p>
+        <p class="resume-subtitle">Applied AI Backend Engineer | Python Integration Developer</p>
         <p class="resume-contact">Deltona, FL &nbsp;·&nbsp; (702) 514-0888 &nbsp;·&nbsp; vincent.darrigo@gmail.com &nbsp;·&nbsp; github.com/vincentdarrigo</p>
         <hr class="resume-rule">
-        <p class="resume-summary">Python-focused full-stack engineer with 10+ years of experience turning messy, cross-team operations into reliable web applications, API integrations, workflow engines, and automation systems.</p>
+        <p class="resume-summary">Python backend engineer and integration specialist, largely as a result of being a tireless problem solver in any role. Technical solution-building has been the constant of my career, regardless of the platform or objective. The rise of LLM-backed agents and modern AI tooling is the most powerful accelerant my capabilities have ever encountered, and I want to keep pouring gasoline on the fire.</p>
+        <h3>CORE SKILLS</h3>
+        <ul>
+          <li><strong>Backend &amp; AI:</strong> Python, Flask, FastAPI, REST APIs, Pydantic, Anthropic/OpenAI, LLM-backed agents, prompt engineering</li>
+          <li><strong>Real-Time &amp; Frontend:</strong> Socket.IO, WebSockets, JavaScript, TypeScript, React, HTML/CSS, role-based UX</li>
+          <li><strong>Data &amp; Integrations:</strong> PostgreSQL, SQLite, Smartsheet API, Google APIs, Microsoft Graph, Power Platform</li>
+          <li><strong>Production Patterns:</strong> GitHub, Render, background jobs, scheduling, batching, retries, logging, exception handling</li>
+        </ul>
         <h3>EXPERIENCE</h3>
         <div class="resume-job">
           <div class="resume-job-header">
@@ -1028,10 +1020,11 @@
             <span class="resume-job-meta">Safal Partners &nbsp;|&nbsp; Remote &nbsp;|&nbsp; Apr 2025–Present</span>
           </div>
           <ul>
-            <li>Technical lead for IMRA systems; designed Smartsheet-backed operating platform managing complex multi-stakeholder programs.</li>
-            <li>Built Python integrations transforming Google Drive templates into structured, validated records with automated routing, audit trails, and role-specific workflows.</li>
-            <li>Developed IMRAface: authenticated internal portal with user/admin modules, ticketing, dashboards, and workflow controls.</li>
-            <li>Engineered automations with production habits: logs, input validation, batching, retry/backoff, dry-run modes, and explicit failure reporting.</li>
+            <li>Technical lead for Texas' statewide Instructional Materials Review and Approval project. Architected the software layer managing assignments, approvals, and support workflows for 1,500+ reviewers.</li>
+            <li>Engineered Python integrations connecting Smartsheet, Google Drive, and internal reporting workflows, replacing fragmented data silos with a unified, automated data pipeline.</li>
+            <li>Built a full-stack web portal with role-scoped frontend experiences, replacing Smartsheet-as-UI with a real application, syncing Smartsheet and Google Workspace without Smartsheet's Enterprise webhook licensing costs.</li>
+            <li>Developed and shipped human-in-the-loop LLM agents for customer support: the system classifies incoming tickets, executes custom research, and queues resolution proposals for human approval before executing any system actions.</li>
+            <li>Prototyping a Microsoft Teams-integrated AI chatbot assistant that navigates and manages the internal data ecosystem via conversational input.</li>
           </ul>
         </div>
         <div class="resume-job">
@@ -1039,22 +1032,37 @@
             <strong>Smartsheet Developer Specialist</strong>
             <span class="resume-job-meta">Maximus &nbsp;|&nbsp; Remote &nbsp;|&nbsp; Jul 2023–Mar 2025</span>
           </div>
+          <ul>
+            <li>Overhauled fragile manual statewide performance and attendance platforms into auditable, automated workflows using Smartsheet, SharePoint, Power Automate, and Power BI.</li>
+            <li>Delivered a fully automated workforce time-tracking system and mapped Smartsheet/SharePoint data structures to warehouse-ready schemas for a large-scale Snowflake migration.</li>
+            <li>Built custom automations, reporting views, and documentation targeting core user pain points, driving adoption among non-technical teams.</li>
+          </ul>
         </div>
         <div class="resume-job">
           <div class="resume-job-header">
             <strong>Data Solutions Architect</strong>
             <span class="resume-job-meta">Rust Belt Technologies &nbsp;|&nbsp; Remote &nbsp;|&nbsp; Jan 2020–Jun 2023</span>
           </div>
+          <ul>
+            <li>Architected workflow systems, vendor/customer portals, and API integrations for SMBs across manufacturing, retail, and professional services.</li>
+            <li>Used Power Automate and REST APIs to interconnect Smartsheet, SharePoint, Outlook, and Google Workspace into cohesive business systems, with or without Smartsheet API access.</li>
+          </ul>
         </div>
         <h3>SELECTED PROJECTS</h3>
         <ul>
-          <li><strong>QuestForge</strong> — AI-driven scavenger hunt generator with streaming output, real-world location verification, and multi-stage clue logic (Flask, Socket.IO, Google Maps &amp; Places)</li>
-          <li><strong>IMRAface</strong> — Authenticated operational portal with role-based modules, ticketing, and real-time workflow visibility (Flask, Smartsheet API)</li>
-          <li><strong>Anytime AI Trivia</strong> — Stateful AI trivia platform with Challenge AI behavior and reusable game rounds</li>
+          <li><strong>IMRAface</strong> — Role-scoped operations platform with a live human-in-the-loop ticket agent, integrating Smartsheet with multiple data sources for the equivalent cost of 2 Smartsheet editor licenses (Flask / FastAPI / SQLite / Anthropic API)</li>
+          <li><strong>Anytime AI Trivia</strong> — AI-generated trivia with four question types plus trick questions, Challenge AI adjudication, and a growing question bank for offline games (FastAPI / WebSockets / GPT-4o)</li>
+          <li><strong>I Spy AI / I Spy A Pie</strong> — Real-world scavenger hunt with AI-generated locations and clues, and mode-specific UX; the Pie version is a pizza-only tour (Flask / Socket.IO / GPT-4o / Google Maps / Vision)</li>
+          <li><strong>Scattergories: Next Level</strong> — The classic family board game with an AI judge, one of many games built for fun team meetings (Flask / Socket.IO / GPT-4o)</li>
+        </ul>
+        <h3>EDUCATION &amp; CERTIFICATIONS</h3>
+        <ul>
+          <li>Microsoft Python Development Professional Certificate (2025) &nbsp;·&nbsp; Smartsheet Core Product Certification (2024)</li>
+          <li>B.S., Technical Management, DeVry University (2008) &nbsp;·&nbsp; A.A., Political Science, Daytona State College (2005)</li>
         </ul>
         <div class="resume-download-bar">
-          <a href="Vince_Darrigo_ElevenLabs_FullStack_Backend_Resume_Draft.docx" class="win95-btn-link" download>💾 Download (.docx)</a>
-          <button class="win95-btn-link" onclick="window.print()" style="cursor:pointer;border:2px outset #c0c0c0;background:#c0c0c0;font-family:inherit;font-size:inherit;">🖨️ Print / Save as PDF</button>
+          <a href="Darrigo_Vince_20260712.pdf" class="win95-btn-link" download="Vince_Darrigo_Resume.pdf">💾 Download PDF</a>
+          <a href="Darrigo_Vince_20260712.pdf" class="win95-btn-link" target="_blank">📄 View PDF</a>
         </div>
       </div>
     </div>
@@ -2112,14 +2120,14 @@
         <span>📁</span> Programs
         <div class="start-submenu">
           <div class="start-sub-label">🌍 Questourism</div>
-          <div class="start-item" onclick="openWindow('questforge'); closeStartMenu()">🗺️ QuestForge</div>
-          <div class="start-item" onclick="openWindow('questourism'); closeStartMenu()">🌐 Questourism.com</div>
+          <div class="start-item" onclick="openWindow('ispyai'); closeStartMenu()">🕵️ I Spy AI / I Spy A Pie</div>
+          <div class="start-item" onclick="openWindow('trivia'); closeStartMenu()">❓ Anytime AI Trivia</div>
+          <div class="start-item" onclick="openWindow('questourism'); closeStartMenu()">🌐 Questourism</div>
           <div class="start-sub-label">🏈 Predictrix</div>
           <div class="start-item" onclick="openWindow('predictrix'); closeStartMenu()">📊 Predictrix.app</div>
           <div class="start-sub-label">⚙️ Other</div>
-          <div class="start-item" onclick="openWindow('reviewflow'); closeStartMenu()">🔄 ReviewFlow</div>
+          <div class="start-item" onclick="openWindow('reviewflow'); closeStartMenu()">🔄 Review Portal</div>
           <div class="start-item" onclick="openWindow('thinkio'); closeStartMenu()">🧠 Thinkio</div>
-          <div class="start-item" onclick="openWindow('trivia'); closeStartMenu()">❓ Anytime AI Trivia</div>
         </div>
       </div>
 

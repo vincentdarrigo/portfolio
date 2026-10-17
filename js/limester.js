@@ -25,8 +25,10 @@ let lsProgressInterval = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('bootComplete', () => {
-    // Open LimeSter 13 seconds after boot — feels like it auto-launched
+    // Open LimeSter 13 seconds after boot — feels like it auto-launched.
+    // Skipped if the visitor is already reading something; the desktop icon still opens it.
     setTimeout(() => {
+      if (typeof isReading === 'function' && isReading()) return;
       if (typeof openWindow === 'function') openWindow('limester');
       lsRunStartupSequence();
     }, 13000);

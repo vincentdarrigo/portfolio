@@ -95,7 +95,7 @@ const IM_SCRIPT = [
   { from: 'aim',    delay: 12000, text: 'People remember lots of traumatic noises. Dial-up. Windows error chimes. The phrase "RealPlayer update available."' },
   { from: 'yahoo',  delay: 14000, text: 'Anyway! Hi there! Welcome to Vince\'s portfolio — a beautiful retro desktop where everything is clickable, probably useful, and only occasionally emotionally unstable.' },
   { from: 'icq',    delay: 12000, text: 'Look around. There are apps. Games. Projects. Evidence that this guy needs a life.' },
-  { from: 'icq',    delay: 9000,  text: '...and *COUGH* rewarding professional challenges.' },
+  { from: 'icq',    delay: 9000,  text: '...and *COUGH* if you\'re sitting on a messy, complicated, possibly lucrative problem, he\'s the guy to bring it to.' },
   { from: 'aim',    delay: 5000,  text: 'Subtle.' },
   { from: 'icq',    delay: 6000,  text: 'I\'m in the taskbar. Subtle is my entire job.' },
   { from: 'aim',    delay: 14000, text: 'This desktop is a curated museum of important cultural artifacts: Minesweeper, Solitaire, Paint, Snake, Tetris, and whatever deeply suspicious folder Vince labeled "DO_NOT_OPEN_FINAL_v7_REALLY_FINAL."' },
@@ -205,6 +205,7 @@ let imHistory     = [];      // [{type, from, elements[], isClipy}]
 let imClippyVisible = false;
 let aimChatShown  = false;   // door creak fires when first AIM message arrives
 let imUserLeft    = false;   // user clicked Leave — block auto-restart until explicit Replay
+let imPausedForReading = false;   // paused because a project/resume window is open (onReadingChanged)
 
 // ── UTILITY ───────────────────────────────────────────
 
@@ -253,10 +254,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-start after boot sequence completes
   document.addEventListener('bootComplete', () => {
     if (!imRunning) {
-      // Position control panel in bottom-left then open it
+      // Position control panel in bottom-right (bottom-left would cover the app icons), then open it
       const win = document.getElementById('window-messenger');
       if (win && !(windowState['messenger'] && windowState['messenger'].open)) {
-        win.style.left = '12px';
+        win.style.left = Math.max(12, window.innerWidth - (win.offsetWidth || 260) - 12) + 'px';
         win.style.bottom = '36px';
         win.style.top = 'auto';
         win.dataset.positioned = '1';
@@ -457,9 +458,9 @@ function closeImChatWindow(who) {
 function startChatPhase() {
   imCurrentIdx = 0;
   imHistory    = [];
-  imPaused     = false;
+  imPaused     = imPausedForReading;   // visitor opened something to read during the sign-on
   imManual     = false;
-  imSetStatus('Playing...');
+  imSetStatus(imPaused ? '⏸ Paused while you read' : 'Playing...');
   updateImControls();
   scheduleImNext();
 }
@@ -621,6 +622,7 @@ function imTogglePause() {
   if (imPaused || imManual) {
     imPaused = false;
     imManual = false;
+    imPausedForReading = false;   // visitor explicitly asked for the show back
     imSetStatus('Playing...');
     updateImControls();
     scheduleImNext();
@@ -802,20 +804,37 @@ function updateImControls() {
 
 // ── SCENE INTEROP (called by project_scenes.js) ───────
 
-function pauseImShow() {
+function pauseImShow(label) {
   if (!imRunning || imPaused || imManual) return;
   clearTimeout(imNextTimer);
   imPaused = true;
-  imSetStatus('⏸ Scene playing...');
+  imSetStatus(label || '⏸ Scene playing...');
   updateImControls();
 }
 
 function resumeImShow() {
+  if (imPausedForReading) return;   // visitor is still reading — onReadingChanged resumes later
   if (!imRunning || !imPaused) return;
   imPaused = false;
   imSetStatus('Playing...');
   updateImControls();
   scheduleImNext();
+}
+
+// ── READING INTEROP (called by desktop.js) ────────────
+// While the visitor reads a project / resume window, the show pauses and its sign-on
+// screens drop behind that window; it picks back up once they close or minimize it.
+
+function onReadingChanged() {
+  const reading = typeof isReading === 'function' && isReading();
+  document.querySelectorAll('.im-login-screen').forEach(el => { el.style.zIndex = reading ? '99' : ''; });
+  if (reading && imRunning && !imPaused && !imManual) {
+    pauseImShow('⏸ Paused while you read');
+    imPausedForReading = true;
+  } else if (!reading && imPausedForReading) {
+    imPausedForReading = false;
+    resumeImShow();
+  }
 }
 
 // ── LEAVE CHAT ────────────────────────────────────────

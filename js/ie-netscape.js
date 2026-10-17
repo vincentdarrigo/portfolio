@@ -171,7 +171,7 @@ const WAR_SCRIPT = [
   { who: 'ie', text: 'At least I have 96% market share. You have regret.',   delay: 4600 },
   { who: 'ns', text: 'You BOUGHT that share. Then a JUDGE took it away.',    delay: 7000 },
   { who: 'ie', text: 'I render tables correctly. Can you say the same?',     delay: 9400 },
-  { who: 'ns', text: 'Our table rendering is a feature. It's called "art."', delay: 11800 },
+  { who: 'ns', text: 'Our table rendering is a feature. It\'s called "art."', delay: 11800 },
   { who: 'ie', text: 'Your CEO sold you to AOL for $4.2 billion. Ouch.',     delay: 14200 },
   { who: 'ns', text: 'You were convicted of antitrust violations. We won.',  delay: 16600 },
   { who: 'ie', text: 'I\'ll render your HTML wrong, but I\'ll RENDER IT.',   delay: 19000 },

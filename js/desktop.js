@@ -11,13 +11,12 @@ const WINDOW_TITLES = {
   'folder-sports':  '📊 Sports / Prediction',
   'folder-biz':     '💼 Business Integration',
   'recycle':        '🗑️ Recycle Bin',
-  questforge:       '🗺️ QuestForge',
-  questourism:      '🌐 Questourism.com',
+  questourism:      '🌐 Questourism',
   predictrix:       '📊 Predictrix.app',
   pickathlon:       '🏈 Pickathlon',
   draftathon:       '📋 Draftathon',
   ispyai:           '🕵️ I Spy AI / Pie',
-  reviewflow:       '🔄 ReviewFlow',
+  reviewflow:       '🔄 Review Portal',
   thinkio:          '🧠 Thinkio',
   trivia:           '❓ AI Trivia',
   resume:           '📄 Resume.doc',
@@ -121,6 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
   updateClock();
   setInterval(updateClock, 1000);
 
+  // Any key / click / tap during boot skips straight to the desktop
+  ['keydown', 'mousedown', 'touchstart'].forEach(evt => document.addEventListener(evt, skipBoot, true));
+
   // Kick off Gateway BIOS → Win95 login → boot sequence
   runGatewayBoot();
 
@@ -142,6 +144,50 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── BOOT SEQUENCE ─────────────────────────────────────
 
 let bootSoundFired = false;
+let bootSkipped    = false;
+let bootCompleted  = false;
+let bootDeferred   = false;
+
+const PORTRAIT_PHONE = window.matchMedia('(max-width: 900px) and (orientation: portrait)');
+
+// Single exit point for every boot path — 'bootComplete' must fire exactly once.
+function completeBoot() {
+  if (bootCompleted) return;
+  if (PORTRAIT_PHONE.matches) {
+    // Desktop is hidden behind the pocket BSOD — hold the welcome show until the phone is rotated
+    if (!bootDeferred) {
+      bootDeferred = true;
+      PORTRAIT_PHONE.addEventListener('change', function onRotate(e) {
+        if (e.matches) return;
+        PORTRAIT_PHONE.removeEventListener('change', onRotate);
+        completeBoot();
+      });
+    }
+    return;
+  }
+  bootCompleted = true;
+  ['keydown', 'mousedown', 'touchstart'].forEach(evt => document.removeEventListener(evt, skipBoot, true));
+  const hint = document.getElementById('boot-skip-hint');
+  if (hint) hint.remove();
+  document.dispatchEvent(new Event('bootComplete'));
+  startIdleDetection();
+}
+
+function skipBoot() {
+  if (bootSkipped || bootCompleted || PORTRAIT_PHONE.matches) return;
+  bootSkipped = true;
+  ['gateway-overlay', 'win95-login-overlay', 'boot-overlay'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  // The skip input is a user gesture, so the startup sound is allowed to play
+  if (!bootSoundFired) {
+    bootSoundFired = true;
+    const snd = document.getElementById('snd-win95-startup');
+    if (snd) snd.play().catch(() => {});
+  }
+  completeBoot();
+}
 
 function runGatewayBoot() {
   const overlay = document.getElementById('gateway-overlay');
@@ -218,6 +264,7 @@ function runGatewayBoot() {
 }
 
 function showWin95Login() {
+  if (bootSkipped) return;
   const el = document.getElementById('win95-login-overlay');
   if (el) el.style.display = 'flex';
   // Auto-advance — no click needed
@@ -225,6 +272,7 @@ function showWin95Login() {
 }
 
 function doWin95Login() {
+  if (bootSkipped || bootCompleted) return;
   const loginEl = document.getElementById('win95-login-overlay');
   if (loginEl) loginEl.style.display = 'none';
 
@@ -241,11 +289,12 @@ function doWin95Login() {
 
 function runBootSequence() {
   const overlay = document.getElementById('boot-overlay');
-  if (!overlay) { document.dispatchEvent(new Event('bootComplete')); return; }
+  if (!overlay) { completeBoot(); return; }
 
   const bar = document.getElementById('boot-bar-fill');
   let w = 0;
   const tick = setInterval(() => {
+    if (bootSkipped) { clearInterval(tick); return; }
     w += Math.random() * 6 + 2;
     if (w >= 100) {
       w = 100;
@@ -267,23 +316,32 @@ function playBootSound(overlay) {
 }
 
 function finishBoot(overlay) {
+  if (bootSkipped) return;
   overlay.style.opacity = '0';
   setTimeout(() => {
     overlay.style.display = 'none';
-    document.dispatchEvent(new Event('bootComplete'));
-    startIdleDetection();
+    completeBoot();
   }, 720);
 }
 
 // ── IDLE SCREENSAVER ──────────────────────────────────
 
 let idleTimer = null;
-const IDLE_MS  = 30000; // 30 seconds of no activity
+const IDLE_MS  = 90000; // 90 seconds of no activity
+
+// Windows people sit and read — never drop a screensaver on top of these.
+const READING_WINDOWS = ['portfolio', 'resume', 'about', 'projects', 'ispyai', 'trivia', 'thinkio',
+                         'reviewflow', 'predictrix', 'pickathlon', 'draftathon', 'questourism'];
+
+function isReading() {
+  return READING_WINDOWS.some(id => windowState[id] && windowState[id].open && !windowState[id].minimized);
+}
 
 function resetIdleTimer() {
   clearTimeout(idleTimer);
   if (typeof ssRunning !== 'undefined' && ssRunning) return;
   idleTimer = setTimeout(() => {
+    if (isReading()) { resetIdleTimer(); return; }
     if (typeof ssRunning === 'undefined' || !ssRunning) {
       if (typeof launchScreensaver === 'function') launchScreensaver('random');
     }
@@ -291,8 +349,9 @@ function resetIdleTimer() {
 }
 
 function startIdleDetection() {
-  ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
-    document.addEventListener(evt, resetIdleTimer, { passive: true });
+  // capture: scrolling inside a window doesn't bubble up to document
+  ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll', 'wheel'].forEach(evt => {
+    document.addEventListener(evt, resetIdleTimer, { passive: true, capture: true });
   });
   resetIdleTimer();
 }
@@ -326,6 +385,7 @@ function openWindow(id) {
 
   bringToFront(id);
   updateTaskbar();
+  notifyReadingChanged();
 
   // Trigger a project chatbot scene if one is registered for this window
   if (typeof PROJECT_SCENE_WINDOWS !== 'undefined' &&
@@ -344,6 +404,7 @@ function closeWindow(id) {
     windowState[id].minimized = false;
   }
   updateTaskbar();
+  notifyReadingChanged();
 }
 
 function minimizeWindow(id) {
@@ -352,6 +413,7 @@ function minimizeWindow(id) {
   el.style.display = 'none';
   if (windowState[id]) windowState[id].minimized = true;
   updateTaskbar();
+  notifyReadingChanged();
 }
 
 function restoreWindow(id) {
@@ -361,6 +423,12 @@ function restoreWindow(id) {
   if (windowState[id]) windowState[id].minimized = false;
   bringToFront(id);
   updateTaskbar();
+  notifyReadingChanged();
+}
+
+// Lets the welcome show step aside while a visitor reads (see onReadingChanged in messenger.js)
+function notifyReadingChanged() {
+  if (typeof onReadingChanged === 'function') onReadingChanged();
 }
 
 function bringToFront(id) {
