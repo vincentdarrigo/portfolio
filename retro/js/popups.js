@@ -49,7 +49,7 @@ const POPUP_POOL = [
       <div class="pop-sub">You are about to experience<br>
       <strong>AI-powered scavenger hunts</strong><br>
       <strong>sports prediction platforms</strong><br>
-      <strong>and live review portals</strong><br>
+      <strong>and real-time AI trivia</strong><br>
       — all running in a fake Windows 95.</div>
       <div class="pop-construction">🚧 MORE FEATURES ADDED WEEKLY 🚧</div>
       <a class="pop-cta" href="mailto:vincent.darrigo@gmail.com?subject=I%20have%20an%20interesting%20problem">

@@ -1,4 +1,4 @@
-// Hash router: each view is an element whose id is its route ("/", "/projects", "/projects/thinkio").
+// Hash router: each view is an element whose id is its route ("/", "/work", "/work/operations-platform").
 // Without JS every view simply renders in order, and #/route links still jump to the right one.
 (function () {
   var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
@@ -28,7 +28,7 @@
     });
 
     var title = view.getAttribute('data-title') || 'Overview';
-    if (crumb) crumb.textContent = section === '/projects' && view.id !== '/projects' ? 'Projects / ' + title : title;
+    if (crumb) crumb.textContent = section === '/work' && view.id !== '/work' ? 'Work / ' + title : title;
     document.title = (view.id === '/' ? 'Vince Darrigo · AI-Assisted Software Engineer' : title + ' · Vince Darrigo');
 
     if (!firstRender) {

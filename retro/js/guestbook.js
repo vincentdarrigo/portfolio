@@ -176,8 +176,8 @@ function pickAvatar(name) {
 }
 
 function updateFriendCount() {
-  // Slight joke: friends count = comments + 8 preset top friends
-  const n = getComments().length + 8;
+  // Slight joke: friends count = comments + 6 preset top friends
+  const n = getComments().length + 6;
   const el = document.getElementById('friend-count');
   if (el) el.textContent = n;
 }

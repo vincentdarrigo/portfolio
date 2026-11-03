@@ -16,8 +16,7 @@ const WINDOW_TITLES = {
   pickathlon:       '🏈 Pickathlon',
   draftathon:       '📋 Draftathon',
   ispyai:           '🕵️ I Spy AI / Pie',
-  reviewflow:       '🔄 Review Portal',
-  thinkio:          '🧠 Thinkio',
+  learning:         '🧠 AI Learning Platform',
   trivia:           '❓ AI Trivia',
   resume:           '📄 Resume.doc',
   portfolio:        '💼 Portfolio.htm',
@@ -33,7 +32,6 @@ const WINDOW_TITLES = {
   'scene-trivia':     '💬 #ai-trivia',
   'scene-pickathlon': '💬 #pickathlon',
   'scene-draftathon': '💬 #draftathon',
-  'scene-reviewflow': '💬 #review-portal',
   'aim-chat':         '🏃 AIM — xX_AOL4Lyfe97_Xx',
   'icq-chat':       '🌸 ICQ — UhOh_OG',
   'yahoo-chat':     '🟣 Yahoo! — Yahoozup',
@@ -330,8 +328,8 @@ let idleTimer = null;
 const IDLE_MS  = 90000; // 90 seconds of no activity
 
 // Windows people sit and read — never drop a screensaver on top of these.
-const READING_WINDOWS = ['portfolio', 'resume', 'about', 'projects', 'ispyai', 'trivia', 'thinkio',
-                         'reviewflow', 'predictrix', 'pickathlon', 'draftathon', 'questourism'];
+const READING_WINDOWS = ['portfolio', 'resume', 'about', 'projects', 'ispyai', 'trivia', 'learning',
+                         'predictrix', 'pickathlon', 'draftathon', 'questourism'];
 
 function isReading() {
   return READING_WINDOWS.some(id => windowState[id] && windowState[id].open && !windowState[id].minimized);

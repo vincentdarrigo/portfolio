@@ -8,7 +8,7 @@
 const LS_FILES = [
   { name: 'resume_final_FINAL_v7_REALLY_FINAL.doc', user: 'VinceDarrigo',    size: '328 KB',  pct: 100, open: () => openWindow('resume')      },
   { name: 'project_echo_complete_walkthrough.avi',  user: 'MothershipAV',    size: '47.2 MB', pct: 74,  open: () => openWindow('projects')    },
-  { name: 'imraface_portal_demo_hq.mp4',            user: 'VinceDarrigo',    size: '18.6 MB', pct: 42,  open: () => openWindow('projects')    },
+  { name: 'ops_platform_demo_hq.mp4',                user: 'VinceDarrigo',    size: '18.6 MB', pct: 42,  open: () => openWindow('projects')    },
   { name: 'all_about_the_pentiums_320kbps.mp3',     user: 'WeirdAl_Rips',    size: '4.1 MB',  pct: 100, open: () => openWindow('winamp')      },
   { name: 'anytime_bar_trivia_sourcecode.zip',      user: 'VinceDarrigo',    size: '892 KB',  pct: 88,  open: () => openWindow('projects')    },
   { name: 'predictrix_trained_model_v3.dat',        user: 'VinceDarrigo',    size: '2.3 MB',  pct: 56,  open: null                            },
@@ -185,7 +185,7 @@ function lsSearch() {
   const list = document.getElementById('ls-download-list');
   if (!list) return;
   clearInterval(lsProgressInterval);
-  list.innerHTML = `<div class="ls-connecting">Searching for "${escLs(q)}" across 1,247 peers...</div>`;
+  list.innerHTML = `<div class="ls-connecting">Searching for "${escLs(q)}" across the network...</div>`;
 
   setTimeout(() => {
     list.innerHTML = `<div class="ls-connecting" style="color:#a00;">

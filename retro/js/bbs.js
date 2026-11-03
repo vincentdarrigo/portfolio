@@ -314,7 +314,7 @@ function bbsShowFiles() {
   bbsPrint('&nbsp;&nbsp;FILENAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIZE &nbsp;&nbsp; DATE');
   bbsPrint('&nbsp;&nbsp;<span class="bbs-dim">──────────────────────────────────────────────────────</span>');
   bbsPrint('&nbsp;&nbsp;<span class="bbs-bright bbs-clickable" onclick="bbsHandleInput(\'D\')">Vince_Darrigo_Resume.docx</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;128K &nbsp;&nbsp; 05-2026 &nbsp;<span class="bbs-bright">[D]</span>');
-  bbsPrint('&nbsp;&nbsp;IMRAFACE_case_study.txt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42K &nbsp;&nbsp; 04-2026');
+  bbsPrint('&nbsp;&nbsp;OPS_PLATFORM_study.txt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42K &nbsp;&nbsp; 04-2026');
   bbsPrint('&nbsp;&nbsp;QUESTFORGE_scavenger_demo.txt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;38K &nbsp;&nbsp; 03-2026');
   bbsPrint('&nbsp;&nbsp;PREDICTRIX_engine_spec.txt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29K &nbsp;&nbsp; 02-2026');
   bbsPrint('&nbsp;&nbsp;ANYTIME_TRIVIA_notes.txt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18K &nbsp;&nbsp; 01-2026');
@@ -327,17 +327,11 @@ function bbsShowFiles() {
 
 function bbsFilesCmd(val) {
   if ((val || '').toUpperCase() === 'D') {
-    const a = document.createElement('a');
-    a.href = 'Vince_Darrigo_ElevenLabs_FullStack_Backend_Resume_Draft.docx';
-    a.download = '';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
     bbsPrint('');
     bbsPrint('<span class="bbs-dim">Initiating ZMODEM transfer&hellip;</span>');
     setTimeout(() => {
-      bbsPrint('&nbsp;&nbsp;<span class="bbs-bright">Vince_Darrigo_Resume.docx &nbsp; 128K &nbsp; ████████████ 100%</span>');
-      bbsPrint('<span class="bbs-dim">Transfer complete. File saved to your downloads.</span>');
+      bbsPrint('&nbsp;&nbsp;<span class="bbs-bright">Carrier lost. This BBS can\'t send files.</span>');
+      bbsPrint('<span class="bbs-dim">My work history lives on the main site: <a href="../#/experience" target="_blank">Experience page</a>.</span>');
       setTimeout(() => bbsShowMain(), 1000);
     }, 700);
   } else {
@@ -612,7 +606,7 @@ function bbsShowResumeAsBBS() {
   bbsPrint('&nbsp;&nbsp;Class: &nbsp;&nbsp;&nbsp;Python Systems Builder (Full-Stack, Back-End Oriented)');
   bbsPrint('&nbsp;&nbsp;Location: Deltona, FL &nbsp;(Remote preferred)');
   bbsPrint('&nbsp;&nbsp;Alignment: Chaotic Good');
-  bbsPrint('&nbsp;&nbsp;Level: &nbsp;&nbsp;&nbsp;10+ years field experience');
+  bbsPrint('&nbsp;&nbsp;Level: &nbsp;&nbsp;&nbsp;6+ years field experience');
   bbsPrint('');
   bbsPrint('&nbsp;&nbsp;<span class="bbs-dim">──────────────────────────────────────────────────────</span>');
   bbsPrint('&nbsp;&nbsp;SKILL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEVEL');
@@ -686,7 +680,7 @@ function bbsShowSysop() {
   bbsPrint('<span class="bbs-cyan">══════════════════════════════════════════════════════════</span>');
   bbsPrint('');
   bbsPrint('&nbsp;&nbsp;Python-focused full-stack engineer.');
-  bbsPrint('&nbsp;&nbsp;10+ years turning chaotic operations into reliable systems.');
+  bbsPrint('&nbsp;&nbsp;6+ years in solution architecture and engineering roles.');
   bbsPrint('');
   bbsPrint('&nbsp;&nbsp;Currently: <span class="bbs-bright">Senior Data Specialist @ Safal Partners</span>');
   bbsPrint('&nbsp;&nbsp;Available: Yes, immediately, enthusiastically.');
