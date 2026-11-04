@@ -8,12 +8,12 @@ From this directory, run `python -m http.server 8801 --bind 127.0.0.1`, then vis
 
 ## Structure
 
-- `index.html` contains the overview, work index, two case studies, process, experience, and about views.
+- `index.html` contains the overview, work index, two case studies, the Systems Map, process, experience, and about views.
 - `js/site.js` selects a view using a hash route, updates page titles and navigation, and remembers the theme when storage is available. Without JavaScript, the main content remains in document order.
-- `css/site.css` supplies the responsive layout and both themes. The systems notebook uses native HTML disclosures and works without JavaScript.
+- `css/site.css` supplies the responsive layout and both themes.
 - `retro/` is an optional interactive desktop. `desktop.js` owns window state; individual app scripts initialize when their windows open; `usability.js` supplies keyboard activation, window recovery, and visitor controls. Keep script order in `retro/index.html` intact.
 - `retro/guestbook.html` is a browser-local demonstration. Comments are not transmitted to a server. Starter comments and social statistics are fictional.
-- `#/lab` runs an independent synthetic workflow in browser memory. `js/workflow-engine.js` owns the model; `js/workflow-lab.js` renders it. It contains no client code or data and makes no production-safety claim.
+- `#/work/systems-map` is a static, synthetic diagram of how Python connects business systems and where an optional, human-reviewed AI step fits. `js/systems-map.js` highlights a scenario's path; without JavaScript every scenario's notes show and the diagram is unhighlighted. Nothing on it calls a model or a live system. Each scenario's `data-nodes` / `data-edges` must name elements on both diagrams (the wide SVG and the phone stack). The retired `#/lab` route redirects here.
 - The small Gateway computer on About opens a native dialog. Clicking the enlarged computer starts the retro site. Escape, X, or the backdrop closes the preview; without JavaScript the small computer is a direct link.
 - `downloads/vince-darrigo-resume.pdf` contains only the approved public portfolio facts.
 - `work/operations-platform/` and `work/learning-platform/` are standalone, shareable case-study pages with their own metadata. They also remain readable without JavaScript.
@@ -37,7 +37,7 @@ Run:
 ```
 python scripts/build_pages.py --check
 python scripts/check_site.py
-node scripts/workflow.test.cjs
+node scripts/systems-map.test.cjs
 ```
 
-The GitHub workflow runs these on pushes and pull requests. It checks JavaScript syntax (including inline handlers), duplicate IDs, local HTML links/assets, basic image alt presence, generated-page freshness, and the workflow model. These are basic structural checks, not a complete accessibility audit. Review every main route in both themes at desktop and phone sizes. Check keyboard navigation, local assets, production/prototype wording, and client confidentiality before publishing. Source-code checks do not replace interaction testing.
+The GitHub workflow runs these on pushes and pull requests. It checks JavaScript syntax (including inline handlers), duplicate IDs, local HTML links/assets, basic image alt presence, generated-page freshness, and the Systems Map scenarios. These are basic structural checks, not a complete accessibility audit. Review every main route in both themes at desktop and phone sizes. Check keyboard navigation, local assets, production/prototype wording, and client confidentiality before publishing. Source-code checks do not replace interaction testing.

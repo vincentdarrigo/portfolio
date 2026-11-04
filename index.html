@@ -76,36 +76,36 @@
       <section class="view overview" id="/" data-title="Overview">
         <div class="hero">
           <div class="hero-text">
-            <p class="eyebrow">Python applications / systems integration</p>
+            <p class="eyebrow">AI-assisted software engineering · Automation · Systems integration</p>
             <h1>Software for the work <em>between systems.</em></h1>
-            <p class="lede">I'm Vince. I turn disconnected tools and manual handoffs into applications people can work in: Python services, API integrations, and interfaces built around the operation.</p>
-            <p class="hero-meta">Technical lead at Safal Partners · Deltona, FL · Remote</p>
+            <p class="lede">A lot of my work starts with noticing where otherwise good tools have reached their limits. I connect systems, build applications around the way people actually work, and use Claude and other coding agents to move faster. Then I test what we've built, chase down the problems, and keep improving it until people can depend on it.</p>
+            <p class="hero-meta">Senior Data Specialist and technical lead at Safal Partners · Deltona, FL · Remote</p>
             <div class="btn-row">
-              <a class="btn btn-accent" href="work/operations-platform/">Explore the production work <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-accent" href="work/operations-platform/">Read the flagship case study <span aria-hidden="true">→</span></a>
               <a class="btn btn-ghost" href="#/experience">Experience <span aria-hidden="true">→</span></a>
             </div>
-            <p class="hero-aside">I build with AI coding agents. The requirements, integration decisions, and release checks are mine.</p>
+            <p class="hero-aside">I direct AI agents to build software, and I take responsibility for what ships.</p>
           </div>
-          <section class="notebook" aria-labelledby="notebook-title">
-            <div class="notebook-top"><span class="eyebrow">Systems notebook</span><span class="notebook-mark" aria-hidden="true">VD /</span></div>
-            <h2 id="notebook-title">What happens when<br>the happy path ends?</h2>
-            <p class="notebook-intro">Open a failure case. Follow the decision.</p>
-            <div class="system-map" aria-label="A generic integration connects source systems, a Python service, and team workflows">
-              <span>Source<br>systems</span><b aria-hidden="true">⇄</b><span class="map-core">Python<br>service</span><b aria-hidden="true">⇄</b><span>Team<br>workflows</span>
-            </div>
-            <details class="failure-case" name="failure-case" open>
-              <summary><span class="case-symbol" aria-hidden="true">↻</span> The API rate-limits a request</summary>
-              <div class="failure-body"><p class="failure-signal">Signal / HTTP 429</p><p>Back off and retry. Report the failure through structured diagnostics so an unattended sync doesn't fail silently.</p><p class="failure-principle">Design for recovery.</p></div>
-            </details>
-            <details class="failure-case" name="failure-case">
-              <summary><span class="case-symbol" aria-hidden="true">✎</span> Someone edits a working file</summary>
-              <div class="failure-body"><p class="failure-signal">Constraint / human-entered data</p><p>Preserve manual entries during synchronization. Define which system owns each field before deciding what to update.</p><p class="failure-principle">Make ownership explicit.</p></div>
-            </details>
-            <details class="failure-case" name="failure-case">
-              <summary><span class="case-symbol" aria-hidden="true">⌁</span> A bulk repair is needed</summary>
-              <div class="failure-body"><p class="failure-signal">Boundary / before a write</p><p>Inspect a dry run before bulk updates. Back up files before repairs, then correct the upstream defect that caused the damage.</p><p class="failure-principle">Protect the recovery path.</p></div>
-            </details>
-            <p class="notebook-caption">Illustrative decision guide, not a live system or a production trace. <a href="work/operations-platform/">Read the actual case study →</a> <a href="#/lab">Try a synthetic workflow →</a></p>
+          <section class="map-teaser" aria-labelledby="map-teaser-title">
+            <div class="map-teaser-top"><span class="eyebrow">Systems Map</span><span class="map-teaser-mark" aria-hidden="true">VD /</span></div>
+            <h2 id="map-teaser-title">Not every business problem needs AI.</h2>
+            <p class="map-teaser-intro">Here's how I think about what to connect, what to automate, and when a model is actually worth using.</p>
+            <a class="map-teaser-figure" href="#/work/systems-map" tabindex="-1" aria-hidden="true">
+              <svg class="teaser-svg" viewBox="-2 0 404 184" focusable="false">
+                <g class="m-edge"><path d="M112 24 C130 24 128 82 144 82"/><path class="m-head" d="M144 78 L150 82 L144 86 Z"/></g>
+                <g class="m-edge"><path d="M112 92 L144 92"/><path class="m-head" d="M144 88 L150 92 L144 96 Z"/></g>
+                <g class="m-edge"><path d="M112 160 C130 160 128 102 144 102"/><path class="m-head" d="M144 98 L150 102 L144 106 Z"/></g>
+                <g class="m-edge"><path d="M242 82 C262 82 258 46 278 46"/><path class="m-head" d="M278 42 L284 46 L278 50 Z"/></g>
+                <g class="m-edge m-optional"><path d="M242 102 C262 102 258 136 278 136"/><path class="m-head" d="M278 132 L284 136 L278 140 Z"/></g>
+                <g class="m-node"><rect x="0" y="4" width="112" height="40" rx="5"/><text class="m-title" x="56" y="29">Spreadsheets</text></g>
+                <g class="m-node"><rect x="0" y="72" width="112" height="40" rx="5"/><text class="m-title" x="56" y="97">APIs</text></g>
+                <g class="m-node"><rect x="0" y="140" width="112" height="40" rx="5"/><text class="m-title" x="56" y="165">Databases</text></g>
+                <g class="m-node m-core"><rect x="150" y="64" width="92" height="56" rx="5"/><text class="m-title" x="196" y="97">Python</text></g>
+                <g class="m-node"><rect x="284" y="24" width="116" height="44" rx="5"/><text class="m-title" x="342" y="51">Team workflow</text></g>
+                <g class="m-node m-optional"><rect x="284" y="104" width="116" height="64" rx="5"/><text class="m-title" x="342" y="131">Optional AI</text><text class="m-sub" x="342" y="152">a person decides</text></g>
+              </svg>
+            </a>
+            <a class="btn btn-ghost btn-sm" href="#/work/systems-map">Explore the Systems Map <span aria-hidden="true">→</span></a>
           </section>
         </div>
 
@@ -121,15 +121,15 @@
           <div class="feature-text">
             <div class="card-top"><span class="card-cat">Case study · Client work</span><span class="pill pill-prod">Production · private</span></div>
             <h3>Proprietary Operations &amp; Data Platform</h3>
-            <p class="card-line">An internal multi-role application behind a large, multi-stakeholder operational program: approvals, task routing, support, reporting, and the data flows that tie them together across several existing business systems.</p>
-            <p class="card-line">My role: technical lead. I shape the requirements, design the integrations, direct the coding agents, and validate the behavior before release.</p>
+            <p class="card-line">After spending months connecting and automating existing workflows, I could see that the operation needed something bigger. I took the initiative to build a platform that brings approvals, support, reporting, and several connected systems together in one application.</p>
+            <p class="card-line">I identified the need, initiated development, designed the workflows and integrations, directed AI-assisted implementation, and remained responsible for testing and refining the results.</p>
             <ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>REST APIs</li></ul>
             <a class="btn btn-accent btn-sm feature-cta" href="work/operations-platform/">Read the case study <span aria-hidden="true">→</span></a>
           </div>
 
           <div class="receipt" aria-labelledby="receipt-title">
             <div class="receipt-head">
-              <p class="receipt-kicker">Receipt</p>
+              <p class="receipt-kicker">Engineering notes</p>
               <h4 id="receipt-title">Safeguards in place</h4>
               <p class="receipt-sub">Operations platform · 2025 – present</p>
             </div>
@@ -149,7 +149,8 @@
         <a class="card card-row" href="work/learning-platform/" style="--c: var(--c-amber)">
           <div class="card-top"><span class="card-cat">Case study · AI evaluation</span><span class="pill pill-proto">Prototype · private</span></div>
           <h3>AI-Assisted Learning Platform</h3>
-          <p class="card-line">A tutor that guides instead of answering, and model-drafted assessments that stay advisory until a teacher reviews them. A QA pass exposed false-positive evidence suggestions; I changed the prompt and retested the same submissions.</p>
+          <p class="card-line">An educational AI prototype built around a simple principle: AI should help students learn, not do their thinking for them. It also explores how AI can help teachers evaluate the learning process while keeping people responsible for final decisions.</p>
+          <p class="card-line">One of the most interesting challenges was finding where the model's supporting evidence didn't quite hold up, and improving its instructions to address it.</p>
           <span class="explore">Read the case study <span aria-hidden="true">→</span></span>
         </a>
 
@@ -158,51 +159,53 @@
             <p class="eyebrow eyebrow-muted">Independent builds</p>
             <h2>Live projects</h2>
           </div>
-          <p class="section-note">Live demos I build and run myself. The first load can take up to a minute while a free-tier server wakes up.</p>
+          <p class="section-note">These are some of the things I build when an idea gets stuck in my head and I want to see whether I can make it work. They run on free-tier hosting, so the first load can take up to a minute.</p>
         </div>
         <div class="builds">
           <div class="build" style="--c: var(--c-violet)">
             <div class="card-top"><h3>Anytime AI Trivia</h3><span class="pill pill-live">Live demo</span></div>
             <p class="build-demo-note">The demo opens as Trivia For All.</p>
-            <p class="build-what">Type a topic and get a multiplayer trivia game.</p>
-            <p class="build-lesson"><span>What it shows</span>Keeping every player's screen in sync: shared rooms, timers, and scores over WebSockets, with AI rulings players can challenge.</p>
+            <p class="build-what">Give it a topic, get a multiplayer trivia game, and challenge the AI when you think it got something wrong.</p>
+            <p class="build-lesson">Real-time multiplayer state: shared rooms, synced timers, and scores over WebSockets.</p>
             <a class="link-arrow" href="https://trivia-app-qgwf.onrender.com" target="_blank" rel="noopener" aria-label="Play Anytime AI Trivia (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
           </div>
           <div class="build" style="--c: var(--c-teal)">
             <div class="card-top"><h3>I Spy AI</h3><span class="pill pill-live">Live demo</span></div>
-            <p class="build-what">AI scavenger hunts at real places.</p>
-            <p class="build-lesson"><span>What it shows</span>Grounding model output in external data: AI-written clues point at places checked against Google Places, with live game events.</p>
+            <p class="build-what">A scavenger hunt that uses AI to create adventures around real places. The fun part is making generated clues work with actual location data instead of sending players looking for something that doesn't exist.</p>
+            <p class="build-lesson">Several external APIs, live location data, and real-time game events working together.</p>
             <a class="link-arrow" href="https://ai-mazing-race.onrender.com" target="_blank" rel="noopener" aria-label="Play I Spy AI (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
           </div>
           <div class="build" style="--c: var(--c-green)">
             <div class="card-top"><h3>Predictrix</h3><span class="pill pill-live">Live · NFL season</span></div>
-            <p class="build-what">NFL prediction games at predictrix.app.</p>
-            <p class="build-lesson"><span>What it shows</span>Product ownership end to end: a Django REST and React platform with standings computed from player picks, iterated season to season.</p>
+            <p class="build-what">My growing collection of NFL prediction games, experiments, and ideas that keep turning into more software.</p>
+            <p class="build-lesson">End to end: game logic, scoring, standings computed from picks, and the interfaces around them.</p>
             <a class="link-arrow" href="https://predictrix.app" target="_blank" rel="noopener" aria-label="Visit Predictrix (opens in a new tab)">Visit <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
         <div class="section-head">
           <div>
-            <p class="eyebrow eyebrow-muted">How I build</p>
-            <h2>From a messy workflow to a working application.</h2>
+            <p class="eyebrow eyebrow-muted">How I work</p>
+            <h2>AI-assisted. Personally verified.</h2>
           </div>
-          <a class="link-arrow" href="#/how-i-work">The full loop <span aria-hidden="true">→</span></a>
+          <a class="link-arrow" href="#/how-i-work">See the whole process <span aria-hidden="true">→</span></a>
         </div>
+        <p class="section-intro">My approach is pretty straightforward: understand the real problem, explain clearly what needs to happen, let the coding agents help build it, and then see whether it actually works.</p>
         <ol class="loop">
-          <li><span>01</span>Translate ambiguity</li>
-          <li><span>02</span>Define the contract</li>
-          <li><span>03</span>Direct the agents</li>
-          <li><span>04</span>Verify in a real browser</li>
-          <li><span>05</span>Trace the root cause</li>
-          <li><span>06</span>Ship safely</li>
+          <li><span>01</span>Understand the problem</li>
+          <li><span>02</span>Define what success looks like</li>
+          <li><span>03</span>Give the agents clear instructions</li>
+          <li><span>04</span>Test it like a real user</li>
+          <li><span>05</span>Fix the cause, not just the symptom</li>
+          <li><span>06</span>Release it carefully</li>
         </ol>
 
         <div class="cta">
           <div>
             <p class="eyebrow">Get in touch</p>
-            <h2>Hiring, or have a workflow that needs a real application?</h2>
-            <p>I do my best work on problems that cross data sources, APIs, and the people who approve things: systems that don't talk to each other, manual steps that keep breaking, and processes that need software built around them.</p>
+            <h2>Have a complicated workflow or an idea that needs to become real software?</h2>
+            <p>I especially enjoy figuring out how to make systems work together, eliminate frustrating manual steps, and build things that people didn't realize were possible with the tools they already have.</p>
+            <p>I'd love to hear what you're working on.</p>
           </div>
           <div class="cta-actions">
             <a class="btn btn-accent" href="mailto:vincent.darrigo@gmail.com">Email Vince</a>
@@ -221,19 +224,24 @@
           <p class="page-head-note">Client work is anonymized: no client names, data, screenshots, or private links. Each case study says what's in production, what's a prototype, and what you can check yourself.</p>
         </div>
 
-        <p class="lab-work-link">Want something inspectable? <a href="#/lab">Open the synthetic workflow lab →</a></p>
         <div class="cards cards-2">
           <a class="card card-wide" href="work/operations-platform/" style="--c: var(--c-blue)">
             <div class="card-top"><span class="card-cat">Case study · Client work · 2025 – present</span><span class="pill pill-prod">Production · private</span></div>
             <div class="card-title-row"><h2>Proprietary Operations &amp; Data Platform</h2><ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>REST APIs</li></ul></div>
-            <p class="card-line">An internal multi-role application for a large, multi-stakeholder operational program. Multi-source reconciliation, unattended synchronization with recovery, and permission-aware interfaces.</p>
+            <p class="card-line">A multi-role application for a large, multi-stakeholder operational program. I proposed and initiated it after automating the original workflows. Inside: reconciliation across several sources, unattended synchronization that recovers from routine failures, and views scoped to each role.</p>
             <span class="explore card-foot-solo">Read the case study <span aria-hidden="true">→</span></span>
           </a>
           <a class="card card-wide" href="work/learning-platform/" style="--c: var(--c-amber)">
             <div class="card-top"><span class="card-cat">Case study · AI evaluation</span><span class="pill pill-proto">Prototype · private</span></div>
             <div class="card-title-row"><h2>AI-Assisted Learning Platform</h2><ul class="tags"><li>FastAPI</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>OpenAI models</li></ul></div>
-            <p class="card-line">An AI tutor that guides instead of answering, structured evaluation criteria, and model-drafted assessments that stay advisory until a teacher reviews them. Includes a prompt-evaluation failure and the correction.</p>
+            <p class="card-line">An AI tutor that guides instead of answering, evaluation criteria built on observable behavior, and model-drafted assessments that stay advisory until a teacher reviews them. It also covers a prompt problem I found in testing and how I fixed it.</p>
             <span class="explore card-foot-solo">Read the case study <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="card card-wide" href="#/work/systems-map" style="--c: var(--c-teal)">
+            <div class="card-top"><span class="card-cat">Interactive · How I decide</span><span class="pill pill-req">Illustrative</span></div>
+            <div class="card-title-row"><h2>Systems Map</h2><ul class="tags"><li>Python</li><li>Integrations</li><li>When AI is worth it</li></ul></div>
+            <p class="card-line">Not every problem needs AI. Pick a business problem and see what I'd connect, what I'd automate with plain Python, and where a model might actually help.</p>
+            <span class="explore card-foot-solo">Explore the Systems Map <span aria-hidden="true">→</span></span>
           </a>
         </div>
 
@@ -242,31 +250,31 @@
             <p class="eyebrow eyebrow-muted">Independent builds</p>
             <h2>Live projects</h2>
           </div>
-          <p class="section-note">Live demos I build and run myself. The first load can take up to a minute while a free-tier server wakes up. Source code is private.</p>
+          <p class="section-note">These are some of the things I build when an idea gets stuck in my head and I want to see whether I can make it work. They run on free-tier hosting, so the first load can take up to a minute. Source code is private.</p>
         </div>
         <div class="builds builds-media">
           <div class="build" style="--c: var(--c-violet)">
             <a class="shot-link" href="img/trivia.jpg" target="_blank" rel="noopener"><img src="img/trivia.jpg" width="1792" height="942" loading="lazy" alt="The current Trivia For All start screen with four options: Host (AI Mode), Host (Local File), Join Game, and Watch Game."></a>
             <div class="card-top"><h3>Anytime AI Trivia</h3><span class="pill pill-live">Live demo</span></div>
             <p class="build-demo-note">The demo opens as Trivia For All.</p>
-            <p class="build-what">Type a topic and the AI builds a multiplayer trivia game on the spot.</p>
-            <p class="build-lesson"><span>What it shows</span>Real-time state: rooms, synced timers, and a shared scoreboard over WebSockets. Players can challenge an AI ruling, and the reasoning is shown to the whole room.</p>
+            <p class="build-what">Give it a topic, get a multiplayer trivia game, and challenge the AI when you think it got something wrong.</p>
+            <p class="build-lesson">Rooms, synced timers, and a shared scoreboard over WebSockets. When a player challenges an AI ruling, the reasoning is shown to the whole room.</p>
             <ul class="tags"><li>FastAPI</li><li>WebSockets</li><li>GPT-4o</li></ul>
             <a class="link-arrow" href="https://trivia-app-qgwf.onrender.com" target="_blank" rel="noopener" aria-label="Play Anytime AI Trivia (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
           </div>
           <div class="build" style="--c: var(--c-teal)">
             <a class="shot-link" href="img/ispy.jpg" target="_blank" rel="noopener"><img src="img/ispy.jpg" width="1280" height="720" loading="lazy" alt="I Spy AI's mission setup screen: choose I Spy AI or I Spy A Pie, name a team, host or join a race, pick a city, number of locations, and difficulty, then generate a route."></a>
             <div class="card-top"><h3>I Spy AI</h3><span class="pill pill-live">Live demo</span></div>
-            <p class="build-what">Pick a city and the AI builds a scavenger hunt around real places.</p>
-            <p class="build-lesson"><span>What it shows</span>A multi-API workflow: model-generated clues grounded by Google Places data, privacy blurring with Cloud Vision, and live game events over Socket.IO.</p>
+            <p class="build-what">A scavenger hunt that uses AI to create adventures around real places. The fun part is making generated clues work with actual location data instead of sending players looking for something that doesn't exist.</p>
+            <p class="build-lesson">Model-written clues grounded by Google Places data, privacy blurring with Cloud Vision, and live game events over Socket.IO.</p>
             <ul class="tags"><li>Flask</li><li>Socket.IO</li><li>Google Maps</li><li>GPT-4o</li></ul>
             <a class="link-arrow" href="https://ai-mazing-race.onrender.com" target="_blank" rel="noopener" aria-label="Play I Spy AI (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
           </div>
           <div class="build" style="--c: var(--c-green)">
             <a class="shot-link" href="img/predictrix.jpg" target="_blank" rel="noopener"><img src="img/predictrix.jpg" width="1280" height="720" loading="lazy" alt="The predictrix.app home page, offering the Predictrix Championship Series and Standalone Competitions."></a>
             <div class="card-top"><h3>Predictrix</h3><span class="pill pill-live">Live · NFL season</span></div>
-            <p class="build-what">NFL prediction games across a season-long championship and standalone competitions.</p>
-            <p class="build-lesson"><span>What it shows</span>Product ownership end to end: data flows from player picks to computed standings, a public leaderboard with no sign-up, and steady iteration between seasons.</p>
+            <p class="build-what">My growing collection of NFL prediction games, experiments, and ideas that keep turning into more software.</p>
+            <p class="build-lesson">A season-long championship and standalone competitions: player picks flow into computed standings and a public leaderboard that needs no sign-up.</p>
             <ul class="tags"><li>Python</li><li>Django REST</li><li>React</li></ul>
             <a class="link-arrow" href="https://predictrix.app" target="_blank" rel="noopener" aria-label="Visit Predictrix (opens in a new tab)">Visit <span aria-hidden="true">↗</span></a>
           </div>
@@ -287,10 +295,10 @@
           </div>
         </div>
         <p class="study-lede-strong">An internal multi-role application behind a large, multi-stakeholder operational program.</p>
-        <p class="study-lede">The platform handles approvals, task routing, support, and reporting, and keeps several existing business systems in step through Python services and APIs. It began as disconnected scripts and manual handoffs. Today it's an integrated production application. A newer database-backed generation, built on PostgreSQL and moving toward managed integrations and centralized data access, has been built and demonstrated; production still runs on the original platform.</p>
+        <p class="study-lede">After months spent connecting and automating existing workflows, I saw that the operation needed a real application to keep growing. I proposed and initiated the platform, then led the work of connecting the systems and refining it with the people who use it. Today it handles approvals, task routing, support, and reporting, and keeps several existing business systems in step through Python services and APIs. A newer database-backed generation, built on PostgreSQL, has been built and demonstrated; production still runs on the original platform.</p>
 
         <dl class="facts">
-          <div><dt>My role</dt><dd>Technical lead</dd></div>
+          <div><dt>My role</dt><dd>Initiated it · technical lead</dd></div>
           <div><dt>Timeline</dt><dd>April 2025 – present</dd></div>
           <div><dt>Status</dt><dd>Production · private</dd></div>
           <div><dt>Stack</dt><dd>Production: Python, FastAPI, SQLAlchemy, SQLite, REST APIs. Next generation: PostgreSQL.</dd></div>
@@ -329,6 +337,7 @@
         <section class="prose">
           <h2>What I owned</h2>
           <ul class="checks">
+            <li>Proposing the application in the first place, after building the workflow automations it replaced.</li>
             <li>Turning shifting stakeholder requirements into workflows and detailed task instructions for coding agents.</li>
             <li>Designing the data flows, integrations, and the schema for the database-backed version.</li>
             <li>Directing Claude and other coding agents, then reviewing what they produced.</li>
@@ -412,8 +421,8 @@
             <a class="btn btn-ghost btn-sm" href="mailto:vincent.darrigo@gmail.com?subject=Your%20learning%20platform%20case%20study">Ask about this work</a>
           </div>
         </div>
-        <p class="study-lede-strong">An AI tutor that guides instead of answering, and model-drafted assessments that stay advisory until a teacher reviews them.</p>
-        <p class="study-lede">The platform looks at how a student works with an AI tutor, not only at what they turn in: whether they set a goal, ask clearly, check what comes back, and stay honest about which work is theirs. The prototype has separate views for students, teachers, parents, and administrators.</p>
+        <p class="study-lede-strong">An educational AI prototype built around a simple principle: AI should help students learn, not do their thinking for them.</p>
+        <p class="study-lede">It also explores how AI can help teachers evaluate the learning process while keeping people responsible for final decisions. The platform looks at how a student works with an AI tutor, not only at what they turn in: whether they set a goal, ask clearly, check what comes back, and stay honest about which work is theirs. The prototype has separate views for students, teachers, parents, and administrators.</p>
 
         <dl class="facts">
           <div><dt>Status</dt><dd>Prototype · private</dd></div>
@@ -470,74 +479,189 @@
         <nav class="study-nav" aria-label="More work"><a href="work/operations-platform/"><span aria-hidden="true">←</span> Operations &amp; Data Platform</a><a href="#/work">All work <span aria-hidden="true">→</span></a></nav>
       </article>
 
-      <!-- ===================== Independent synthetic reference ===================== -->
-      <section class="view" id="/lab" data-title="Workflow lab">
-        <a class="back" href="#/work">← All work</a>
-        <div class="page-head"><div><p class="eyebrow">Independent reference example / synthetic data</p><h1>Break a workflow.<br>Inspect the recovery.</h1></div></div>
-        <p class="lede">A small, executable model of field ownership, dry runs, and recovery. Choose a failure, inspect the proposed write, then decide what happens next.</p>
-        <p class="lab-disclosure">All records are invented. Everything runs in this browser. This is an independent teaching example, not client code, a production trace, or evidence that every safeguard below exists in the private platform.</p>
-        <div id="workflow-lab" class="lab-interactive">
-          <fieldset class="lab-scenarios"><legend>Choose a failure</legend>
-            <label><input type="radio" name="lab-case" value="manual" checked><span>A person edits a file<small>Preserve human-owned fields</small></span></label>
-            <label><input type="radio" name="lab-case" value="rate"><span>The API returns 429<small>Refuse writes until a retry succeeds</small></span></label>
-            <label><input type="radio" name="lab-case" value="repair"><span>A record needs repair<small>Back up, change, and restore</small></span></label>
-          </fieldset>
-          <div class="lab-toolbar"><button id="lab-preview" class="btn btn-accent" type="button">Preview the change</button><button id="lab-apply" class="btn btn-ghost" type="button" disabled>Apply proposal</button><button id="lab-edit" class="btn btn-ghost" type="button" disabled>Edit after preview</button><button id="lab-restore" class="btn btn-ghost" type="button" hidden disabled>Restore backup</button><button id="lab-reset" class="btn btn-ghost" type="button">Reset example</button></div>
-          <p id="lab-status" class="lab-status" role="status">Ready to preview. Nothing has changed.</p>
-          <div class="lab-records"><section><h2>Before</h2><pre id="lab-before"></pre></section><section><h2>Proposed write</h2><pre id="lab-proposal"></pre></section><section><h2>Current record</h2><pre id="lab-current"></pre></section></div>
-          <div class="lab-trace"><h2>Decision trace</h2><ol id="lab-events"></ol></div>
-          <div class="btn-row"><button id="lab-download" class="btn btn-ghost" type="button">Download this run as JSON ↓</button><a class="link-arrow" href="js/workflow-engine.js" target="_blank" rel="noopener">Inspect the model's source ↗</a></div>
+      <!-- ===================== Systems Map ===================== -->
+      <section class="view systems-page" id="/work/systems-map" data-title="Systems Map">
+        <a class="back" href="#/work"><span aria-hidden="true">←</span> All work</a>
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Systems Map</p>
+            <h1>Not every problem needs AI. Every problem needs the right solution.</h1>
+          </div>
         </div>
-        <noscript><p class="callout">JavaScript powers the executable example. The policy is simple: preview status changes, preserve human-owned notes, retry a failed read before offering a write, and save a backup before a repair. The source is available below.</p><a href="js/workflow-engine.js">Read the example source</a></noscript>
-        <div class="callout"><p class="callout-label">A limitation worth looking at</p><p>The revision check refuses a stale proposal; it does not merge simultaneous changes. A real service also needs durable storage, authentication, idempotency, retry limits, and transaction boundaries. An in-memory backup disappears when the page closes.</p></div>
+        <div class="map-intro">
+          <p>A lot of my work happens between systems that weren't designed to work together. Spreadsheets, databases, APIs, documents, and people all need to exchange information, and somewhere in the middle, something has to make sense of it. That's where I do some of my favorite work.</p>
+          <p>I use Python to connect the pieces, organize the rules, automate the repetitive work, and build applications around the people who use them. AI coding agents help me build those solutions faster than I could have imagined a few years ago. But whether the finished application needs AI running inside it is an entirely different question.</p>
+        </div>
+
+        <div id="systems-map" class="map">
+          <div class="section-head"><div><p class="eyebrow eyebrow-muted">Interactive</p><h2>Explore the connections</h2></div></div>
+          <p class="section-intro">Select a business problem to see how I'd approach it, which technologies make sense, where AI might help, and where I'd deliberately leave it out.</p>
+          <fieldset class="map-scenarios">
+            <legend class="sr-only">Business problems</legend>
+            <label><input type="radio" name="map-scenario" value="rate" checked><span>An API rate-limits requests<small>Standard Python</small></span></label>
+            <label><input type="radio" name="map-scenario" value="records"><span>Records disagree across systems<small>Standard Python</small></span></label>
+            <label><input type="radio" name="map-scenario" value="support"><span>A support request arrives as free text<small>AI may help · a person reviews</small></span></label>
+            <label><input type="radio" name="map-scenario" value="learning"><span>Assessing evidence of learning<small>AI may help · a teacher reviews</small></span></label>
+            <label><input type="radio" name="map-scenario" value="reports"><span>Reports from structured records<small>Standard Python</small></span></label>
+          </fieldset>
+          <figure class="map-figure">
+            <svg class="map-svg" viewBox="-4 -4 1008 392" role="img" aria-labelledby="map-svg-title map-svg-desc" focusable="false">
+              <title id="map-svg-title">Systems Map</title>
+              <desc id="map-svg-desc">Spreadsheets, forms and files, business APIs, and databases feed Python services, which handle validation, business rules, and API integration. Python drives team workflows and a layer of checks and recovery directly. An optional AI service branches off Python, and a person decides what to do with its suggestion before anything reaches the team workflow.</desc>
+              <g class="m-edge" data-edge="e-sheets"><path d="M190 48 C230 48 226 140 262 140"/><path class="m-head" d="M262 135 L270 140 L262 145 Z"/></g>
+              <g class="m-edge" data-edge="e-files"><path d="M190 140 C230 140 226 172 262 172"/><path class="m-head" d="M262 167 L270 172 L262 177 Z"/></g>
+              <g class="m-edge" data-edge="e-apis"><path d="M190 232 C230 232 226 204 262 204"/><path class="m-head" d="M262 199 L270 204 L262 209 Z"/></g>
+              <g class="m-edge" data-edge="e-db"><path d="M190 324 C230 324 226 236 262 236"/><path class="m-head" d="M262 231 L270 236 L262 241 Z"/></g>
+              <g class="m-edge" data-edge="e-app"><path d="M490 130 C650 130 640 61 792 61"/><path class="m-head" d="M792 56 L800 61 L792 66 Z"/></g>
+              <g class="m-edge" data-edge="e-guard"><path d="M490 246 C650 246 640 331 792 331"/><path class="m-head" d="M792 326 L800 331 L792 336 Z"/></g>
+              <g class="m-edge m-optional" data-edge="e-ai"><path d="M490 190 L552 190"/><path class="m-head" d="M552 185 L560 190 L552 195 Z"/><text class="m-label" x="525" y="179">optional</text></g>
+              <g class="m-edge m-optional" data-edge="e-review"><path d="M730 190 L792 190"/><path class="m-head" d="M792 185 L800 190 L792 195 Z"/></g>
+              <g class="m-edge" data-edge="e-back"><path d="M900 158 L900 114"/><path class="m-head" d="M895 114 L900 106 L905 114 Z"/></g>
+              <g class="m-node" data-node="sheets"><rect x="0" y="16" width="190" height="64" rx="6"/><text class="m-title" x="95" y="44">Spreadsheets</text><text class="m-sub" x="95" y="64">shared working files</text></g>
+              <g class="m-node" data-node="files"><rect x="0" y="108" width="190" height="64" rx="6"/><text class="m-title" x="95" y="136">Forms &amp; files</text><text class="m-sub" x="95" y="156">requests · uploads</text></g>
+              <g class="m-node" data-node="apis"><rect x="0" y="200" width="190" height="64" rx="6"/><text class="m-title" x="95" y="228">Business APIs</text><text class="m-sub" x="95" y="248">tools teams already use</text></g>
+              <g class="m-node" data-node="db"><rect x="0" y="292" width="190" height="64" rx="6"/><text class="m-title" x="95" y="320">Databases</text><text class="m-sub" x="95" y="340">system of record</text></g>
+              <g class="m-node m-core" data-node="python"><rect x="270" y="96" width="220" height="184" rx="6"/><text class="m-title" x="380" y="148">Python services</text><text class="m-sub" x="380" y="178">validation</text><text class="m-sub" x="380" y="200">business rules</text><text class="m-sub" x="380" y="222">API integration</text></g>
+              <g class="m-node m-optional" data-node="ai"><rect x="560" y="158" width="170" height="64" rx="6"/><text class="m-title" x="645" y="186">Optional AI</text><text class="m-sub" x="645" y="206">one scoped task</text></g>
+              <g class="m-node" data-node="review"><rect x="800" y="158" width="200" height="64" rx="6"/><text class="m-title" x="900" y="186">A person decides</text><text class="m-sub" x="900" y="206">approve or override</text></g>
+              <g class="m-node" data-node="app"><rect x="800" y="16" width="200" height="90" rx="6"/><text class="m-title" x="900" y="46">Team workflows</text><text class="m-sub" x="900" y="68">apps · dashboards</text><text class="m-sub" x="900" y="88">reports · approvals</text></g>
+              <g class="m-node" data-node="guard"><rect x="800" y="286" width="200" height="90" rx="6"/><text class="m-title" x="900" y="316">Checks &amp; recovery</text><text class="m-sub" x="900" y="338">diagnostics · retries</text><text class="m-sub" x="900" y="358">backups · permissions</text></g>
+            </svg>
+            <div class="map-stack">
+              <ul class="ms-in">
+                <li data-node="sheets">Spreadsheets</li>
+                <li data-node="files">Forms &amp; files</li>
+                <li data-node="apis">Business APIs</li>
+                <li data-node="db">Databases</li>
+              </ul>
+              <p class="ms-arrow" aria-hidden="true">↓</p>
+              <p class="ms-core" data-node="python"><strong>Python services</strong><span>validation · business rules · API integration</span></p>
+              <p class="ms-arrow" aria-hidden="true">↓</p>
+              <ul class="ms-out">
+                <li data-node="app"><strong>Team workflows</strong><span>apps · dashboards · reports · approvals</span></li>
+                <li data-node="guard"><strong>Checks &amp; recovery</strong><span>diagnostics · retries · backups · permissions</span></li>
+                <li class="ms-branch"><span class="ms-ai" data-node="ai"><strong>Optional AI</strong><span>one scoped task</span></span><span class="ms-then" aria-hidden="true">→</span><span data-node="review"><strong>A person decides</strong><span>then the workflow runs</span></span></li>
+              </ul>
+            </div>
+            <figcaption>These are simplified synthetic examples. The map is not a live production topology or a disclosure of client systems. Dashed lines mark the optional AI path.</figcaption>
+          </figure>
+          <p id="map-status" class="sr-only" aria-live="polite"></p>
+          <div class="map-details">
+          <article class="map-detail" id="map-rate" data-nodes="apis python guard" data-edges="e-apis e-guard" data-summary="An API rate-limits requests: standard Python. Highlighted: business APIs, Python services, checks and recovery." aria-labelledby="map-rate-title">
+            <div class="map-detail-head"><h3 id="map-rate-title">An API rate-limits requests</h3><p class="map-verdict">Standard Python</p></div>
+            <dl class="map-facts">
+              <div><dt>The problem</dt><dd>An integration starts getting HTTP 429 (“too many requests”) responses from a business API.</dd></div>
+              <div><dt>How I'd approach it</dt><dd>Stay inside the rate limit, retry with bounded exponential backoff, and log a structured outcome so an unattended job never fails silently.</dd></div>
+              <div><dt>Where AI fits</dt><dd>Nowhere at runtime. The rules are known in advance, and calling a model on every failure would add cost and guesswork without making anything more reliable.</dd></div>
+            </dl>
+            <ol class="flow" aria-label="Steps"><li>Response detected</li><li>Back off and retry</li><li class="flow-gate">Record the outcome, or escalate when retries run out</li></ol>
+            <p class="map-provenance"><span class="pill pill-prod">In production</span><span>The production platform's sync handles rate limits this way. The picture is simplified, and retries reduce failures; they can't promise every request succeeds.</span></p>
+          </article>
+          <article class="map-detail" id="map-records" data-nodes="sheets apis db python app" data-edges="e-sheets e-apis e-db e-app" data-summary="Records disagree across systems: standard Python. Highlighted: spreadsheets, business APIs, databases, Python services, team workflows." aria-labelledby="map-records-title">
+            <div class="map-detail-head"><h3 id="map-records-title">Records disagree across systems</h3><p class="map-verdict">Standard Python</p></div>
+            <dl class="map-facts">
+              <div><dt>The problem</dt><dd>The same person or item appears in several systems under different IDs, and their updates don't agree.</dd></div>
+              <div><dt>How I'd approach it</dt><dd>Map identifiers between systems, decide which system owns each field, validate, and reconcile by explicit rules. Anything the rules can't settle gets flagged for a person instead of guessed.</dd></div>
+              <div><dt>Where AI fits</dt><dd>Not at runtime. When the rules are knowable, deterministic code is cheaper, testable, and explainable.</dd></div>
+            </dl>
+            <ol class="flow" aria-label="Steps"><li>Match identifiers</li><li>Check the owning system for each field</li><li class="flow-gate">Reconcile, or flag the conflict</li></ol>
+            <p class="map-provenance"><span class="pill pill-req">Illustrative</span><span>Drawn from real integration and data-modeling work. It isn't a claim that one generic implementation covers every system.</span></p>
+          </article>
+          <article class="map-detail" id="map-support" data-nodes="files python ai review app" data-edges="e-files e-ai e-review e-back" data-summary="A support request arrives as free text: AI may help, and a person reviews. Highlighted: forms and files, Python services, optional AI, a person decides, team workflows." aria-labelledby="map-support-title">
+            <div class="map-detail-head"><h3 id="map-support-title">A support request arrives as free text</h3><p class="map-verdict map-verdict-ai">AI may help · a person reviews</p></div>
+            <dl class="map-facts">
+              <div><dt>The problem</dt><dd>A support message arrives in someone's own words, and staff have to work out what it's asking before anyone can act.</dd></div>
+              <div><dt>How I'd approach it</dt><dd>A narrowly scoped model can earn its place here: classify the request, research it against sources it's allowed to use, and propose an action. A person approves before anything consequential changes.</dd></div>
+              <div><dt>Where AI fits</dt><dd>One narrow job: reading unstructured text and suggesting a next step. The model never makes the change itself.</dd></div>
+            </dl>
+            <ol class="flow" aria-label="Steps"><li>Request arrives</li><li>Scoped AI suggestion</li><li class="flow-gate">A person approves</li><li>Authorized workflow runs</li></ol>
+            <p class="map-provenance"><span class="pill pill-proto">In development</span><span>Designed and in development for the operations platform. It isn't a production AI feature.</span></p>
+          </article>
+          <article class="map-detail" id="map-learning" data-nodes="files db python ai review app" data-edges="e-files e-db e-ai e-review e-back" data-summary="Assessing evidence of learning: AI may help, and a teacher reviews. Highlighted: forms and files, databases, Python services, optional AI, a person decides, team workflows." aria-labelledby="map-learning-title">
+            <div class="map-detail-head"><h3 id="map-learning-title">Assessing evidence of learning</h3><p class="map-verdict map-verdict-ai">AI may help · a teacher reviews</p></div>
+            <dl class="map-facts">
+              <div><dt>The problem</dt><dd>Student work has to be judged against defined criteria, not a model's general impression.</dd></div>
+              <div><dt>How I'd approach it</dt><dd>Ground the prompt in observable behaviors for each criterion, have the model cite the evidence it found, and keep the teacher's judgment separate and final. No unreviewed AI grading.</dd></div>
+              <div><dt>Where AI fits</dt><dd>A drafting assistant whose suggestions are labeled as the AI's. The teacher records their own judgment beside them.</dd></div>
+            </dl>
+            <ol class="flow" aria-label="Steps"><li>Criteria and student work</li><li>Model drafts evidence</li><li class="flow-gate">Teacher records their judgment</li></ol>
+            <p class="map-provenance"><span class="pill pill-proto">Prototype · private</span><span>From my private learning-platform prototype. Students can see the AI's labeled feedback before a teacher reviews it; the teacher's judgment is the final word.</span></p>
+          </article>
+          <article class="map-detail" id="map-reports" data-nodes="sheets db python app" data-edges="e-sheets e-db e-app" data-summary="Reports from structured records: standard Python. Highlighted: spreadsheets, databases, Python services, team workflows." aria-labelledby="map-reports-title">
+            <div class="map-detail-head"><h3 id="map-reports-title">Reports from structured records</h3><p class="map-verdict">Standard Python</p></div>
+            <dl class="map-facts">
+              <div><dt>The problem</dt><dd>Consistent documents have to be produced from validated records, again and again.</dd></div>
+              <div><dt>How I'd approach it</dt><dd>Validate against a schema, map fields deterministically, fill templates, and make the output reproducible.</dd></div>
+              <div><dt>Where AI fits</dt><dd>Not at runtime. AI coding tools can help write a system like this, but no model needs to run for each report. The same inputs should always give the same document.</dd></div>
+            </dl>
+            <ol class="flow" aria-label="Steps"><li>Validate the records</li><li>Apply the business rules</li><li class="flow-gate">Produce the document</li></ol>
+            <p class="map-provenance"><span class="pill pill-req">Illustrative</span><span>Related to real reporting and document automation work, simplified here.</span></p>
+          </article>
+          </div>
+        </div>
+
+        <div class="section-head"><div><p class="eyebrow eyebrow-muted">Two different questions</p><h2>Building with AI isn't the same as running AI</h2></div></div>
+        <div class="map-compare">
+          <div class="panel">
+            <h3>How I use AI to build</h3>
+            <p>Claude and Codex help me write and refine the code for nearly everything I build, this page included. I decide what gets built, review what they produce, and test it myself.</p>
+          </div>
+          <div class="panel">
+            <h3>Does the finished system use AI?</h3>
+            <p>Only where it earns its place. Most of the problems on this map are solved with ordinary Python and no model calls. In a business workflow, a model that runs inside the application gets one narrow job, and a person reviews what it suggests. My games are a different story: there, the AI is the fun part.</p>
+            <p>Nothing on this page calls a model or a live system. Choosing a problem just switches what's highlighted.</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <p class="callout-label">The principle</p>
+          <p>I'm not looking for places to squeeze AI into every workflow. I'm looking for the best way to solve the problem.</p>
+          <p>Sometimes that's a carefully scoped AI agent with a person making the final decision. Sometimes it's 200 lines of well-designed Python. And sometimes the smartest solution is simply fixing the process before writing anything at all.</p>
+        </div>
+        <p class="map-summary">What I hope this shows: systems integration, architectural judgment, practical AI evaluation, reliable automation, and knowing the difference between building software with AI and building software that uses AI.</p>
+        <nav class="study-nav" aria-label="More work"><a href="#/work"><span aria-hidden="true">←</span> All work</a><a href="work/operations-platform/">Case study: Operations &amp; Data Platform <span aria-hidden="true">→</span></a></nav>
       </section>
 
       <!-- ===================== How I work ===================== -->
       <section class="view" id="/how-i-work" data-title="How I work">
         <div class="page-head">
           <div>
-            <p class="eyebrow">How I build</p>
+            <p class="eyebrow">How I work</p>
             <h1>From a messy workflow to a working application.</h1>
           </div>
-          <p class="page-head-note">Coding agents write a lot of my code. I'm accountable for all of it. This is the loop I work to.</p>
+          <p class="page-head-note">Coding agents write a lot of my code, and I'm accountable for all of it. Here's the loop I follow.</p>
         </div>
 
         <ol class="steps">
           <li class="step">
             <p class="step-num">01</p>
-            <h2>Translate ambiguity</h2>
-            <p>Turn evolving stakeholder requests into clear workflows, acceptance criteria, and known failure conditions before any code is written.</p>
-            <p class="step-out">Acceptance criteria</p>
+            <h2>Understand the problem</h2>
+            <p>What is actually happening, where do people get stuck, and what must the solution do?</p>
           </li>
           <li class="step">
             <p class="step-num">02</p>
-            <h2>Define the contract</h2>
-            <p>Settle the data model, which system owns which data, tool and API boundaries, prompts, constraints, access, and how success will be checked.</p>
-            <p class="step-out">A scoped task</p>
+            <h2>Define success</h2>
+            <p>Agree on inputs, ownership, constraints, edge cases, and how the behavior will be tested.</p>
           </li>
           <li class="step">
             <p class="step-num">03</p>
-            <h2>Direct the coding agents</h2>
-            <p>Claude Code and Codex implement scoped changes. I review what they produce and iterate with specific feedback.</p>
-            <p class="step-out">Working code</p>
+            <h2>Direct the agents</h2>
+            <p>Give Claude or Codex a scoped task, review the work, and iterate with precise feedback.</p>
           </li>
           <li class="step">
             <p class="step-num">04</p>
-            <h2>Verify in a real browser</h2>
-            <p>The checklist I work through: each role; empty, loading, and error states; navigation; responsiveness; API behavior; duplicate submissions; and state transitions.</p>
-            <p class="step-out">Tested behavior</p>
+            <h2>Try it as a user</h2>
+            <p>Click through each role, form states, unusual inputs, duplicate submissions, and failure paths in a real browser.</p>
           </li>
           <li class="step">
             <p class="step-num">05</p>
-            <h2>Trace the root cause</h2>
-            <p>Reproduce the problem, trace it across interface, services, and data, correct the code, prompt, or design that caused it, then retest.</p>
-            <p class="step-out">Root cause fixed</p>
+            <h2>Find the actual cause</h2>
+            <p>Trace bugs across frontend, services, and data instead of patching symptoms, then retest.</p>
           </li>
           <li class="step">
             <p class="step-num">06</p>
-            <h2>Ship safely</h2>
-            <p>Structured diagnostics, retries with backoff, dry runs and backups before bulk changes, versioned migrations, and a person approving consequential AI actions.</p>
-            <p class="step-out">Systems that recover</p>
+            <h2>Release carefully</h2>
+            <p>Validate changes, add diagnostics and recovery paths like retries, dry runs, and backups, and make sure consequential actions have the right boundaries.</p>
           </li>
         </ol>
 
@@ -553,13 +677,15 @@
             <div><dt><span class="pill pill-prod">Production · private</span></dt><dd>A real system in use. It's proprietary, so there's no public access, and client details are anonymized.</dd></div>
             <div><dt><span class="pill pill-proto">Prototype · private</span></dt><dd>Working software that isn't public. Details are available on request.</dd></div>
             <div><dt><span class="pill pill-live">Live demo</span></dt><dd>Open it right now. Free-tier hosting can take up to a minute to wake up on the first visit.</dd></div>
+            <div><dt><span class="pill pill-proto">In development</span></dt><dd>Designed and being built, but not in production.</dd></div>
+            <div><dt><span class="pill pill-req">Illustrative</span></dt><dd>A simplified example of how I'd approach a problem, not a real system.</dd></div>
             <div><dt><span class="pill pill-req">On request</span></dt><dd>Something I can walk you through directly, such as the design decisions behind a private system.</dd></div>
           </dl>
         </div>
 
         <div class="callout">
           <p class="callout-label">This site, for example</p>
-          <p>This portfolio uses plain HTML, CSS, and JavaScript. The interactive notebook is an illustration; the case studies distinguish production work from prototypes and describe what can be reviewed publicly.</p>
+          <p>This portfolio is plain HTML, CSS, and JavaScript, built with coding agents and checked by hand. The <a href="#/work/systems-map">Systems Map</a> is an illustration, not a live system, and the case studies separate production work from prototypes and say what can be reviewed publicly.</p>
         </div>
       </section>
 
@@ -681,7 +807,7 @@
             </div>
             <div class="about-easter-egg">
               <a id="gateway-trigger" class="gateway-trigger" href="retro/" aria-label="Inspect the old Gateway computer">
-                <img src="img/gateway.png" width="80" height="80" loading="lazy" alt="Beige Gateway computer with a cow-spotted tower">
+                <img src="img/gateway-sm.jpg" width="80" height="80" loading="lazy" alt="Beige Gateway computer with a cow-spotted tower">
                 <span class="gateway-hint">There's something on this disk.</span>
               </a>
             </div>
@@ -699,7 +825,6 @@
 
     <footer class="foot">
       <p>© 2026 Vince Darrigo</p>
-      <p>Built around real workflows.</p>
     </footer>
   </div>
 </div>
@@ -710,14 +835,13 @@
   <h2 id="gateway-title">Vince's Vault</h2>
   <p id="gateway-description">Click the computer to boot the desktop.</p>
   <a class="gateway-launch" href="retro/" aria-label="Boot Vince's Vault">
-    <img src="img/gateway.png" width="600" height="600" alt="Boot the cow-spotted Gateway computer">
+    <img src="img/gateway.jpg" width="600" height="600" alt="Boot the cow-spotted Gateway computer">
   </a>
   <p class="gateway-dismiss">Escape or click outside to put it away.</p>
 </dialog>
 
 <script src="js/site.js"></script>
-<script src="js/workflow-engine.js"></script>
-<script src="js/workflow-lab.js"></script>
+<script src="js/systems-map.js"></script>
 <script src="js/gateway.js"></script>
 </body>
 </html>

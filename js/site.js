@@ -6,6 +6,8 @@
 
   var main = document.getElementById('main');
   var firstRender = true;
+  // Retired routes that may still be bookmarked.
+  var aliases = { '/lab': '/work/systems-map' };
 
   function currentRoute() {
     var h;
@@ -18,6 +20,10 @@
   function render() {
     var route = currentRoute();
     if (route === null && !firstRender) return; // a plain in-page anchor such as #main
+    if (route && aliases[route]) {
+      route = aliases[route];
+      history.replaceState(null, '', location.pathname + location.search + '#' + route);
+    }
     var view = document.getElementById(route || document.documentElement.dataset.route || '/');
     if (!view || !view.classList.contains('view')) view = document.getElementById('/not-found');
 

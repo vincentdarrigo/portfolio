@@ -15,5 +15,5 @@ jobs:
         run: python3 scripts/build_pages.py --check
       - name: Check source, local links, and image descriptions
         run: python3 scripts/check_site.py
-      - name: Verify the synthetic workflow behavior
-        run: node scripts/workflow.test.cjs
+      - name: Verify the Systems Map scenarios
+        run: node scripts/systems-map.test.cjs
