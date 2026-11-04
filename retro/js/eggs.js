@@ -18,9 +18,11 @@ let eggsFound = {};
 })();
 
 function foundEgg(id) {
+  if (!eggsFound || typeof eggsFound !== 'object' || Array.isArray(eggsFound)) eggsFound = {};
+  if (!EGGS.some(egg => egg.id === id)) return;
   if (eggsFound[id]) return;
   eggsFound[id] = true;
-  localStorage.setItem(EGG_KEY, JSON.stringify(eggsFound));
+  try { localStorage.setItem(EGG_KEY, JSON.stringify(eggsFound)); } catch (_) {}
   showEggToast(id);
 }
 
@@ -51,6 +53,20 @@ function showEggToast(id) {
 }
 
 function getEggStats() {
+  if (!eggsFound || typeof eggsFound !== 'object') eggsFound = {};
   const found = EGGS.filter(e => eggsFound[e.id]).length;
   return { found, total: EGGS.length };
 }
+
+// The advertised code is discoverable without taking keys from an editor.
+const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let konamiKeys = [];
+document.addEventListener('keydown', event => {
+  if (event.target.closest('input, textarea, select, [contenteditable="true"]') || event.ctrlKey || event.metaKey || event.altKey) return;
+  konamiKeys.push(event.key.length === 1 ? event.key.toLowerCase() : event.key);
+  konamiKeys = konamiKeys.slice(-konamiSequence.length);
+  if (konamiKeys.join('|') === konamiSequence.join('|')) {
+    foundEgg('konami');
+    konamiKeys = [];
+  }
+});

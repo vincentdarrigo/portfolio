@@ -7,11 +7,6 @@
 // Place mp3 in assets/music/ and add entries here.
 const WP_PRELOADED = [
   { name: 'Weird Al Yankovic - All About the Pentiums',       src: 'assets/sounds/all_about_the_pentiums.mp3' },
-  { name: 'Weird Al Yankovic - White & Nerdy',                src: 'assets/sounds/white_and_nerdy.mp3' },
-  { name: 'Weird Al Yankovic - Rye or the Kaiser',            src: 'assets/sounds/rye_or_the_kaiser.mp3' },
-  { name: 'Weird Al Yankovic - I Bought It on eBay',          src: 'assets/sounds/i_bought_it_on_ebay.mp3' },
-  { name: 'Weird Al Yankovic - Everything You Know Is Wrong', src: 'assets/sounds/everything_you_know_is_wrong.mp3' },
-  { name: 'Weird Al Yankovic - I Remember Larry',             src: 'assets/sounds/i_remember_larry.mp3' },
 ];
 
 // ── STATE ─────────────────────────────────────────────
@@ -59,12 +54,8 @@ function initWinamp() {
     wpCurrentIdx = 0;
     // Set title immediately — don't wait for audio load
     wpStartScroll(wpTracks[0].name);
-    // Try to play; fail silently (don't show FILE NOT FOUND)
-    wpAudio.src = wpTracks[0].src;
-    wpInitAudioCtx();
-    wpAudio.play()
-      .then(() => { wpPlaying = true; wpUpdateBtn(true); wpSetPlayState('play'); })
-      .catch(() => { /* audio file not loaded yet — title already set above */ });
+    // Load metadata on explicit playback; opening the app does not autoplay.
+    wpSetPlayState('stop');
   } else {
     wpSetTitle('*** WINAMP ***');
   }

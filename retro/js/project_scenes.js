@@ -86,10 +86,28 @@ const PROJECT_SCENE_WINDOWS = ['ispyai', 'trivia', 'pickathlon', 'draftathon'];
 
 // ── SCENE PLAYER ──────────────────────────────────────
 
+const projectSceneTimers = {};
+function stopProjectScene(id) {
+  (projectSceneTimers[id] || []).forEach(clearTimeout);
+  delete projectSceneTimers[id];
+  const scene = document.getElementById('window-scene-' + id);
+  if (scene) scene.style.display = 'none';
+  if (windowState['scene-' + id]) windowState['scene-' + id].open = false;
+}
+
 function playProjectScene(id) {
+  if (!retroExtrasEnabled || !windowState[id]?.open || windowState[id].minimized) return;
+  const queueScene = (fn, delay) => {
+    const timer = setTimeout(() => {
+      if (retroExtrasEnabled && windowState[id]?.open && !windowState[id].minimized) fn();
+    }, delay);
+    (projectSceneTimers[id] || (projectSceneTimers[id] = [])).push(timer);
+  };
   const key = 'scene_played_' + id;
-  if (sessionStorage.getItem(key)) return;
-  sessionStorage.setItem(key, '1');
+  try {
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, '1');
+  } catch (_) {}
 
   const lines = PROJECT_SCENES[id];
   const info  = SCENE_INFO[id];
@@ -113,7 +131,7 @@ function playProjectScene(id) {
   info.members.forEach(who => {
     const n = IRC_NICKS[who];
     if (!n) return;
-    setTimeout(() => {
+    queueScene(() => {
       _ircSys(log, `*** ${n.prefix}${n.nick} has joined ${info.channel}`);
     }, t);
     t += 300;
@@ -123,7 +141,7 @@ function playProjectScene(id) {
   t += 600;
   lines.forEach((line, i) => {
     t += line.delay;
-    setTimeout(() => {
+    queueScene(() => {
       _ircLine(log, line.from, line.text);
     }, t);
   });
@@ -133,14 +151,14 @@ function playProjectScene(id) {
   info.members.forEach(who => {
     const n = IRC_NICKS[who];
     if (!n) return;
-    setTimeout(() => {
+    queueScene(() => {
       _ircSys(log, `*** ${n.prefix}${n.nick} has left ${info.channel}`);
     }, t);
     t += 280;
   });
 
   t += 1800;
-  setTimeout(() => {
+  queueScene(() => {
     if (typeof minimizeWindow === 'function') minimizeWindow(winId);
     if (typeof resumeImShow  === 'function') resumeImShow();
   }, t);

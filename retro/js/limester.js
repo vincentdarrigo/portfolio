@@ -19,6 +19,9 @@ const LS_FILES = [
 // ── STATE ─────────────────────────────────────────────
 
 let lsInitialized = false;
+let lsFilesReady = false;
+let lsConnectingTimer = null;
+let lsStartupTimer = null;
 let lsProgressInterval = null;
 
 // ── AUTO-START AFTER BOOT ─────────────────────────────
@@ -28,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Open LimeSter 13 seconds after boot — feels like it auto-launched.
     // Skipped if the visitor is already reading something; the desktop icon still opens it.
     setTimeout(() => {
-      if (typeof isReading === 'function' && isReading()) return;
+      if (!retroExtrasEnabled || (typeof isReading === 'function' && isReading())) return;
       if (typeof openWindow === 'function') openWindow('limester');
       lsRunStartupSequence();
     }, 13000);
@@ -60,25 +63,23 @@ function lsRunStartupSequence() {
 
   // Count up peers to show "connecting" feel
   let peers = 0;
-  const iv = setInterval(() => {
+  lsConnectingTimer = setInterval(() => {
     peers += Math.floor(Math.random() * 180 + 40);
     if (list) list.innerHTML = `<div class="ls-connecting">Connecting to LimeSter network...<br>${peers.toLocaleString()} peers found</div>`;
     if (peers >= 1200) {
-      clearInterval(iv);
-      if (status) status.textContent = `Connected — ${peers.toLocaleString()} users online | 🔥 Firewall: OFF`;
-      setTimeout(lsRenderFiles, 600);
+      clearInterval(lsConnectingTimer);
+      if (status) status.textContent = `Connected to a simulated network | Local demo`;
+      lsStartupTimer = setTimeout(lsRenderFiles, 600);
     }
   }, 260);
 
-  // Auto-minimize after 11 seconds — like it quietly moved to background
-  setTimeout(() => {
-    if (typeof minimizeWindow === 'function') minimizeWindow('limester');
-  }, 11000);
+
 }
 
 // ── RENDER FILE LIST ──────────────────────────────────
 
 function lsRenderFiles() {
+  lsFilesReady = true;
   const list = document.getElementById('ls-download-list');
   if (!list) return;
 

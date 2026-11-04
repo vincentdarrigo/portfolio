@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vince Darrigo — Portfolio</title>
+  <title>Vince’s Vault · Interactive Desktop</title>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/win95.css">
   <link rel="stylesheet" href="css/messenger.css">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/weatherbug.css">
   <link rel="stylesheet" href="css/gwbasic.css">
   <link rel="stylesheet" href="css/tankwars.css">
+  <link rel="stylesheet" href="css/usability.css">
 </head>
 <body>
 
@@ -76,18 +77,18 @@
 <div id="mobile-bsod">
   <div class="bsod-inner">
     <p class="bsod-badge">VINCE'S VAULT</p>
-    <p>A problem has been detected: this Windows 95 desktop needs a wider screen.</p>
-    <p class="bsod-gap">🔄 Rotate your phone to landscape to boot the full portfolio, or widen your browser past 900px. The essentials are below.</p>
+    <p>You found Vince’s Vault. Some things are worth keeping on disk.</p>
+    <p class="bsod-gap">This desktop experiment works best on a wider screen. Rotate to explore it, or open the projects and experience below.</p>
 
     <p class="bsod-gap">*** VINCE DARRIGO<br>Applied AI Backend Engineer · Python Integration Developer</p>
     <p>Technical lead for the software behind a large, multi-stakeholder operational program, with a human-approval AI support workflow in development.</p>
 
     <p class="bsod-gap">LOADED MODULES:</p>
     <ul class="bsod-list">
-      <li><a href="https://ai-mazing-race.onrender.com" target="_blank">I_SPY_AI.EXE</a> AI scavenger hunts at real places</li>
-      <li><a href="https://trivia-app-qgwf.onrender.com" target="_blank">AI_TRIVIA.EXE</a> any topic, generated live</li>
+      <li><a href="https://ai-mazing-race.onrender.com" target="_blank" rel="noopener">I_SPY_AI.EXE</a> AI scavenger hunts at real places</li>
+      <li><a href="https://trivia-app-qgwf.onrender.com" target="_blank" rel="noopener">AI_TRIVIA.EXE</a> any topic, generated live</li>
       <li>LEARNING.SYS AI-assisted learning platform (private prototype)</li>
-      <li><a href="https://predictrix.app" target="_blank">PREDICTRIX.APP</a> live NFL prediction games</li>
+      <li><a href="https://predictrix.app" target="_blank" rel="noopener">PREDICTRIX.APP</a> live NFL prediction games</li>
       <li>OPS_PLATFORM.SYS proprietary operations &amp; data platform</li>
     </ul>
 
@@ -95,20 +96,30 @@
     <p>
       <a href="../#/experience">EXPERIENCE</a> &nbsp;·&nbsp;
       <a href="mailto:vincent.darrigo@gmail.com">vincent.darrigo@gmail.com</a> &nbsp;·&nbsp;
-      <a href="https://github.com/vincentdarrigo" target="_blank">GITHUB</a>
+      <a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener">GITHUB</a>
     </p>
     <p class="bsod-gap">Prefer the modern version? <a href="../">VINCENTDARRIGO.GITHUB.IO/PORTFOLIO</a></p>
 
-    <p class="bsod-gap bsod-dim">*** STOP: 0x0000007E (PORTRAIT_MODE, 0xC0000005, ROTATE_90_DEG)</p>
+    <p class="bsod-gap bsod-dim">C:\VINCE\VAULT> See you at the desktop_</p>
   </div>
 </div>
 
-<div id="boot-skip-hint">Press any key or click to skip ▸</div>
+<button type="button" id="boot-skip-hint" onclick="skipBoot()">Skip boot →</button>
 
 <!-- ═══════════════════════════════════════════════
      DESKTOP
 ═══════════════════════════════════════════════════ -->
 <div id="desktop">
+  <header class="vault-toolbar">
+    <div><strong>Vince’s Vault</strong><span>Interactive desktop / open an icon to explore</span></div>
+    <nav aria-label="Desktop controls">
+      <button type="button" id="vault-sound" onclick="toggleVaultSound()" aria-pressed="false">Sound off</button>
+      <button type="button" id="vault-extras" onclick="toggleVaultExtras()" aria-pressed="false" title="Enable the messenger show, project scenes, and nostalgia popups">Extras off</button>
+      <button type="button" onclick="arrangeWindows()">Arrange windows</button>
+      <a href="../">Main portfolio ↗</a>
+    </nav>
+  </header>
+  <div class="desktop-launchers" aria-label="Desktop applications">
 
   <!-- ═══════════════════════════════════════════════
        DESKTOP ICON ZONES
@@ -183,7 +194,7 @@
       <div class="desk-icon-label">WeatherBug</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('limester')" tabindex="0">
-      <div class="desk-icon-img" style="font-size:0;"><img src="assets/images/LimeSter.png" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='24px';this.outerHTML='🍋'"></div>
+      <div class="desk-icon-img" style="font-size:0;"><img src="assets/images/LimeSter.png" alt="" style="width:32px;height:32px;object-fit:contain;" onerror="this.parentElement.style.fontSize='24px';this.outerHTML='🍋'"></div>
       <div class="desk-icon-label">LimeSter</div>
     </div>
     <div class="desk-icon" ondblclick="openWindow('paint')" tabindex="0">
@@ -231,6 +242,7 @@
   <!-- ── IRC CHANNEL WINDOWS (project chatbot scenes) ─── -->
 
   <!-- #i-spy-ai -->
+  </div><!-- desktop-launchers -->
   <div class="win95-window irc-win" id="window-scene-ispyai" style="display:none; left:240px; top:110px; width:480px;">
     <div class="win95-titlebar" data-win="scene-ispyai">
       <span class="win95-title-icon">💬</span>
@@ -357,7 +369,7 @@
     </div>
     <div class="folder-body">
       <div class="folder-item" ondblclick="openWindow('questourism')" tabindex="0" title="Questourism — open">
-        <img class="folder-item-img" src="assets/images/questourism.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>🌐</div>'">
+        <img alt="" class="folder-item-img" src="assets/images/questourism.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>🌐</div>'">
         <div class="folder-item-label">Questourism</div>
       </div>
       <div class="folder-item" ondblclick="openWindow('ispyai')" tabindex="0" title="I Spy AI / I Spy A Pie — open">
@@ -385,7 +397,7 @@
     </div>
     <div class="folder-body">
       <div class="folder-item" ondblclick="openWindow('predictrix')" tabindex="0" title="Predictrix — brand overview">
-        <img class="folder-item-img" src="assets/images/predictrix_logo.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>📊</div>'">
+        <img alt="" class="folder-item-img" src="assets/images/predictrix_logo.png" onerror="this.outerHTML='<div class=\'folder-item-icon\'>📊</div>'">
         <div class="folder-item-label">Predictrix</div>
       </div>
       <div class="folder-item" ondblclick="openWindow('pickathlon')" tabindex="0" title="Pickathlon — open">
@@ -412,12 +424,10 @@
       </div>
     </div>
     <div class="folder-body">
-      <div class="folder-item" tabindex="0" style="opacity:0.55; cursor:default;" title="More projects coming soon">
-        <div class="folder-item-icon">📁</div>
-        <div class="folder-item-label">More soon...</div>
-      </div>
+      <a class="folder-item" href="../#/work/operations-platform"><span class="folder-item-icon">↗</span><span class="folder-item-label">Operations case study</span></a>
+      <div class="folder-item" ondblclick="openWindow('learning')" tabindex="0"><span class="folder-item-icon">🧠</span><span class="folder-item-label">Learning prototype</span></div>
     </div>
-    <div class="folder-statusbar">1 object(s) — 1 project</div>
+    <div class="folder-statusbar">Client work stays private. Read the design decisions.</div>
   </div>
 
   <!-- ── WINDOW: ABOUT ────────────────────────── -->
@@ -486,7 +496,7 @@
         </div>
         <div class="contact-row">
           <span class="contact-label">📂 GitHub</span>
-          <a href="https://github.com/vincentdarrigo" target="_blank" class="win95-hyperlink">github.com/vincentdarrigo</a>
+          <a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener" class="win95-hyperlink">github.com/vincentdarrigo</a>
         </div>
         <div class="contact-row">
           <span class="contact-label">🌐 Portfolio</span>
@@ -495,7 +505,7 @@
       </div>
       <div style="margin-top:16px; display:flex; gap:8px;">
         <a href="mailto:vincent.darrigo@gmail.com" class="win95-btn-link">📧 Send Email</a>
-        <a href="https://github.com/vincentdarrigo" target="_blank" class="win95-btn-link">📂 GitHub</a>
+        <a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener" class="win95-btn-link">📂 GitHub</a>
         <a href="guestbook.html" class="win95-btn-link">📝 Guestbook</a>
       </div>
     </div>
@@ -634,7 +644,7 @@
         <span class="tech-badge">React</span>
       </div>
       <div class="proj-links">
-        <a href="https://predictrix.app" target="_blank" class="win95-btn-link">🌐 Predictrix.app</a>
+        <a href="https://predictrix.app" target="_blank" rel="noopener" class="win95-btn-link">🌐 Predictrix.app</a>
       </div>
     </div>
     <div class="win95-statusbar">Part of the Predictrix family — predictrix.app</div>
@@ -673,7 +683,7 @@
         <span class="tech-badge">React</span>
       </div>
       <div class="proj-links">
-        <a href="https://predictrix.app/pickathlon" target="_blank" class="win95-btn-link">🌐 Play Pickathlon</a>
+        <a href="https://predictrix.app/pickathlon" target="_blank" rel="noopener" class="win95-btn-link">🌐 Play Pickathlon</a>
       </div>
     </div>
     <div class="win95-statusbar">Live this NFL season</div>
@@ -712,7 +722,7 @@
         <span class="tech-badge">AI / LLM</span>
       </div>
       <div class="proj-links">
-        <a href="https://predictrix.app/draftathon" target="_blank" class="win95-btn-link">🌐 View Draftathon</a>
+        <a href="https://predictrix.app/draftathon" target="_blank" rel="noopener" class="win95-btn-link">🌐 View Draftathon</a>
       </div>
     </div>
     <div class="win95-statusbar">Seasonal — runs around the NFL Draft</div>
@@ -754,7 +764,7 @@
         <span class="tech-badge">AI / LLM</span>
       </div>
       <div class="proj-links">
-        <a href="https://ai-mazing-race.onrender.com" target="_blank" class="win95-btn-link">🌐 Play Live</a>
+        <a href="https://ai-mazing-race.onrender.com" target="_blank" rel="noopener" class="win95-btn-link">🌐 Play Live</a>
       </div>
     </div>
     <div class="win95-statusbar">Portfolio-ready — both modes live</div>
@@ -782,9 +792,9 @@
       <div class="win95-divider"></div>
       <div class="proj-body">
         <p>Students work with a Socratic AI tutor designed to coach rather than hand over answers. The platform looks at <em>how</em> each student works with it: did they set a goal first, ask clearly, check what came back, and stay honest about what was theirs?</p>
-        <p class="proj-detail" style="margin-top:8px;">👩‍🏫 <strong>Teacher-in-the-loop</strong> — the model drafts an assessment and flags evidence from the tutoring conversation. The design requires a teacher to confirm before anything reaches a student's record.</p>
+        <p class="proj-detail" style="margin-top:8px;">👩‍🏫 <strong>Teacher-in-the-loop</strong> — the model drafts an assessment and flags evidence from the tutoring conversation. The AI’s draft is visible as AI feedback. A teacher records their own judgment before the work is marked teacher-reviewed.</p>
         <div class="proj-callout">
-          <strong>The Hard Part:</strong> Precision. An early QA pass found the model's evidence suggestions were often false positives: it matched a student's general "vibe" instead of observable behavior. I rewrote the prompt to ground each suggestion in an explicit checklist of observable behaviors, and kept teacher confirmation as the final gate.
+          <strong>The Hard Part:</strong> Precision. An early QA pass found the model's evidence suggestions were often false positives: it matched a student's general "vibe" instead of observable behavior. I rewrote the prompt to ground each suggestion in an explicit checklist of observable behaviors, then retested the same submissions. Teacher review remains the final judgment.
         </div>
       </div>
       <div class="tech-row">
@@ -837,7 +847,7 @@
         <span class="tech-badge">Vanilla JS</span>
       </div>
       <div class="proj-links">
-        <a href="https://trivia-app-qgwf.onrender.com" target="_blank" class="win95-btn-link">🌐 Play Live</a>
+        <a href="https://trivia-app-qgwf.onrender.com" target="_blank" rel="noopener" class="win95-btn-link">🌐 Play Live</a>
       </div>
     </div>
     <div class="win95-statusbar">Live demo</div>
@@ -859,7 +869,7 @@
         <h1 class="pf-name">Vince Darrigo</h1>
         <h2 class="pf-title">Applied AI Backend Engineer · Python Integration Developer</h2>
         <p class="pf-bio">6+ years in solution architecture and engineering roles, now focused on AI-assisted, full-stack development: backend services, API integrations, and the safeguards that keep operational systems dependable.</p>
-        <p class="pf-prev">Senior Data Specialist at <strong>Safal Partners</strong> &nbsp;·&nbsp; <a href="mailto:vincent.darrigo@gmail.com" class="pf-link">vincent.darrigo@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/vincentdarrigo" target="_blank" class="pf-link">GitHub</a></p>
+        <p class="pf-prev">Senior Data Specialist at <strong>Safal Partners</strong> &nbsp;·&nbsp; <a href="mailto:vincent.darrigo@gmail.com" class="pf-link">vincent.darrigo@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener" class="pf-link">GitHub</a></p>
         <div class="pf-pills">
           <span class="pf-pill pf-pill-a">Python</span>
           <span class="pf-pill pf-pill-b">FastAPI</span>
@@ -895,7 +905,7 @@
         <div class="pf-col">
           <h3 class="pf-col-head pf-col-head-c">Products &amp; Projects</h3>
           <ul class="pf-list">
-            <li>Proprietary Operations &amp; Data Platform — multi-role ops platform with a human-approved AI support workflow</li>
+            <li>Proprietary Operations &amp; Data Platform — production operations software; AI support workflow in development</li>
             <li>AI-Assisted Learning Platform — private prototype</li>
             <li>I Spy AI / Anytime AI Trivia — Real-time AI games</li>
             <li>Predictrix — Live NFL prediction games</li>
@@ -929,7 +939,7 @@
         <p class="resume-subtitle">Applied AI Backend Engineer | Python Integration Developer</p>
         <p class="resume-contact">Deltona, FL &nbsp;·&nbsp; (702) 514-0888 &nbsp;·&nbsp; vincent.darrigo@gmail.com &nbsp;·&nbsp; github.com/vincentdarrigo</p>
         <hr class="resume-rule">
-        <p class="resume-summary">Python backend engineer and integration specialist, largely as a result of being a tireless problem solver in any role. Technical solution-building has been the constant of my career, regardless of the platform or objective. The rise of LLM-backed agents and modern AI tooling is the most powerful accelerant my capabilities have ever encountered, and I want to keep pouring gasoline on the fire.</p>
+        <p class="resume-summary">I build Python applications and API integrations around operational workflows. My work spans requirements, data modeling, role-specific interfaces, synchronization, and release validation. I use AI coding agents to implement scoped changes and review the behavior before release.</p>
         <h3>CORE SKILLS</h3>
         <ul>
           <li><strong>Backend &amp; AI:</strong> Python, Flask, FastAPI, REST APIs, Pydantic, Anthropic/OpenAI, LLM-backed agents, prompt engineering</li>
@@ -947,7 +957,7 @@
             <li>Technical lead for a large, multi-stakeholder operational program. Architected the software layer managing assignments, approvals, and support workflows.</li>
             <li>Engineered Python integrations connecting Smartsheet, Google Drive, and internal reporting workflows, replacing fragmented data silos with a unified, automated data pipeline.</li>
             <li>Built a full-stack web portal with role-scoped frontend experiences, replacing Smartsheet-as-UI with a real application, syncing Smartsheet and Google Workspace.</li>
-            <li>Built human-in-the-loop LLM agents for customer support: the system classifies incoming tickets, executes custom research, and queues resolution proposals for human approval before executing any system actions.</li>
+            <li>Designing and developing a human-in-the-loop support workflow: a model classifies requests, researches context, and proposes actions for a person to approve. This is not a production feature.</li>
             <li>Prototyping a Microsoft Teams-integrated AI chatbot assistant that navigates and manages the internal data ecosystem via conversational input.</li>
           </ul>
         </div>
@@ -974,7 +984,7 @@
         </div>
         <h3>SELECTED PROJECTS</h3>
         <ul>
-          <li><strong>Proprietary Operations &amp; Data Platform</strong> — Role-scoped operations platform with a human-in-the-loop support agent, integrating Smartsheet with multiple data sources (Flask / FastAPI / SQLite / Anthropic API)</li>
+          <li><strong>Proprietary Operations &amp; Data Platform</strong> — Production role-scoped operations software and API integrations (Python / FastAPI / SQLAlchemy / SQLite). AI support is in development.</li>
           <li><strong>Anytime AI Trivia</strong> — AI-generated trivia with mixed question formats plus trick questions, Challenge AI adjudication, and a growing question bank for offline games (FastAPI / WebSockets / GPT-4o)</li>
           <li><strong>I Spy AI / I Spy A Pie</strong> — Real-world scavenger hunt with AI-generated locations and clues, and mode-specific UX; the Pie version is a pizza-only tour (Flask / Socket.IO / GPT-4o / Google Maps / Vision)</li>
           <li><strong>Scattergories: Next Level</strong> — The classic family board game with an AI judge, one of many games built for fun team meetings (Flask / Socket.IO / GPT-4o)</li>
@@ -985,7 +995,7 @@
           <li>B.S., Technical Management, DeVry University &nbsp;·&nbsp; A.A., Political Science, Daytona State College</li>
         </ul>
         <div class="resume-download-bar">
-          <a href="../#/experience" class="win95-btn-link" target="_blank">📄 Experience (main site)</a>
+          <a href="../#/experience" class="win95-btn-link" target="_blank" rel="noopener">📄 Experience (main site)</a>
         </div>
       </div>
     </div>
@@ -1028,7 +1038,7 @@
       <div class="proj-brand vault-unlocked-banner">
         <div class="proj-brand-text">
           <div class="proj-title">🔓 Vault Unlocked</div>
-          <div class="proj-tagline">Private &amp; internal projects — not for public distribution</div>
+          <div class="proj-tagline">Anonymized project notes / no client data</div>
         </div>
       </div>
       <div class="win95-divider"></div>
@@ -1046,7 +1056,7 @@
         <!-- TODO: Vince — add more private/internal projects here -->
       </div>
     </div>
-    <div class="win95-statusbar">Clearance Level: FULL ACCESS</div>
+    <div class="win95-statusbar">Easter egg unlocked</div>
   </div>
 
   <!-- ── WINDOW: MINESWEEPER ─────────────────────────── -->
@@ -1406,7 +1416,7 @@
   <!-- ── WINDOW: LIMESTER ─────────────────────────────── -->
   <div class="win95-window" id="window-limester" style="display:none; left:180px; top:80px; width:590px;">
     <div class="win95-titlebar" data-win="limester">
-      <span class="win95-title-icon" style="font-size:0;"><img src="assets/images/LimeSter.png" style="height:14px;width:auto;" onerror="this.outerHTML='🍋'"></span>
+      <span class="win95-title-icon" style="font-size:0;"><img src="assets/images/LimeSter.png" alt="" style="height:14px;width:auto;" onerror="this.outerHTML='🍋'"></span>
       <span class="win95-title-text">LimeSter 2.4 — Share It!</span>
       <div class="win95-controls">
         <button class="win95-ctrl" onclick="minimizeWindow('limester')">_</button>
@@ -1955,20 +1965,19 @@
   </div>
 
   <!-- ── AUDIO HOOKS (user drops files in assets/sounds/) ── -->
-  <audio id="snd-aim-door"       src="assets/sounds/aim_door.mp3"       preload="auto"></audio>
-  <audio id="snd-aim-welcome"    src="assets/sounds/aim_welcome.mp3"    preload="auto"></audio>
-  <audio id="snd-aim-receive"    src="assets/sounds/aim_receive.mp3"    preload="auto"></audio>
-  <audio id="snd-aim-leaving"    src="assets/sounds/aim_leaving.mp3"    preload="auto"></audio>
-  <audio id="snd-icq-horn"       src="assets/sounds/icq_horn.mp3"       preload="auto"></audio>
-  <audio id="snd-icq-receive"    src="assets/sounds/icq_uhoh.mp3"       preload="auto"></audio>
-  <audio id="snd-yahoo-login"    src="assets/sounds/yahoo_login.mp3"    preload="auto"></audio>
-  <audio id="snd-yahoo-receive"  src="assets/sounds/yahoo_message.mp3"  preload="auto"></audio>
-  <audio id="snd-clippy-appear"  src="assets/sounds/clippy_appear.mp3"  preload="auto"></audio>
-  <audio id="snd-win95-startup"  src="assets/sounds/win95login.mp3"     preload="auto"></audio>
-  <audio id="snd-winamp-llama"   src="assets/sounds/winamp_llama.mp3"   preload="auto"></audio>
-  <audio id="snd-snake-beep"    src="assets/sounds/snakebeep.mp3"      preload="auto"></audio>
-  <audio id="snd-nokia-ring"    src="assets/sounds/nokiaring.mp3"      preload="auto"></audio>
-  <audio id="snd-tetris-music"  src="assets/sounds/tetris.mp3"         preload="auto" loop></audio>
+  <audio id="snd-aim-door"       src="assets/sounds/aim_door.mp3"       preload="none"></audio>
+  <audio id="snd-aim-welcome"    src="assets/sounds/aim_welcome.mp3"    preload="none"></audio>
+  <audio id="snd-aim-receive"    src="assets/sounds/aim_receive.mp3"    preload="none"></audio>
+  <audio id="snd-aim-leaving"    src="assets/sounds/aim_leaving.mp3"    preload="none"></audio>
+  <audio id="snd-icq-horn"       src="assets/sounds/icq_horn.mp3"       preload="none"></audio>
+  <audio id="snd-icq-receive"    src="assets/sounds/icq_uhoh.mp3"       preload="none"></audio>
+  <audio id="snd-yahoo-login"    src="assets/sounds/yahoo_login.mp3"    preload="none"></audio>
+  <audio id="snd-yahoo-receive"  src="assets/sounds/yahoo_message.mp3"  preload="none"></audio>
+  <audio id="snd-win95-startup"  src="assets/sounds/win95login.mp3"     preload="none"></audio>
+  <audio id="snd-winamp-llama"   src="assets/sounds/winamp_llama.mp3"   preload="none"></audio>
+  <audio id="snd-snake-beep"    src="assets/sounds/snakebeep.mp3"      preload="none"></audio>
+  <audio id="snd-nokia-ring"    src="assets/sounds/nokiaring.mp3"      preload="none"></audio>
+  <audio id="snd-tetris-music"  src="assets/sounds/tetris.mp3"         preload="none" loop></audio>
 
   <!-- ── SCREENSAVER OVERLAY ───────────────────────── -->
   <div id="screensaver-overlay">
@@ -2120,5 +2129,6 @@
 <script src="js/weatherbug.js"></script>
 <script src="js/gwbasic.js"></script>
 <script src="js/tankwars.js"></script>
+<script src="js/usability.js"></script>
 </body>
 </html>

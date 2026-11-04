@@ -48,11 +48,16 @@ const WINDOW_TITLES = {
 };
 
 // ── VOLUME ────────────────────────────────────────────
-let masterVolume = 0.75;
+let masterVolume = 0;
+let retroExtrasEnabled = false;
+let activeWindowId = null;
 
 function setMasterVolume(v) {
   masterVolume = Math.max(0, Math.min(1, Number(v)));
   document.querySelectorAll('audio').forEach(a => { a.volume = masterVolume; });
+  if (typeof wpAudio !== 'undefined' && wpAudio) wpAudio.volume = masterVolume;
+  const soundButton = document.getElementById('vault-sound');
+  if (soundButton) { soundButton.textContent = masterVolume > 0 ? 'Sound on' : 'Sound off'; soundButton.setAttribute('aria-pressed', String(masterVolume > 0)); }
   const lbl = document.getElementById('vol-pct-label');
   if (lbl) lbl.textContent = Math.round(masterVolume * 100) + '%';
   const slider = document.getElementById('vol-slider');
@@ -88,6 +93,7 @@ const drag = { active: false, id: null, ox: 0, oy: 0 };
 
 // ── INIT ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  setMasterVolume(0);
   // Make all windows draggable
   document.querySelectorAll('.win95-window').forEach(win => {
     const id = win.id.replace('window-', '');
@@ -122,15 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
   ['keydown', 'mousedown', 'touchstart'].forEach(evt => document.addEventListener(evt, skipBoot, true));
 
   // Kick off Gateway BIOS → Win95 login → boot sequence
-  runGatewayBoot();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) skipBoot();
+  else runGatewayBoot();
 
   // Touch devices: single tap on desktop icons fires their dblclick action
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.addEventListener('click', (e) => {
-      const icon = e.target.closest('.desk-icon');
+      const icon = e.target.closest('.desk-icon[ondblclick], .folder-item[ondblclick]');
       if (!icon) return;
-      const fn = icon.getAttribute('ondblclick');
-      if (fn) { try { new Function(fn).call(icon); } catch (_) {} }
+      icon.dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
     });
     // Best-effort landscape lock (works on Android Chrome; silently fails on iOS)
     if (screen.orientation && screen.orientation.lock) {
@@ -337,6 +343,7 @@ function isReading() {
 
 function resetIdleTimer() {
   clearTimeout(idleTimer);
+  if (!retroExtrasEnabled) return;
   if (typeof ssRunning !== 'undefined' && ssRunning) return;
   idleTimer = setTimeout(() => {
     if (isReading()) { resetIdleTimer(); return; }
@@ -382,20 +389,27 @@ function openWindow(id) {
   }
 
   bringToFront(id);
+  if (typeof constrainWindow === 'function') constrainWindow(el);
+  el.focus({ preventScroll: true });
+  if (typeof resumeDesktopApp === 'function') resumeDesktopApp(id);
   updateTaskbar();
   notifyReadingChanged();
 
   // Trigger a project chatbot scene if one is registered for this window
-  if (typeof PROJECT_SCENE_WINDOWS !== 'undefined' &&
+  if (retroExtrasEnabled && typeof PROJECT_SCENE_WINDOWS !== 'undefined' &&
       PROJECT_SCENE_WINDOWS.includes(id) &&
       typeof playProjectScene === 'function') {
-    setTimeout(() => playProjectScene(id), 800);
+    setTimeout(() => {
+      if (state.open && !state.minimized && retroExtrasEnabled) playProjectScene(id);
+    }, 800);
   }
 }
 
 function closeWindow(id) {
   const el = document.getElementById('window-' + id);
   if (!el) return;
+  if (typeof stopProjectScene === 'function') stopProjectScene(id.replace(/^scene-/, ''));
+  if (typeof suspendDesktopApp === 'function') suspendDesktopApp(id);
   el.style.display = 'none';
   if (windowState[id]) {
     windowState[id].open      = false;
@@ -403,15 +417,19 @@ function closeWindow(id) {
   }
   updateTaskbar();
   notifyReadingChanged();
+  if (typeof focusTopWindow === 'function') focusTopWindow();
 }
 
 function minimizeWindow(id) {
   const el = document.getElementById('window-' + id);
   if (!el) return;
+  if (typeof stopProjectScene === 'function') stopProjectScene(id.replace(/^scene-/, ''));
+  if (typeof suspendDesktopApp === 'function') suspendDesktopApp(id);
   el.style.display = 'none';
   if (windowState[id]) windowState[id].minimized = true;
   updateTaskbar();
   notifyReadingChanged();
+  if (typeof focusTopWindow === 'function') focusTopWindow();
 }
 
 function restoreWindow(id) {
@@ -420,6 +438,9 @@ function restoreWindow(id) {
   el.style.display = 'block';
   if (windowState[id]) windowState[id].minimized = false;
   bringToFront(id);
+  if (typeof constrainWindow === 'function') constrainWindow(el);
+  el.focus({ preventScroll: true });
+  if (typeof resumeDesktopApp === 'function') resumeDesktopApp(id);
   updateTaskbar();
   notifyReadingChanged();
 }
@@ -430,9 +451,11 @@ function notifyReadingChanged() {
 }
 
 function bringToFront(id) {
+  activeWindowId = id;
   zTop++;
   const el = document.getElementById('window-' + id);
   if (el) el.style.zIndex = zTop;
+  document.querySelectorAll('.win95-window').forEach(win => win.classList.toggle('is-active', win === el));
 }
 
 function centerWindow(el) {
@@ -480,12 +503,11 @@ function updateTaskbar() {
     btn.textContent = WINDOW_TITLES[id] || id;
     btn.title       = WINDOW_TITLES[id] || id;
     btn.onclick = () => {
-      if (state.minimized) {
-        restoreWindow(id);
-      } else {
-        minimizeWindow(id);
-      }
+      if (state.minimized) restoreWindow(id);
+      else if (activeWindowId !== id) { bringToFront(id); document.getElementById('window-' + id).focus({ preventScroll: true }); }
+      else minimizeWindow(id);
     };
+    btn.setAttribute('aria-label', (state.minimized ? 'Restore ' : 'Switch to ') + (WINDOW_TITLES[id] || id));
     bar.appendChild(btn);
   });
 }
@@ -509,11 +531,14 @@ function toggleStartMenu() {
   const isOpen = !menu.classList.contains('hidden');
   menu.classList.toggle('hidden');
   btn.classList.toggle('active', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+  if (!isOpen) document.getElementById('start-search')?.focus();
 }
 
 function closeStartMenu() {
   document.getElementById('start-menu').classList.add('hidden');
   document.getElementById('start-btn').classList.remove('active');
+  document.getElementById('start-btn').setAttribute('aria-expanded', 'false');
   // Clear search when menu closes
   const searchInput = document.getElementById('start-search');
   if (searchInput) { searchInput.value = ''; filterStartMenu(''); }
@@ -549,6 +574,8 @@ function filterStartMenu(q) {
     hits.forEach(c => {
       const el = document.createElement('div');
       el.className = 'start-item';
+      el.setAttribute('role', 'button');
+      el.tabIndex = 0;
       el.textContent = c.text;
       if (c.onclick) el.setAttribute('onclick', c.onclick);
       results.appendChild(el);

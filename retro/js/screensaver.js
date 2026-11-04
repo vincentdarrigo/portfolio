@@ -13,6 +13,7 @@ const SS_NOSTALGIA_EFFECTS = ['starfield', 'matrix', 'mystify', 'pipes', 'cubes3
 let ssLastWasBounce = false;
 let ssCanvas, ssCtx, ssAnimId, ssRunning = false;
 let ssCycleTimer = null, ssCycleIdx = 0;
+let ssStartTimer = null, ssInputTimer = null;
 
 // ── LAUNCH / EXIT ─────────────────────────────────────
 
@@ -73,7 +74,7 @@ function launchScreensaver(type) {
     (fx[nextFx] || fx.starfield)();
   }, 45000);
 
-  setTimeout(() => {
+  ssInputTimer = setTimeout(() => {
     overlay.addEventListener('click',      onSsExit,     { once: true });
     document.addEventListener('keydown',   onSsExit,     { once: true });
     document.addEventListener('mousemove', throttleExit, { once: true });
@@ -85,6 +86,8 @@ function throttleExit()  { setTimeout(() => exitScreensaver(true), 100); }
 
 function exitScreensaver(cleanup) {
   ssRunning = false;
+  clearTimeout(ssStartTimer);
+  clearTimeout(ssInputTimer);
   cancelAnimationFrame(ssAnimId);
   if (ssCycleTimer) { clearInterval(ssCycleTimer); ssCycleTimer = null; }
   if (cleanup !== false) {
@@ -340,7 +343,7 @@ function pipes() {
       activePipes.forEach((p, i) => Object.assign(p, newPipe()));
     }
 
-    setTimeout(() => { ssAnimId = requestAnimationFrame(frame); }, 55);
+    ssStartTimer = setTimeout(() => { if (ssRunning) ssAnimId = requestAnimationFrame(frame); }, 55);
   }
 
   frame();

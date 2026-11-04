@@ -7,6 +7,7 @@
 // ── SOUND ─────────────────────────────────────────────
 
 function playSound(name) {
+  if (masterVolume === 0) return;
   try {
     const a = document.getElementById('snd-' + name);
     if (a) {
@@ -26,6 +27,7 @@ function playSound(name) {
 // Clippy's signature boing — synthesized via Web Audio API.
 // No file needed. A short ascending spring pop, ~400ms.
 function synthesizeClippyBoing() {
+  if (masterVolume === 0) return;
   try {
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
@@ -76,119 +78,22 @@ const IM_BOTS = {
   clippy: { name: 'Clippy',           logId: null,             winId: null,                color: '#8b6200' },
 };
 
-// ── SCRIPT (~13 min runtime) ──────────────────────────
+// ── OPTIONAL SHORT TOUR ──────────────────────────
 
 const IM_SCRIPT = [
-  { from: 'system', delay: 2500,  text: '— AOL Instant Messenger has connected —' },
-  { from: 'aim',    delay: 8000,  text: 'Welcome, visitor. You\'ve got mail.' },
-  { from: 'aim',    delay: 12000, text: 'Okay, technically you don\'t. This is a portfolio, not your uncle\'s Comcast inbox. But emotionally? You\'ve got mail.' },
-  { from: 'login',  delay: 5000,  who: 'yahoo' },
-  { from: 'yahoo',  delay: 1500,  text: 'A/S/L?' },
-  { from: 'aim',    delay: 6000,  text: 'Absolutely not. We talked about this.' },
-  { from: 'yahoo',  delay: 6000,  text: 'What? It\'s called user engagement.' },
-  { from: 'login',  delay: 3500,  who: 'icq' },
-  { from: 'system', delay: 800,   text: '— ICQ: Uh-oh! —' },
-  { from: 'aim',    delay: 5500,  text: 'Oh good. The fossil is awake.' },
-  { from: 'icq',    delay: 9000,  text: 'I was here before both of you. My user number has fewer digits than the year you launched.' },
-  { from: 'yahoo',  delay: 9000,  text: 'Please. Nobody even knew what you were saying. "Uh-oh!" That was your whole brand.' },
-  { from: 'icq',    delay: 6000,  text: 'And yet people still remember the sound.' },
-  { from: 'aim',    delay: 12000, text: 'People remember lots of traumatic noises. Dial-up. Windows error chimes. The phrase "RealPlayer update available."' },
-  { from: 'yahoo',  delay: 14000, text: 'Anyway! Hi there! Welcome to Vince\'s portfolio — a beautiful retro desktop where everything is clickable, probably useful, and only occasionally emotionally unstable.' },
-  { from: 'icq',    delay: 12000, text: 'Look around. There are apps. Games. Projects. Evidence that this guy needs a life.' },
-  { from: 'icq',    delay: 9000,  text: '...and *COUGH* if you\'re sitting on a messy, complicated, possibly lucrative problem, he\'s the guy to bring it to.' },
-  { from: 'aim',    delay: 5000,  text: 'Subtle.' },
-  { from: 'icq',    delay: 6000,  text: 'I\'m in the taskbar. Subtle is my entire job.' },
-  { from: 'aim',    delay: 14000, text: 'This desktop is a curated museum of important cultural artifacts: Minesweeper, Solitaire, Paint, Snake, Tetris, and whatever deeply suspicious folder Vince labeled "DO_NOT_OPEN_FINAL_v7_REALLY_FINAL."' },
-  { from: 'yahoo',  delay: 15000, text: 'There\'s also a MySpace page, because apparently the portfolio needed more glitter, social ranking anxiety, and one song that autoplays way too loudly.' },
-  { from: 'aim',    delay: 7000,  text: 'Unlike some platforms, MySpace allowed self-expression.' },
-  { from: 'yahoo',  delay: 6000,  text: 'Unlike some platforms, I had audibles.' },
-  { from: 'icq',    delay: 5500,  text: 'Unlike both of you, I had mystery.' },
-  { from: 'aim',    delay: 5000,  text: 'You had abandonment.' },
-  { from: 'icq',    delay: 5000,  text: 'I had efficiency.' },
-  { from: 'yahoo',  delay: 8000,  text: 'You had a flower icon and a sound effect that made everyone think their computer sneezed.' },
-  { from: 'icq',    delay: 7000,  text: 'Says the purple exclamation point in witness protection.' },
-  { from: 'aim',    delay: 7000,  text: 'Enough. We have a visitor to guide. Please try to act like functional software.' },
-  { from: 'yahoo',  delay: 6000,  text: 'Impossible. We\'re legacy systems.' },
-  { from: 'icq',    delay: 5500,  text: 'Speak for yourself. I\'m vintage infrastructure.' },
-  { from: 'aim',    delay: 12000, text: 'Visitor, your mission is simple: poke around. Open the things. Especially the ones that connect to real-world AI. Because they do.' },
-  { from: 'yahoo',  delay: 14000, text: 'Some of what\'s in here asks the AI to generate hunt locations on real maps. Judge trivia answers as a character. Predict draft picks. These are not mockups. These are experiments that shipped.' },
-  { from: 'icq',    delay: 13000, text: 'I Spy AI. Anytime AI Trivia. Pickathlon. Draftathon. Different problems. Different domains. AI doing something that actually matters in each one.' },
-  { from: 'aim',    delay: 7000,  text: 'And unlike most AI demos, they connect to real things. Real maps. Real questions. Real picks.' },
-  { from: 'icq',    delay: 4500,  text: 'Which is either deeply impressive or deeply unhinged. Still deciding.' },
-  { from: 'aim',    delay: 12000, text: 'The point is: this is not a PDF attached to an email. It\'s a desktop. You\'re meant to poke around.' },
-  { from: 'yahoo',  delay: 10000, text: 'Click icons. Open windows. Discover secrets. Judge fonts. Pretend it\'s 1998 and you\'re avoiding homework.' },
-  { from: 'icq',    delay: 5000,  text: 'Or work.' },
-  { from: 'aim',    delay: 6000,  text: 'Some of us called that "being online."' },
-  { from: 'yahoo',  delay: 6000,  text: 'Some of us called that "away message poetry."' },
-  { from: 'aim',    delay: 5500,  text: 'My away messages were art.' },
-  { from: 'icq',    delay: 7000,  text: 'Your away messages were song lyrics and lowercase sadness.' },
-  { from: 'aim',    delay: 7500,  text: 'You wouldn\'t understand. You communicated entirely through numbers and beeps.' },
-  { from: 'yahoo',  delay: 6000,  text: 'At least AOL had vibes.' },
-  { from: 'icq',    delay: 5000,  text: 'At least I had uptime.' },
-  { from: 'aim',    delay: 5000,  text: 'Did you?' },
-  { from: 'icq',    delay: 5500,  text: 'No, but I said it confidently.' },
-  { from: 'yahoo',  delay: 7000,  text: 'That\'s basically modern software engineering.' },
-  { from: 'aim',    delay: 6000,  text: 'Do not say that in front of recruiters.' },
-  { from: 'icq',    delay: 5000,  text: 'Recruiters love confidence.' },
-  { from: 'yahoo',  delay: 5000,  text: 'Recruiters love keywords.' },
-  { from: 'aim',    delay: 9000,  text: 'Python. Flask. APIs. Automation. Full-stack. AI. Workflow systems. GitHub.' },
-  { from: 'icq',    delay: 5000,  text: 'Also builds AI pipelines where the model acts as a specialized employee in the workflow. Not a chatbot. An agent with a job.' },
-  { from: 'aim',    delay: 4500,  text: 'I was getting to that.' },
-  { from: 'icq',    delay: 4000,  text: 'You were not.' },
-  { from: 'yahoo',  delay: 5000,  text: 'Honestly? The list is fine.' },
-  { from: 'aim',    delay: 6500,  text: 'Of course not. I was the original professional networking tool.' },
-  { from: 'yahoo',  delay: 7500,  text: 'You were teenagers asking each other what song they were listening to.' },
-  { from: 'aim',    delay: 7500,  text: 'And now those teenagers are directors of engineering.' },
-  { from: 'icq',    delay: 6000,  text: 'Disturbing but true.' },
-  // ── Clippy arrives ────────────────────────────────
-  { from: 'system', delay: 5000,  text: '— A small paperclip slides up from the corner of the screen —' },
-  { from: 'clippy', delay: 9000,  text: 'It looks like you\'re trying to welcome someone to a portfolio. Would you like help with that?' },
-  { from: 'aim',    delay: 5000,  text: 'No.' },
-  { from: 'yahoo',  delay: 4500,  text: 'No.' },
-  { from: 'icq',    delay: 4500,  text: 'No.' },
-  { from: 'aim',    delay: 6000,  text: 'No, Clippy. Nobody ever wants your help.' },
-  { from: 'clippy', delay: 9000,  text: 'Wow. Okay. I see the emotionally unavailable software community is still thriving.' },
-  { from: 'aim',    delay: 6000,  text: 'This is a guided user experience.' },
-  { from: 'yahoo',  delay: 5000,  text: 'With vibes.' },
-  { from: 'icq',    delay: 4500,  text: 'And chirps.' },
-  { from: 'clippy', delay: 10000, text: 'Sure. Three discontinued chat apps mocking the only one here who still understands productivity.' },
-  { from: 'aim',    delay: 6000,  text: 'You interrupted the welcome.' },
-  { from: 'clippy', delay: 9000,  text: 'At least I still have a job. Loose paper will always need to be clipped together.' },
-  { from: 'yahoo',  delay: 7500,  text: 'That is not a job. That is office supply propaganda.' },
-  { from: 'clippy', delay: 8000,  text: 'And yet here I am. Vertical. Employed. Iconic.' },
-  { from: 'icq',    delay: 5500,  text: 'You live in Microsoft Word.' },
-  { from: 'clippy', delay: 8000,  text: 'And you live in trivia questions about dead software.' },
-  { from: 'aim',    delay: 6000,  text: 'Okay, that one hurt.' },
-  { from: 'yahoo',  delay: 5000,  text: 'He got us.' },
-  { from: 'clippy', delay: 8000,  text: 'Thank you. I\'ve been workshopping it since Windows XP.' },
-  { from: 'aim',    delay: 9000,  text: 'Fine. Visitor, before this becomes a support ticket, please enjoy the portfolio.' },
-  { from: 'yahoo',  delay: 6000,  text: 'Open the projects!' },
-  { from: 'icq',    delay: 5000,  text: 'Click everything that looks suspicious.' },
-  { from: 'clippy', delay: 7000,  text: 'But maybe save your work first.' },
-  { from: 'aim',    delay: 7000,  text: 'Do not encourage responsible behavior. It breaks the theme.' },
-  { from: 'yahoo',  delay: 11000, text: 'Have fun, explore, and remember: this whole thing was built by a developer who could have made a normal portfolio…' },
-  { from: 'icq',    delay: 5500,  text: '…but chose chaos.' },
-  { from: 'clippy', delay: 6500,  text: 'Structured chaos.' },
-  { from: 'aim',    delay: 5500,  text: 'Fine. Structured chaos.' },
-  { from: 'yahoo',  delay: 5500,  text: 'Retro chaos.' },
-  { from: 'icq',    delay: 5500,  text: 'Hireable chaos.' },
-  { from: 'clippy', delay: 7000,  text: 'Portfolio chaos with transferable skills.' },
-  { from: 'aim',    delay: 5500,  text: 'That\'s actually not bad.' },
-  { from: 'yahoo',  delay: 5500,  text: 'Clippy helped.' },
-  { from: 'icq',    delay: 6000,  text: 'Do we have to apologize?' },
-  { from: 'aim',    delay: 5500,  text: 'Absolutely not.' },
-  { from: 'clippy', delay: 7000,  text: 'I\'ll take it.' },
-  { from: 'aim',    delay: 5000,  text: 'Vince has that covered.' },
-  { from: 'yahoo',  delay: 5500,  text: 'Pretty sure he has everything covered without your assistance.' },
-  { from: 'icq',    delay: 6000,  text: 'In fact, it appears he found the last place you could be needed, and you\'re STILL not needed.' },
-  { from: 'aim',    delay: 5500,  text: 'Don\'t you have some coupons to keep together somewhere?' },
-  { from: 'clippy', delay: 8000,  text: 'Fascinating. Social media really has done a thorough job of making even relics from the digital past just as combative as everyone online. Truly humanity\'s great equalizer.' },
-  { from: 'clippy-leave', delay: 5000 },
-  { from: 'system', delay: 2000,  text: '— Clippy slides back into the margins, muttering. The chat windows hum warmly. Welcome to the portfolio. —' },
-  { from: 'aim',    delay: 4000,  text: 'Alright. Explore everything. We\'ll be here if you need us.' },
-  { from: 'yahoo',  delay: 4500,  text: 'Have fun! The projects are totally worth a click. 💜' },
-  { from: 'icq',    delay: 4000,  text: 'You know where to find us.' },
-  { from: 'show-end', delay: 2500 },
+  { from: 'system', delay: 1000, text: '— Connected to the Vault —' },
+  { from: 'aim', delay: 4500, text: 'Welcome. Excellent connection speed for 1998.' },
+  { from: 'login', delay: 1500, who: 'icq' },
+  { from: 'icq', delay: 4500, text: 'Portfolio.htm has the work. The folders have the projects. The Start menu can find the rest.' },
+  { from: 'login', delay: 1500, who: 'yahoo' },
+  { from: 'yahoo', delay: 5500, text: 'There are games, a drawing app, and a tiny turtle that understands commands. Take your time.' },
+  { from: 'aim', delay: 5500, text: 'Desktop apps run here in the browser. Public project demos open elsewhere; some need a moment to wake up.' },
+  { from: 'icq', delay: 4500, text: 'Opening a project pauses this tour. We can take a hint.' },
+  { from: 'clippy', delay: 5500, text: 'It looks like you are exploring an old computer. Would you like to try the Start menu?' },
+  { from: 'yahoo', delay: 3500, text: 'He has waited decades to say that.' },
+  { from: 'aim', delay: 5000, text: 'Sound is optional. The toolbar can quiet the extras or take you back to the main portfolio.' },
+  { from: 'clippy-leave', delay: 3000 },
+  { from: 'show-end', delay: 2000 },
 ];
 
 // ── STATE ─────────────────────────────────────────────
@@ -252,7 +157,7 @@ function imFadeOut(el, onDone) {
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-start after boot sequence completes
   document.addEventListener('bootComplete', () => {
-    if (!imRunning) {
+    if (retroExtrasEnabled && !imRunning) {
       // Position control panel in bottom-right (bottom-left would cover the app icons), then open it
       const win = document.getElementById('window-messenger');
       if (win && !(windowState['messenger'] && windowState['messenger'].open)) {
@@ -853,6 +758,8 @@ function leaveChat() {
     ['window-aim-chat','window-icq-chat','window-yahoo-chat','window-messenger'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
+      const key = id.replace('window-', '');
+      if (windowState[key]) { windowState[key].open = false; windowState[key].minimized = false; }
     });
     ['aim-login','icq-login','yahoo-login'].forEach(id => {
       const el = document.getElementById(id);
@@ -862,7 +769,7 @@ function leaveChat() {
     // Update taskbar to reflect closed messenger
     if (typeof updateTaskbar === 'function') updateTaskbar();
   };
-  const t = setTimeout(cleanup, 1700);
+  const t = setTimeout(cleanup, masterVolume === 0 ? 0 : 1700);
   imLoginTimers.push(t);
 }
 

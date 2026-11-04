@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vince Darrigo · AI-Assisted Software Engineer</title>
-<meta name="description" content="Vince Darrigo directs Claude and other coding agents to build data-connected applications, then personally tests and owns what ships. Case studies, live demos, and experience.">
+<title>Vince Darrigo · Software &amp; Systems Integration</title>
+<meta name="description" content="Python applications, API integrations, and software for complex operational workflows. Explore Vince Darrigo’s case studies, live projects, and experience.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Vince Darrigo · AI-Assisted Software Engineer">
-<meta property="og:description" content="I direct AI agents to build software. I take responsibility for what ships. Case studies, live demos, and experience.">
+<meta property="og:title" content="Vince Darrigo · Software &amp; Systems Integration">
+<meta property="og:description" content="Software for the work between systems. Python applications, integrations, case studies, and live projects by Vince Darrigo.">
 <meta property="og:url" content="https://vincentdarrigo.github.io/portfolio/">
 <meta property="og:image" content="https://vincentdarrigo.github.io/portfolio/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -16,6 +16,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap">
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="canonical" href="https://vincentdarrigo.github.io/portfolio/">
 <script>
   // Apply the saved theme before first paint so there's no flash.
   try { var t = localStorage.getItem('vd-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
@@ -27,13 +29,13 @@
 
 <div class="shell">
 
-  <!-- ===================== Sidebar ===================== -->
-  <aside class="side">
+  <!-- ===================== Navigation ===================== -->
+  <header class="side">
     <a class="brand" href="#/" aria-label="Vince Darrigo, home">
       <span class="brand-mark" aria-hidden="true">VD</span>
       <span class="brand-name">Vince Darrigo</span>
     </a>
-    <p class="side-label">Engineering portfolio</p>
+
     <nav class="nav" aria-label="Sections">
       <a href="#/" data-nav="/">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
@@ -57,26 +59,16 @@
       </a>
     </nav>
 
-    <div class="side-foot">
-      <p class="side-tag">AI-assisted builds.<br>Human-verified results.</p>
-      <p class="side-blurb">Data-connected applications, integrations, and workflows for real operations.</p>
-      <p class="side-links">
-        <a href="mailto:vincent.darrigo@gmail.com">Email</a>
-        <a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener">GitHub</a>
-        <a href="#/experience">Experience</a>
-      </p>
-    </div>
-  </aside>
 
-  <!-- ===================== Main ===================== -->
-  <div class="main-col">
-    <header class="topbar">
-      <p class="crumb"><span>Vince Darrigo</span><span class="crumb-sep">/</span><span id="crumb-here">Overview</span></p>
       <div class="topbar-actions">
         <button class="btn btn-ghost btn-sm" id="theme-toggle" type="button" aria-label="Switch to light theme"><svg class="tt-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z"/></svg><span class="tt-label">Light theme</span></button>
         <a class="btn btn-accent btn-sm" href="mailto:vincent.darrigo@gmail.com">Get in touch</a>
       </div>
-    </header>
+  </header>
+
+  <!-- ===================== Main ===================== -->
+  <div class="main-col">
+
 
     <main id="main" tabindex="-1">
 
@@ -84,43 +76,43 @@
       <section class="view overview" id="/" data-title="Overview">
         <div class="hero">
           <div class="hero-text">
-            <p class="eyebrow">AI-assisted software engineering · systems integration · hands-on validation</p>
-            <h1><span class="h1-line">I direct AI agents to build software.</span> <span class="h1-line">I take responsibility for what ships.</span></h1>
-            <p class="lede">I turn changing operational requirements into reliable applications: guiding Claude and other coding agents, connecting interfaces to real data services, and personally testing the state, edge cases, and recovery paths that make software dependable.</p>
+            <p class="eyebrow">Python applications / systems integration</p>
+            <h1>Software for the work <em>between systems.</em></h1>
+            <p class="lede">I'm Vince. I turn disconnected tools and manual handoffs into applications people can work in: Python services, API integrations, and interfaces built around the operation.</p>
+            <p class="hero-meta">Technical lead at Safal Partners · Deltona, FL · Remote</p>
             <div class="btn-row">
-              <a class="btn btn-accent" href="#/work">Explore my work <span aria-hidden="true">→</span></a>
-              <a class="btn btn-ghost" href="#/experience">Experience</a>
-              <a class="btn btn-ghost" href="mailto:vincent.darrigo@gmail.com">Contact me</a>
+              <a class="btn btn-accent" href="work/operations-platform/">Explore the production work <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-ghost" href="#/experience">Experience <span aria-hidden="true">→</span></a>
             </div>
+            <p class="hero-aside">I build with AI coding agents. The requirements, integration decisions, and release checks are mine.</p>
           </div>
-          <p class="hero-meta">Remote · Deltona, FL · Updated Nov 2026</p>
-        </div>
-
-        <div class="proof">
-          <div class="proof-item">
-            <p class="proof-num" aria-hidden="true">01</p>
-            <h2>Built for real operations</h2>
-            <p>Privately deployed, multi-role applications connected to the business systems an operation already depends on.</p>
-            <a class="link-arrow" href="#/work/operations-platform">Flagship case study <span aria-hidden="true">→</span></a>
-          </div>
-          <div class="proof-item">
-            <p class="proof-num" aria-hidden="true">02</p>
-            <h2>Designed for failure</h2>
-            <p>Synchronization safeguards, structured diagnostics, retries with backoff, backups before bulk repairs, and data problems fixed at their source.</p>
-            <a class="link-arrow" href="#/work/operations-platform">See the safeguards <span aria-hidden="true">→</span></a>
-          </div>
-          <div class="proof-item">
-            <p class="proof-num" aria-hidden="true">03</p>
-            <h2>AI-assisted, personally validated</h2>
-            <p>Scoped instructions for coding agents, then hands-on validation of UI behavior and edge cases before release.</p>
-            <a class="link-arrow" href="#/how-i-work">How I work with Claude <span aria-hidden="true">→</span></a>
-          </div>
+          <section class="notebook" aria-labelledby="notebook-title">
+            <div class="notebook-top"><span class="eyebrow">Systems notebook</span><span class="notebook-mark" aria-hidden="true">VD /</span></div>
+            <h2 id="notebook-title">What happens when<br>the happy path ends?</h2>
+            <p class="notebook-intro">Open a failure case. Follow the decision.</p>
+            <div class="system-map" aria-label="A generic integration connects source systems, a Python service, and team workflows">
+              <span>Source<br>systems</span><b aria-hidden="true">⇄</b><span class="map-core">Python<br>service</span><b aria-hidden="true">⇄</b><span>Team<br>workflows</span>
+            </div>
+            <details class="failure-case" name="failure-case" open>
+              <summary><span class="case-symbol" aria-hidden="true">↻</span> The API rate-limits a request</summary>
+              <div class="failure-body"><p class="failure-signal">Signal / HTTP 429</p><p>Back off and retry. Report the failure through structured diagnostics so an unattended sync doesn't fail silently.</p><p class="failure-principle">Design for recovery.</p></div>
+            </details>
+            <details class="failure-case" name="failure-case">
+              <summary><span class="case-symbol" aria-hidden="true">✎</span> Someone edits a working file</summary>
+              <div class="failure-body"><p class="failure-signal">Constraint / human-entered data</p><p>Preserve manual entries during synchronization. Define which system owns each field before deciding what to update.</p><p class="failure-principle">Make ownership explicit.</p></div>
+            </details>
+            <details class="failure-case" name="failure-case">
+              <summary><span class="case-symbol" aria-hidden="true">⌁</span> A bulk repair is needed</summary>
+              <div class="failure-body"><p class="failure-signal">Boundary / before a write</p><p>Inspect a dry run before bulk updates. Back up files before repairs, then correct the upstream defect that caused the damage.</p><p class="failure-principle">Protect the recovery path.</p></div>
+            </details>
+            <p class="notebook-caption">Illustrative decision guide, not a live system or a production trace. <a href="work/operations-platform/">Read the actual case study →</a> <a href="#/lab">Try a synthetic workflow →</a></p>
+          </section>
         </div>
 
         <div class="section-head">
           <div>
             <p class="eyebrow eyebrow-muted">Featured work</p>
-            <h2>Case studies</h2>
+            <h2>Selected work</h2>
           </div>
           <a class="link-arrow" href="#/work">All work <span aria-hidden="true">→</span></a>
         </div>
@@ -132,7 +124,7 @@
             <p class="card-line">An internal multi-role application behind a large, multi-stakeholder operational program: approvals, task routing, support, reporting, and the data flows that tie them together across several existing business systems.</p>
             <p class="card-line">My role: technical lead. I shape the requirements, design the integrations, direct the coding agents, and validate the behavior before release.</p>
             <ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>REST APIs</li></ul>
-            <a class="btn btn-accent btn-sm feature-cta" href="#/work/operations-platform">Read the case study <span aria-hidden="true">→</span></a>
+            <a class="btn btn-accent btn-sm feature-cta" href="work/operations-platform/">Read the case study <span aria-hidden="true">→</span></a>
           </div>
 
           <div class="receipt" aria-labelledby="receipt-title">
@@ -154,23 +146,24 @@
           </div>
         </div>
 
-        <a class="card card-row" href="#/work/learning-platform" style="--c: var(--c-amber)">
+        <a class="card card-row" href="work/learning-platform/" style="--c: var(--c-amber)">
           <div class="card-top"><span class="card-cat">Case study · AI evaluation</span><span class="pill pill-proto">Prototype · private</span></div>
           <h3>AI-Assisted Learning Platform</h3>
-          <p class="card-line">A tutor that guides instead of answering, and model-drafted assessments that stay advisory until a teacher reviews them. The interesting part was catching the model's loosely grounded evidence and correcting the prompt.</p>
+          <p class="card-line">A tutor that guides instead of answering, and model-drafted assessments that stay advisory until a teacher reviews them. A QA pass exposed false-positive evidence suggestions; I changed the prompt and retested the same submissions.</p>
           <span class="explore">Read the case study <span aria-hidden="true">→</span></span>
         </a>
 
         <div class="section-head">
           <div>
             <p class="eyebrow eyebrow-muted">Independent builds</p>
-            <h2>Public side projects</h2>
+            <h2>Live projects</h2>
           </div>
           <p class="section-note">Live demos I build and run myself. The first load can take up to a minute while a free-tier server wakes up.</p>
         </div>
         <div class="builds">
           <div class="build" style="--c: var(--c-violet)">
             <div class="card-top"><h3>Anytime AI Trivia</h3><span class="pill pill-live">Live demo</span></div>
+            <p class="build-demo-note">The demo opens as Trivia For All.</p>
             <p class="build-what">Type a topic and get a multiplayer trivia game.</p>
             <p class="build-lesson"><span>What it shows</span>Keeping every player's screen in sync: shared rooms, timers, and scores over WebSockets, with AI rulings players can challenge.</p>
             <a class="link-arrow" href="https://trivia-app-qgwf.onrender.com" target="_blank" rel="noopener" aria-label="Play Anytime AI Trivia (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
@@ -191,8 +184,8 @@
 
         <div class="section-head">
           <div>
-            <p class="eyebrow eyebrow-muted">How I work with Claude</p>
-            <h2>AI-assisted. Personally verified.</h2>
+            <p class="eyebrow eyebrow-muted">How I build</p>
+            <h2>From a messy workflow to a working application.</h2>
           </div>
           <a class="link-arrow" href="#/how-i-work">The full loop <span aria-hidden="true">→</span></a>
         </div>
@@ -201,7 +194,7 @@
           <li><span>02</span>Define the contract</li>
           <li><span>03</span>Direct the agents</li>
           <li><span>04</span>Verify in a real browser</li>
-          <li><span>05</span>Fix the system, not the symptom</li>
+          <li><span>05</span>Trace the root cause</li>
           <li><span>06</span>Ship safely</li>
         </ol>
 
@@ -228,14 +221,15 @@
           <p class="page-head-note">Client work is anonymized: no client names, data, screenshots, or private links. Each case study says what's in production, what's a prototype, and what you can check yourself.</p>
         </div>
 
+        <p class="lab-work-link">Want something inspectable? <a href="#/lab">Open the synthetic workflow lab →</a></p>
         <div class="cards cards-2">
-          <a class="card card-wide" href="#/work/operations-platform" style="--c: var(--c-blue)">
+          <a class="card card-wide" href="work/operations-platform/" style="--c: var(--c-blue)">
             <div class="card-top"><span class="card-cat">Case study · Client work · 2025 – present</span><span class="pill pill-prod">Production · private</span></div>
             <div class="card-title-row"><h2>Proprietary Operations &amp; Data Platform</h2><ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>REST APIs</li></ul></div>
             <p class="card-line">An internal multi-role application for a large, multi-stakeholder operational program. Multi-source reconciliation, unattended synchronization with recovery, and permission-aware interfaces.</p>
             <span class="explore card-foot-solo">Read the case study <span aria-hidden="true">→</span></span>
           </a>
-          <a class="card card-wide" href="#/work/learning-platform" style="--c: var(--c-amber)">
+          <a class="card card-wide" href="work/learning-platform/" style="--c: var(--c-amber)">
             <div class="card-top"><span class="card-cat">Case study · AI evaluation</span><span class="pill pill-proto">Prototype · private</span></div>
             <div class="card-title-row"><h2>AI-Assisted Learning Platform</h2><ul class="tags"><li>FastAPI</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>OpenAI models</li></ul></div>
             <p class="card-line">An AI tutor that guides instead of answering, structured evaluation criteria, and model-drafted assessments that stay advisory until a teacher reviews them. Includes a prompt-evaluation failure and the correction.</p>
@@ -246,21 +240,22 @@
         <div class="section-head">
           <div>
             <p class="eyebrow eyebrow-muted">Independent builds</p>
-            <h2>Public side projects</h2>
+            <h2>Live projects</h2>
           </div>
           <p class="section-note">Live demos I build and run myself. The first load can take up to a minute while a free-tier server wakes up. Source code is private.</p>
         </div>
         <div class="builds builds-media">
           <div class="build" style="--c: var(--c-violet)">
-            <a class="shot-link" href="img/trivia.jpg" target="_blank" rel="noopener"><img src="img/trivia.jpg" width="1280" height="800" loading="lazy" alt="Anytime AI Trivia's start screen with four options: Host (AI Mode), Host (Local File), Join Game, and Watch Game."></a>
+            <a class="shot-link" href="img/trivia.jpg" target="_blank" rel="noopener"><img src="img/trivia.jpg" width="1792" height="942" loading="lazy" alt="The current Trivia For All start screen with four options: Host (AI Mode), Host (Local File), Join Game, and Watch Game."></a>
             <div class="card-top"><h3>Anytime AI Trivia</h3><span class="pill pill-live">Live demo</span></div>
+            <p class="build-demo-note">The demo opens as Trivia For All.</p>
             <p class="build-what">Type a topic and the AI builds a multiplayer trivia game on the spot.</p>
             <p class="build-lesson"><span>What it shows</span>Real-time state: rooms, synced timers, and a shared scoreboard over WebSockets. Players can challenge an AI ruling, and the reasoning is shown to the whole room.</p>
             <ul class="tags"><li>FastAPI</li><li>WebSockets</li><li>GPT-4o</li></ul>
             <a class="link-arrow" href="https://trivia-app-qgwf.onrender.com" target="_blank" rel="noopener" aria-label="Play Anytime AI Trivia (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
           </div>
           <div class="build" style="--c: var(--c-teal)">
-            <a class="shot-link" href="img/ispy.jpg" target="_blank" rel="noopener"><img src="img/ispy.jpg" width="1280" height="800" loading="lazy" alt="I Spy AI's mission setup screen: choose I Spy AI or I Spy A Pie, name a team, host or join a race, pick a city, number of locations, and difficulty, then generate a route."></a>
+            <a class="shot-link" href="img/ispy.jpg" target="_blank" rel="noopener"><img src="img/ispy.jpg" width="1280" height="720" loading="lazy" alt="I Spy AI's mission setup screen: choose I Spy AI or I Spy A Pie, name a team, host or join a race, pick a city, number of locations, and difficulty, then generate a route."></a>
             <div class="card-top"><h3>I Spy AI</h3><span class="pill pill-live">Live demo</span></div>
             <p class="build-what">Pick a city and the AI builds a scavenger hunt around real places.</p>
             <p class="build-lesson"><span>What it shows</span>A multi-API workflow: model-generated clues grounded by Google Places data, privacy blurring with Cloud Vision, and live game events over Socket.IO.</p>
@@ -268,9 +263,9 @@
             <a class="link-arrow" href="https://ai-mazing-race.onrender.com" target="_blank" rel="noopener" aria-label="Play I Spy AI (opens in a new tab)">Play <span aria-hidden="true">↗</span></a>
           </div>
           <div class="build" style="--c: var(--c-green)">
-            <a class="shot-link" href="img/predictrix.jpg" target="_blank" rel="noopener"><img src="img/predictrix.jpg" width="1280" height="800" loading="lazy" alt="The predictrix.app home page, offering the Predictrix Championship Series and Standalone Competitions."></a>
+            <a class="shot-link" href="img/predictrix.jpg" target="_blank" rel="noopener"><img src="img/predictrix.jpg" width="1280" height="720" loading="lazy" alt="The predictrix.app home page, offering the Predictrix Championship Series and Standalone Competitions."></a>
             <div class="card-top"><h3>Predictrix</h3><span class="pill pill-live">Live · NFL season</span></div>
-            <p class="build-what">NFL prediction games: weekly pick 'em and pick-by-pick draft predictions.</p>
+            <p class="build-what">NFL prediction games across a season-long championship and standalone competitions.</p>
             <p class="build-lesson"><span>What it shows</span>Product ownership end to end: data flows from player picks to computed standings, a public leaderboard with no sign-up, and steady iteration between seasons.</p>
             <ul class="tags"><li>Python</li><li>Django REST</li><li>React</li></ul>
             <a class="link-arrow" href="https://predictrix.app" target="_blank" rel="noopener" aria-label="Visit Predictrix (opens in a new tab)">Visit <span aria-hidden="true">↗</span></a>
@@ -303,6 +298,16 @@
 
         <figure class="flows">
           <div class="flow-block">
+            <p class="flow-title">Data synchronization</p>
+            <ol class="flow">
+              <li>Several sources</li>
+              <li>Reconcile</li>
+              <li class="flow-gate">Dry run first</li>
+              <li>Two-way sync</li>
+              <li>Team working files</li>
+            </ol>
+          </div>
+          <div class="flow-block">
             <p class="flow-title">AI-assisted support · in development</p>
             <ol class="flow">
               <li>Request arrives</li>
@@ -311,16 +316,6 @@
               <li>Proposed action</li>
               <li class="flow-gate">A person approves</li>
               <li>Change is made</li>
-            </ol>
-          </div>
-          <div class="flow-block">
-            <p class="flow-title">Data synchronization</p>
-            <ol class="flow">
-              <li>Several sources</li>
-              <li>Reconcile</li>
-              <li class="flow-gate">Dry run first</li>
-              <li>Two-way sync</li>
-              <li>Team working files</li>
             </ol>
           </div>
           <figcaption>Simplified and generic: no client systems, identifiers, or data. The support flow shows the approval boundary as designed.</figcaption>
@@ -401,7 +396,7 @@
             <li><span class="pill pill-req">On request</span><span>I'm glad to walk through the design decisions (synchronization, recovery, data protection, and approvals) in an interview.</span></li>
           </ul>
         </div>
-        <nav class="study-nav" aria-label="More work"><a href="#/work">All work</a><a href="#/work/learning-platform">Next: AI-Assisted Learning Platform <span aria-hidden="true">→</span></a></nav>
+        <nav class="study-nav" aria-label="More work"><a href="#/work">All work</a><a href="work/learning-platform/">Next: AI-Assisted Learning Platform <span aria-hidden="true">→</span></a></nav>
       </article>
 
       <!-- ===================== Case study: learning platform ===================== -->
@@ -458,6 +453,13 @@
           <p>An early QA pass found that the model's evidence suggestions were often false positives: it matched a student's general impression instead of observable behavior. I rewrote the prompt to ground each suggestion in an explicit checklist of observable behaviors for that criterion and to name the specific behavior it matched. A small read-only retest on the same submissions showed fewer false positives without losing the genuine match, and the teacher's review stays the final word.</p>
         </div>
 
+        <section class="eval-example" aria-labelledby="eval-example-title">
+          <p class="eyebrow">Invented example / no model call</p><h2 id="eval-example-title">What counts as evidence?</h2>
+          <p>This illustrates the distinction behind the prompt correction. It is not a real student's work or a recorded evaluation result.</p>
+          <div class="eval-pair"><div><h3>A vague claim</h3><blockquote>“I checked the answer. It looks right.”</blockquote><p>This does not name an observable checking action. A model should not infer one from confidence.</p></div><div><h3>An observable action</h3><blockquote>“I compared the date with the museum catalogue and corrected the year in my draft.”</blockquote><p>The statement names what was checked, how, and what changed. A teacher still makes the judgment.</p></div></div>
+          <details><summary>Inspect the illustrative instruction</summary><pre>Suggest evidence only when a quoted conversation turn names an observable action for the criterion. Cite the turn and the action. If the behavior is absent or ambiguous, return insufficient evidence. Do not infer verification from a general claim of confidence.</pre></details>
+        </section>
+
         <div class="evidence">
           <h2>What you can check</h2>
           <ul>
@@ -465,15 +467,37 @@
             <li><span class="pill pill-req">On request</span><span>Details are available on request, including how the evaluation criteria and prompts are structured.</span></li>
           </ul>
         </div>
-        <nav class="study-nav" aria-label="More work"><a href="#/work/operations-platform"><span aria-hidden="true">←</span> Operations &amp; Data Platform</a><a href="#/work">All work <span aria-hidden="true">→</span></a></nav>
+        <nav class="study-nav" aria-label="More work"><a href="work/operations-platform/"><span aria-hidden="true">←</span> Operations &amp; Data Platform</a><a href="#/work">All work <span aria-hidden="true">→</span></a></nav>
       </article>
+
+      <!-- ===================== Independent synthetic reference ===================== -->
+      <section class="view" id="/lab" data-title="Workflow lab">
+        <a class="back" href="#/work">← All work</a>
+        <div class="page-head"><div><p class="eyebrow">Independent reference example / synthetic data</p><h1>Break a workflow.<br>Inspect the recovery.</h1></div></div>
+        <p class="lede">A small, executable model of field ownership, dry runs, and recovery. Choose a failure, inspect the proposed write, then decide what happens next.</p>
+        <p class="lab-disclosure">All records are invented. Everything runs in this browser. This is an independent teaching example, not client code, a production trace, or evidence that every safeguard below exists in the private platform.</p>
+        <div id="workflow-lab" class="lab-interactive">
+          <fieldset class="lab-scenarios"><legend>Choose a failure</legend>
+            <label><input type="radio" name="lab-case" value="manual" checked><span>A person edits a file<small>Preserve human-owned fields</small></span></label>
+            <label><input type="radio" name="lab-case" value="rate"><span>The API returns 429<small>Refuse writes until a retry succeeds</small></span></label>
+            <label><input type="radio" name="lab-case" value="repair"><span>A record needs repair<small>Back up, change, and restore</small></span></label>
+          </fieldset>
+          <div class="lab-toolbar"><button id="lab-preview" class="btn btn-accent" type="button">Preview the change</button><button id="lab-apply" class="btn btn-ghost" type="button" disabled>Apply proposal</button><button id="lab-edit" class="btn btn-ghost" type="button" disabled>Edit after preview</button><button id="lab-restore" class="btn btn-ghost" type="button" hidden disabled>Restore backup</button><button id="lab-reset" class="btn btn-ghost" type="button">Reset example</button></div>
+          <p id="lab-status" class="lab-status" role="status">Ready to preview. Nothing has changed.</p>
+          <div class="lab-records"><section><h2>Before</h2><pre id="lab-before"></pre></section><section><h2>Proposed write</h2><pre id="lab-proposal"></pre></section><section><h2>Current record</h2><pre id="lab-current"></pre></section></div>
+          <div class="lab-trace"><h2>Decision trace</h2><ol id="lab-events"></ol></div>
+          <div class="btn-row"><button id="lab-download" class="btn btn-ghost" type="button">Download this run as JSON ↓</button><a class="link-arrow" href="js/workflow-engine.js" target="_blank" rel="noopener">Inspect the model's source ↗</a></div>
+        </div>
+        <noscript><p class="callout">JavaScript powers the executable example. The policy is simple: preview status changes, preserve human-owned notes, retry a failed read before offering a write, and save a backup before a repair. The source is available below.</p><a href="js/workflow-engine.js">Read the example source</a></noscript>
+        <div class="callout"><p class="callout-label">A limitation worth looking at</p><p>The revision check refuses a stale proposal; it does not merge simultaneous changes. A real service also needs durable storage, authentication, idempotency, retry limits, and transaction boundaries. An in-memory backup disappears when the page closes.</p></div>
+      </section>
 
       <!-- ===================== How I work ===================== -->
       <section class="view" id="/how-i-work" data-title="How I work">
         <div class="page-head">
           <div>
-            <p class="eyebrow">How I work with Claude</p>
-            <h1>AI-assisted. Personally verified.</h1>
+            <p class="eyebrow">How I build</p>
+            <h1>From a messy workflow to a working application.</h1>
           </div>
           <p class="page-head-note">Coding agents write a lot of my code. I'm accountable for all of it. This is the loop I work to.</p>
         </div>
@@ -505,7 +529,7 @@
           </li>
           <li class="step">
             <p class="step-num">05</p>
-            <h2>Fix the system, not the symptom</h2>
+            <h2>Trace the root cause</h2>
             <p>Reproduce the problem, trace it across interface, services, and data, correct the code, prompt, or design that caused it, then retest.</p>
             <p class="step-out">Root cause fixed</p>
           </li>
@@ -520,7 +544,7 @@
         <div class="section-head"><div><p class="eyebrow eyebrow-muted">Modeling</p><h2>Data relationships across systems</h2></div></div>
         <div class="panel datamodel">
           <p>Much of my work is deciding how things relate when they live in different systems. The same person, assignment, or item can appear in several places under different identifiers. I map those entities and their relationships, decide which system owns each piece of data, build crosswalks between identifiers, and model who can see or change what. Then I expose all of it through application workflows instead of shared spreadsheets.</p>
-          <p>This is application-level data modeling rather than formal ontology or knowledge-graph work, but the core questions are the same: what is this thing, how does it relate to the others, and who is allowed to change it?</p>
+          <p>The useful questions are concrete: which record is this, which system owns it, and who is allowed to change it?</p>
         </div>
 
         <div class="section-head"><div><p class="eyebrow eyebrow-muted">About the evidence</p><h2>What the labels mean</h2></div></div>
@@ -535,7 +559,7 @@
 
         <div class="callout">
           <p class="callout-label">This site, for example</p>
-          <p>Written with Claude Code, checked in a real browser by Codex at laptop and phone sizes, then reviewed by me before it went live. Same loop, smaller stakes.</p>
+          <p>This portfolio uses plain HTML, CSS, and JavaScript. The interactive notebook is an illustration; the case studies distinguish production work from prototypes and describe what can be reviewed publicly.</p>
         </div>
       </section>
 
@@ -548,7 +572,7 @@
           </div>
           <div class="page-head-side">
             <p class="page-head-note">6+ years in solution architecture and engineering roles, growing from workflow and integration design into AI-assisted, full-stack development.</p>
-            <a class="btn btn-ghost btn-sm" href="mailto:vincent.darrigo@gmail.com?subject=R%C3%A9sum%C3%A9%20request">Request a PDF résumé</a>
+            <a class="btn btn-ghost btn-sm" href="downloads/vince-darrigo-resume.pdf" download>Download résumé PDF ↓</a>
           </div>
         </div>
 
@@ -567,7 +591,7 @@
                 <li>Diagnosed a live data-integrity issue, reconstructed the affected records from cloud revision history, and eliminated the originating template defect.</li>
                 <li>Developed a more scalable database-backed platform with PostgreSQL, versioned migrations, and automated tests, and demonstrated it to stakeholders, which opened discussions about expanding the platform's responsibilities.</li>
               </ul>
-              <a class="link-arrow" href="#/work/operations-platform">Case study <span aria-hidden="true">→</span></a>
+              <a class="link-arrow" href="work/operations-platform/">Case study <span aria-hidden="true">→</span></a>
             </div>
           </li>
           <li class="role">
@@ -647,36 +671,53 @@
           </div>
 
           <div class="about-side">
-            <div class="retro">
-              <p class="retro-tape" aria-hidden="true"><span>Under construction</span></p>
-              <p class="eyebrow">Side quest</p>
-              <h2>Vince's Vault</h2>
-              <p>Before this site there was Vince's Vault: a working Windows 95 desktop with a boot screen, an instant-messenger welcome show, Minesweeper, Winamp, a dial-up BBS, and a GW-BASIC interpreter. It's still there. It's also still under construction.</p>
-              <a class="btn btn-retro" href="retro/" target="_blank" rel="noopener">Boot up Vince's Vault <span aria-hidden="true">↗</span></a>
-              <p class="retro-note">Best on a laptop, sound on.</p>
-            </div>
-
             <div class="panel contact">
               <h2>Get in touch</h2>
               <ul>
                 <li><span>Email</span><a href="mailto:vincent.darrigo@gmail.com">vincent.darrigo@gmail.com</a></li>
                 <li><span>GitHub</span><a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener">github.com/vincentdarrigo</a></li>
-                <li><span>Résumé</span><a href="mailto:vincent.darrigo@gmail.com?subject=R%C3%A9sum%C3%A9%20request">Request a PDF by email</a></li>
+                <li><span>Résumé</span><a href="downloads/vince-darrigo-resume.pdf" download>Download PDF ↓</a></li>
               </ul>
+            </div>
+            <div class="about-easter-egg">
+              <a id="gateway-trigger" class="gateway-trigger" href="retro/" aria-label="Inspect the old Gateway computer">
+                <img src="img/gateway.png" width="80" height="80" loading="lazy" alt="Beige Gateway computer with a cow-spotted tower">
+                <span class="gateway-hint">There's something on this disk.</span>
+              </a>
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="view" id="/not-found" data-title="Page not found" hidden>
+        <div class="page-head"><div><p class="eyebrow">Unknown route</p><h1>That page isn't here.</h1></div></div>
+        <p class="lede">Try the work index, or head back to the overview.</p>
+        <div class="btn-row"><a class="btn btn-accent" href="#/work">Explore the work</a><a class="btn btn-ghost" href="#/">Overview</a></div>
       </section>
 
     </main>
 
     <footer class="foot">
       <p>© 2026 Vince Darrigo</p>
-      <p>Built with Claude Code, QA'd by Codex, verified by me.</p>
+      <p>Built around real workflows.</p>
     </footer>
   </div>
 </div>
 
+
+<dialog id="gateway-dialog" class="gateway-dialog" aria-labelledby="gateway-title" aria-describedby="gateway-description">
+  <button type="button" id="gateway-close" class="gateway-close" aria-label="Close computer preview" autofocus>×</button>
+  <h2 id="gateway-title">Vince's Vault</h2>
+  <p id="gateway-description">Click the computer to boot the desktop.</p>
+  <a class="gateway-launch" href="retro/" aria-label="Boot Vince's Vault">
+    <img src="img/gateway.png" width="600" height="600" alt="Boot the cow-spotted Gateway computer">
+  </a>
+  <p class="gateway-dismiss">Escape or click outside to put it away.</p>
+</dialog>
+
 <script src="js/site.js"></script>
+<script src="js/workflow-engine.js"></script>
+<script src="js/workflow-lab.js"></script>
+<script src="js/gateway.js"></script>
 </body>
 </html>

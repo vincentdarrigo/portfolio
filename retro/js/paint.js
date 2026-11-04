@@ -47,10 +47,12 @@ function initPaint() {
   buildPalette();
 
   // Mouse events
-  paintCanvas.addEventListener('mousedown',  paintStart);
-  paintCanvas.addEventListener('mousemove',  paintMove);
-  paintCanvas.addEventListener('mouseup',    paintEnd);
-  paintCanvas.addEventListener('mouseleave', paintEnd);
+  paintCanvas.style.touchAction = 'none';
+  paintCanvas.addEventListener('pointerdown', e => { paintCanvas.setPointerCapture(e.pointerId); paintStart(e); });
+  paintCanvas.addEventListener('pointermove', paintMove);
+  paintCanvas.addEventListener('pointerup', paintEnd);
+  paintCanvas.addEventListener('pointercancel', paintEnd);
+  paintCanvas.addEventListener('lostpointercapture', paintEnd);
   paintCanvas.addEventListener('contextmenu', (e) => e.preventDefault());
 
   // Tool buttons
@@ -105,8 +107,8 @@ function setPaintSize(size) {
 function getPos(e) {
   const rect = paintCanvas.getBoundingClientRect();
   return {
-    x: Math.round(e.clientX - rect.left),
-    y: Math.round(e.clientY - rect.top),
+    x: Math.round((e.clientX - rect.left) * paintCanvas.width / rect.width),
+    y: Math.round((e.clientY - rect.top) * paintCanvas.height / rect.height),
   };
 }
 

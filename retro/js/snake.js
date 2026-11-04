@@ -136,6 +136,7 @@ function snakeDie() {
   updateSnakeHUD();
 
   setTimeout(() => {
+    if (document.getElementById('window-snake')?.style.display !== 'block') return;
     snkPlayNokiaRing();
     const overlay = document.getElementById('nokia-call-overlay');
     if (overlay) overlay.style.display = 'flex';
@@ -153,6 +154,7 @@ function snkPlayNokiaRing() {
 }
 
 function dismissNokiaCall(answer) {
+  if (answer && typeof foundEgg === 'function') foundEgg('nokia-kick');
   const ring = document.getElementById('snd-nokia-ring');
   if (ring) { ring.pause(); ring.currentTime = 0; }
   const overlay = document.getElementById('nokia-call-overlay');
@@ -230,6 +232,7 @@ function setSnakeDir(dir) {
 }
 
 function handleSnakeKey(e) {
+  if (activeWindowId !== 'snake' || e.target.closest('input, textarea, select, button, a, [contenteditable="true"]')) return;
   if (document.getElementById('window-snake')?.style.display !== 'block') return;
 
   const keyDir = {

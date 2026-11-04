@@ -676,3 +676,8 @@ a:hover { color: var(--ms-link-hover); text-decoration: underline; }
   #ms-left-col { width: 100%; }
   #ms-top-friends { grid-template-columns: repeat(4, 1fr); }
 }
+
+.gb-local-note { padding: 12px; margin-bottom: 14px; background: #fff8de; color: #3b3b2c; font: 13px/1.5 Arial,sans-serif; border: 1px solid #a89c70; }
+:focus-visible { outline: 3px solid #e5a31e; outline-offset: 3px; }
+#ms-player-progress { animation: none; width: 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

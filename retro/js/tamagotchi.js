@@ -184,6 +184,11 @@ function loadTama() {
     const raw = localStorage.getItem(TAMA_KEY);
     if (raw) {
       const saved = JSON.parse(raw);
+      if (!saved || typeof saved !== 'object' || !Number.isFinite(saved.lastSave) || !['hunger','happiness','age','poop'].every(k => Number.isFinite(saved[k])) || typeof saved.sleeping !== 'boolean' || typeof saved.name !== 'string') return defaultTama();
+      saved.hunger = Math.max(0, Math.min(100, saved.hunger));
+      saved.happiness = Math.max(0, Math.min(100, saved.happiness));
+      saved.age = Math.max(0, Math.floor(saved.age));
+      saved.poop = Math.max(0, Math.min(3, Math.floor(saved.poop)));
       // Apply offline drain (capped so pet can't die while away)
       const elapsed = Math.floor((Date.now() - saved.lastSave) / TAMA_TICK);
       const ticks   = Math.min(elapsed, 30); // max 30 ticks of offline drain
@@ -202,7 +207,7 @@ function loadTama() {
 function saveTama() {
   if (!tama) return;
   tama.lastSave = Date.now();
-  localStorage.setItem(TAMA_KEY, JSON.stringify(tama));
+  try { localStorage.setItem(TAMA_KEY, JSON.stringify(tama)); } catch (_) {}
 }
 
 // ── STAGE ─────────────────────────────────────────────
@@ -308,7 +313,7 @@ function tamaReset() {
   tamaShowPoop = false;
   tamaShowSleep = false;
   tamaSparkle = false;
-  localStorage.removeItem(TAMA_KEY);
+  try { localStorage.removeItem(TAMA_KEY); } catch (_) {}
   tama = defaultTama();
   saveTama();
   updateTamaUI();

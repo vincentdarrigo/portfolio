@@ -1,0 +1,19 @@
+name: Portfolio checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Verify generated case-study pages
+        run: python3 scripts/build_pages.py --check
+      - name: Check source, local links, and image descriptions
+        run: python3 scripts/check_site.py
+      - name: Verify the synthetic workflow behavior
+        run: node scripts/workflow.test.cjs

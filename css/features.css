@@ -1,0 +1,52 @@
+/* Progressive enhancements and the independent workflow reference. */
+.about-easter-egg { display: flex; justify-content: flex-end; margin-top: 32px; }
+.gateway-trigger { position: relative; display: block; width: 80px; height: 80px; border-radius: 10px; transition: transform 180ms ease, box-shadow 180ms ease; }
+.gateway-trigger img { display: block; width: 100%; height: 100%; border-radius: inherit; }
+.gateway-trigger:hover, .gateway-trigger:focus-visible { transform: translateY(-4px) rotate(-3deg); box-shadow: 0 6px 28px #d6a34233; }
+.gateway-hint { position: absolute; right: 0; bottom: calc(100% + 12px); width: max-content; max-width: 220px; padding: 8px 12px; font: 11px/1.4 var(--mono); background: var(--panel); border: 1px solid var(--line-2); color: var(--text-2); opacity: 0; pointer-events: none; transition: opacity 140ms; }
+.gateway-trigger:is(:hover,:focus-visible) .gateway-hint { opacity: 1; }
+.gateway-open { overflow: hidden; }
+.gateway-dialog { width: min(570px,calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 24px 20px 16px; overflow: auto; color: #eee8d5; background: #080909; border: 1px solid #7c6031; border-radius: 12px; box-shadow: 0 30px 120px #0009; text-align: center; }
+.gateway-dialog::backdrop { background: #050706c9; backdrop-filter: blur(7px); }
+.gateway-dialog[open] { animation: gateway-pop 180ms ease-out; }
+.gateway-dialog h2 { font-size: 22px; margin-right: 30px; }
+.gateway-dialog p { font: 12px/1.6 var(--mono); color: #c0b9a5; margin-top: 8px; }
+.gateway-close { position: absolute; right: 12px; top: 12px; width: 36px; height: 36px; border: 1px solid #655837; background: #191810; color: #fff2d1; border-radius: 50%; font: 24px/1 system-ui; cursor: pointer; }
+.gateway-launch { display: block; margin-top: 12px; border-radius: 8px; }
+.gateway-launch img { display: block; width: 100%; height: auto; max-height: calc(100dvh - 200px); object-fit: contain; }
+.gateway-dismiss { font-size: 10px !important; }
+@keyframes gateway-pop { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
+.lab-disclosure { max-width: 82ch; margin-top: 18px; color: var(--text-3); font-size: 13px; line-height: 1.7; }
+.lab-interactive { display: none; }
+.js .lab-interactive { display: block; }
+.lab-scenarios { padding: 0; border: 0; margin: 32px 0 20px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.lab-scenarios legend { margin-bottom: 12px; font: 12px/1.5 var(--mono); color: var(--text-3); }
+.lab-scenarios label { display: flex; align-items: flex-start; gap: 10px; padding: 18px; border: 1px solid var(--line-2); cursor: pointer; }
+.lab-scenarios label:has(input:checked) { border-color: var(--accent-text); background: var(--accent-soft); }
+.lab-scenarios input { accent-color: var(--accent-text); margin-top: 5px; }
+.lab-scenarios small { display: block; margin-top: 5px; font-size: 12px; color: var(--text-3); }
+.lab-toolbar { display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-toolbar .btn { font-size: 13px; white-space: normal; }
+.btn:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+.lab-status { margin: 20px 0; padding: 14px 18px; border-left: 3px solid var(--accent-text); background: var(--panel); min-height: 52px; }
+.lab-records { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.lab-records section { min-width: 0; border-top: 1px solid var(--line-2); padding-top: 16px; }
+.lab-records h2 { font-size: 17px; }
+.lab-records pre, .eval-example pre { padding: 16px; margin: 12px 0 0; background: var(--panel); font: 12px/1.8 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text-2); }
+.lab-trace { margin-top: 28px; }
+.lab-trace h2 { font-size: 19px; }
+.lab-trace ol { list-style: decimal; padding-left: 24px; margin-top: 12px; display: grid; gap: 10px; color: var(--text-2); font: 13px/1.7 var(--mono); }
+.lab-work-link { margin: -8px 0 24px; font-size: 14px; color: var(--text-2); }
+.lab-work-link a { color: var(--accent-text); }
+.build-demo-note { font: 11px/1.5 var(--mono); color: var(--text-3); margin-top: 6px; }
+.eval-example { margin-top: 32px; padding: 24px; border: 1px solid var(--line-2); background: var(--panel); }
+.eval-example h2 { margin: 8px 0 12px; }
+.eval-example p { color: var(--text-2); }
+.eval-pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; margin: 24px 0; }
+.eval-pair blockquote { margin: 12px 0; padding-left: 14px; border-left: 2px solid var(--accent-text); font: italic 19px/1.6 Georgia,serif; }
+.eval-pair p { font-size: 14px; }
+.eval-example summary { cursor: pointer; padding: 8px 0; color: var(--accent-text); font-size: 14px; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 160ms; }
+@media (max-width: 760px) { .lab-scenarios, .lab-records, .eval-pair { grid-template-columns: minmax(0,1fr); } .about-easter-egg { margin-top: 24px; } .gateway-dialog { padding: 22px 16px 14px; } }
+@media (prefers-reduced-motion: reduce) { .gateway-trigger, .gateway-hint { transition: none; } .gateway-trigger:is(:hover,:focus-visible) { transform: none; } .gateway-dialog[open] { animation: none; } ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+@media print { .about-easter-egg, .gateway-dialog, .lab-toolbar { display: none !important; } }

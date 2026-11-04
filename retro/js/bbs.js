@@ -144,7 +144,7 @@ function bbsRunConnect() {
   ], () => {
     bbsState = 'splash-wait';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsStartTime = Date.now();
   });
 }
@@ -199,7 +199,7 @@ function bbsShowMain() {
   bbsPrint('');
   bbsPromptSet('Command? ');
   bbsInEl.disabled = false;
-  bbsInEl.focus();
+  if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
   bbsDrop();
 }
 
@@ -443,7 +443,7 @@ function bbsLunatix() {
   ], () => {
     bbsState = 'lunatix-menu';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsPromptSet('Response? ');
   });
 }
@@ -485,7 +485,7 @@ function bbsLunatixGrieve() {
   ], () => {
     bbsState = 'lunatix-result';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsPromptSet('');
   });
 }
@@ -512,7 +512,7 @@ function bbsLunatixRebuild() {
   ], () => {
     bbsState = 'lunatix-result';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsPromptSet('');
   });
 }
@@ -544,7 +544,7 @@ function bbsLunatixBoat() {
   ], () => {
     bbsState = 'lunatix-result';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsPromptSet('');
   });
 }
@@ -588,7 +588,7 @@ function bbsLunatixLinkedIn() {
   ], () => {
     bbsState = 'lunatix-lnk';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsPromptSet('');
   });
 }
@@ -735,7 +735,7 @@ function bbsShowLogoff() {
     bbsDrop();
     bbsState = 'logoff';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
   });
 }
 
@@ -777,7 +777,7 @@ function bbsEasterEgg() {
     window.open('guestbook.html', '_blank');
     bbsState = 'easter';
     bbsInEl.disabled = false;
-    bbsInEl.focus();
+    if (activeWindowId === 'bbs' && !document.hidden) bbsInEl.focus();
     bbsPrint('<span class="bbs-dim">[Guestbook launched. Press Enter to return to main menu.]</span>');
     bbsPromptSet('');
   });
@@ -786,6 +786,7 @@ function bbsEasterEgg() {
 // ── MODEM SOUND (Web Audio API) ────────────────────────
 
 function bbsPlayModem() {
+  if (masterVolume === 0) return;
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     let t = ctx.currentTime + 0.05;

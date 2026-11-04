@@ -1,0 +1,46 @@
+/* Keep the character of the desktop, with room to read and choose. */
+#desktop { background-image: linear-gradient(110deg, rgba(5, 28, 32, .55), rgba(5, 28, 32, .12)), url('../assets/images/win95.jpg'); }
+.vault-toolbar { position: absolute; top: 0; left: 0; right: 0; min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 20px; color: #f5f1dd; background: #153237; border-bottom: 1px solid #4d7374; font: 12px/1.4 Tahoma, sans-serif; }
+.vault-toolbar strong { display: block; font-size: 15px; }
+.vault-toolbar span { color: #c1d2cc; font-size: 10px; }
+.vault-toolbar nav { display: flex; gap: 8px; align-items: center; }
+.vault-toolbar button, .vault-toolbar a { padding: 7px 10px; border: 1px solid #6a8581; color: #f5f1dd; background: #25464a; font: inherit; text-decoration: none; }
+.vault-toolbar [aria-pressed="true"] { background: #e9cf86; color: #102728; }
+.desktop-launchers { position: absolute; top: 76px; bottom: 46px; left: 14px; width: 202px; padding: 10px; overflow-y: auto; scrollbar-width: thin; background: rgba(12, 36, 39, .8); border: 1px solid #77958c; border-radius: 8px; }
+.desktop-launchers .icon-zone { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; max-height: none; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #719187; }
+.desktop-launchers .icon-zone:last-child { border-bottom: 0; margin-bottom: 0; }
+.desk-icon { width: auto; min-height: 74px; cursor: pointer; border-radius: 4px; }
+.desk-icon:hover, .desk-icon:focus-visible { background: #345d61; }
+.desk-icon-label { font: 11px/1.4 Tahoma, sans-serif; color: #fff; text-shadow: none; }
+.desk-icon-img { position: relative; }
+.win95-window { max-width: calc(100vw - 16px); max-height: calc(100dvh - 108px); overflow: auto; }
+.win95-window > .win95-titlebar { position: sticky; top: 0; z-index: 2; min-height: 28px; }
+.win95-window:not(.is-active) > .win95-titlebar { background: linear-gradient(to right, #52656b, #768b8e); }
+.win95-window .win95-close { min-width: 22px; min-height: 20px; }
+.win95-window .win95-content { user-select: text; }
+.proj-body, .about-body, .skill-item { font-size: 14px; line-height: 1.6; }
+.resume-doc { font-size: 13px; line-height: 1.6; }
+.resume-contact, .resume-job-meta { font-size: 12px; }
+.window-maximized { left: 8px !important; top: 68px !important; width: calc(100vw - 16px) !important; height: calc(100dvh - 108px) !important; }
+.window-maximized .win95-content { max-height: calc(100dvh - 174px) !important; }
+.folder-item { cursor: pointer; }
+.folder-item[href] { text-decoration: none; }
+.start-has-sub:focus-within > .start-submenu { display: block; }
+#start-menu { max-height: calc(100dvh - 40px); overflow-y: auto; }
+#boot-skip-hint { pointer-events: auto; border: 1px solid #a9bfad; background: #132d28; color: #fff3ce; padding: 12px 18px; font-size: 13px; cursor: pointer; }
+:focus-visible { outline: 3px solid #edb94f; outline-offset: 3px; }
+#mobile-bsod { background: #102d30; font-family: ui-monospace, Consolas, monospace; font-size: 14px; color: #e8eee2; }
+#mobile-bsod .bsod-badge { background: #ebd39a; color: #102d30; padding: 6px 10px; }
+#mobile-bsod .bsod-dim { opacity: 1; color: #bbcdbd; }
+#mobile-bsod a { color: #f2d28a; text-underline-offset: 4px; }
+.bsod-inner { max-width: 54ch; margin: auto; }
+@media (max-width: 1000px) {
+  .desktop-launchers { width: 172px; }
+  .vault-toolbar { padding: 8px 12px; }
+  .vault-toolbar nav { gap: 5px; }
+  .vault-toolbar button, .vault-toolbar a { padding: 6px 8px; font-size: 11px; }
+  .vault-toolbar span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

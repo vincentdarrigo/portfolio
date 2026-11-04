@@ -36,16 +36,18 @@ const SEED_COMMENTS = [
   },
 ];
 
+let guestbookMemory = SEED_COMMENTS.slice();
+
 // ── INIT ──────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
   // Seed the guestbook if first visit
-  if (!localStorage.getItem(STORAGE_KEY)) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(SEED_COMMENTS));
-  }
+  try {
+    if (!localStorage.getItem(STORAGE_KEY)) localStorage.setItem(STORAGE_KEY, JSON.stringify(SEED_COMMENTS));
+  } catch (_) {}
   renderComments();
   updateFriendCount();
-  animatePlayerSong();
+
 });
 
 // ── RENDER COMMENTS ───────────────────────────────────
@@ -69,11 +71,11 @@ function renderComments() {
   // Render newest first
   feed.innerHTML = [...comments].reverse().map(c => `
     <div class="ms-comment-card" id="comment-${c.id}">
-      <div class="ms-commenter-pic">${c.avatar || '👤'}</div>
+      <div class="ms-commenter-pic">${escapeHtml(c.avatar || '👤')}</div>
       <div class="ms-commenter-info">
         <div class="ms-commenter-name">
-          <span class="ms-comment-delete" onclick="deleteComment('${c.id}')" title="Delete">✕</span>
-          ${c.url ? `<a href="${sanitizeUrl(c.url)}" target="_blank" rel="noopener">${escapeHtml(c.name)}</a>` : escapeHtml(c.name)}
+          <button type="button" class="ms-comment-delete" onclick="deleteComment('${c.id}')" aria-label="Delete local comment by ${escapeHtml(c.name)}">✕</button>
+          ${c.url ? `<a href="${escapeHtml(sanitizeUrl(c.url))}" target="_blank" rel="noopener">${escapeHtml(c.name)}</a>` : escapeHtml(c.name)}
         </div>
         <div class="ms-comment-date">${escapeHtml(c.date)}</div>
         <div class="ms-comment-body">${escapeHtml(c.body)}</div>
@@ -132,14 +134,19 @@ function deleteComment(id) {
 
 function getComments() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const parsed = saved ? JSON.parse(saved) : guestbookMemory;
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(c => c && typeof c === 'object' && typeof c.id === 'string' && /^[a-zA-Z0-9_-]+$/.test(c.id) && ['name','body','date'].every(k => typeof c[k] === 'string')).map(c => ({...c, url: typeof c.url === 'string' ? c.url : '', avatar: typeof c.avatar === 'string' ? c.avatar : '👤'}));
   } catch {
-    return [];
+    return guestbookMemory;
   }
 }
 
 function saveComments(comments) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  guestbookMemory = comments;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(comments)); }
+  catch (_) { document.getElementById('gb-storage-note').textContent = 'Browser storage is unavailable. Comments remain in this page session only and are not sent to Vince.'; }
 }
 
 // ── HELPERS ───────────────────────────────────────────
@@ -154,10 +161,11 @@ function escapeHtml(str) {
 }
 
 function sanitizeUrl(url) {
-  // Only allow http/https links
   if (!url) return '#';
-  if (!/^https?:\/\//i.test(url)) return 'https://' + url;
-  return url;
+  try {
+    const parsed = new URL(/^https?:\/\//i.test(url) ? url : 'https://' + url);
+    return ['https:', 'http:'].includes(parsed.protocol) ? parsed.href : '#';
+  } catch (_) { return '#'; }
 }
 
 function formatDate(d) {

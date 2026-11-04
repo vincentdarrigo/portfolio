@@ -272,6 +272,7 @@ function wbRenderForecast() {
 // ── CLOCK ─────────────────────────────────────────────
 
 function wbStartClock() {
+  clearInterval(wbClockTimer);
   function tick() {
     const now = new Date();
     const dateEl = document.getElementById('wb-date');

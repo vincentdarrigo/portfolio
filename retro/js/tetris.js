@@ -312,6 +312,7 @@ function drawTetBlock(ctx, px, py, size) {
 // ── INPUT ─────────────────────────────────────────────
 
 function handleTetrisKey(e) {
+  if (activeWindowId !== 'tetris' || e.target.closest('input, textarea, select, button, a, [contenteditable="true"]')) return;
   if (document.getElementById('window-tetris')?.style.display !== 'block') return;
 
   if (tetStatus === 'idle' || tetStatus === 'gameover') {

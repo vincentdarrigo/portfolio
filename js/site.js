@@ -3,21 +3,23 @@
 (function () {
   var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-nav]'));
-  var crumb = document.getElementById('crumb-here');
+
   var main = document.getElementById('main');
   var firstRender = true;
 
   function currentRoute() {
-    var h = decodeURIComponent(location.hash.replace(/^#/, ''));
-    if (h === '') return '/';
+    var h;
+    try { h = decodeURIComponent(location.hash.replace(/^#/, '')); }
+    catch (e) { return '/not-found'; }
+    if (h === '') return document.documentElement.dataset.route || '/';
     return h.charAt(0) === '/' ? h : null;
   }
 
   function render() {
     var route = currentRoute();
     if (route === null && !firstRender) return; // a plain in-page anchor such as #main
-    var view = document.getElementById(route || '/');
-    if (!view || !view.classList.contains('view')) view = document.getElementById('/');
+    var view = document.getElementById(route || document.documentElement.dataset.route || '/');
+    if (!view || !view.classList.contains('view')) view = document.getElementById('/not-found');
 
     views.forEach(function (v) { v.hidden = v !== view; });
 
@@ -28,8 +30,7 @@
     });
 
     var title = view.getAttribute('data-title') || 'Overview';
-    if (crumb) crumb.textContent = section === '/work' && view.id !== '/work' ? 'Work / ' + title : title;
-    document.title = (view.id === '/' ? 'Vince Darrigo · AI-Assisted Software Engineer' : title + ' · Vince Darrigo');
+    document.title = (view.id === '/' ? 'Vince Darrigo · Software & Systems Integration' : title + ' · Vince Darrigo');
 
     if (!firstRender) {
       window.scrollTo(0, 0);
@@ -38,7 +39,15 @@
     firstRender = false;
   }
 
-  window.addEventListener('hashchange', render);
+  var transition;
+  window.addEventListener('hashchange', function () {
+    if (transition) transition.skipTransition();
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (document.startViewTransition && !reduce && currentRoute() !== null) {
+      transition = document.startViewTransition(render);
+      transition.finished.catch(function () {});
+    } else render();
+  });
   render();
 
   // Keep the skip link from replacing the route in the URL.

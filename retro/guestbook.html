@@ -13,22 +13,9 @@
 <!-- ══ TOP NAV BAR (MySpace chrome) ══════════════════ -->
 <div id="ms-topbar">
   <div id="ms-logo">My<span>Space</span></div>
-  <div id="ms-topnav">
-    <a href="index.html">Home</a>
-    <a href="#">Browse</a>
-    <a href="#">Search</a>
-    <a href="#">Invite</a>
-    <a href="#">Film</a>
-    <a href="#">Mail</a>
-    <a href="#">Blog</a>
-    <a href="#">Favorites</a>
-    <a href="#">Forum</a>
-    <a href="#">Groups</a>
-    <a href="#">Events</a>
-    <a href="#">Music</a>
-    <a href="#">Comedy</a>
-    <a href="#">Classifieds</a>
-  </div>
+  <nav id="ms-topnav" aria-label="Guestbook navigation">
+    <a href="index.html">Desktop</a><a href="../#/work">Work</a><a href="#ms-guestbook-box">Guestbook</a><a href="../#/about">About Vince</a>
+  </nav>
 </div>
 
 <!-- ══ MARQUEE BANNER ════════════════════════════════ -->
@@ -45,15 +32,15 @@
 <div id="ms-profile-banner">
   <div id="ms-profile-name-block">
     <span id="ms-profile-name">Vince</span>
-    <span id="ms-profile-age">37 years old</span>
+    <span id="ms-profile-age">A local MySpace tribute</span>
     <div id="ms-online-now" class="ms-blink">● Online Now!</div>
     <div id="ms-last-login">Last Login: Today</div>
-    <div id="ms-view-count">Profile Views: <strong id="view-count-num">1,337</strong></div>
+    <div id="ms-view-count">Fictional profile views: <strong id="view-count-num">1,337</strong></div>
   </div>
   <div id="ms-profile-actions-top">
     <a href="mailto:vincent.darrigo@gmail.com" class="ms-profile-action-btn">✉ Send Message</a>
     <a href="mailto:vincent.darrigo@gmail.com" class="ms-profile-action-btn">➕ Add to Friends</a>
-    <a href="#" class="ms-profile-action-btn" onclick="alert('You cannot block Vince. He is too cool.')">🚫 Block User</a>
+    <a href="../#/experience" class="ms-profile-action-btn">Experience</a>
   </div>
 </div>
 
@@ -71,7 +58,7 @@
       </div>
       <div id="ms-photo-caption">Vince's Pic</div>
       <div class="ms-photo-links">
-        <a href="#">View More Pics</a>
+        <a href="../#/about">About Vince</a>
       </div>
       <div id="ms-add-friend-btn">
         <a href="mailto:vincent.darrigo@gmail.com">✉ Add to Friends</a>
@@ -86,7 +73,7 @@
       <div class="ms-box-header">Vince's Blurb</div>
       <div class="ms-box-content">
         <p><strong>About me:</strong></p>
-        <p>Just a Python guy who builds things that actually work. Been turning chaos into code for 6+ years. Currently building the future from my home office in Florida ☀️</p>
+        <p>I build Python applications and integrations, and games that give me an excuse to experiment. Based in Deltona, Florida.</p>
         <br>
         <p><strong>Who I'd like to meet:</strong></p>
         <p>Fellow builders. Product people. Anyone hiring backend Python engineers who ship real stuff and bring good energy to the team.</p>
@@ -97,10 +84,10 @@
     <div class="ms-box">
       <div class="ms-box-header">Vince's Details</div>
       <div class="ms-box-content ms-details">
-        <div class="ms-detail-row"><span>Status:</span> Single (for hire)</div>
+        <div class="ms-detail-row"><span>Status:</span> Open to a conversation</div>
         <div class="ms-detail-row"><span>Here for:</span> Networking, Jobs</div>
         <div class="ms-detail-row"><span>Hometown:</span> Deltona, FL</div>
-        <div class="ms-detail-row"><span>Occupation:</span> Senior Dev / Builder</div>
+        <div class="ms-detail-row"><span>Occupation:</span> Senior Data Specialist | Technical Lead</div>
         <div class="ms-detail-row"><span>Companies:</span> Safal Partners</div>
       </div>
     </div>
@@ -138,37 +125,37 @@
     <!-- Top friends -->
     <div class="ms-box">
       <div class="ms-box-header">
-        Vince's Top 8 Friends
+        Vince's Project Friends
         <span class="ms-box-header-sub">(projects)</span>
       </div>
       <div class="ms-box-content">
         <div id="ms-top-friends">
           <!-- Tom is everyone's first friend -->
-          <a class="ms-friend-slot ms-friend-tom" href="#" title="Tom is everyone's first friend!">
+          <a class="ms-friend-slot ms-friend-tom" href="#ms-guestbook-box" title="Tom is a fictional sample friend">
             <div class="ms-friend-pic ms-tom-pic">😊</div>
             <div class="ms-friend-name">Tom</div>
           </a>
-          <a class="ms-friend-slot" href="index.html">
+          <a class="ms-friend-slot" href="index.html#ispyai">
             <div class="ms-friend-pic">🗺️</div>
-            <div class="ms-friend-name">QuestForge</div>
+            <div class="ms-friend-name">I Spy AI</div>
           </a>
-          <a class="ms-friend-slot" href="index.html">
+          <a class="ms-friend-slot" href="index.html#predictrix">
             <div class="ms-friend-pic">📊</div>
             <div class="ms-friend-name">Predictrix</div>
           </a>
-          <a class="ms-friend-slot" href="index.html">
+          <a class="ms-friend-slot" href="index.html#learning">
             <div class="ms-friend-pic">🧠</div>
             <div class="ms-friend-name">AI Learning</div>
           </a>
-          <a class="ms-friend-slot" href="index.html">
+          <a class="ms-friend-slot" href="index.html#trivia">
             <div class="ms-friend-pic">❓</div>
             <div class="ms-friend-name">AI Trivia</div>
           </a>
-          <a class="ms-friend-slot" href="index.html">
+          <a class="ms-friend-slot" href="index.html#questourism">
             <div class="ms-friend-pic">🌐</div>
             <div class="ms-friend-name">Questourism</div>
           </a>
-          <a class="ms-friend-slot" href="index.html">
+          <a class="ms-friend-slot" href="index.html#vault">
             <div class="ms-friend-pic">🔒</div>
             <div class="ms-friend-name">???</div>
           </a>
@@ -188,7 +175,7 @@
         </p>
         <p>
           I build with production habits from day one: logging, retries, dry-run modes, role-based access,
-          validation. The stuff that separates "it works on my machine" from "it works at scale."
+          validation. The details that matter when someone else depends on the result.
         </p>
         <p>
           Currently building <strong>Questourism</strong> (travel/puzzle games) and <strong>Predictrix</strong>
@@ -197,7 +184,7 @@
         <p>
           <a href="index.html" class="ms-inline-link">← Back to my portfolio</a> &nbsp;·&nbsp;
           <a href="mailto:vincent.darrigo@gmail.com" class="ms-inline-link">✉ Email me</a> &nbsp;·&nbsp;
-          <a href="https://github.com/vincentdarrigo" target="_blank" class="ms-inline-link">📂 GitHub</a>
+          <a href="https://github.com/vincentdarrigo" target="_blank" rel="noopener" class="ms-inline-link">📂 GitHub</a>
         </p>
       </div>
     </div>
@@ -210,24 +197,25 @@
       </div>
       <div class="ms-box-content">
 
+<p class="gb-local-note" id="gb-storage-note">This is a browser-only demo. Comments stay on this device and are not sent to Vince. The starter comments and social statistics are fictional.</p>
         <!-- Leave a comment form -->
         <div id="ms-comment-form">
           <div class="ms-form-title">✏️ Leave a Comment</div>
           <div class="ms-form-row">
-            <label>Name:</label>
+            <label for="gb-name">Name:</label>
             <input type="text" id="gb-name" placeholder="Your name" maxlength="40">
           </div>
           <div class="ms-form-row">
-            <label>Website:</label>
+            <label for="gb-url">Website:</label>
             <input type="text" id="gb-url" placeholder="http://" maxlength="100">
           </div>
           <div class="ms-form-row">
-            <label>Comment:</label>
+            <label for="gb-body">Comment:</label>
             <textarea id="gb-body" placeholder="Leave Vince a comment! No HTML please, this isn't 2006." maxlength="500" rows="4"></textarea>
           </div>
           <div class="ms-form-row ms-form-actions">
-            <button id="gb-submit" onclick="submitComment()">Post Comment</button>
-            <span id="gb-error" class="ms-error"></span>
+            <button id="gb-submit" onclick="submitComment()">Save on this device</button>
+            <span id="gb-error" class="ms-error" role="status"></span>
           </div>
         </div>
 
@@ -249,9 +237,7 @@
 <!-- ══ FOOTER ════════════════════════════════════════ -->
 <div id="ms-footer">
   <p>
-    <a href="#">About</a> | <a href="#">FAQ</a> | <a href="#">Terms</a> | <a href="#">Privacy</a> |
-    <a href="#">Safety Tips</a> | <a href="#">Contact</a> | <a href="#">Promote</a> |
-    <a href="#">Advertise</a> | <a href="index.html">Back to Portfolio</a>
+    <a href="../#/about">About</a> | <a href="mailto:vincent.darrigo@gmail.com">Contact</a> | <a href="index.html">Back to Desktop</a>
   </p>
   <p style="margin-top:6px;">©2006 VinceSpace. All Rights Reserved.</p>
   <p style="margin-top:4px; font-size:10px; color:#888;">
@@ -260,15 +246,15 @@
 </div>
 
 <!-- ══ AUTO-PLAYING MUSIC PLAYER ════ -->
-<audio id="ms-audio" src="assets/music/revenge_of_nerds_theme.mp3" preload="auto" loop></audio>
+<audio id="ms-audio" src="assets/sounds/all_about_the_pentiums.mp3" preload="none" loop></audio>
 <div id="ms-music-player">
   <div id="ms-player-inner">
     <div id="ms-player-art">🎵</div>
     <div id="ms-player-info">
-      <div id="ms-player-song">Revenge of the Nerds Theme</div>
-      <div id="ms-player-artist">Profile Song ♫ Auto-plays on visit</div>
+      <div id="ms-player-song">All About the Pentiums</div>
+      <div id="ms-player-artist">Profile song / press Play</div>
       <div id="ms-player-controls">
-        <button id="ms-play-btn" onclick="msTogglePlay()">▶</button>
+        <button id="ms-play-btn" aria-label="Play or pause profile song" onclick="msTogglePlay()">▶</button>
         <div id="ms-player-bar"><div id="ms-player-progress"></div></div>
       </div>
     </div>
@@ -304,23 +290,7 @@
       if (btn) btn.textContent = '▶';
     });
 
-    // Autoplay on first user interaction with the page (browser policy)
-    const tryPlay = () => {
-      audio.play().then(() => {
-        const btn = document.getElementById('ms-play-btn');
-        if (btn) btn.textContent = '⏸';
-        document.removeEventListener('click', tryPlay);
-        document.removeEventListener('keydown', tryPlay);
-      }).catch(() => {});
-    };
-    // Attempt immediate autoplay first, fall back to interaction-gated
-    audio.play().then(() => {
-      const btn = document.getElementById('ms-play-btn');
-      if (btn) btn.textContent = '⏸';
-    }).catch(() => {
-      document.addEventListener('click',   tryPlay, { once: true });
-      document.addEventListener('keydown', tryPlay, { once: true });
-    });
+    // Music starts only from the explicit Play control.
   });
 })();
 </script>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#101411"/>
+  <path d="M64 100H1136M64 550H1136" stroke="#465144"/>
+  <text x="64" y="65" fill="#f3f1e7" font-family="Arial,sans-serif" font-size="26" font-weight="700">Vince Darrigo</text>
+  <text x="1136" y="65" fill="#9ca792" font-family="monospace" font-size="14" text-anchor="end">SOFTWARE / SYSTEMS INTEGRATION</text>
+  <text x="64" y="231" fill="#f3f1e7" font-family="Arial,sans-serif" font-size="72" letter-spacing="-3">Software for the work</text>
+  <text x="64" y="324" fill="#e9bb62" font-family="Georgia,serif" font-size="88" font-style="italic" letter-spacing="-3">between systems.</text>
+  <text x="67" y="393" fill="#c0c7ba" font-family="Arial,sans-serif" font-size="24">Python applications. API integrations. Operational workflows.</text>
+  <rect x="67" y="447" width="180" height="48" fill="#181d19" stroke="#465144"/>
+  <rect x="297" y="447" width="180" height="48" fill="#181d19" stroke="#b58b3c"/>
+  <rect x="527" y="447" width="180" height="48" fill="#181d19" stroke="#465144"/>
+  <g fill="#c0c7ba" font-family="monospace" font-size="16" text-anchor="middle"><text x="157" y="477">Source systems</text><text x="387" y="477" fill="#e9bb62">Python services</text><text x="617" y="477">Team workflows</text></g>
+  <path d="M256 471H286M516 471H486" stroke="#9ca792" stroke-width="2"/>
+  <text x="64" y="590" fill="#9ca792" font-family="monospace" font-size="16">vincentdarrigo.github.io/portfolio</text>
+</svg>

@@ -2,10 +2,10 @@
    vault.js — Secret Terminal Passcode
    Vince Darrigo / The Mothership
 
-   CHANGE THE CODE: update VAULT_CODE below.
+   The puzzle answer is public source. This is not authentication.
 ═══════════════════════════════════════════════════════ */
 
-const VAULT_CODE   = '1337';   // ← Change this to your actual code
+const VAULT_CODE   = '1337';   // Puzzle only; never put credentials here.
 const MAX_ATTEMPTS = 3;
 
 let vaultAttempts = 0;
@@ -66,7 +66,7 @@ function bootSequence() {
     inputRow.style.display = 'flex';
     const input = document.getElementById('vault-input');
     input.value = '';
-    input.focus();
+    if (activeWindowId === 'vault' && !document.hidden) input.focus();
     input.onkeydown = handleVaultInput;
   }, 2500);
 }
@@ -143,7 +143,7 @@ function onVaultFail(attempt) {
   // Re-show prompt
   const inputRow = document.getElementById('vault-input-row');
   inputRow.style.display = 'flex';
-  document.getElementById('vault-input').focus();
+  if (activeWindowId === 'vault') document.getElementById('vault-input').focus();
 }
 
 // ── LOCKOUT (3 failed attempts → BSOD-style) ──────────

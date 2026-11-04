@@ -77,6 +77,7 @@ const POPUP_POOL = [
   },
 ];
 
+let popupTimer;
 let _popIdx       = 0;
 let _popShown     = 0;
 const MAX_POPUPS  = 3; // max per session
@@ -84,23 +85,25 @@ const POP_DELAY_1 = 90000;  // first popup: 90s after desktop loads
 const POP_INTERVAL = 120000; // subsequent popups every 2 min
 
 function initPopups() {
+  clearTimeout(popupTimer);
   // Shuffle pool so order varies
   POPUP_POOL.sort(() => Math.random() - 0.5);
-  setTimeout(_maybeShowPopup, POP_DELAY_1);
+  popupTimer = setTimeout(_maybeShowPopup, POP_DELAY_1);
 }
 
 function _maybeShowPopup() {
+  if (!retroExtrasEnabled) return;
   if (_popShown >= MAX_POPUPS) return;
   if ((typeof imRunning !== 'undefined' && imRunning) ||
       (typeof isReading === 'function' && isReading())) {
     // Welcome show still running, or the visitor is reading a project — wait a bit longer
-    setTimeout(_maybeShowPopup, 30000);
+    popupTimer = setTimeout(_maybeShowPopup, 30000);
     return;
   }
   _showNextPopup();
   _popShown++;
   if (_popShown < MAX_POPUPS) {
-    setTimeout(_maybeShowPopup, POP_INTERVAL);
+    popupTimer = setTimeout(_maybeShowPopup, POP_INTERVAL);
   }
 }
 
@@ -161,6 +164,6 @@ function _buildAndShow(cfg) {
 document.addEventListener('DOMContentLoaded', () => {
   // Wait for boot complete event before starting popup timer
   document.addEventListener('bootComplete', () => {
-    setTimeout(initPopups, 2000); // small buffer after desktop loads
+    if (retroExtrasEnabled) initPopups();
   });
 });
